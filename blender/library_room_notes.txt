@@ -1,3 +1,0 @@
-Stair width: .528
-Stair height: .335
-
