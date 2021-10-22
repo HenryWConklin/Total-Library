@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Library.gd" type="Script" id=1]
+[ext_resource path="res://props/Player.tscn" type="PackedScene" id=2]
+
+[node name="Library" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.2, 0 )
