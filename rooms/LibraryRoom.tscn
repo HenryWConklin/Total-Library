@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://blender/library_room.glb" type="PackedScene" id=1]
-[ext_resource path="res://blender/shelf_col.tscn" type="PackedScene" id=2]
+[ext_resource path="res://blender/library_room_post.tscn" type="PackedScene" id=1]
+[ext_resource path="res://blender/shelf_post.tscn" type="PackedScene" id=2]
 [ext_resource path="res://rooms/LibraryRoom.lmbake" type="BakedLightmapData" id=3]
 
 [sub_resource type="BoxShape" id=1]
@@ -9,7 +9,6 @@
 [node name="LibraryRoom" type="Spatial"]
 
 [node name="library_room" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0285711, -4.76837e-07, 0.0021987 )
 
 [node name="shelf1" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 7.071, 0.2, 7.071 )
