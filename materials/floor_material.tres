@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://materials/shaders/oct_tile_shader.tres" type="Shader" id=1]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/scale = 20.0
+shader_param/oct_color_1 = Color( 0, 0, 0, 1 )
+shader_param/oct_color_2 = Color( 1, 1, 1, 1 )
+shader_param/square_color = Color( 0.337255, 0.337255, 0.337255, 1 )
