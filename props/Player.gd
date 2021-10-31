@@ -2,7 +2,7 @@ extends KinematicBody
 
 export(Vector2) var mouse_sensitivity = Vector2(0.002, 0.002);
 export(Vector2) var move_speed = Vector2(5, 5)
-export(float, 0) var gravity = 10
+export(float) var gravity = 10
 
 var _mouse_move = Vector2(0, 0)
 onready var camera = $Camera
