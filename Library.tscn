@@ -1,10 +1,30 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Library.gd" type="Script" id=1]
 [ext_resource path="res://props/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://materials/library_env.tres" type="Environment" id=3]
+[ext_resource path="res://rooms/TiledLibraryRoom.tscn" type="PackedScene" id=4]
 
 [node name="Library" type="Spatial"]
 script = ExtResource( 1 )
+player_path = NodePath("Player")
+library_room_path = NodePath("TiledLibraryRoom")
+player_teleport_margin = 0.05
+lock_player = true
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+light_color = Color( 0.89, 1, 0.9615, 1 )
+shadow_reverse_cull_face = true
+directional_shadow_mode = 1
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.2, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 3 )
+
+[node name="TiledLibraryRoom" parent="." instance=ExtResource( 4 )]
+tile_extent = Vector3( 3, 2, 3 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
