@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Spatial",
+"class": "ArrayModifier",
+"language": "GDScript",
+"path": "res://util/ArrayModifier.gd"
+} ]
+_global_script_class_icons={
+"ArrayModifier": ""
+}
+
 [application]
 
 config/name="Library Of Babel"
@@ -48,5 +58,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-quality/filters/msaa=1
+quality/shadows/filter_mode=2
 environment/default_environment="res://default_env.tres"
