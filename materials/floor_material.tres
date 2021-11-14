@@ -1,10 +1,14 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=2]
 
-[ext_resource path="res://materials/shaders/oct_tile_shader.tres" type="Shader" id=1]
+[ext_resource path="res://materials/shaders/hex_tile_shader.tres" type="Shader" id=1]
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/scale = 20.0
-shader_param/oct_color_1 = Color( 0, 0, 0, 1 )
-shader_param/oct_color_2 = Color( 1, 1, 1, 1 )
-shader_param/square_color = Color( 0.337255, 0.337255, 0.337255, 1 )
+shader_param/tileSize = 5.211
+shader_param/groutFraction = 0.973
+shader_param/tileAlbedo = Color( 0.937255, 0.0470588, 0.0470588, 1 )
+shader_param/tileRoughness = 0.424
+shader_param/groutAlbedo = Color( 0.486275, 0.486275, 0.486275, 1 )
+shader_param/groutRoughness = 0.908
+shader_param/curveMagnitude = 0.11
+shader_param/curveStart = 0.798

@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/shelf.glb-b4aca9bae40702617b45dec1015bf4de.scn"
+path="res://.import/animated_book.glb-f8e9d4d7b624a6e721adf2f343cfb5af.scn"
 
 [deps]
 
-source_file="res://blender/shelf.glb"
-dest_files=[ "res://.import/shelf.glb-b4aca9bae40702617b45dec1015bf4de.scn" ]
+source_file="res://blender/animated_book.glb"
+dest_files=[ "res://.import/animated_book.glb-f8e9d4d7b624a6e721adf2f343cfb5af.scn" ]
 
 [params]
 
@@ -18,12 +18,12 @@ nodes/custom_script=""
 nodes/storage=0
 nodes/use_legacy_names=false
 materials/location=1
-materials/storage=0
+materials/storage=1
 materials/keep_on_reimport=true
 meshes/compress=true
 meshes/ensure_tangents=true
 meshes/storage=0
-meshes/light_baking=2
+meshes/light_baking=0
 meshes/lightmap_texel_size=0.1
 skins/use_named_skins=true
 external_files/store_in_subdir=false

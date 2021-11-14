@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/library_room.glb-5ecd0c69388aaa24ad29848a75f3575b.scn"
+path="res://.import/hex_library_tile.glb-1a21a2274c22361ae5e7e0f3760f97d1.scn"
 
 [deps]
 
-source_file="res://blender/library_room.glb"
-dest_files=[ "res://.import/library_room.glb-5ecd0c69388aaa24ad29848a75f3575b.scn" ]
+source_file="res://blender/hex_library_tile.glb"
+dest_files=[ "res://.import/hex_library_tile.glb-1a21a2274c22361ae5e7e0f3760f97d1.scn" ]
 
 [params]
 
@@ -18,16 +18,17 @@ nodes/custom_script=""
 nodes/storage=0
 nodes/use_legacy_names=false
 materials/location=1
-materials/storage=0
+materials/storage=1
 materials/keep_on_reimport=true
-meshes/compress=true
+meshes/octahedral_compression=true
+meshes/compress=0
 meshes/ensure_tangents=true
 meshes/storage=0
 meshes/light_baking=2
-meshes/lightmap_texel_size=0.05
-skins/use_named_skins=false
+meshes/lightmap_texel_size=0.03
+skins/use_named_skins=true
 external_files/store_in_subdir=false
-animation/import=false
+animation/import=true
 animation/fps=15
 animation/filter_script=""
 animation/storage=false

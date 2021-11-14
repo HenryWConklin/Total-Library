@@ -35,7 +35,7 @@ func set_skip_first(p_skip_first: bool):
 	_update_array()
 
 func _update_array():
-	if not Engine.editor_hint or scene == null:
+	if not Engine.editor_hint or scene == null or not is_inside_tree():
 		return
 	var needed_count = count
 	if symmetric:
@@ -46,7 +46,8 @@ func _update_array():
 	while get_child_count() < needed_count:
 		var instance = scene.instance()
 		add_child(instance)
-		instance.set_owner(self)
+		print(get_tree())
+		instance.set_owner(get_tree().get_edited_scene_root())
 	var _children = get_children()
 	while len(_children) > needed_count:
 		_children.pop_back().queue_free()
