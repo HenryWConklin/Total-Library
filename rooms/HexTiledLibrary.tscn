@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://util/ArrayModifier.gd" type="Script" id=1]
 [ext_resource path="res://blender/hex_library_tile_post.tscn" type="PackedScene" id=2]
 [ext_resource path="res://props/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://materials/library_env.tres" type="Environment" id=4]
 [ext_resource path="res://props/PlayerLockAreas.tscn" type="PackedScene" id=5]
+[ext_resource path="res://props/PortalPlane.tscn" type="PackedScene" id=6]
 
 [node name="HexTiledLibrary" type="Spatial"]
 
@@ -95,10 +96,10 @@ count = 2
 symmetric = true
 skip_first = true
 
-[node name="hex_library_tile" parent="Rooms/ArrayY" instance=ExtResource( 2 )]
+[node name="hex_library_tile" type="Spatial" parent="Rooms/ArrayY" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_library_tile2" parent="Rooms/ArrayY" instance=ExtResource( 2 )]
+[node name="hex_library_tile2" type="Spatial" parent="Rooms/ArrayY" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.8, 0 )
 
 [node name="hex_library_tile2" parent="Rooms" instance=ExtResource( 2 )]
@@ -106,3 +107,41 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.392, 0, 6 )
 
 [node name="hex_library_tile3" parent="Rooms" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.464, 0, -6 )
+
+[node name="PortalPlanes" type="Spatial" parent="."]
+
+[node name="X+" parent="PortalPlanes" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 45.034, 1.2, 0 )
+render_offset = Vector3( 0, 0, 13.856 )
+portal_size = Vector2( 4, 2.4 )
+viewport_pixels_per_unit = 20.0
+
+[node name="X-" parent="PortalPlanes" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -51.962, 1.2, 0 )
+render_offset = Vector3( 0, 0, 13.856 )
+portal_size = Vector2( 4, 2.4 )
+viewport_pixels_per_unit = 20.0
+
+[node name="Y+" parent="PortalPlanes" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -6.928, 9.6, 0 )
+render_offset = Vector3( 0, 0, 2.4 )
+portal_size = Vector2( 3, 4 )
+viewport_pixels_per_unit = 80.0
+
+[node name="Y-" parent="PortalPlanes" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -6.928, -4.9, 0 )
+render_offset = Vector3( 0, 0, 2.4 )
+portal_size = Vector2( 3, 4 )
+viewport_pixels_per_unit = 80.0
+
+[node name="Z+" parent="PortalPlanes" instance=ExtResource( 6 )]
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 15.588, 3.6, -27 )
+render_offset = Vector3( 0, 0, 13.856 )
+portal_size = Vector2( 4, 2.4 )
+viewport_pixels_per_unit = 20.0
+
+[node name="Z-" parent="PortalPlanes" instance=ExtResource( 6 )]
+transform = Transform( -0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866026, -19.053, 3.6, 33 )
+render_offset = Vector3( 0, 0, 13.856 )
+portal_size = Vector2( 4, 2.4 )
+viewport_pixels_per_unit = 20.0
