@@ -21,7 +21,6 @@ _global_script_class_icons={
 [application]
 
 config/name="Library Of Babel"
-run/main_scene="res://Library.tscn"
 config/icon="res://icon.png"
 
 [input]
@@ -60,7 +59,6 @@ common/enable_pause_aware_picking=true
 
 quality/shadow_atlas/size=8192
 quality/shadow_atlas/cubemap_size=4096
-quality/shadow_atlas/quadrant_1_subdiv=1
 quality/shadows/filter_mode=2
 quality/shading/use_physical_light_attenuation=true
 environment/default_environment="res://default_env.tres"
