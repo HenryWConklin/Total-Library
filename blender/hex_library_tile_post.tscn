@@ -23,14 +23,8 @@ material/3 = ExtResource( 5 )
 [node name="CollisionShape" type="CollisionShape" parent="Room/StaticBody" index="0"]
 shape = SubResource( 1 )
 
-[node name="Light1" type="Spatial" parent="." index="1"]
+[node name="LibraryLight" parent="." index="1" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.928, 2.4, 0 )
 
-[node name="LibraryLight" parent="Light1" index="0" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0 )
-
-[node name="Light2" type="Spatial" parent="." index="2"]
+[node name="LibraryLight2" parent="." index="2" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.928, 4.8, 0 )
-
-[node name="LibraryLight" parent="Light2" index="0" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0 )
