@@ -1,14 +1,7 @@
-[gd_resource type="Shader" format=2]
-
-[resource]
-code = "shader_type spatial;
+shader_type spatial;
 
 // Unit vector at 60 degrees
 const vec2 SIXTY_DEGREES = vec2(0.5, 0.866025404);
-// Exponent of 2^0
-const int FLOAT_FIXED_BITS = 0x3F800000;
-// Mantissa
-const int FLOAT_RAND_BITS = 0x007FFFFF;
 
 varying vec2 globalUV;
 
@@ -25,44 +18,6 @@ void vertex() {
 	globalUV = (WORLD_MATRIX * vec4(VERTEX, 1.0)).xz;
 }
 
-// A single iteration of Bob Jenkins' One-At-A-Time hashing algorithm.
-int hash( int x ) {
-    x += ( x << 10);
-    x = x ^ ( x >>  6);
-    x += ( x <<  3);
-    x = x ^ ( x >> 11);
-    x += ( x << 15);
-    return x;
-}
-
-
-
-// Random value in range [0,1)
-float random(int seed) {
-	int rand = hash(seed);
-	return intBitsToFloat((rand & FLOAT_RAND_BITS) | FLOAT_FIXED_BITS) - 1.;
-}
-
-// Random vector on unit circle
-vec2 randomGradient(ivec2 p) {
-	return normalize(vec2(
-		random(p.x * 123 + p.y * 456), 
-		random(789*p.x + 987*p.y)
-	) * 2. - 1.);
-}
-
-float noise( in vec2 p )
-{
-    ivec2 i = ivec2(floor( p ));
-     vec2 f =       fract( p );
-
-	vec2 u = smoothstep(0., 1., f); // feel free to replace by a quintic smoothstep instead
-//	return dot(randomGradient(i), f);
-    return mix( mix( dot( randomGradient( i+ivec2(0,0) ), f-vec2(0.0,0.0) ), 
-                     dot( randomGradient( i+ivec2(1,0) ), f-vec2(1.0,0.0) ), u.x),
-                mix( dot( randomGradient( i+ivec2(0,1) ), f-vec2(0.0,1.0) ), 
-                     dot( randomGradient( i+ivec2(1,1) ), f-vec2(1.0,1.0) ), u.x), u.y);
-}
 
 
 void tiledHexDistance(in vec2 uv, out float hexDist, out vec2 distGrad) {
@@ -93,18 +48,13 @@ void fragment() {
 	vec2 hexDistGrad;
 	tiledHexDistance(coord, hexDist, hexDistGrad);
 	bool isTile = hexDist < groutFraction;
-//	float noise = noise(coord);
-//	float nearZero = smoothstep(-.1, 0., noise) * smoothstep(.1, 0., noise);
-//	vec2 nearLattice = smoothstep(0., .1, fract(coord)) * smoothstep(0.9, 1., fract(coord));
 	
 	float curveInterp = (hexDist - curveStart) / (1. - curveStart);
 	vec2 curveGrad = hexDist > curveStart 
 		? hexDistGrad * (6. * curveInterp * (1. - curveInterp)) * curveMagnitude 
 		: vec2(0.);
 	NORMAL = (INV_CAMERA_MATRIX * vec4(normalize(vec3(curveGrad.x, 1., curveGrad.y)), 0.0)).xyz;
-//	ALBEDO = NORMAL;
 	
 	ALBEDO = (isTile ? tileAlbedo : groutAlbedo).rgb;
 	ROUGHNESS = (isTile ? tileRoughness : groutRoughness);
-//	ALBEDO = vec3(nearZero, nearLattice);
-}"
+}

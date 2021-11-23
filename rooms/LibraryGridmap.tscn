@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://rooms/LibraryGridmap.gd" type="Script" id=1]
+[ext_resource path="res://rooms/hex_rooms.meshlib" type="MeshLibrary" id=2]
+[ext_resource path="res://props/LibraryLight.tscn" type="PackedScene" id=3]
+[ext_resource path="res://blender/hex_gallery_tile_post.tscn" type="PackedScene" id=4]
+[ext_resource path="res://blender/hex_vestibule_tile_post.tscn" type="PackedScene" id=5]
+
+[node name="GridMap" type="GridMap"]
+mesh_library = ExtResource( 2 )
+cell_size = Vector3( 3.464, 4.8, 2 )
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+data = {
+"cells": PoolIntArray( 0, 0, 0, 2, 0, 1, 4, 0, 0, 6, 0, 1, 8, 0, 0, 10, 0, 1, 12, 0, 0, 65524, 0, 0, 65526, 0, 1, 65528, 0, 0, 65530, 0, 1, 65532, 0, 0, 65534, 0, 1, 65536, 0, 0, 65538, 0, 1, 65540, 0, 0, 65542, 0, 1, 65544, 0, 0, 131064, 0, 0, 131066, 0, 1, 131068, 0, 0, 131070, 0, 1, -65536, 0, 0, -65534, 0, 1, -65532, 0, 0, -65530, 0, 1, -65528, 0, 0, -8, 0, 0, -6, 0, 1, -4, 0, 0, -2, 0, 1, 65531, 3, 1, 65533, 3, 0, 65535, 3, 1, 131067, 3, 1, 131069, 3, 0, 131071, 3, 1, -5, 3, 1, -3, 3, 0, -1, 3, 1, 65534, 6, 0, 131070, 6, 0, -2, 6, 0, 65533, 9, 1, 131069, 9, 1, -3, 9, 1, 65532, 12, 0, 131068, 12, 0, -4, 12, 0, 65531, 15, 1, 131067, 15, 1, 5, 65521, 1, 65541, 65521, 1, 4, 65524, 0, 65540, 65524, 0, -65532, 65524, 0, 3, 65527, 1, 65539, 65527, 1, -65533, 65527, 1, 2, 65530, 0, 4, 65530, 1, 65538, 65530, 0, 65540, 65530, 1, -65534, 65530, 0, 1, 65533, 1, 3, 65533, 0, 65535, 65533, 0, 65537, 65533, 1, 65539, 65533, 0, 131071, 65533, 0, -65535, 65533, 1, -65533, 65533, 0, -1, 65533, 0 )
+}
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 0, 0 )
+}
+lightScene = ExtResource( 3 )
+galleryIndex = 1
+itemScenes = [ ExtResource( 5 ), ExtResource( 4 ) ]

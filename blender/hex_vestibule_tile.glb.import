@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/hex_library_tile.glb-1a21a2274c22361ae5e7e0f3760f97d1.scn"
+path="res://.import/hex_vestibule_tile.glb-4faa1eefa16a9defe2e87bf74c3a9c60.scn"
 
 [deps]
 
-source_file="res://blender/hex_library_tile.glb"
-dest_files=[ "res://.import/hex_library_tile.glb-1a21a2274c22361ae5e7e0f3760f97d1.scn" ]
+source_file="res://blender/hex_vestibule_tile.glb"
+dest_files=[ "res://.import/hex_vestibule_tile.glb-4faa1eefa16a9defe2e87bf74c3a9c60.scn" ]
 
 [params]
 
@@ -21,11 +21,11 @@ materials/location=1
 materials/storage=1
 materials/keep_on_reimport=true
 meshes/octahedral_compression=true
-meshes/compress=0
+meshes/compress=4286
 meshes/ensure_tangents=true
 meshes/storage=0
-meshes/light_baking=2
-meshes/lightmap_texel_size=0.03
+meshes/light_baking=0
+meshes/lightmap_texel_size=0.1
 skins/use_named_skins=true
 external_files/store_in_subdir=false
 animation/import=true
