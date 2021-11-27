@@ -19,7 +19,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33201, 0, 0 )
 
 [node name="RoomManager" type="RoomManager" parent="."]
 roomlist = NodePath("../Rooms")
-default_portal_margin = 0.21
+merge_meshes = true
 script = ExtResource( 8 )
 
 [node name="Rooms" parent="." instance=ExtResource( 1 )]

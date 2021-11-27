@@ -1,5 +1,7 @@
 extends RoomManager
 
+export(bool) var auto_enable = true
+
 func _ready():
-	self.rooms_convert()
-	pass
+	if auto_enable:
+		self.rooms_convert()
