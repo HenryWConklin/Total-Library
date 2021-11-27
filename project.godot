@@ -13,15 +13,40 @@ _global_script_classes=[ {
 "class": "ArrayModifier",
 "language": "GDScript",
 "path": "res://util/ArrayModifier.gd"
+}, {
+"base": "Resource",
+"class": "BigInt",
+"language": "GDScript",
+"path": "res://data/BigInt.gd"
+}, {
+"base": "Resource",
+"class": "BookRegistry",
+"language": "GDScript",
+"path": "res://data/BookRegistry.gd"
 } ]
 _global_script_class_icons={
-"ArrayModifier": ""
+"ArrayModifier": "",
+"BigInt": "",
+"BookRegistry": ""
 }
 
 [application]
 
 config/name="Library Of Babel"
+run/main_scene="res://rooms/Library.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/vsync/use_vsync=false
+
+[editor_plugins]
+
+enabled=PoolStringArray(  )
+
+[gdnative]
+
+singletons=[  ]
 
 [input]
 
