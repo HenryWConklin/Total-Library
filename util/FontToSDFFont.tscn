@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://util/FontToSDFFont.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/SpaceMono-Bold.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="Theme" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 1024
+font_data = ExtResource( 2 )
+
+[sub_resource type="Environment" id=4]
+background_mode = 4
+background_color = Color( 0.345098, 0, 0, 0 )
+
+[sub_resource type="World" id=5]
+resource_local_to_scene = true
+environment = SubResource( 4 )
+
+[sub_resource type="Theme" id=3]
+
+[node name="Converter" type="ViewportContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+source_font = SubResource( 1 )
+glyph_sdf_height = 64
+dest_path = "res://assets/fonts/SpaceMonoBoldSDF"
+viewport_path = NodePath("Viewport")
+label_path = NodePath("Viewport/Label")
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 100, 100 )
+own_world = true
+world = SubResource( 5 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="Viewport"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 40.0
+margin_bottom = 14.0
+theme = SubResource( 3 )
+text = "PLACEHOLDER"
+autowrap = true
