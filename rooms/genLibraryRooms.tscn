@@ -24,7 +24,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room14")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room" instance=ExtResource( 3 )]
 
 [node name="Room2" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.928, 0, 0 )
@@ -45,13 +45,13 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room15")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room2" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room2" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room2" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room2" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room2" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room2" instance=ExtResource( 2 )]
 
 [node name="Room3" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.856, 0, 0 )
@@ -67,7 +67,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room16")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room3" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room3" instance=ExtResource( 3 )]
 
 [node name="Room4" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.784, 0, 0 )
@@ -83,13 +83,13 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room17")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room4" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room4" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room4" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room4" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room4" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room4" instance=ExtResource( 2 )]
 
 [node name="Room5" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.712, 0, 0 )
@@ -105,7 +105,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room18")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room5" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room5" instance=ExtResource( 3 )]
 
 [node name="Room6" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 34.64, 0, 0 )
@@ -116,21 +116,21 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.4641,
 linked_room = NodePath("../../Room7")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="LibraryLight" type="Spatial" parent="Room6" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room6" instance=ExtResource( 1 )]
 
-[node name="LibraryLight2" type="Spatial" parent="Room6" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room6" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight3" type="Spatial" parent="Room6" instance=ExtResource( 1 )]
+[node name="LibraryLight3" parent="Room6" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room6" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room6" instance=ExtResource( 2 )]
 
 [node name="Room7" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.568, 0, 0 )
 points = PoolVector3Array( 3.4641, -0.1, 2, 2.44929e-16, -0.1, 4, -3.4641, -0.1, 2, -3.4641, -0.1, -2, -7.34788e-16, -0.1, -4, 3.4641, -0.1, -2, 3.4641, 4.7, 2, 2.44929e-16, 4.7, 4, -3.4641, 4.7, 2, -3.4641, 4.7, -2, -7.34788e-16, 4.7, -4, 3.4641, 4.7, -2 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room7" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room7" instance=ExtResource( 3 )]
 
 [node name="Room8" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -41.568, 0, 0 )
@@ -141,7 +141,7 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.4641,
 linked_room = NodePath("../../Room9")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room8" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room8" instance=ExtResource( 3 )]
 
 [node name="Room9" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.64, 0, 0 )
@@ -152,15 +152,15 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.4641,
 linked_room = NodePath("../../Room10")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="LibraryLight" type="Spatial" parent="Room9" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room9" instance=ExtResource( 1 )]
 
-[node name="LibraryLight2" type="Spatial" parent="Room9" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room9" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight3" type="Spatial" parent="Room9" instance=ExtResource( 1 )]
+[node name="LibraryLight3" parent="Room9" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room9" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room9" instance=ExtResource( 2 )]
 
 [node name="Room10" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.712, 0, 0 )
@@ -176,7 +176,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room19")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room10" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room10" instance=ExtResource( 3 )]
 
 [node name="Room11" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.784, 0, 0 )
@@ -192,13 +192,13 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room20")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room11" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room11" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room11" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room11" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room11" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room11" instance=ExtResource( 2 )]
 
 [node name="Room12" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.856, 0, 0 )
@@ -214,7 +214,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room21")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room12" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room12" instance=ExtResource( 3 )]
 
 [node name="Room13" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.928, 0, 0 )
@@ -235,13 +235,13 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room22")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room13" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room13" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room13" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room13" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room13" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room13" instance=ExtResource( 2 )]
 
 [node name="Room14" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
@@ -257,7 +257,7 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room68")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room14" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room14" instance=ExtResource( 3 )]
 
 [node name="Room15" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.928, 4.8, 0 )
@@ -273,13 +273,13 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room69")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="LibraryLight" type="Spatial" parent="Room15" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room15" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room15" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room15" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room15" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room15" instance=ExtResource( 2 )]
 
 [node name="Room16" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.856, 4.8, 0 )
@@ -290,7 +290,7 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.4641,
 linked_room = NodePath("../../Room17")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room16" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room16" instance=ExtResource( 3 )]
 
 [node name="Room17" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.784, 4.8, 0 )
@@ -301,19 +301,19 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.4641,
 linked_room = NodePath("../../Room18")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="LibraryLight" type="Spatial" parent="Room17" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room17" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room17" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room17" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room17" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room17" instance=ExtResource( 2 )]
 
 [node name="Room18" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.712, 4.8, 0 )
 points = PoolVector3Array( 3.4641, -0.1, 2, 2.44929e-16, -0.1, 4, -3.4641, -0.1, 2, -3.4641, -0.1, -2, -7.34788e-16, -0.1, -4, 3.4641, -0.1, -2, 3.4641, 4.7, 2, 2.44929e-16, 4.7, 4, -3.4641, 4.7, 2, -3.4641, 4.7, -2, -7.34788e-16, 4.7, -4, 3.4641, 4.7, -2 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room18" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room18" instance=ExtResource( 3 )]
 
 [node name="Room19" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.712, 4.8, 0 )
@@ -324,7 +324,7 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.4641,
 linked_room = NodePath("../../Room20")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room19" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room19" instance=ExtResource( 3 )]
 
 [node name="Room20" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.784, 4.8, 0 )
@@ -335,13 +335,13 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.4641,
 linked_room = NodePath("../../Room21")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="LibraryLight" type="Spatial" parent="Room20" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room20" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room20" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room20" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room20" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room20" instance=ExtResource( 2 )]
 
 [node name="Room21" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.856, 4.8, 0 )
@@ -352,7 +352,7 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.4641,
 linked_room = NodePath("../../Room22")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room21" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room21" instance=ExtResource( 3 )]
 
 [node name="Room22" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.928, 4.8, 0 )
@@ -368,13 +368,13 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room70")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="LibraryLight" type="Spatial" parent="Room22" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room22" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room22" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room22" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room22" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room22" instance=ExtResource( 2 )]
 
 [node name="Room23" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.8, 0 )
@@ -395,7 +395,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room23" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room23" instance=ExtResource( 3 )]
 
 [node name="Room24" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.928, -4.8, 0 )
@@ -416,15 +416,15 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room2")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room24" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room24" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room24" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room24" instance=ExtResource( 1 )]
 
-[node name="LibraryLight3" type="Spatial" parent="Room24" instance=ExtResource( 1 )]
+[node name="LibraryLight3" parent="Room24" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room24" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room24" instance=ExtResource( 2 )]
 
 [node name="Room25" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.856, -4.8, 0 )
@@ -440,7 +440,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room3")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room25" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room25" instance=ExtResource( 3 )]
 
 [node name="Room26" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.784, -4.8, 0 )
@@ -456,15 +456,15 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room4")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room26" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room26" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room26" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room26" instance=ExtResource( 1 )]
 
-[node name="LibraryLight3" type="Spatial" parent="Room26" instance=ExtResource( 1 )]
+[node name="LibraryLight3" parent="Room26" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room26" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room26" instance=ExtResource( 2 )]
 
 [node name="Room27" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.712, -4.8, 0 )
@@ -475,7 +475,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room5")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room27" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room27" instance=ExtResource( 3 )]
 
 [node name="Room28" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.712, -4.8, 0 )
@@ -491,7 +491,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room10")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room28" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room28" instance=ExtResource( 3 )]
 
 [node name="Room29" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.784, -4.8, 0 )
@@ -507,15 +507,15 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room11")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room29" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room29" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room29" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room29" instance=ExtResource( 1 )]
 
-[node name="LibraryLight3" type="Spatial" parent="Room29" instance=ExtResource( 1 )]
+[node name="LibraryLight3" parent="Room29" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room29" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room29" instance=ExtResource( 2 )]
 
 [node name="Room30" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.856, -4.8, 0 )
@@ -531,7 +531,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room12")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room30" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room30" instance=ExtResource( 3 )]
 
 [node name="Room31" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.928, -4.8, 0 )
@@ -552,15 +552,15 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room13")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room31" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room31" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room31" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room31" instance=ExtResource( 1 )]
 
-[node name="LibraryLight3" type="Spatial" parent="Room31" instance=ExtResource( 1 )]
+[node name="LibraryLight3" parent="Room31" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room31" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room31" instance=ExtResource( 2 )]
 
 [node name="Room32" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.32, 0, 6 )
@@ -581,13 +581,13 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room35")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room32" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room32" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room32" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room32" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room32" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room32" instance=ExtResource( 2 )]
 
 [node name="Room33" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.392, 0, 6 )
@@ -608,7 +608,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room36")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room33" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room33" instance=ExtResource( 3 )]
 
 [node name="Room34" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.464, 0, 6 )
@@ -624,13 +624,13 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room37")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room34" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room34" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room34" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room34" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room34" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room34" instance=ExtResource( 2 )]
 
 [node name="Room35" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.32, 4.8, 6 )
@@ -646,13 +646,13 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room21")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="LibraryLight" type="Spatial" parent="Room35" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room35" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room35" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room35" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room35" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room35" instance=ExtResource( 2 )]
 
 [node name="Room36" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.392, 4.8, 6 )
@@ -668,7 +668,7 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room22")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room36" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room36" instance=ExtResource( 3 )]
 
 [node name="Room37" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.464, 4.8, 6 )
@@ -679,13 +679,13 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room14")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="LibraryLight" type="Spatial" parent="Room37" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room37" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room37" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room37" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room37" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room37" instance=ExtResource( 2 )]
 
 [node name="Room38" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.32, -4.8, 6 )
@@ -706,15 +706,15 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room32")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room38" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room38" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room38" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room38" instance=ExtResource( 1 )]
 
-[node name="LibraryLight3" type="Spatial" parent="Room38" instance=ExtResource( 1 )]
+[node name="LibraryLight3" parent="Room38" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room38" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room38" instance=ExtResource( 2 )]
 
 [node name="Room39" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.392, -4.8, 6 )
@@ -735,7 +735,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room33")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room39" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room39" instance=ExtResource( 3 )]
 
 [node name="Room40" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.464, -4.8, 6 )
@@ -751,15 +751,15 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room34")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room40" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room40" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room40" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room40" instance=ExtResource( 1 )]
 
-[node name="LibraryLight3" type="Spatial" parent="Room40" instance=ExtResource( 1 )]
+[node name="LibraryLight3" parent="Room40" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room40" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room40" instance=ExtResource( 2 )]
 
 [node name="Room41" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.928, 0, 12 )
@@ -775,7 +775,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room42")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room41" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room41" instance=ExtResource( 3 )]
 
 [node name="Room42" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.928, 4.8, 12 )
@@ -786,7 +786,7 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room37")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room42" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room42" instance=ExtResource( 3 )]
 
 [node name="Room43" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.928, -4.8, 12 )
@@ -802,7 +802,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room41")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room43" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room43" instance=ExtResource( 3 )]
 
 [node name="Room44" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.392, 0, 18 )
@@ -818,13 +818,13 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room45")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room44" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room44" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room44" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room44" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room44" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room44" instance=ExtResource( 2 )]
 
 [node name="Room45" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.392, 4.8, 18 )
@@ -835,13 +835,13 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room42")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="LibraryLight" type="Spatial" parent="Room45" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room45" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room45" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room45" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room45" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room45" instance=ExtResource( 2 )]
 
 [node name="Room46" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.392, -4.8, 18 )
@@ -857,15 +857,15 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room44")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room46" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room46" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room46" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room46" instance=ExtResource( 1 )]
 
-[node name="LibraryLight3" type="Spatial" parent="Room46" instance=ExtResource( 1 )]
+[node name="LibraryLight3" parent="Room46" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room46" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room46" instance=ExtResource( 2 )]
 
 [node name="Room47" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.856, 0, 24 )
@@ -881,7 +881,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room48")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room47" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room47" instance=ExtResource( 3 )]
 
 [node name="Room48" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.856, 4.8, 24 )
@@ -892,7 +892,7 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room45")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room48" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room48" instance=ExtResource( 3 )]
 
 [node name="Room49" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.856, -4.8, 24 )
@@ -908,7 +908,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room47")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room49" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room49" instance=ExtResource( 3 )]
 
 [node name="Room50" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.32, 0, 30 )
@@ -924,15 +924,15 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room51")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room50" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room50" instance=ExtResource( 1 )]
 
-[node name="LibraryLight2" type="Spatial" parent="Room50" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room50" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight3" type="Spatial" parent="Room50" instance=ExtResource( 1 )]
+[node name="LibraryLight3" parent="Room50" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room50" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room50" instance=ExtResource( 2 )]
 
 [node name="Room51" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.32, 4.8, 30 )
@@ -943,13 +943,13 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room48")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="LibraryLight" type="Spatial" parent="Room51" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room51" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room51" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room51" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room51" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room51" instance=ExtResource( 2 )]
 
 [node name="Room52" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.32, 0, -30 )
@@ -960,27 +960,27 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room53")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room52" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room52" instance=ExtResource( 1 )]
 
-[node name="LibraryLight2" type="Spatial" parent="Room52" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room52" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight3" type="Spatial" parent="Room52" instance=ExtResource( 1 )]
+[node name="LibraryLight3" parent="Room52" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room52" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room52" instance=ExtResource( 2 )]
 
 [node name="Room53" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.32, 4.8, -30 )
 points = PoolVector3Array( 3.4641, -0.1, 2, 2.44929e-16, -0.1, 4, -3.4641, -0.1, 2, -3.4641, -0.1, -2, -7.34788e-16, -0.1, -4, 3.4641, -0.1, -2, 3.4641, 4.7, 2, 2.44929e-16, 4.7, 4, -3.4641, 4.7, 2, -3.4641, 4.7, -2, -7.34788e-16, 4.7, -4, 3.4641, 4.7, -2 )
 
-[node name="LibraryLight" type="Spatial" parent="Room53" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room53" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room53" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room53" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room53" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room53" instance=ExtResource( 2 )]
 
 [node name="Room54" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.856, 0, -24 )
@@ -996,7 +996,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room55")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room54" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room54" instance=ExtResource( 3 )]
 
 [node name="Room55" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.856, 4.8, -24 )
@@ -1007,7 +1007,7 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room53")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room55" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room55" instance=ExtResource( 3 )]
 
 [node name="Room56" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.856, -4.8, -24 )
@@ -1018,7 +1018,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room54")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room56" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room56" instance=ExtResource( 3 )]
 
 [node name="Room57" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.392, 0, -18 )
@@ -1034,13 +1034,13 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room58")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room57" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room57" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room57" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room57" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room57" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room57" instance=ExtResource( 2 )]
 
 [node name="Room58" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.392, 4.8, -18 )
@@ -1051,13 +1051,13 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room55")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="LibraryLight" type="Spatial" parent="Room58" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room58" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room58" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room58" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room58" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room58" instance=ExtResource( 2 )]
 
 [node name="Room59" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.392, -4.8, -18 )
@@ -1073,15 +1073,15 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room57")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room59" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room59" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room59" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room59" instance=ExtResource( 1 )]
 
-[node name="LibraryLight3" type="Spatial" parent="Room59" instance=ExtResource( 1 )]
+[node name="LibraryLight3" parent="Room59" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room59" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room59" instance=ExtResource( 2 )]
 
 [node name="Room60" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.928, 0, -12 )
@@ -1102,7 +1102,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room62")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room60" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room60" instance=ExtResource( 3 )]
 
 [node name="Room61" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.856, 0, -12 )
@@ -1113,15 +1113,15 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room63")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room61" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room61" instance=ExtResource( 1 )]
 
-[node name="LibraryLight2" type="Spatial" parent="Room61" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room61" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight3" type="Spatial" parent="Room61" instance=ExtResource( 1 )]
+[node name="LibraryLight3" parent="Room61" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room61" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room61" instance=ExtResource( 2 )]
 
 [node name="Room62" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.928, 4.8, -12 )
@@ -1137,19 +1137,19 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room58")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room62" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room62" instance=ExtResource( 3 )]
 
 [node name="Room63" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.856, 4.8, -12 )
 points = PoolVector3Array( 3.4641, -0.1, 2, 2.44929e-16, -0.1, 4, -3.4641, -0.1, 2, -3.4641, -0.1, -2, -7.34788e-16, -0.1, -4, 3.4641, -0.1, -2, 3.4641, 4.7, 2, 2.44929e-16, 4.7, 4, -3.4641, 4.7, 2, -3.4641, 4.7, -2, -7.34788e-16, 4.7, -4, 3.4641, 4.7, -2 )
 
-[node name="LibraryLight" type="Spatial" parent="Room63" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room63" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room63" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room63" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room63" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room63" instance=ExtResource( 2 )]
 
 [node name="Room64" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.928, -4.8, -12 )
@@ -1165,7 +1165,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room60")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room64" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room64" instance=ExtResource( 3 )]
 
 [node name="Room65" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.464, 0, -6 )
@@ -1186,13 +1186,13 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room68")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room65" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room65" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room65" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room65" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room65" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room65" instance=ExtResource( 2 )]
 
 [node name="Room66" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.392, 0, -6 )
@@ -1208,7 +1208,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room69")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room66" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room66" instance=ExtResource( 3 )]
 
 [node name="Room67" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.464, 0, -6 )
@@ -1224,7 +1224,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room70")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room67" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room67" instance=ExtResource( 3 )]
 
 [node name="Room68" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.464, 4.8, -6 )
@@ -1240,13 +1240,13 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room62")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="LibraryLight" type="Spatial" parent="Room68" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room68" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room68" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room68" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room68" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room68" instance=ExtResource( 2 )]
 
 [node name="Room69" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.392, 4.8, -6 )
@@ -1257,7 +1257,7 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room63")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room69" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room69" instance=ExtResource( 3 )]
 
 [node name="Room70" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.464, 4.8, -6 )
@@ -1268,7 +1268,7 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.4641,
 linked_room = NodePath("../../Room68")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room70" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room70" instance=ExtResource( 3 )]
 
 [node name="Room71" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.464, -4.8, -6 )
@@ -1289,15 +1289,15 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room65")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="LibraryLight" type="Spatial" parent="Room71" instance=ExtResource( 1 )]
+[node name="LibraryLight" parent="Room71" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
-[node name="LibraryLight2" type="Spatial" parent="Room71" instance=ExtResource( 1 )]
+[node name="LibraryLight2" parent="Room71" instance=ExtResource( 1 )]
 
-[node name="LibraryLight3" type="Spatial" parent="Room71" instance=ExtResource( 1 )]
+[node name="LibraryLight3" parent="Room71" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
-[node name="hex_gallery_tile" type="Spatial" parent="Room71" instance=ExtResource( 2 )]
+[node name="hex_gallery_tile" parent="Room71" instance=ExtResource( 2 )]
 
 [node name="Room72" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.392, -4.8, -6 )
@@ -1308,7 +1308,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room66")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room72" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room72" instance=ExtResource( 3 )]
 
 [node name="Room73" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.464, -4.8, -6 )
@@ -1324,4 +1324,4 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room67")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room73" instance=ExtResource( 3 )]
+[node name="hex_vestibule_tile" parent="Room73" instance=ExtResource( 3 )]
