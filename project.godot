@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "BookRegistryParams",
 "language": "GDScript",
 "path": "res://data/BookRegistryParams.gd"
+}, {
+"base": "MultiMeshInstance",
+"class": "Shelf",
+"language": "GDScript",
+"path": "res://props/Shelf.gd"
 } ]
 _global_script_class_icons={
 "ArrayModifier": "",
 "BigInt": "",
-"BookRegistryParams": ""
+"BookRegistryParams": "",
+"Shelf": ""
 }
 
 [application]

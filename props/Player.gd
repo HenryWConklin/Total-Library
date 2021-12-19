@@ -3,9 +3,12 @@ extends KinematicBody
 export(Vector2) var mouse_sensitivity = Vector2(0.002, 0.002);
 export(Vector2) var move_speed = Vector2(5, 5)
 export(float) var gravity = 10
+export(NodePath) var camera_path: NodePath
+export(NodePath) var raycast_path: NodePath
 
 var _mouse_move = Vector2(0, 0)
-onready var camera = $Camera
+onready var camera: Camera = get_node(camera_path)
+onready var raycast: RayCast = get_node(raycast_path)
 
 const SNAP_VECTOR: Vector3 = Vector3(0, -1, 0)
 const UP: Vector3 = Vector3(0, 1, 0)
@@ -66,4 +69,3 @@ func _handle_movement():
 
 func _physics_process(_delta):
 	_handle_movement()
-
