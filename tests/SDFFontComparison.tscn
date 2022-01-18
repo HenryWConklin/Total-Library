@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/fonts/SpaceMonoBoldSDF/V.png" type="Texture" id=1]
+[ext_resource path="res://assets/fonts/SpaceMonoBoldSDF/W.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/SpaceMono-Bold.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="Shader" id=1]
@@ -8,7 +8,7 @@ code = "shader_type canvas_item;
 
 void fragment() {
 	vec4 texSample = texture(TEXTURE, UV);
-	COLOR = vec4(1.0, 1.0, 1.0, smoothstep(0.48, 0.5, texSample.a));
+	COLOR = vec4(1., 1., 1., smoothstep(0.48, 0.5, texSample.a));
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
