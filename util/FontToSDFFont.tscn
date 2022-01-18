@@ -27,6 +27,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ,.'?!"
 source_font = SubResource( 1 )
 glyph_sdf_height = 64
 dest_path = "res://assets/fonts/SpaceMonoBoldSDF"

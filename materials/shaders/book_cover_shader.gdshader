@@ -42,10 +42,10 @@ float title_alpha(vec2 uv) {
 
 	char_uv *= font_glyph_size_uv.y;
 	int char_index = int(char_uv.x/font_glyph_size_uv.x);
-	if (char_index > 5) {
+	if (char_index > 10) {
 		return 0.0;
 	}
-	int target_char = char_index;
+	int target_char = char_index*4;
 	char_uv.x = mod(char_uv.x, font_glyph_size_uv.x);
 
 	vec2 char_pos = vec2(ivec2(target_char % font_texture_columns, target_char / font_texture_columns));
