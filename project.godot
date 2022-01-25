@@ -14,15 +14,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://util/ArrayModifier.gd"
 }, {
-"base": "Resource",
-"class": "BigInt",
-"language": "GDScript",
-"path": "res://data/BigInt.gd"
+"base": "Node",
+"class": "BookUtil",
+"language": "NativeScript",
+"path": "res://native/src/book_util.gdns"
 }, {
 "base": "Resource",
-"class": "BookRegistryParams",
-"language": "GDScript",
-"path": "res://data/BookRegistryParams.gd"
+"class": "RoomGenParams",
+"language": "NativeScript",
+"path": "res://native/src/room_gen_params.gdns"
 }, {
 "base": "MultiMeshInstance",
 "class": "Shelf",
@@ -31,8 +31,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "ArrayModifier": "",
-"BigInt": "",
-"BookRegistryParams": "",
+"BookUtil": "",
+"RoomGenParams": "",
 "Shelf": ""
 }
 
