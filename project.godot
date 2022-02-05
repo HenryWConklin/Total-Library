@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://util/ArrayModifier.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "BookUtil",
 "language": "NativeScript",
 "path": "res://native/src/book_util.gdns"
@@ -58,7 +58,7 @@ window/vsync/use_vsync=false
 
 [editor_plugins]
 
-enabled=PoolStringArray(  )
+enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
 
 [gdnative]
 
