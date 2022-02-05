@@ -155,13 +155,12 @@ void BookUtil::set_origin(godot::PoolByteArray bytes) {
 }
 
 void BookUtil::randomize_origin(int seed) {
-  godot::Godot::print("in randomize");
+  cpp_int range_max = (num_books / books_per_room) - 1;
   boost::random::uniform_int_distribution<bmp::cpp_int> dist(bmp::cpp_int(0),
-                                                             num_books - 1);
+                                                             range_max);
   RandWrapper gen(seed);
   origin = dist(gen);
-  // TODO Align origin to room, should just be origin - (origin %
-  // books_per_room)
+  origin *= books_per_room;
 }
 
 void BookUtil::set_room_gen_params(godot::Ref<RoomGenParams> params) {
