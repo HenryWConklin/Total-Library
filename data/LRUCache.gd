@@ -21,6 +21,12 @@ func _init(capacity: int):
 # Least Recently Used element if the number of elements is at capacity. 
 # Returns the removed element if any, null otherwise.
 func add(key, value):
+	# Either remove removes a value or we're at capacity during the check,
+	# both can't happen so only one element will be removed at most
+	var removed = remove(key)
+	if len(_values) >= _capacity:
+		removed = remove(_tail.key)
+
 	var node = LRUNode.new()
 	node.key = key
 	node.value = value
@@ -32,11 +38,6 @@ func add(key, value):
 	else:
 		_head.prev = node
 		_head = node
-	# Either remove removes a value or we're at capacity during the check,
-	# both can't happen so only one element will be removed at most
-	var removed = remove(key)
-	if len(_values) >= _capacity:
-		removed = remove(_tail.key)
 	_values[key] = node
 	return removed
 
@@ -54,7 +55,6 @@ func remove(key):
 	if removed.key == _head.key:
 		_head = removed.next
 	assert(_values.erase(key))
-	_delete_node(removed)
 	return removed.value
 
 # Get value corresponding to key, shift that key up to the front of the use ordering.
@@ -64,14 +64,10 @@ func get(key):
 		return null
 	var value = remove(key)
 	add(key, value)
+	return value
 
 # Check if given key is in the cache
 func has(key) -> bool:
 	return _values.has(key)
 
-func _delete_node(node: LRUNode):
-	# Clear references to avoid circular refs
-	node.next = null
-	node.prev = null
-	node.value = null
-	node.key = null
+
