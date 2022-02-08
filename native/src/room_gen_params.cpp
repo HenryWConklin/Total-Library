@@ -1,5 +1,4 @@
 #include "room_gen_params.hpp"
-#include "Godot.hpp"
 
 #define DEFAULT_NUM_SHELVES 5
 #define DEFAULT_BOOKS_PER_SHELF 60

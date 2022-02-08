@@ -1,7 +1,4 @@
 #include "book_util.hpp"
-#include "Godot.hpp"
-#include "libs/multiprecision/include/boost/multiprecision/cpp_int.hpp"
-#include "libs/multiprecision/include/boost/multiprecision/cpp_int/import_export.hpp"
 #include "util.hpp"
 
 #include <AABB.hpp>

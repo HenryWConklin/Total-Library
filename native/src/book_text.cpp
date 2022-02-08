@@ -1,5 +1,4 @@
 #include "book_text.hpp"
-#include "Godot.hpp"
 
 void BookText::_register_methods() {
   godot::register_property("room_x", &BookText::room_x, 0);
