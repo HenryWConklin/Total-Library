@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://util/ArrayModifier.gd"
 }, {
+"base": "Resource",
+"class": "BookIndex",
+"language": "GDScript",
+"path": "res://data/BookIndex.gd"
+}, {
+"base": "Reference",
+"class": "BookText",
+"language": "NativeScript",
+"path": "res://native/src/book_text.gdns"
+}, {
 "base": "Reference",
 "class": "BookUtil",
 "language": "NativeScript",
@@ -29,17 +39,31 @@ _global_script_classes=[ {
 "language": "NativeScript",
 "path": "res://native/src/room_gen_params.gdns"
 }, {
+"base": "Resource",
+"class": "RoomIndex",
+"language": "GDScript",
+"path": "res://data/RoomIndex.gd"
+}, {
 "base": "MultiMeshInstance",
 "class": "Shelf",
 "language": "GDScript",
 "path": "res://props/Shelf.gd"
+}, {
+"base": "Resource",
+"class": "ShelfIndex",
+"language": "GDScript",
+"path": "res://data/ShelfIndex.gd"
 } ]
 _global_script_class_icons={
 "ArrayModifier": "",
+"BookIndex": "",
+"BookText": "",
 "BookUtil": "",
 "GitAPI": "",
 "RoomGenParams": "",
-"Shelf": ""
+"RoomIndex": "",
+"Shelf": "",
+"ShelfIndex": ""
 }
 
 [application]
