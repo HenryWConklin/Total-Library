@@ -4,9 +4,11 @@ const BookRegistry = preload("res://data/BookRegistry.gd")
 
 var registry: BookRegistry
 
+
 func before_each():
 	registry = BookRegistry.new()
 	add_child_autofree(registry)
+
 
 # Had an issue with using ShelfIndex as a dict key directly, check that to_key method works as expected
 func test_dict_keys():
@@ -26,6 +28,20 @@ func test_get_shelf_returns_same_instance():
 
 	# Compares by reference
 	assert_eq(shelf1, shelf2)
+
+
+func test_get_shelf_respects_offset():
+	var index1 = ShelfIndex.new()
+	var index2 = ShelfIndex.new()
+	index2.room.x = -1
+
+	var shelf1 = registry.get_shelf(index1)
+	registry.add_room_offset(Vector3(1, 0, 0))
+	var shelf2 = registry.get_shelf(index1)
+	var shelf3 = registry.get_shelf(index2)
+
+	assert_ne(shelf1, shelf2)
+	assert_eq(shelf1, shelf3)
 
 
 func test_remove_book_at_hides_book():
@@ -61,7 +77,7 @@ func test_remove_book_at_returns_correct_index():
 	assert_true(registry.place_book_at(book_index_dest, book_index_src))
 	var remove2_res = registry.remove_book_at(book_index_dest)
 
-	assert_eq(remove1_res, book_index_dest)
+	assert_eq(remove1_res.to_key(), book_index_dest.to_key())
 	assert_eq(remove2_res.to_key(), book_index_src.to_key())
 
 
@@ -71,14 +87,24 @@ func test_remove_book_at_already_removed_returns_null():
 	var res1 = registry.remove_book_at(index)
 	var res2 = registry.remove_book_at(index)
 
-	assert_eq(res1, index)
+	assert_eq(res1.to_key(), index.to_key())
 	assert_null(res2)
+
+
+func test_remove_book_at_respects_offset():
+	var index = BookIndex.new()
+
+	registry.add_room_offset(Vector3(1, 0, 0))
+	var removed = registry.remove_book_at(index)
+
+	assert_eq(removed.to_key(), PoolIntArray([1, 0, 0, 0, 0]))
 
 
 func test_place_book_at_fails_on_no_diff():
 	var index = BookIndex.new()
 
 	assert_false(registry.place_book_at(index, index))
+
 
 func test_place_book_at_fails_on_other_slot_changed():
 	var index = BookIndex.new()
@@ -87,6 +113,7 @@ func test_place_book_at_fails_on_other_slot_changed():
 
 	var removed = registry.remove_book_at(index2)
 	assert_false(registry.place_book_at(index, removed))
+
 
 func test_place_book_at_fails_on_filled_slot():
 	var index = BookIndex.new()
@@ -123,9 +150,23 @@ func test_place_book_at_updates_mesh():
 	assert_true(registry.place_book_at(index, index2))
 
 	var shelf = registry.get_shelf(index.shelf_index())
-	assert_eq(shelf.get_instance_color(index.book), 
-					  registry.book_util.get_packed_title_from_index(index2.room.x, index2.room.y, index2.room.z, index2.shelf, index2.book))
+	assert_eq(
+		shelf.get_instance_color(index.book),
+		registry.book_util.get_packed_title_from_index(
+			index2.room.x, index2.room.y, index2.room.z, index2.shelf, index2.book
+		)
+	)
 	assert_eq(shelf.get_instance_transform(index.book).basis.get_scale(), Vector3.ONE)
+
+
+func test_place_book_at_respects_offset():
+	var index = BookIndex.new()
+
+	registry.add_room_offset(Vector3(1, 0, 0))
+	var removed = registry.remove_book_at(index)
+	assert_eq(removed.to_key(), PoolIntArray([1, 0, 0, 0, 0]))
+	assert_true(registry.place_book_at(index, index))
+
 
 func test_get_book_methods():
 	var index = BookIndex.new()
@@ -135,7 +176,10 @@ func test_get_book_methods():
 	var page = registry.get_page(book, 0)
 
 	assert_ne(book, null)
-	assert_eq(title, 
-					  registry.book_util.get_packed_title_from_index(index.room.x, index.room.y, index.room.z, index.shelf, index.book))
+	assert_eq(
+		title,
+		registry.book_util.get_packed_title_from_index(
+			index.room.x, index.room.y, index.room.z, index.shelf, index.book
+		)
+	)
 	assert_eq(page.length(), registry.params.chars_per_page)
-	
