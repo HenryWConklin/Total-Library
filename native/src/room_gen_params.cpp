@@ -32,13 +32,4 @@ void RoomGenParams::_register_methods() {
 }
 
 void RoomGenParams::_init() {
-  num_shelves = DEFAULT_NUM_SHELVES;
-  books_per_shelf = DEFAULT_BOOKS_PER_SHELF;
-  shelf_spacing = DEFAULT_SHELF_SPACING;
-  book_spacing = DEFAULT_BOOK_SPACING;
-  book_mesh = DEFAULT_BOOK_MESH;
-  chars_per_page = DEFAULT_CHARS_PER_PAGE;
-  pages_per_book = DEFAULT_PAGES_PER_BOOK;
-  title_chars = DEFAULT_TITLE_CHARS;
-  charset = DEFAULT_CHARSET;
 }
