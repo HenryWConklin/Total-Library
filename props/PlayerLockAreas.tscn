@@ -16,6 +16,7 @@ collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
 offset = Vector3( -13.856, 0, 0 )
+room_offset = Vector3( 1, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="X+"]
 shape = SubResource( 1 )
@@ -26,6 +27,7 @@ collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
 offset = Vector3( 0, -4.8, 0 )
+room_offset = Vector3( 0, 0, 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Y+"]
 shape = SubResource( 2 )
@@ -36,6 +38,7 @@ collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
 offset = Vector3( 0, 4.8, 0 )
+room_offset = Vector3( 0, 0, -1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Y-"]
 shape = SubResource( 2 )
@@ -46,6 +49,7 @@ collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
 offset = Vector3( 13.856, 0, 0 )
+room_offset = Vector3( -1, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="X-"]
 shape = SubResource( 1 )
@@ -56,6 +60,7 @@ collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
 offset = Vector3( 6.928, 0, -12 )
+room_offset = Vector3( 0, 1, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Z+"]
 shape = SubResource( 1 )
@@ -66,6 +71,7 @@ collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
 offset = Vector3( -6.928, 0, 12 )
+room_offset = Vector3( 0, -1, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Z-"]
 shape = SubResource( 1 )

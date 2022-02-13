@@ -26,12 +26,9 @@ func get_shelf_aabb() -> AABB:
 		(params.num_shelves) * params.shelf_spacing - (params.shelf_spacing - bookSize.y),
 		params.books_per_shelf * (bookSize.z + params.book_spacing) - params.book_spacing
 	)
-	var position = Vector3(
-		-size.x/2,
-		0,
-		-size.z/2
-	)
+	var position = Vector3(-size.x / 2, 0, -size.z / 2)
 	return AABB(position, size)
+
 
 func _offset_shelf_index(ind: ShelfIndex) -> ShelfIndex:
 	var res = ShelfIndex.new()
@@ -41,6 +38,7 @@ func _offset_shelf_index(ind: ShelfIndex) -> ShelfIndex:
 	res.shelf = ind.shelf
 	return res
 
+
 func _offset_book_index(ind: BookIndex) -> BookIndex:
 	var res = BookIndex.new()
 	res.room.x = ind.room.x + room_offset.x
@@ -49,6 +47,7 @@ func _offset_book_index(ind: BookIndex) -> BookIndex:
 	res.shelf = ind.shelf
 	res.book = ind.book
 	return res
+
 
 # Returns a reference to the active multimesh at the given slot
 func get_shelf(ind: ShelfIndex) -> MultiMesh:

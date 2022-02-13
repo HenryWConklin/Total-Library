@@ -1,24 +1,28 @@
 extends Reference
 
+
 class LRUNode:
 	extends Reference
 	var key
 	var value
-	var prev : LRUNode
-	var next : LRUNode
+	var prev: LRUNode
+	var next: LRUNode
 
-var _capacity: int 
+
+var _capacity: int
 var _values: Dictionary = {}
-var _tail : LRUNode = null
-var _head : LRUNode = null
+var _tail: LRUNode = null
+var _head: LRUNode = null
+
 
 func _init(capacity: int):
 	assert(capacity > 0)
 	_capacity = capacity
 
-# Insert a new key/value pair at the front of the use ordering, 
-# overwriting any existing value under the given key and removing the 
-# Least Recently Used element if the number of elements is at capacity. 
+
+# Insert a new key/value pair at the front of the use ordering,
+# overwriting any existing value under the given key and removing the
+# Least Recently Used element if the number of elements is at capacity.
 # Returns the removed element if any, null otherwise.
 func add(key, value):
 	# Either remove removes a value or we're at capacity during the check,
@@ -41,6 +45,7 @@ func add(key, value):
 	_values[key] = node
 	return removed
 
+
 # Remove the value corresponding to the given key and return the value if present, null otherwise
 func remove(key):
 	if not has(key):
@@ -57,6 +62,7 @@ func remove(key):
 	assert(_values.erase(key))
 	return removed.value
 
+
 # Get value corresponding to key, shift that key up to the front of the use ordering.
 # Returns null if element is not present
 func get(key):
@@ -66,8 +72,7 @@ func get(key):
 	add(key, value)
 	return value
 
+
 # Check if given key is in the cache
 func has(key) -> bool:
 	return _values.has(key)
-
-

@@ -5,10 +5,11 @@ var LRUCache = preload("res://data/LRUCache.gd")
 
 func test_add_on_empty_returns_null():
 	var cache = LRUCache.new(1)
-	
+
 	var add_result = cache.add("test", 1)
-	
+
 	assert_eq(add_result, null)
+
 
 func test_add_on_replace_returns_old_value():
 	var cache = LRUCache.new(10)
@@ -17,6 +18,7 @@ func test_add_on_replace_returns_old_value():
 	var add_result = cache.add("test", 2)
 
 	assert_eq(add_result, 1)
+
 
 func test_add_on_full_removes_oldest():
 	var cache = LRUCache.new(2)
@@ -29,6 +31,7 @@ func test_add_on_full_removes_oldest():
 	assert_true(cache.has("b"))
 	assert_true(cache.has("c"))
 
+
 func test_add_on_full_returns_removed_value():
 	var cache = LRUCache.new(2)
 
@@ -37,6 +40,7 @@ func test_add_on_full_returns_removed_value():
 	var removed = cache.add("c", 3)
 
 	assert_eq(removed, 1)
+
 
 func test_add_on_discard_frees_node():
 	var cache = LRUCache.new(2)
@@ -49,6 +53,7 @@ func test_add_on_discard_frees_node():
 
 	assert_eq(refs, after_refs)
 
+
 func test_add_overrides_old_value_same_key():
 	var cache = LRUCache.new(1)
 
@@ -57,6 +62,7 @@ func test_add_overrides_old_value_same_key():
 
 	assert_eq(ret, 1)
 	assert_eq(cache.get("a"), 2)
+
 
 func test_has_returns_true_after_add():
 	var cache = LRUCache.new(1)
@@ -67,6 +73,7 @@ func test_has_returns_true_after_add():
 
 	assert_false(before)
 	assert_true(after)
+
 
 func test_has_returns_false_after_remove():
 	var cache = LRUCache.new(1)
@@ -79,6 +86,7 @@ func test_has_returns_false_after_remove():
 	assert_true(before)
 	assert_false(after)
 
+
 func test_get_returns_value():
 	var cache = LRUCache.new(1)
 
@@ -86,6 +94,7 @@ func test_get_returns_value():
 	var result = cache.get("a")
 
 	assert_eq(result, 1)
+
 
 func test_get_promotes_key():
 	var cache = LRUCache.new(2)
@@ -99,6 +108,7 @@ func test_get_promotes_key():
 	assert_true(cache.has("a"))
 	assert_false(cache.has("b"))
 
+
 func test_remove_head():
 	var cache = LRUCache.new(3)
 
@@ -110,6 +120,7 @@ func test_remove_head():
 	assert_eq(val, 3)
 	assert_false(cache.has("c"))
 	assert_eq(cache._head.key, "b")
+
 
 func test_remove_mid():
 	var cache = LRUCache.new(3)
@@ -124,6 +135,7 @@ func test_remove_mid():
 	assert_eq(cache._head.key, "c")
 	assert_eq(cache._tail.key, "a")
 
+
 func test_remove_tail():
 	var cache = LRUCache.new(3)
 
@@ -136,11 +148,12 @@ func test_remove_tail():
 	assert_false(cache.has("a"))
 	assert_eq(cache._tail.key, "b")
 
+
 func test_lru_cache_stress_test():
 	var cache = LRUCache.new(5)
-	var initial_order = [1,2,3,4,5]
-	var get_order = [3,1,3,3,4,5,2,1]
-	var expected_order = [3,4,5,2,1]
+	var initial_order = [1, 2, 3, 4, 5]
+	var get_order = [3, 1, 3, 3, 4, 5, 2, 1]
+	var expected_order = [3, 4, 5, 2, 1]
 
 	for i in initial_order:
 		cache.add(i, i)
@@ -148,5 +161,5 @@ func test_lru_cache_stress_test():
 		cache.get(i)
 
 	for i in range(5):
-		var removed = cache.add(i+6, i+6)
+		var removed = cache.add(i + 6, i + 6)
 		assert_eq(removed, expected_order[i])
