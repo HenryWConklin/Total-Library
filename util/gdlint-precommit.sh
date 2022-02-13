@@ -12,3 +12,10 @@ then
   echo "Lint issues detected, fix before commiting"
   exit 1
 fi
+
+echo "Running unit tests"
+if ! godot -s addons/gut/gut_cmdln.gd -gdir=res://test/unit/ -gexit --verbose
+then
+  echo "Unit tests failed, fix before commiting"
+  exit 1
+fi
