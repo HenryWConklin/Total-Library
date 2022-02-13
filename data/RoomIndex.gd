@@ -1,5 +1,5 @@
-extends Resource
 class_name RoomIndex
+extends Resource
 
 export(int) var x: int = 0
 export(int) var y: int = 0

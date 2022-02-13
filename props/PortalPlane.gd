@@ -1,19 +1,17 @@
 tool
 extends Spatial
 
+# Position offset from the portal plane itself to other end of the "portal"
+export(Vector3) var render_offset: Vector3 = Vector3(0, 0, 0)
+export(Vector2) var portal_size: Vector2 = Vector2(2, 2) setget set_portal_size
+export(float, 0.0, 1000) var viewport_pixels_per_unit: float = 100 setget set_viewport_ppu
+
 onready var display_node = $MeshInstance
 onready var viewport_node = $Viewport
 onready var camera_node = $Viewport/Camera
 
 # Tips:
 # If the drawing is fading to white, turn on the force sRGB flag in the material
-
-# Position offset from the portal plane itself to other end of the "portal"
-export(Vector3) var render_offset: Vector3 = Vector3(0, 0, 0)
-
-export(Vector2) var portal_size: Vector2 = Vector2(2, 2) setget set_portal_size
-
-export(float, 0.0, 1000) var viewport_pixels_per_unit: float = 100 setget set_viewport_ppu
 
 
 func _ready():

@@ -10,7 +10,8 @@ func before_each():
 	add_child_autofree(registry)
 
 
-# Had an issue with using ShelfIndex as a dict key directly, check that to_key method works as expected
+# Had an issue with using ShelfIndex as a dict key directly,
+# check that to_key method works as expected
 func test_dict_keys():
 	var index1 = ShelfIndex.new()
 	var index2 = index1.duplicate()
@@ -50,17 +51,6 @@ func test_remove_book_at_hides_book():
 
 	var _retval = registry.remove_book_at(book_index)
 	var shelf = registry.get_shelf(shelf_index)
-
-	assert_eq(shelf.get_instance_transform(book_index.book).basis.get_scale(), Vector3.ZERO)
-
-
-func test_remove_book_at_hides_book_with_forced_fresh_instance():
-	var book_index = BookIndex.new()
-	var shelf_index = book_index.shelf_index()
-
-	var _retval = registry.remove_book_at(book_index)
-	var shelf = registry._make_shelf(shelf_index)
-	registry._apply_diff(shelf_index, shelf)
 
 	assert_eq(shelf.get_instance_transform(book_index.book).basis.get_scale(), Vector3.ZERO)
 
@@ -182,4 +172,4 @@ func test_get_book_methods():
 			index.room.x, index.room.y, index.room.z, index.shelf, index.book
 		)
 	)
-	assert_eq(page.length(), registry.params.chars_per_page)
+	assert_eq(page.length(), registry.PARAMS.chars_per_page)

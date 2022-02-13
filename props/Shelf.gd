@@ -1,5 +1,5 @@
-extends MultiMeshInstance
 class_name Shelf
+extends MultiMeshInstance
 
 export(NodePath) var collision_shape: NodePath
 export(Resource) var shelf_index setget set_shelf_index

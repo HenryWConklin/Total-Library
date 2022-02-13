@@ -2,7 +2,7 @@ extends Node
 
 const LRUCache = preload("res://data/LRUCache.gd")
 
-const params = preload("res://data/room_gen_params.tres")
+const PARAMS = preload("res://data/room_gen_params.tres")
 var book_util: BookUtil = BookUtil.new()
 var total_shelf_time = 0
 # Cache of shelf multimeshes, map from ShelfIndex -> MultiMesh
@@ -20,11 +20,11 @@ func add_room_offset(off: Vector3):
 
 
 func get_shelf_aabb() -> AABB:
-	var bookSize = params.book_mesh.get_aabb().size
+	var book_size = PARAMS.book_mesh.get_aabb().size
 	var size = Vector3(
-		bookSize.x,
-		(params.num_shelves) * params.shelf_spacing - (params.shelf_spacing - bookSize.y),
-		params.books_per_shelf * (bookSize.z + params.book_spacing) - params.book_spacing
+		book_size.x,
+		(PARAMS.num_shelves) * PARAMS.shelf_spacing - (PARAMS.shelf_spacing - book_size.y),
+		PARAMS.books_per_shelf * (book_size.z + PARAMS.book_spacing) - PARAMS.book_spacing
 	)
 	var position = Vector3(-size.x / 2, 0, -size.z / 2)
 	return AABB(position, size)
@@ -119,7 +119,8 @@ func place_book_at(ind: BookIndex, book: BookIndex) -> bool:
 	var transform = mesh.get_instance_transform(ind.book)
 	transform.basis = Basis.IDENTITY
 	mesh.set_instance_transform(ind.book, transform)
-	# Always set the title, could have been previously set to another book's title so can't assume it's the original. Can't check easily
+	# Always set the title, could have been previously set to another book's
+	# title so can't assume it's the original. Can't check easily
 	var title_color = book_util.get_packed_title_from_index(
 		book.room.x, book.room.y, book.room.z, book.shelf, book.book
 	)
@@ -142,7 +143,7 @@ func get_page(book, page: int) -> String:
 
 
 func _init():
-	book_util.room_gen_params = params
+	book_util.room_gen_params = PARAMS
 	book_util.randomize_origin(123)
 
 

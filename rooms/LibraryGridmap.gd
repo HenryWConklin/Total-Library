@@ -1,14 +1,14 @@
 extends GridMap
 
-export(PackedScene) var lightScene: PackedScene
+export(PackedScene) var light_scene: PackedScene
 # Index of the gallery tile in the source gridmap
-export(int) var galleryIndex: int = 0
+export(int) var gallery_index: int = 0
 # Array of scenes matching the tiles from the source gridmap
-export(Array, PackedScene) var itemScenes = []
-export(String, FILE) var exportPath = "res://rooms/genLibraryRooms.tscn"
+export(Array, PackedScene) var item_scenes = []
+export(String, FILE) var export_path = "res://rooms/genLibraryRooms.tscn"
 
 var _rooms: Dictionary
-var _exportRoot: Node
+var _export_root: Node
 
 
 func _ready():
@@ -28,18 +28,18 @@ func run_regen():
 
 
 func _add_rooms():
-	var roomParent = Spatial.new()
-	roomParent.name = "Rooms"
-	add_child(roomParent)
-	_exportRoot = roomParent
+	var room_parent = Spatial.new()
+	room_parent.name = "Rooms"
+	add_child(room_parent)
+	_export_root = room_parent
 	_rooms = Dictionary()
 	for pos in self.get_used_cells():
-		var worldPos = self.map_to_world(pos.x, pos.y, pos.z)
+		var world_pos = self.map_to_world(pos.x, pos.y, pos.z)
 		var room = Room.new()
 		room.name = "Room_%d_%d_%d" % [pos.x, pos.y, pos.z]
-		roomParent.add_child(room)
-		room.owner = _exportRoot
-		room.translation = worldPos
+		room_parent.add_child(room)
+		room.owner = _export_root
+		room.translation = world_pos
 		room.points = _make_room_bounds(4)
 		_rooms[pos] = room
 
@@ -56,10 +56,10 @@ func _make_room_bounds(radius: float) -> PoolVector3Array:
 func _add_room_scenes():
 	for pos in self.get_used_cells():
 		var item_index = get_cell_item(pos.x, pos.y, pos.z)
-		var scene = itemScenes[item_index].instance()
+		var scene = item_scenes[item_index].instance()
 		_rooms[pos].add_child(scene)
-		scene.owner = _exportRoot
-		if item_index == galleryIndex:
+		scene.owner = _export_root
+		if item_index == gallery_index:
 			var room_index = RoomIndex.new()
 			room_index.resource_local_to_scene = true
 			# Map to hex coordinates
@@ -73,20 +73,20 @@ func _add_room_scenes():
 
 
 func _add_lights():
-	var cellMap = Dictionary()
+	var cell_map = Dictionary()
 	for pos in self.get_used_cells():
-		var worldPos = self.map_to_world(pos.x, pos.y, pos.z)
-		if self.get_cell_item(pos.x, pos.y, pos.z) == galleryIndex:
-			if not cellMap.has(worldPos):
-				cellMap[worldPos] = pos
-			cellMap[worldPos + 2.4 * Vector3.UP] = pos
-			cellMap[worldPos + 4.8 * Vector3.UP] = pos
-	for pos in cellMap.keys():
-		var light: Spatial = lightScene.instance()
+		var world_pos = self.map_to_world(pos.x, pos.y, pos.z)
+		if self.get_cell_item(pos.x, pos.y, pos.z) == gallery_index:
+			if not cell_map.has(world_pos):
+				cell_map[world_pos] = pos
+			cell_map[world_pos + 2.4 * Vector3.UP] = pos
+			cell_map[world_pos + 4.8 * Vector3.UP] = pos
+	for pos in cell_map.keys():
+		var light: Spatial = light_scene.instance()
 		light.name = "Light_%d_%d_%d" % [pos.x, pos.y, pos.z]
-		_rooms[cellMap[pos]].add_child(light)
+		_rooms[cell_map[pos]].add_child(light)
 		light.global_transform = self.transform.translated(pos)
-		light.owner = _exportRoot
+		light.owner = _export_root
 
 
 func _add_portals():
@@ -122,11 +122,11 @@ func _make_portal(points: PoolVector2Array, parent: Spatial) -> Portal:
 	var portal = Portal.new()
 	portal.points = points
 	parent.add_child(portal)
-	portal.owner = _exportRoot
+	portal.owner = _export_root
 	return portal
 
 
 func _export_rooms():
-	var exportedScene = PackedScene.new()
-	exportedScene.pack(_exportRoot)
-	assert(ResourceSaver.save(exportPath, exportedScene) == OK)
+	var exported_scene = PackedScene.new()
+	exported_scene.pack(_export_root)
+	assert(ResourceSaver.save(export_path, exported_scene) == OK)

@@ -20,6 +20,6 @@ __meta__ = {
 "_editor_clip_": 0,
 "_editor_floor_": Vector3( 0, 0, 0 )
 }
-lightScene = ExtResource( 3 )
-galleryIndex = 1
-itemScenes = [ ExtResource( 5 ), ExtResource( 4 ) ]
+light_scene = ExtResource( 3 )
+gallery_index = 1
+item_scenes = [ ExtResource( 5 ), ExtResource( 4 ) ]

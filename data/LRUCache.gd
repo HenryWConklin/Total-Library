@@ -1,5 +1,10 @@
 extends Reference
 
+var _capacity: int
+var _values: Dictionary = {}
+var _tail: LRUNode = null
+var _head: LRUNode = null
+
 
 class LRUNode:
 	extends Reference
@@ -7,12 +12,6 @@ class LRUNode:
 	var value
 	var prev: LRUNode
 	var next: LRUNode
-
-
-var _capacity: int
-var _values: Dictionary = {}
-var _tail: LRUNode = null
-var _head: LRUNode = null
 
 
 func _init(capacity: int):

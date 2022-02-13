@@ -1,5 +1,8 @@
 extends KinematicBody
 
+const SNAP_VECTOR: Vector3 = Vector3(0, -1, 0)
+const UP: Vector3 = Vector3(0, 1, 0)
+
 export(Vector2) var mouse_sensitivity = Vector2(0.002, 0.002)
 export(Vector2) var move_speed = Vector2(5, 5)
 export(float) var gravity = 10
@@ -9,9 +12,6 @@ export(NodePath) var raycast_path: NodePath
 var _mouse_move = Vector2(0, 0)
 onready var camera: Camera = get_node(camera_path)
 onready var raycast: RayCast = get_node(raycast_path)
-
-const SNAP_VECTOR: Vector3 = Vector3(0, -1, 0)
-const UP: Vector3 = Vector3(0, 1, 0)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -59,9 +59,9 @@ func _handle_movement():
 	move_vec = move_vec.rotated(-self.rotation.y)
 
 	if self.is_on_floor():
-		self.move_and_slide_with_snap(Vector3(move_vec.x, 0, move_vec.y), SNAP_VECTOR, UP, true)  # snap  # up_direction  # stop_on_slope
+		self.move_and_slide_with_snap(Vector3(move_vec.x, 0, move_vec.y), SNAP_VECTOR, UP, true)
 	else:
-		self.move_and_slide(Vector3(move_vec.x, -gravity, move_vec.y), UP, true)  # up_direction  # stop_on_slope
+		self.move_and_slide(Vector3(move_vec.x, -gravity, move_vec.y), UP, true)
 
 
 func _physics_process(_delta):

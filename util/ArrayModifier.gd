@@ -1,6 +1,6 @@
 tool
-extends Spatial
 class_name ArrayModifier
+extends Spatial
 
 export(PackedScene) var scene: PackedScene setget set_scene
 export(Transform) var offset: Transform = Transform.IDENTITY setget set_offset
