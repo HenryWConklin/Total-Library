@@ -2,16 +2,16 @@ extends Reference
 
 var _capacity: int
 var _values: Dictionary = {}
-var _tail: LRUNode = null
-var _head: LRUNode = null
+var _tail: WeakRef = null
+var _head: WeakRef = null
 
 
 class LRUNode:
 	extends Reference
 	var key
 	var value
-	var prev: LRUNode
-	var next: LRUNode
+	var prev: WeakRef
+	var next: WeakRef
 
 
 func _init(capacity: int):
@@ -28,7 +28,7 @@ func add(key, value):
 	# both can't happen so only one element will be removed at most
 	var removed = remove(key)
 	if len(_values) >= _capacity:
-		removed = remove(_tail.key)
+		removed = remove(_tail.get_ref().key)
 
 	var node = LRUNode.new()
 	node.key = key
@@ -36,11 +36,11 @@ func add(key, value):
 	node.next = _head
 	if _head == null:
 		assert(_tail == null)
-		_head = node
-		_tail = node
+		_head = weakref(node)
+		_tail = weakref(node)
 	else:
-		_head.prev = node
-		_head = node
+		_head.get_ref().prev = weakref(node)
+		_head = weakref(node)
 	_values[key] = node
 	return removed
 
@@ -51,12 +51,12 @@ func remove(key):
 		return null
 	var removed = _values[key]
 	if removed.prev != null:
-		removed.prev.next = removed.next
+		removed.prev.get_ref().next = removed.next
 	if removed.next != null:
-		removed.next.prev = removed.prev
-	if removed.key == _tail.key:
+		removed.next.get_ref().prev = removed.prev
+	if removed.key == _tail.get_ref().key:
 		_tail = removed.prev
-	if removed.key == _head.key:
+	if removed.key == _head.get_ref().key:
 		_head = removed.next
 	assert(_values.erase(key))
 	return removed.value

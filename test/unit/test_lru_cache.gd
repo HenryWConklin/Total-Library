@@ -119,7 +119,7 @@ func test_remove_head():
 
 	assert_eq(val, 3)
 	assert_false(cache.has("c"))
-	assert_eq(cache._head.key, "b")
+	assert_eq(cache._head.get_ref().key, "b")
 
 
 func test_remove_mid():
@@ -132,8 +132,8 @@ func test_remove_mid():
 
 	assert_eq(val, 2)
 	assert_false(cache.has("b"))
-	assert_eq(cache._head.key, "c")
-	assert_eq(cache._tail.key, "a")
+	assert_eq(cache._head.get_ref().key, "c")
+	assert_eq(cache._tail.get_ref().key, "a")
 
 
 func test_remove_tail():
@@ -146,7 +146,7 @@ func test_remove_tail():
 
 	assert_eq(val, 1)
 	assert_false(cache.has("a"))
-	assert_eq(cache._tail.key, "b")
+	assert_eq(cache._tail.get_ref().key, "b")
 
 
 func test_lru_cache_stress_test():
