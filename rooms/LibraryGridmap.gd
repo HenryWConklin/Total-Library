@@ -68,7 +68,6 @@ func _add_room_scenes():
 			room_index.z = int(round(pos.y * 2))
 			# Map to gallery cell coordinates
 			room_index.x = (room_index.x + 1) / 2
-			room_index.y = (room_index.y + 1) / 2
 			scene.room_index = room_index
 
 

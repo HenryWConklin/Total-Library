@@ -150,105 +150,105 @@ z = -2
 resource_local_to_scene = true
 script = ExtResource( 3 )
 x = 0
-y = 2
+y = 3
 z = 0
 
 [sub_resource type="Resource" id=22]
 resource_local_to_scene = true
 script = ExtResource( 3 )
 x = 0
-y = 2
+y = 3
 z = 2
 
 [sub_resource type="Resource" id=23]
 resource_local_to_scene = true
 script = ExtResource( 3 )
 x = 0
-y = 2
+y = 3
 z = -2
 
 [sub_resource type="Resource" id=24]
 resource_local_to_scene = true
 script = ExtResource( 3 )
 x = 0
-y = 3
+y = 5
 z = 0
 
 [sub_resource type="Resource" id=25]
 resource_local_to_scene = true
 script = ExtResource( 3 )
 x = 0
-y = 3
+y = 5
 z = 2
 
 [sub_resource type="Resource" id=26]
 resource_local_to_scene = true
 script = ExtResource( 3 )
 x = 0
-y = -2
+y = -5
 z = 0
 
 [sub_resource type="Resource" id=27]
 resource_local_to_scene = true
 script = ExtResource( 3 )
 x = 0
-y = -2
+y = -5
 z = 2
 
 [sub_resource type="Resource" id=28]
 resource_local_to_scene = true
 script = ExtResource( 3 )
 x = 0
-y = -1
+y = -3
 z = 0
 
 [sub_resource type="Resource" id=29]
 resource_local_to_scene = true
 script = ExtResource( 3 )
 x = 0
-y = -1
+y = -3
 z = 2
 
 [sub_resource type="Resource" id=30]
 resource_local_to_scene = true
 script = ExtResource( 3 )
 x = 0
-y = -1
+y = -3
 z = -2
 
 [sub_resource type="Resource" id=31]
 resource_local_to_scene = true
 script = ExtResource( 3 )
 x = 1
-y = 0
+y = -2
 z = 0
 
 [sub_resource type="Resource" id=32]
 resource_local_to_scene = true
 script = ExtResource( 3 )
 x = 1
-y = 0
+y = -2
 z = 2
 
 [sub_resource type="Resource" id=33]
 resource_local_to_scene = true
 script = ExtResource( 3 )
 x = 0
-y = 0
+y = -1
 z = 0
 
 [sub_resource type="Resource" id=34]
 resource_local_to_scene = true
 script = ExtResource( 3 )
 x = 0
-y = 0
+y = -1
 z = 2
 
 [sub_resource type="Resource" id=35]
 resource_local_to_scene = true
 script = ExtResource( 3 )
 x = 0
-y = 0
+y = -1
 z = -2
 
 [node name="Rooms" type="Spatial"]
