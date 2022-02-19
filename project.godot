@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "ArrayModifier",
 "language": "GDScript",
-"path": "res://util/ArrayModifier.gd"
+"path": "res://scripts/util/ArrayModifier.gd"
 }, {
 "base": "Resource",
 "class": "BookIndex",
 "language": "GDScript",
-"path": "res://data/BookIndex.gd"
+"path": "res://scripts/data/BookIndex.gd"
 }, {
 "base": "Reference",
 "class": "BookText",
@@ -42,17 +42,17 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "RoomIndex",
 "language": "GDScript",
-"path": "res://data/RoomIndex.gd"
+"path": "res://scripts/data/RoomIndex.gd"
 }, {
 "base": "MultiMeshInstance",
 "class": "Shelf",
 "language": "GDScript",
-"path": "res://props/Shelf.gd"
+"path": "res://assets/props/Shelf.gd"
 }, {
 "base": "Resource",
 "class": "ShelfIndex",
 "language": "GDScript",
-"path": "res://data/ShelfIndex.gd"
+"path": "res://scripts/data/ShelfIndex.gd"
 } ]
 _global_script_class_icons={
 "ArrayModifier": "",
@@ -69,12 +69,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Library Of Babel"
-run/main_scene="res://rooms/Library.tscn"
+run/main_scene="res://Library.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-BookRegistry="*res://data/BookRegistry.gd"
+BookRegistry="*res://scripts/data/BookRegistry.gd"
 
 [display]
 

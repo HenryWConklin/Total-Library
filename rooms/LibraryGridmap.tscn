@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://rooms/LibraryGridmap.gd" type="Script" id=1]
-[ext_resource path="res://rooms/hex_rooms.meshlib" type="MeshLibrary" id=2]
-[ext_resource path="res://props/LibraryLight.tscn" type="PackedScene" id=3]
-[ext_resource path="res://blender/hex_gallery_tile_post.tscn" type="PackedScene" id=4]
-[ext_resource path="res://blender/hex_vestibule_tile_post.tscn" type="PackedScene" id=5]
+[ext_resource path="res://rooms/Tiles.meshlib" type="MeshLibrary" id=2]
+[ext_resource path="res://assets/props/LibraryLight.tscn" type="PackedScene" id=3]
+[ext_resource path="res://rooms/GalleryTile.tscn" type="PackedScene" id=4]
+[ext_resource path="res://rooms/VestibuleTile.tscn" type="PackedScene" id=5]
 
 [node name="GridMap" type="GridMap"]
 mesh_library = ExtResource( 2 )

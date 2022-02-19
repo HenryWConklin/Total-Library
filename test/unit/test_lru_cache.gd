@@ -1,6 +1,6 @@
 extends "res://addons/gut/test.gd"
 
-var LRUCache = preload("res://data/LRUCache.gd")
+var LRUCache = preload("res://scripts/data/LRUCache.gd")
 
 
 func test_add_on_empty_returns_null():

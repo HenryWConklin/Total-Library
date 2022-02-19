@@ -1,6 +1,6 @@
 extends "res://addons/gut/test.gd"
 
-const BookRegistry = preload("res://data/BookRegistry.gd")
+const BookRegistry = preload("res://scripts/data/BookRegistry.gd")
 
 var registry: BookRegistry
 
