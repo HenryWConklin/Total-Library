@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://rooms/genLibraryRooms.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/PlayerLockAreas.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/materials/library_env.tres" type="Environment" id=4]
 [ext_resource path="res://assets/props/PortalPlane.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/util/ScreenCapture.gd" type="Script" id=6]
 [ext_resource path="res://scripts/util/OnreadyRoomManager.gd" type="Script" id=8]
 
 [node name="Library" type="Spatial"]
@@ -12,14 +13,12 @@
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 4 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33201, 0, 0 )
-
 [node name="PlayerLockAreas" parent="." instance=ExtResource( 3 )]
 
 [node name="RoomManager" type="RoomManager" parent="."]
 roomlist = NodePath("../Rooms")
 merge_meshes = true
+default_portal_margin = 0.2
 script = ExtResource( 8 )
 
 [node name="Rooms" parent="." instance=ExtResource( 1 )]
@@ -73,3 +72,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.464, 
 render_offset = Vector3( 0, 0, 2.4 )
 portal_size = Vector2( 3, 4 )
 viewport_pixels_per_unit = 80.0
+
+[node name="Player" parent="Rooms" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33201, 0, 0 )
+
+[node name="ScreenCapture" type="Node" parent="."]
+script = ExtResource( 6 )
