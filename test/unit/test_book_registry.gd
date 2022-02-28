@@ -74,14 +74,75 @@ func test_get_book_text_at_point_returns_expected_book():
 	assert_eq(text.book, expected_book_ind)
 
 
+func test_get_book_at_point_returns_expected_on_near_end():
+	var index = ShelfIndex.new()
+	index.room.x = 1
+	index.room.y = 2
+	index.room.z = 3
+	index.shelf = ShelfIndex.Side.NORTH
+	var shelf_aabb = registry.get_shelf_aabb()
+	var pos = (
+		shelf_aabb.position
+		+ Vector3(
+			shelf_aabb.size.x / 2,
+			registry.PARAMS.shelf_spacing + registry.book_shape.size.y / 2,
+			-1
+		)
+	)
+	# Significant extra on the end to catch issues with bounding box not matching exactly
+	var expected_book_ind = registry.PARAMS.books_per_shelf
+
+	var text = registry.get_book_text_at_point(index, pos)
+
+	assert_eq(text.book, expected_book_ind)
+
+
+func test_get_book_at_point_returns_expected_on_far_end():
+	var index = ShelfIndex.new()
+	index.room.x = 1
+	index.room.y = 2
+	index.room.z = 3
+	index.shelf = ShelfIndex.Side.NORTH
+	var shelf_aabb = registry.get_shelf_aabb()
+	var pos = (
+		shelf_aabb.position
+		+ Vector3(
+			shelf_aabb.size.x / 2,
+			registry.PARAMS.shelf_spacing + registry.book_shape.size.y / 2,
+			shelf_aabb.size.z + 1
+		)
+	)
+	# Significant extra on the end to catch issues with bounding box not matching exactly
+	var expected_book_ind = 2 * registry.PARAMS.books_per_shelf - 1
+
+	var text = registry.get_book_text_at_point(index, pos)
+
+	assert_eq(text.book, expected_book_ind)
+
+
 func test_remove_book_at_hides_book():
 	var book_index = BookIndex.new()
 	var shelf_index = book_index.shelf_index()
 
 	var _retval = registry.remove_book_at(book_index)
 	var shelf = registry.get_shelf(shelf_index)
+	var transform = shelf.get_instance_transform(book_index.book)
 
-	assert_eq(shelf.get_instance_transform(book_index.book).basis.get_scale(), Vector3.ZERO)
+	assert_eq(transform.basis.get_scale(), Vector3.ZERO)
+
+
+func test_remove_book_at_keeps_hidden_translation():
+	var book_index = BookIndex.new()
+	book_index.book = 1
+	var shelf_index = book_index.shelf_index()
+
+	# Running remove before get_shelf means apply_diff gets run on the shelf before remove tries
+	# to hide the book, so this ordering technically tests both
+	var _retval = registry.remove_book_at(book_index)
+	var shelf = registry.get_shelf(shelf_index)
+	var transform = shelf.get_instance_transform(book_index.book)
+
+	assert_ne(transform.origin, Vector3.ZERO)
 
 
 func test_remove_book_at_returns_correct_index():
@@ -114,9 +175,12 @@ func test_remove_book_at_respects_offset():
 	var index = BookIndex.new()
 
 	registry.add_room_offset(Vector3(1, 0, 0))
+	var shelf = registry.get_shelf(index.shelf_index())
 	var removed = registry.remove_book_at(index)
 
 	assert_eq(removed.to_key(), PoolIntArray([1, 0, 0, 0, 0]))
+	# Check that right book is hidden, had an issue with offsets applied twice
+	assert_eq(shelf.get_instance_transform(index.book).basis, Basis.IDENTITY.scaled(Vector3.ZERO))
 
 
 func test_place_book_at_fails_on_no_diff():
@@ -182,9 +246,12 @@ func test_place_book_at_respects_offset():
 	var index = BookIndex.new()
 
 	registry.add_room_offset(Vector3(1, 0, 0))
+	var shelf = registry.get_shelf(index.shelf_index())
 	var removed = registry.remove_book_at(index)
 	assert_eq(removed.to_key(), PoolIntArray([1, 0, 0, 0, 0]))
+	assert_eq(shelf.get_instance_transform(index.book).basis, Basis.IDENTITY.scaled(Vector3.ZERO))
 	assert_true(registry.place_book_at(index, index))
+	assert_eq(shelf.get_instance_transform(index.book).basis, Basis.IDENTITY)
 
 
 func test_get_book_methods():

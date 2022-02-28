@@ -43,6 +43,8 @@ func get_book_text_at_point(ind: ShelfIndex, local_pos: Vector3) -> BookIndex:
 	var book = int(
 		floor((local_pos.z - shelf_aabb.position.z) / (book_size.z + PARAMS.book_spacing))
 	)
+	# Prevents pulling from previous shelf on the ends
+	book = int(clamp(book, 0, PARAMS.books_per_shelf - 1))
 	var book_ind = BookIndex.new()
 	book_ind.room.x = ind.room.x
 	book_ind.room.y = ind.room.y
@@ -77,7 +79,10 @@ func _offset_book_index(ind: BookIndex) -> BookIndex:
 
 # Returns a reference to the active multimesh at the given slot
 func get_shelf(ind: ShelfIndex) -> MultiMesh:
-	ind = _offset_shelf_index(ind)
+	return _get_shelf_no_offset(_offset_shelf_index(ind))
+
+
+func _get_shelf_no_offset(ind: ShelfIndex) -> MultiMesh:
 	if shelf_cache.has(ind.to_key()):
 		return shelf_cache.get(ind.to_key())
 
@@ -108,9 +113,10 @@ func remove_book_at(ind: BookIndex) -> BookIndex:
 
 	# Hide the book at the given position
 	# Assumes it's already loaded and won't waste by rebuilding
-	var mesh = get_shelf(shelf_ind)
+	var mesh = _get_shelf_no_offset(shelf_ind)
 	var transform = mesh.get_instance_transform(ind.book)
-	mesh.set_instance_transform(ind.book, transform.scaled(Vector3.ZERO))
+	var hidden_transform = Transform(Basis.IDENTITY.scaled(Vector3.ZERO), transform.origin)
+	mesh.set_instance_transform(ind.book, hidden_transform)
 
 	return curr
 
@@ -141,7 +147,7 @@ func place_book_at(ind: BookIndex, book: BookIndex) -> bool:
 
 	# Unhide the book mesh at the given index, set the right title
 	# Assumes it's already loaded and won't waste by rebuilding
-	var mesh = get_shelf(shelf_ind)
+	var mesh = _get_shelf_no_offset(shelf_ind)
 	var transform = mesh.get_instance_transform(ind.book)
 	transform.basis = Basis.IDENTITY
 	mesh.set_instance_transform(ind.book, transform)
@@ -195,7 +201,8 @@ func _apply_diff(ind: ShelfIndex, mesh: MultiMesh):
 		if replacement == null:
 			var transform = mesh.get_instance_transform(i)
 			# Hide by scaling to 0
-			mesh.set_instance_transform(i, transform.scaled(Vector3(0, 0, 0)))
+			var hidden_transform = Transform(Basis.IDENTITY.scaled(Vector3.ZERO), transform.origin)
+			mesh.set_instance_transform(i, hidden_transform)
 		else:
 			var title_color = book_util.get_packed_title_from_index(
 				replacement.room.x,
