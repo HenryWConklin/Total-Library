@@ -45,6 +45,35 @@ func test_get_shelf_respects_offset():
 	assert_eq(shelf1, shelf3)
 
 
+func test_get_book_text_at_point_returns_expected_book():
+	var index = ShelfIndex.new()
+	index.room.x = 1
+	index.room.y = 2
+	index.room.z = 3
+	index.shelf = ShelfIndex.Side.NORTH
+	var shelf_aabb = registry.get_shelf_aabb()
+	var pos = (
+		shelf_aabb.position
+		+ Vector3(
+			0,
+			registry.PARAMS.shelf_spacing + registry.book_shape.size.y / 2,
+			(
+				(registry.book_shape.size.z + registry.PARAMS.book_spacing) * 3
+				+ registry.book_shape.size.z / 2
+			)
+		)
+	)
+	var expected_book_ind = registry.PARAMS.books_per_shelf + 3
+
+	var text = registry.get_book_text_at_point(index, pos)
+
+	assert_eq(text.room_x, index.room.x)
+	assert_eq(text.room_y, index.room.y)
+	assert_eq(text.room_z, index.room.z)
+	assert_eq(text.shelf, index.shelf)
+	assert_eq(text.book, expected_book_ind)
+
+
 func test_remove_book_at_hides_book():
 	var book_index = BookIndex.new()
 	var shelf_index = book_index.shelf_index()

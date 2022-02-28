@@ -11,6 +11,8 @@ var shelf_cache = LRUCache.new(500)
 var shelf_diff = {}
 var room_offset: RoomIndex = RoomIndex.new()
 
+onready var book_shape = PARAMS.book_mesh.get_aabb()
+
 
 func add_room_offset(off: Vector3):
 	room_offset.x += int(off.x)
@@ -20,7 +22,7 @@ func add_room_offset(off: Vector3):
 
 
 func get_shelf_aabb() -> AABB:
-	var book_size = PARAMS.book_mesh.get_aabb().size
+	var book_size = book_shape.size
 	var size = Vector3(
 		book_size.x,
 		(PARAMS.num_shelves) * PARAMS.shelf_spacing - (PARAMS.shelf_spacing - book_size.y),
@@ -28,6 +30,30 @@ func get_shelf_aabb() -> AABB:
 	)
 	var position = Vector3(-size.x / 2, 0, -size.z / 2)
 	return AABB(position, size)
+
+
+# Removes and returns a BookText for the book under the given position on the given shelf,
+# or null if the point is not over a book (e.g. empty slot or not a slot)
+func get_book_text_at_point(ind: ShelfIndex, local_pos: Vector3) -> BookIndex:
+	if fposmod(local_pos.y, PARAMS.shelf_spacing) > book_shape.size.y:
+		return null
+	var shelf_aabb = get_shelf_aabb()
+	var book_size = book_shape.size
+	var shelf = int(floor((local_pos.y - shelf_aabb.position.y) / PARAMS.shelf_spacing))
+	var book = int(
+		floor((local_pos.z - shelf_aabb.position.z) / (book_size.z + PARAMS.book_spacing))
+	)
+	var book_ind = BookIndex.new()
+	book_ind.room.x = ind.room.x
+	book_ind.room.y = ind.room.y
+	book_ind.room.z = ind.room.z
+	book_ind.shelf = ind.shelf
+	book_ind.book = shelf * PARAMS.books_per_shelf + book
+	var actual_book_ind = remove_book_at(book_ind)
+	if actual_book_ind == null:
+		return null
+	var text = get_book_text(actual_book_ind)
+	return text
 
 
 func _offset_shelf_index(ind: ShelfIndex) -> ShelfIndex:
