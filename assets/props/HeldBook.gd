@@ -9,6 +9,7 @@ export(NodePath) var mesh_path: NodePath
 export(float) var pull_animation_time: float = 1
 export(float) var pull_animation_shelf_clearence: float = 0.3
 export(PackedScene) var floor_book_scene
+export(Array, NodePath) var page_renderers
 
 var state: int = State.NONE setget set_state
 
@@ -25,6 +26,8 @@ onready var book_material: Material = get_node(mesh_path).get_active_material(0)
 
 func _ready():
 	self.state = State.NONE
+	book_material.set_shader_param("page1_text_texture", get_node(page_renderers[0]).get_texture())
+	book_material.set_shader_param("page2_text_texture", get_node(page_renderers[1]).get_texture())
 
 
 func set_state(new_state: int):
@@ -77,6 +80,10 @@ func _animate_pick(book_text, book_transform_local: Transform, shelf_transform_g
 	book_material.set_shader_param("title2", int(packed_title.g))
 	book_material.set_shader_param("title3", int(packed_title.b))
 	book_material.set_shader_param("title4", int(packed_title.a))
+	var page1 = BookRegistry.get_page(book_text, 0)
+	get_node(page_renderers[0]).set_text(page1)
+	var page2 = BookRegistry.get_page(book_text, 1)
+	get_node(page_renderers[1]).set_text(page2)
 
 	var shelf_to_local_transform = shelf_transform_global
 	_start_transform = shelf_to_local_transform * book_transform_local

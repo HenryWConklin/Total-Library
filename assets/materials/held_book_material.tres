@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=5 format=2]
 
-[ext_resource path="res://assets/materials/shaders/held_book_shader.gdshader" type="Shader" id=1]
-[ext_resource path="res://assets/fonts/SpaceMonoBoldSDF/SpaceMonoBoldSDF.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/SpaceMonoBoldSDF/SpaceMonoBoldSDF.png" type="Texture" id=1]
+[ext_resource path="res://assets/materials/shaders/held_book_shader.gdshader" type="Shader" id=2]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 period = 18.2
@@ -11,8 +11,7 @@ bump_strength = 7.7
 noise = SubResource( 1 )
 
 [resource]
-resource_local_to_scene = true
-shader = ExtResource( 1 )
+shader = ExtResource( 2 )
 shader_param/albedo1 = Color( 0.415686, 0.211765, 0, 1 )
 shader_param/albedo2 = Color( 0.38, 0.196333, 0, 1 )
 shader_param/font_texture_columns = 7
@@ -22,10 +21,13 @@ shader_param/title_start_uv = Vector2( 0.447, 0.65 )
 shader_param/title_height_uv = 0.047
 shader_param/title_bits_per_char = 5
 shader_param/title_num_chars = 10
-shader_param/page_albedo = Color( 1, 1, 1, 1 )
+shader_param/page_base_albedo = Color( 1, 1, 1, 1 )
+shader_param/page1_uv_offset = Vector2( 0.505, 0.988 )
+shader_param/page2_uv_offset = Vector2( 0.505, 0.703 )
+shader_param/page_uv_scale = 0.269
 shader_param/title1 = null
 shader_param/title2 = null
 shader_param/title3 = null
 shader_param/title4 = null
 shader_param/surface_noise = SubResource( 2 )
-shader_param/font_texture = ExtResource( 2 )
+shader_param/font_texture = ExtResource( 1 )
