@@ -62,6 +62,14 @@ func _unhandled_input(event: InputEvent):
 		get_tree().set_input_as_handled()
 	elif event.is_action_pressed("pick_up") and held_book.can_drop_book():
 		held_book.drop_book()
+		get_tree().set_input_as_handled()
+
+	if event.is_action_pressed("turn_page_forward") and held_book.can_turn_page():
+		held_book.page_forward()
+		get_tree().set_input_as_handled()
+	if event.is_action_pressed("turn_page_back") and held_book.can_turn_page():
+		held_book.page_back()
+		get_tree().set_input_as_handled()
 
 
 func _handle_movement():

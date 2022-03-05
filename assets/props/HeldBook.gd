@@ -80,10 +80,8 @@ func _animate_pick(book_text, book_transform_local: Transform, shelf_transform_g
 	book_material.set_shader_param("title2", int(packed_title.g))
 	book_material.set_shader_param("title3", int(packed_title.b))
 	book_material.set_shader_param("title4", int(packed_title.a))
-	var page1 = BookRegistry.get_page(book_text, 0)
-	get_node(page_renderers[0]).set_text(page1)
-	var page2 = BookRegistry.get_page(book_text, 1)
-	get_node(page_renderers[1]).set_text(page2)
+	_page = 0
+	_update_page_renderers()
 
 	var shelf_to_local_transform = shelf_transform_global
 	_start_transform = shelf_to_local_transform * book_transform_local
@@ -119,3 +117,33 @@ func _animate_drop():
 	yield(animation_player, "animation_finished")
 	# TODO Call BookRegistry to make rigid body
 	set_state(State.NONE)
+
+
+func _update_page_renderers():
+	var page1 = BookRegistry.get_page(_book_text, _page)
+	get_node(page_renderers[0]).set_text(page1)
+	if _page + 1 >= BookRegistry.PARAMS.pages_per_book:
+		get_node(page_renderers[1]).set_text("")
+	else:
+		var page2 = BookRegistry.get_page(_book_text, _page + 1)
+		get_node(page_renderers[1]).set_text(page2)
+
+
+func can_turn_page() -> bool:
+	return state == State.HELD
+
+
+func page_forward():
+	assert(can_turn_page())
+	if _page >= BookRegistry.PARAMS.pages_per_book - 2:
+		return
+	_page += 2
+	_update_page_renderers()
+
+
+func page_back():
+	assert(can_turn_page())
+	if _page == 0:
+		return
+	_page -= 2
+	_update_page_renderers()
