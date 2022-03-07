@@ -139,15 +139,16 @@ turn_page_back={
 
 3d_physics/layer_1="Main"
 3d_physics/layer_2="PickupRaycast"
+3d_physics/layer_3="LockAreas"
 
 [physics]
 
 common/enable_pause_aware_picking=true
+3d/physics_engine="GodotPhysics"
 
 [rendering]
 
-quality/shadow_atlas/size=8192
-quality/shadow_atlas/cubemap_size=4096
+quality/shadow_atlas/cubemap_size=1024
 quality/shadows/filter_mode=2
 quality/shading/use_physical_light_attenuation=true
 environment/default_environment="res://default_env.tres"
