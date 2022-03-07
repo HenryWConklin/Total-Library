@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/materials/wall_material.tres" type="Material" id=1]
 [ext_resource path="res://assets/blender/hex_vestibule_tile.glb" type="PackedScene" id=2]
@@ -9,7 +9,16 @@
 extents = Vector3( 1.0908, 0.05, 1.97242 )
 
 [sub_resource type="BoxShape" id=2]
-extents = Vector3( 0.532025, 0.05, 0.769261 )
+extents = Vector3( 0.818112, 0.05, 1.383 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.535071, 1.2, 0.05 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 1.41738, 1.2, 0.05 )
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 0.543442, 0.05, 2.07305 )
 
 [sub_resource type="CylinderShape" id=3]
 radius = 0.05
@@ -20,418 +29,455 @@ height = 4.8
 [node name="Vestibule" parent="." index="0"]
 material/0 = ExtResource( 4 )
 material/1 = ExtResource( 1 )
-material/2 = ExtResource( 3 )
 
-[node name="LowerFloor" type="StaticBody" parent="Vestibule" index="0"]
+[node name="Stairs" parent="." index="1"]
+material/0 = ExtResource( 3 )
+
+[node name="LowerFloor" type="StaticBody" parent="." index="2"]
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape" type="CollisionShape" parent="Vestibule/LowerFloor" index="0"]
+[node name="CollisionShape" type="CollisionShape" parent="LowerFloor" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.37466, -0.05, 0 )
 shape = SubResource( 1 )
 
-[node name="CollisionShape2" type="CollisionShape" parent="Vestibule/LowerFloor" index="1"]
+[node name="CollisionShape2" type="CollisionShape" parent="LowerFloor" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.375, -0.05, 0 )
 shape = SubResource( 1 )
 
-[node name="CollisionPolygon" type="CollisionPolygon" parent="Vestibule/LowerFloor" index="2"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.004, -0.05, 2.855 )
-depth = 0.1
-polygon = PoolVector2Array( 1.13899, -0.439512, 1.13647, 0.883871, 0.00838805, 1.38544, -1.14813, 0.881781, -1.15343, -0.431727, 0.00433434, -1.09935 )
-
-[node name="CollisionPolygon2" type="CollisionPolygon" parent="Vestibule/LowerFloor" index="3"]
-transform = Transform( -1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, -0.004, -0.05, -2.855 )
-depth = 0.1
-polygon = PoolVector2Array( 1.13899, -0.439512, 1.13647, 0.883871, 0.00838805, 1.38544, -1.14813, 0.881781, -1.15343, -0.431727, 0.00433434, -1.09935 )
-
-[node name="CollisionShape3" type="CollisionShape" parent="Vestibule/LowerFloor" index="4"]
-transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0.895682, -0.05, -1.57684 )
+[node name="CollisionShape3" type="CollisionShape" parent="LowerFloor" index="2"]
+transform = Transform( 0.496019, 0, 0.868311, 0, 1, 0, -0.868311, 0, 0.496019, -0.794348, -0.05, 1.96717 )
 shape = SubResource( 2 )
 
-[node name="CollisionShape4" type="CollisionShape" parent="Vestibule/LowerFloor" index="5"]
-transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -0.896, -0.05, 1.577 )
+[node name="CollisionShape4" type="CollisionShape" parent="LowerFloor" index="3"]
+transform = Transform( 0.496019, 0, 0.868311, 0, 1, 0, -0.868311, 0, 0.496019, 0.791, -0.05, -1.961 )
 shape = SubResource( 2 )
 
-[node name="CollisionShape5" type="CollisionShape" parent="Vestibule/LowerFloor" index="6"]
-transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0.896, -0.05, 1.577 )
+[node name="CollisionShape5" type="CollisionShape" parent="LowerFloor" index="4"]
+transform = Transform( 0.500121, 0, -0.865955, 0, 1, 0, 0.865955, 0, 0.500121, 0.793743, -0.05, 1.96575 )
 shape = SubResource( 2 )
 
-[node name="CollisionShape6" type="CollisionShape" parent="Vestibule/LowerFloor" index="7"]
-transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.896, -0.05, -1.577 )
+[node name="CollisionShape6" type="CollisionShape" parent="LowerFloor" index="5"]
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.794297, -0.05, -1.96671 )
 shape = SubResource( 2 )
 
-[node name="UpperFloor" type="StaticBody" parent="Vestibule" index="1"]
+[node name="UpperFloor" type="StaticBody" parent="." index="3"]
 transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 2.4, 0 )
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape" type="CollisionShape" parent="Vestibule/UpperFloor" index="0"]
+[node name="CollisionShape" type="CollisionShape" parent="UpperFloor" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.37466, -0.05, 0 )
 shape = SubResource( 1 )
 
-[node name="CollisionShape2" type="CollisionShape" parent="Vestibule/UpperFloor" index="1"]
+[node name="CollisionShape2" type="CollisionShape" parent="UpperFloor" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.375, -0.05, 0 )
 shape = SubResource( 1 )
 
-[node name="CollisionPolygon" type="CollisionPolygon" parent="Vestibule/UpperFloor" index="2"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.004, -0.05, 2.855 )
-depth = 0.1
-polygon = PoolVector2Array( 1.13899, -0.439512, 1.13647, 0.883871, 0.00838805, 1.38544, -1.14813, 0.881781, -1.15343, -0.431727, 0.00433434, -1.09935 )
-
-[node name="CollisionPolygon2" type="CollisionPolygon" parent="Vestibule/UpperFloor" index="3"]
-transform = Transform( -1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, -0.004, -0.05, -2.855 )
-depth = 0.1
-polygon = PoolVector2Array( 1.13899, -0.439512, 1.13647, 0.883871, 0.00838805, 1.38544, -1.14813, 0.881781, -1.15343, -0.431727, 0.00433434, -1.09935 )
-
-[node name="CollisionShape3" type="CollisionShape" parent="Vestibule/UpperFloor" index="4"]
-transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0.895682, -0.05, -1.57684 )
+[node name="CollisionShape3" type="CollisionShape" parent="UpperFloor" index="2"]
+transform = Transform( 0.496019, 0, 0.868311, 0, 1, 0, -0.868311, 0, 0.496019, -0.794348, -0.05, 1.96717 )
 shape = SubResource( 2 )
 
-[node name="CollisionShape4" type="CollisionShape" parent="Vestibule/UpperFloor" index="5"]
-transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -0.896, -0.05, 1.577 )
+[node name="CollisionShape4" type="CollisionShape" parent="UpperFloor" index="3"]
+transform = Transform( 0.496019, 0, 0.868311, 0, 1, 0, -0.868311, 0, 0.496019, 0.791, -0.05, -1.961 )
 shape = SubResource( 2 )
 
-[node name="CollisionShape5" type="CollisionShape" parent="Vestibule/UpperFloor" index="6"]
-transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0.896, -0.05, 1.577 )
+[node name="CollisionShape5" type="CollisionShape" parent="UpperFloor" index="4"]
+transform = Transform( 0.500121, 0, -0.865955, 0, 1, 0, 0.865955, 0, 0.500121, 0.793743, -0.05, 1.96575 )
 shape = SubResource( 2 )
 
-[node name="CollisionShape6" type="CollisionShape" parent="Vestibule/UpperFloor" index="7"]
-transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.896, -0.05, -1.577 )
+[node name="CollisionShape6" type="CollisionShape" parent="UpperFloor" index="5"]
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.794297, -0.05, -1.96671 )
 shape = SubResource( 2 )
 
-[node name="LowerWalls" type="StaticBody" parent="Vestibule" index="2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18718, 0, 1.9513 )
+[node name="LowerWalls" type="StaticBody" parent="." index="4"]
+
+[node name="CollisionShape" type="CollisionShape" parent="LowerWalls" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92739, 1.1, 2.02383 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="LowerWalls" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.927, 1.1, 2.024 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="LowerWalls" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.927, 1.1, -2.024 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="LowerWalls" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.927, 1.1, -2.024 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="LowerWalls" index="4"]
+transform = Transform( -0.869279, 0, 0.494321, 0, 1, 0, -0.494321, 0, -0.869279, 1.18664, 1.1, -2.71954 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="LowerWalls" index="5"]
+transform = Transform( -0.869279, 0, 0.494321, 0, 1, 0, -0.494321, 0, -0.869279, -1.187, 1.1, 2.72 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="LowerWalls" index="6"]
+transform = Transform( 0.869279, 0, 0.494321, 0, 1, 0, -0.494321, 0, 0.869279, 1.187, 1.1, 2.72 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape8" type="CollisionShape" parent="LowerWalls" index="7"]
+transform = Transform( 0.869279, 0, 0.494321, 0, 1, 0, -0.494321, 0, 0.869279, -1.187, 1.1, -2.72 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape9" type="CollisionShape" parent="LowerWalls" index="8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91718, 2.35, 0 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape10" type="CollisionShape" parent="LowerWalls" index="9"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90138, 2.35, 0 )
+shape = SubResource( 6 )
+
+[node name="UpperWalls" type="StaticBody" parent="." index="5"]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 2.4, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="UpperWalls" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92739, 1.1, 2.02383 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="UpperWalls" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.927, 1.1, 2.024 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="UpperWalls" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.927, 1.1, -2.024 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="UpperWalls" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.927, 1.1, -2.024 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="UpperWalls" index="4"]
+transform = Transform( -0.869279, 0, 0.494321, 0, 1, 0, -0.494321, 0, -0.869279, 1.18664, 1.1, -2.71954 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="UpperWalls" index="5"]
+transform = Transform( -0.869279, 0, 0.494321, 0, 1, 0, -0.494321, 0, -0.869279, -1.187, 1.1, 2.72 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="UpperWalls" index="6"]
+transform = Transform( 0.869279, 0, 0.494321, 0, 1, 0, -0.494321, 0, 0.869279, 1.187, 1.1, 2.72 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape8" type="CollisionShape" parent="UpperWalls" index="7"]
+transform = Transform( 0.869279, 0, 0.494321, 0, 1, 0, -0.494321, 0, 0.869279, -1.187, 1.1, -2.72 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape9" type="CollisionShape" parent="UpperWalls" index="8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91718, 2.35, 0 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape10" type="CollisionShape" parent="UpperWalls" index="9"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90138, 2.35, 0 )
+shape = SubResource( 6 )
+
+[node name="StairPole" type="StaticBody" parent="." index="6"]
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionPolygon" type="CollisionPolygon" parent="Vestibule/LowerWalls" index="0"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.509, 1.1, 0 )
-depth = 2.4
-polygon = PoolVector2Array( 0.765197, -0.0236871, -1.55248, -0.0228453, -1.55771, -1.33717, -2.69576, -1.99687, -3.83656, -1.33955, -3.83463, -0.0236406, -6.16175, -0.0237963, -6.15975, -0.0784149, -3.91257, -0.0781059, -3.88583, -1.37769, -2.69579, -2.05696, -1.49819, -1.38403, -1.51273, -0.0669117, 0.765948, -0.0845952 )
-
-[node name="CollisionPolygon2" type="CollisionPolygon" parent="Vestibule/LowerWalls" index="1"]
-transform = Transform( -1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, -4.88406, 1.1, -3.90246 )
-depth = 2.4
-polygon = PoolVector2Array( 0.765197, -0.0236871, -1.55248, -0.0228453, -1.55771, -1.33717, -2.69576, -1.99687, -3.83656, -1.33955, -3.83463, -0.0236406, -6.16175, -0.0237963, -6.15975, -0.0784149, -3.91257, -0.0781059, -3.88583, -1.37769, -2.69579, -2.05696, -1.49819, -1.38403, -1.51273, -0.0669117, 0.765948, -0.0845952 )
-
-[node name="UpperWalls" type="StaticBody" parent="Vestibule" index="3"]
-transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 2.79576, 2.4, -0.912859 )
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionPolygon" type="CollisionPolygon" parent="Vestibule/UpperWalls" index="0"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.509, 1.1, 0 )
-depth = 2.4
-polygon = PoolVector2Array( 0.765197, -0.0236871, -1.55248, -0.0228453, -1.55771, -1.33717, -2.69576, -1.99687, -3.83656, -1.33955, -3.83463, -0.0236406, -6.16175, -0.0237963, -6.15975, -0.0784149, -3.91257, -0.0781059, -3.88583, -1.37769, -2.69579, -2.05696, -1.49819, -1.38403, -1.51273, -0.0669117, 0.765948, -0.0845952 )
-
-[node name="CollisionPolygon2" type="CollisionPolygon" parent="Vestibule/UpperWalls" index="1"]
-transform = Transform( -1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, -4.88406, 1.1, -3.90246 )
-depth = 2.4
-polygon = PoolVector2Array( 0.765197, -0.0236871, -1.55248, -0.0228453, -1.55771, -1.33717, -2.69576, -1.99687, -3.83656, -1.33955, -3.83463, -0.0236406, -6.16175, -0.0237963, -6.15975, -0.0784149, -3.91257, -0.0781059, -3.88583, -1.37769, -2.69579, -2.05696, -1.49819, -1.38403, -1.51273, -0.0669117, 0.765948, -0.0845952 )
-
-[node name="StairPole" type="StaticBody" parent="Vestibule" index="4"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape" type="CollisionShape" parent="Vestibule/StairPole" index="0"]
+[node name="CollisionShape" type="CollisionShape" parent="StairPole" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 0 )
 shape = SubResource( 3 )
 
-[node name="StairLeg1" type="StaticBody" parent="Vestibule" index="5"]
+[node name="StairLeg1" type="StaticBody" parent="." index="7"]
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionPolygon" type="CollisionPolygon" parent="Vestibule/StairLeg1" index="0"]
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StairLeg1" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.28326, 0.16956, 0.0497432, 0.00612224 )
 
-[node name="CollisionPolygon2" type="CollisionPolygon" parent="Vestibule/StairLeg1" index="1"]
+[node name="CollisionPolygon2" type="CollisionPolygon" parent="StairLeg1" index="1"]
 transform = Transform( 0.965926, -0.258819, -1.13133e-08, 0, -4.37114e-08, 1, -0.258819, -0.965926, -4.2222e-08, 0, 0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.37501, 0.17951, 0.0498292, 0.00656983 )
 
-[node name="CollisionPolygon3" type="CollisionPolygon" parent="Vestibule/StairLeg1" index="2"]
+[node name="CollisionPolygon3" type="CollisionPolygon" parent="StairLeg1" index="2"]
 transform = Transform( 0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, -0.866025, -3.78552e-08, 0, 0.15, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0497205, -0.00676824, 1.37842, -0.179951, 1.48054, 0.000174887, 1.37911, 0.179104, 0.0495066, 0.00638267 )
 
-[node name="CollisionPolygon4" type="CollisionPolygon" parent="Vestibule/StairLeg1" index="3"]
+[node name="CollisionPolygon4" type="CollisionPolygon" parent="StairLeg1" index="3"]
 transform = Transform( 0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, -0.707107, -3.09086e-08, 0, 0.25, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 0.168738, 0.0498292, 0.00656983 )
 
-[node name="StairLeg2" type="StaticBody" parent="Vestibule" index="6"]
+[node name="StairLeg2" type="StaticBody" parent="." index="8"]
 transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 0.4, 0 )
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionPolygon" type="CollisionPolygon" parent="Vestibule/StairLeg2" index="0"]
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StairLeg2" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.28326, 0.16956, 0.0497432, 0.00612224 )
 
-[node name="CollisionPolygon2" type="CollisionPolygon" parent="Vestibule/StairLeg2" index="1"]
+[node name="CollisionPolygon2" type="CollisionPolygon" parent="StairLeg2" index="1"]
 transform = Transform( 0.965926, -0.258819, -1.13133e-08, 0, -4.37114e-08, 1, -0.258819, -0.965926, -4.2222e-08, 0, 0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.37501, 0.17951, 0.0498292, 0.00656983 )
 
-[node name="CollisionPolygon3" type="CollisionPolygon" parent="Vestibule/StairLeg2" index="2"]
+[node name="CollisionPolygon3" type="CollisionPolygon" parent="StairLeg2" index="2"]
 transform = Transform( 0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, -0.866025, -3.78552e-08, 0, 0.15, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0497205, -0.00676824, 1.37842, -0.179951, 1.48054, 0.000174887, 1.37911, 0.179104, 0.0495066, 0.00638267 )
 
-[node name="CollisionPolygon4" type="CollisionPolygon" parent="Vestibule/StairLeg2" index="3"]
+[node name="CollisionPolygon4" type="CollisionPolygon" parent="StairLeg2" index="3"]
 transform = Transform( 0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, -0.707107, -3.09086e-08, 0, 0.25, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 0.168738, 0.0498292, 0.00656983 )
 
-[node name="StairLeg3" type="StaticBody" parent="Vestibule" index="7"]
+[node name="StairLeg3" type="StaticBody" parent="." index="9"]
 transform = Transform( -0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 0, 0.8, 0 )
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionPolygon" type="CollisionPolygon" parent="Vestibule/StairLeg3" index="0"]
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StairLeg3" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.28326, 0.16956, 0.0497432, 0.00612224 )
 
-[node name="CollisionPolygon2" type="CollisionPolygon" parent="Vestibule/StairLeg3" index="1"]
+[node name="CollisionPolygon2" type="CollisionPolygon" parent="StairLeg3" index="1"]
 transform = Transform( 0.965926, -0.258819, -1.13133e-08, 0, -4.37114e-08, 1, -0.258819, -0.965926, -4.2222e-08, 0, 0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.37501, 0.17951, 0.0498292, 0.00656983 )
 
-[node name="CollisionPolygon3" type="CollisionPolygon" parent="Vestibule/StairLeg3" index="2"]
+[node name="CollisionPolygon3" type="CollisionPolygon" parent="StairLeg3" index="2"]
 transform = Transform( 0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, -0.866025, -3.78552e-08, 0, 0.15, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0497205, -0.00676824, 1.37842, -0.179951, 1.48054, 0.000174887, 1.37911, 0.179104, 0.0495066, 0.00638267 )
 
-[node name="CollisionPolygon4" type="CollisionPolygon" parent="Vestibule/StairLeg3" index="3"]
+[node name="CollisionPolygon4" type="CollisionPolygon" parent="StairLeg3" index="3"]
 transform = Transform( 0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, -0.707107, -3.09086e-08, 0, 0.25, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 0.168738, 0.0498292, 0.00656983 )
 
-[node name="StairLeg4" type="StaticBody" parent="Vestibule" index="8"]
+[node name="StairLeg4" type="StaticBody" parent="." index="10"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.2, 0 )
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionPolygon" type="CollisionPolygon" parent="Vestibule/StairLeg4" index="0"]
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StairLeg4" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.28326, 0.16956, 0.0497432, 0.00612224 )
 
-[node name="CollisionPolygon2" type="CollisionPolygon" parent="Vestibule/StairLeg4" index="1"]
+[node name="CollisionPolygon2" type="CollisionPolygon" parent="StairLeg4" index="1"]
 transform = Transform( 0.965926, -0.258819, -1.13133e-08, 0, -4.37114e-08, 1, -0.258819, -0.965926, -4.2222e-08, 0, 0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.37501, 0.17951, 0.0498292, 0.00656983 )
 
-[node name="CollisionPolygon3" type="CollisionPolygon" parent="Vestibule/StairLeg4" index="2"]
+[node name="CollisionPolygon3" type="CollisionPolygon" parent="StairLeg4" index="2"]
 transform = Transform( 0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, -0.866025, -3.78552e-08, 0, 0.15, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0497205, -0.00676824, 1.37842, -0.179951, 1.48054, 0.000174887, 1.37911, 0.179104, 0.0495066, 0.00638267 )
 
-[node name="CollisionPolygon4" type="CollisionPolygon" parent="Vestibule/StairLeg4" index="3"]
+[node name="CollisionPolygon4" type="CollisionPolygon" parent="StairLeg4" index="3"]
 transform = Transform( 0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, -0.707107, -3.09086e-08, 0, 0.25, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 0.168738, 0.0498292, 0.00656983 )
 
-[node name="StairLeg5" type="StaticBody" parent="Vestibule" index="9"]
+[node name="StairLeg5" type="StaticBody" parent="." index="11"]
 transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0, 1.6, 0 )
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionPolygon" type="CollisionPolygon" parent="Vestibule/StairLeg5" index="0"]
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StairLeg5" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.28326, 0.16956, 0.0497432, 0.00612224 )
 
-[node name="CollisionPolygon2" type="CollisionPolygon" parent="Vestibule/StairLeg5" index="1"]
+[node name="CollisionPolygon2" type="CollisionPolygon" parent="StairLeg5" index="1"]
 transform = Transform( 0.965926, -0.258819, -1.13133e-08, 0, -4.37114e-08, 1, -0.258819, -0.965926, -4.2222e-08, 0, 0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.37501, 0.17951, 0.0498292, 0.00656983 )
 
-[node name="CollisionPolygon3" type="CollisionPolygon" parent="Vestibule/StairLeg5" index="2"]
+[node name="CollisionPolygon3" type="CollisionPolygon" parent="StairLeg5" index="2"]
 transform = Transform( 0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, -0.866025, -3.78552e-08, 0, 0.15, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0497205, -0.00676824, 1.37842, -0.179951, 1.48054, 0.000174887, 1.37911, 0.179104, 0.0495066, 0.00638267 )
 
-[node name="CollisionPolygon4" type="CollisionPolygon" parent="Vestibule/StairLeg5" index="3"]
+[node name="CollisionPolygon4" type="CollisionPolygon" parent="StairLeg5" index="3"]
 transform = Transform( 0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, -0.707107, -3.09086e-08, 0, 0.25, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 0.168738, 0.0498292, 0.00656983 )
 
-[node name="StairLeg6" type="StaticBody" parent="Vestibule" index="10"]
+[node name="StairLeg6" type="StaticBody" parent="." index="12"]
 transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 2, 0 )
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionPolygon" type="CollisionPolygon" parent="Vestibule/StairLeg6" index="0"]
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StairLeg6" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.28326, 0.16956, 0.0497432, 0.00612224 )
 
-[node name="CollisionPolygon2" type="CollisionPolygon" parent="Vestibule/StairLeg6" index="1"]
+[node name="CollisionPolygon2" type="CollisionPolygon" parent="StairLeg6" index="1"]
 transform = Transform( 0.965926, -0.258819, -1.13133e-08, 0, -4.37114e-08, 1, -0.258819, -0.965926, -4.2222e-08, 0, 0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.37501, 0.17951, 0.0498292, 0.00656983 )
 
-[node name="CollisionPolygon3" type="CollisionPolygon" parent="Vestibule/StairLeg6" index="2"]
+[node name="CollisionPolygon3" type="CollisionPolygon" parent="StairLeg6" index="2"]
 transform = Transform( 0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, -0.866025, -3.78552e-08, 0, 0.15, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0497205, -0.00676824, 1.37842, -0.179951, 1.48054, 0.000174887, 1.37911, 0.179104, 0.0495066, 0.00638267 )
 
-[node name="CollisionPolygon4" type="CollisionPolygon" parent="Vestibule/StairLeg6" index="3"]
+[node name="CollisionPolygon4" type="CollisionPolygon" parent="StairLeg6" index="3"]
 transform = Transform( 0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, -0.707107, -3.09086e-08, 0, 0.25, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 0.168738, 0.0498292, 0.00656983 )
 
-[node name="StairLeg7" type="StaticBody" parent="Vestibule" index="11"]
+[node name="StairLeg7" type="StaticBody" parent="." index="13"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionPolygon" type="CollisionPolygon" parent="Vestibule/StairLeg7" index="0"]
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StairLeg7" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.28326, 0.16956, 0.0497432, 0.00612224 )
 
-[node name="CollisionPolygon2" type="CollisionPolygon" parent="Vestibule/StairLeg7" index="1"]
+[node name="CollisionPolygon2" type="CollisionPolygon" parent="StairLeg7" index="1"]
 transform = Transform( 0.965926, -0.258819, -1.13133e-08, 0, -4.37114e-08, 1, -0.258819, -0.965926, -4.2222e-08, 0, 0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.37501, 0.17951, 0.0498292, 0.00656983 )
 
-[node name="CollisionPolygon3" type="CollisionPolygon" parent="Vestibule/StairLeg7" index="2"]
+[node name="CollisionPolygon3" type="CollisionPolygon" parent="StairLeg7" index="2"]
 transform = Transform( 0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, -0.866025, -3.78552e-08, 0, 0.15, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0497205, -0.00676824, 1.37842, -0.179951, 1.48054, 0.000174887, 1.37911, 0.179104, 0.0495066, 0.00638267 )
 
-[node name="CollisionPolygon4" type="CollisionPolygon" parent="Vestibule/StairLeg7" index="3"]
+[node name="CollisionPolygon4" type="CollisionPolygon" parent="StairLeg7" index="3"]
 transform = Transform( 0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, -0.707107, -3.09086e-08, 0, 0.25, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 0.168738, 0.0498292, 0.00656983 )
 
-[node name="StairLeg8" type="StaticBody" parent="Vestibule" index="12"]
+[node name="StairLeg8" type="StaticBody" parent="." index="14"]
 transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 2.8, 0 )
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionPolygon" type="CollisionPolygon" parent="Vestibule/StairLeg8" index="0"]
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StairLeg8" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.28326, 0.16956, 0.0497432, 0.00612224 )
 
-[node name="CollisionPolygon2" type="CollisionPolygon" parent="Vestibule/StairLeg8" index="1"]
+[node name="CollisionPolygon2" type="CollisionPolygon" parent="StairLeg8" index="1"]
 transform = Transform( 0.965926, -0.258819, -1.13133e-08, 0, -4.37114e-08, 1, -0.258819, -0.965926, -4.2222e-08, 0, 0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.37501, 0.17951, 0.0498292, 0.00656983 )
 
-[node name="CollisionPolygon3" type="CollisionPolygon" parent="Vestibule/StairLeg8" index="2"]
+[node name="CollisionPolygon3" type="CollisionPolygon" parent="StairLeg8" index="2"]
 transform = Transform( 0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, -0.866025, -3.78552e-08, 0, 0.15, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0497205, -0.00676824, 1.37842, -0.179951, 1.48054, 0.000174887, 1.37911, 0.179104, 0.0495066, 0.00638267 )
 
-[node name="CollisionPolygon4" type="CollisionPolygon" parent="Vestibule/StairLeg8" index="3"]
+[node name="CollisionPolygon4" type="CollisionPolygon" parent="StairLeg8" index="3"]
 transform = Transform( 0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, -0.707107, -3.09086e-08, 0, 0.25, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 0.168738, 0.0498292, 0.00656983 )
 
-[node name="StairLeg9" type="StaticBody" parent="Vestibule" index="13"]
+[node name="StairLeg9" type="StaticBody" parent="." index="15"]
 transform = Transform( -0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 0, 3.2, 0 )
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionPolygon" type="CollisionPolygon" parent="Vestibule/StairLeg9" index="0"]
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StairLeg9" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.28326, 0.16956, 0.0497432, 0.00612224 )
 
-[node name="CollisionPolygon2" type="CollisionPolygon" parent="Vestibule/StairLeg9" index="1"]
+[node name="CollisionPolygon2" type="CollisionPolygon" parent="StairLeg9" index="1"]
 transform = Transform( 0.965926, -0.258819, -1.13133e-08, 0, -4.37114e-08, 1, -0.258819, -0.965926, -4.2222e-08, 0, 0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.37501, 0.17951, 0.0498292, 0.00656983 )
 
-[node name="CollisionPolygon3" type="CollisionPolygon" parent="Vestibule/StairLeg9" index="2"]
+[node name="CollisionPolygon3" type="CollisionPolygon" parent="StairLeg9" index="2"]
 transform = Transform( 0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, -0.866025, -3.78552e-08, 0, 0.15, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0497205, -0.00676824, 1.37842, -0.179951, 1.48054, 0.000174887, 1.37911, 0.179104, 0.0495066, 0.00638267 )
 
-[node name="CollisionPolygon4" type="CollisionPolygon" parent="Vestibule/StairLeg9" index="3"]
+[node name="CollisionPolygon4" type="CollisionPolygon" parent="StairLeg9" index="3"]
 transform = Transform( 0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, -0.707107, -3.09086e-08, 0, 0.25, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 0.168738, 0.0498292, 0.00656983 )
 
-[node name="StairLeg10" type="StaticBody" parent="Vestibule" index="14"]
+[node name="StairLeg10" type="StaticBody" parent="." index="16"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 3.6, 0 )
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionPolygon" type="CollisionPolygon" parent="Vestibule/StairLeg10" index="0"]
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StairLeg10" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.28326, 0.16956, 0.0497432, 0.00612224 )
 
-[node name="CollisionPolygon2" type="CollisionPolygon" parent="Vestibule/StairLeg10" index="1"]
+[node name="CollisionPolygon2" type="CollisionPolygon" parent="StairLeg10" index="1"]
 transform = Transform( 0.965926, -0.258819, -1.13133e-08, 0, -4.37114e-08, 1, -0.258819, -0.965926, -4.2222e-08, 0, 0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.37501, 0.17951, 0.0498292, 0.00656983 )
 
-[node name="CollisionPolygon3" type="CollisionPolygon" parent="Vestibule/StairLeg10" index="2"]
+[node name="CollisionPolygon3" type="CollisionPolygon" parent="StairLeg10" index="2"]
 transform = Transform( 0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, -0.866025, -3.78552e-08, 0, 0.15, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0497205, -0.00676824, 1.37842, -0.179951, 1.48054, 0.000174887, 1.37911, 0.179104, 0.0495066, 0.00638267 )
 
-[node name="CollisionPolygon4" type="CollisionPolygon" parent="Vestibule/StairLeg10" index="3"]
+[node name="CollisionPolygon4" type="CollisionPolygon" parent="StairLeg10" index="3"]
 transform = Transform( 0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, -0.707107, -3.09086e-08, 0, 0.25, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 0.168738, 0.0498292, 0.00656983 )
 
-[node name="StairLeg11" type="StaticBody" parent="Vestibule" index="15"]
+[node name="StairLeg11" type="StaticBody" parent="." index="17"]
 transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0, 4, 0 )
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionPolygon" type="CollisionPolygon" parent="Vestibule/StairLeg11" index="0"]
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StairLeg11" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.28326, 0.16956, 0.0497432, 0.00612224 )
 
-[node name="CollisionPolygon2" type="CollisionPolygon" parent="Vestibule/StairLeg11" index="1"]
+[node name="CollisionPolygon2" type="CollisionPolygon" parent="StairLeg11" index="1"]
 transform = Transform( 0.965926, -0.258819, -1.13133e-08, 0, -4.37114e-08, 1, -0.258819, -0.965926, -4.2222e-08, 0, 0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.37501, 0.17951, 0.0498292, 0.00656983 )
 
-[node name="CollisionPolygon3" type="CollisionPolygon" parent="Vestibule/StairLeg11" index="2"]
+[node name="CollisionPolygon3" type="CollisionPolygon" parent="StairLeg11" index="2"]
 transform = Transform( 0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, -0.866025, -3.78552e-08, 0, 0.15, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0497205, -0.00676824, 1.37842, -0.179951, 1.48054, 0.000174887, 1.37911, 0.179104, 0.0495066, 0.00638267 )
 
-[node name="CollisionPolygon4" type="CollisionPolygon" parent="Vestibule/StairLeg11" index="3"]
+[node name="CollisionPolygon4" type="CollisionPolygon" parent="StairLeg11" index="3"]
 transform = Transform( 0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, -0.707107, -3.09086e-08, 0, 0.25, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 0.168738, 0.0498292, 0.00656983 )
 
-[node name="StairLeg12" type="StaticBody" parent="Vestibule" index="16"]
+[node name="StairLeg12" type="StaticBody" parent="." index="18"]
 transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 4.4, 0 )
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionPolygon" type="CollisionPolygon" parent="Vestibule/StairLeg12" index="0"]
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StairLeg12" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.28326, 0.16956, 0.0497432, 0.00612224 )
 
-[node name="CollisionPolygon2" type="CollisionPolygon" parent="Vestibule/StairLeg12" index="1"]
+[node name="CollisionPolygon2" type="CollisionPolygon" parent="StairLeg12" index="1"]
 transform = Transform( 0.965926, -0.258819, -1.13133e-08, 0, -4.37114e-08, 1, -0.258819, -0.965926, -4.2222e-08, 0, 0.05, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0502191, -0.00711477, 1.28212, -0.169835, 1.37501, 0.17951, 0.0498292, 0.00656983 )
 
-[node name="CollisionPolygon3" type="CollisionPolygon" parent="Vestibule/StairLeg12" index="2"]
+[node name="CollisionPolygon3" type="CollisionPolygon" parent="StairLeg12" index="2"]
 transform = Transform( 0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, -0.866025, -3.78552e-08, 0, 0.15, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0497205, -0.00676824, 1.37842, -0.179951, 1.48054, 0.000174887, 1.37911, 0.179104, 0.0495066, 0.00638267 )
 
-[node name="CollisionPolygon4" type="CollisionPolygon" parent="Vestibule/StairLeg12" index="3"]
+[node name="CollisionPolygon4" type="CollisionPolygon" parent="StairLeg12" index="3"]
 transform = Transform( 0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, -0.707107, -3.09086e-08, 0, 0.25, 0 )
 depth = 0.1
 polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 0.168738, 0.0498292, 0.00656983 )
