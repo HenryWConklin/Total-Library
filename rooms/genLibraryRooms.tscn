@@ -1,253 +1,520 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=80 format=2]
 
 [ext_resource path="res://assets/props/LibraryLight.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/GalleryTile.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scripts/data/RoomIndex.gd" type="Script" id=3]
-[ext_resource path="res://rooms/GalleryTile.gd" type="Script" id=4]
-[ext_resource path="res://rooms/VestibuleTile.tscn" type="PackedScene" id=5]
+[ext_resource path="res://rooms/VestibuleTile.gd" type="Script" id=3]
+[ext_resource path="res://scripts/data/RoomIndex.gd" type="Script" id=4]
+[ext_resource path="res://rooms/GalleryTile.gd" type="Script" id=5]
+[ext_resource path="res://rooms/VestibuleTile.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Resource" id=1]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 1
+script = ExtResource( 4 )
+x = 0
 y = 0
 z = 0
 
 [sub_resource type="Resource" id=2]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 2
+script = ExtResource( 4 )
+x = 1
 y = 0
 z = 0
 
 [sub_resource type="Resource" id=3]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 3
+script = ExtResource( 4 )
+x = 2
 y = 0
 z = 0
 
 [sub_resource type="Resource" id=4]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = -2
+script = ExtResource( 4 )
+x = 3
 y = 0
 z = 0
 
 [sub_resource type="Resource" id=5]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = -1
+script = ExtResource( 4 )
+x = 4
 y = 0
 z = 0
 
 [sub_resource type="Resource" id=6]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
+script = ExtResource( 4 )
+x = 5
 y = 0
 z = 0
 
 [sub_resource type="Resource" id=7]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 1
+script = ExtResource( 4 )
+x = 6
 y = 0
-z = 2
+z = 0
 
 [sub_resource type="Resource" id=8]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 2
+script = ExtResource( 4 )
+x = -6
 y = 0
-z = 2
+z = 0
 
 [sub_resource type="Resource" id=9]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = -1
+script = ExtResource( 4 )
+x = -5
 y = 0
-z = 2
+z = 0
 
 [sub_resource type="Resource" id=10]
 resource_local_to_scene = true
-script = ExtResource( 3 )
+script = ExtResource( 4 )
+x = -4
+y = 0
+z = 0
+
+[sub_resource type="Resource" id=11]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = -3
+y = 0
+z = 0
+
+[sub_resource type="Resource" id=12]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = -2
+y = 0
+z = 0
+
+[sub_resource type="Resource" id=13]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = -1
+y = 0
+z = 0
+
+[sub_resource type="Resource" id=14]
+resource_local_to_scene = true
+script = ExtResource( 4 )
 x = 0
 y = 0
 z = 2
 
-[sub_resource type="Resource" id=11]
-resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 1
-y = 0
-z = -2
-
-[sub_resource type="Resource" id=12]
-resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 2
-y = 0
-z = -2
-
-[sub_resource type="Resource" id=13]
-resource_local_to_scene = true
-script = ExtResource( 3 )
-x = -1
-y = 0
-z = -2
-
-[sub_resource type="Resource" id=14]
-resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
-y = 0
-z = -2
-
 [sub_resource type="Resource" id=15]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
-y = 1
-z = 0
+script = ExtResource( 4 )
+x = 1
+y = 0
+z = 2
 
 [sub_resource type="Resource" id=16]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
-y = 1
-z = 0
+script = ExtResource( 4 )
+x = 2
+y = 0
+z = 2
 
 [sub_resource type="Resource" id=17]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
-y = 1
+script = ExtResource( 4 )
+x = 3
+y = 0
 z = 2
 
 [sub_resource type="Resource" id=18]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
-y = 1
+script = ExtResource( 4 )
+x = 4
+y = 0
 z = 2
 
 [sub_resource type="Resource" id=19]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
-y = 1
-z = -2
+script = ExtResource( 4 )
+x = -4
+y = 0
+z = 2
 
 [sub_resource type="Resource" id=20]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
-y = 1
-z = -2
+script = ExtResource( 4 )
+x = -3
+y = 0
+z = 2
 
 [sub_resource type="Resource" id=21]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
-y = 3
-z = 0
+script = ExtResource( 4 )
+x = -2
+y = 0
+z = 2
 
 [sub_resource type="Resource" id=22]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
-y = 3
+script = ExtResource( 4 )
+x = -1
+y = 0
 z = 2
 
 [sub_resource type="Resource" id=23]
 resource_local_to_scene = true
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 x = 0
-y = 3
+y = 0
 z = -2
 
 [sub_resource type="Resource" id=24]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
-y = 5
-z = 0
+script = ExtResource( 4 )
+x = 1
+y = 0
+z = -2
 
 [sub_resource type="Resource" id=25]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
-y = 5
-z = 2
+script = ExtResource( 4 )
+x = 2
+y = 0
+z = -2
 
 [sub_resource type="Resource" id=26]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
-y = -5
-z = 0
+script = ExtResource( 4 )
+x = 3
+y = 0
+z = -2
 
 [sub_resource type="Resource" id=27]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
-y = -5
-z = 2
+script = ExtResource( 4 )
+x = 4
+y = 0
+z = -2
 
 [sub_resource type="Resource" id=28]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
-y = -3
-z = 0
+script = ExtResource( 4 )
+x = -4
+y = 0
+z = -2
 
 [sub_resource type="Resource" id=29]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
-y = -3
-z = 2
+script = ExtResource( 4 )
+x = -3
+y = 0
+z = -2
 
 [sub_resource type="Resource" id=30]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
-y = -3
+script = ExtResource( 4 )
+x = -2
+y = 0
 z = -2
 
 [sub_resource type="Resource" id=31]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 1
-y = -2
-z = 0
+script = ExtResource( 4 )
+x = -1
+y = 0
+z = -2
 
 [sub_resource type="Resource" id=32]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 1
-y = -2
-z = 2
+script = ExtResource( 4 )
+x = -2
+y = 1
+z = 0
 
 [sub_resource type="Resource" id=33]
 resource_local_to_scene = true
-script = ExtResource( 3 )
-x = 0
-y = -1
+script = ExtResource( 4 )
+x = -1
+y = 1
 z = 0
 
 [sub_resource type="Resource" id=34]
 resource_local_to_scene = true
-script = ExtResource( 3 )
+script = ExtResource( 4 )
+x = 0
+y = 1
+z = 0
+
+[sub_resource type="Resource" id=35]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = -2
+y = 1
+z = 2
+
+[sub_resource type="Resource" id=36]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = -1
+y = 1
+z = 2
+
+[sub_resource type="Resource" id=37]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = 1
+z = 2
+
+[sub_resource type="Resource" id=38]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = -2
+y = 1
+z = -2
+
+[sub_resource type="Resource" id=39]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = -1
+y = 1
+z = -2
+
+[sub_resource type="Resource" id=40]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = 1
+z = -2
+
+[sub_resource type="Resource" id=41]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = 2
+z = 0
+
+[sub_resource type="Resource" id=42]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = 2
+z = 2
+
+[sub_resource type="Resource" id=43]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = 2
+z = -2
+
+[sub_resource type="Resource" id=44]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = 3
+z = 0
+
+[sub_resource type="Resource" id=45]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = 3
+z = 2
+
+[sub_resource type="Resource" id=46]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = 3
+z = -2
+
+[sub_resource type="Resource" id=47]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = 4
+z = 0
+
+[sub_resource type="Resource" id=48]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = 4
+z = 2
+
+[sub_resource type="Resource" id=49]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = 4
+z = -2
+
+[sub_resource type="Resource" id=50]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = 5
+z = 0
+
+[sub_resource type="Resource" id=51]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = 5
+z = 2
+
+[sub_resource type="Resource" id=52]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = -5
+z = 0
+
+[sub_resource type="Resource" id=53]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = -5
+z = 2
+
+[sub_resource type="Resource" id=54]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = -4
+z = 0
+
+[sub_resource type="Resource" id=55]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = -4
+z = 2
+
+[sub_resource type="Resource" id=56]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = -4
+z = -2
+
+[sub_resource type="Resource" id=57]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = -3
+z = 0
+
+[sub_resource type="Resource" id=58]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = -3
+z = 2
+
+[sub_resource type="Resource" id=59]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = -3
+z = -2
+
+[sub_resource type="Resource" id=60]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = -2
+z = 0
+
+[sub_resource type="Resource" id=61]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 1
+y = -2
+z = 0
+
+[sub_resource type="Resource" id=62]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = -2
+z = 2
+
+[sub_resource type="Resource" id=63]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 1
+y = -2
+z = 2
+
+[sub_resource type="Resource" id=64]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = -2
+z = -2
+
+[sub_resource type="Resource" id=65]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 0
+y = -1
+z = 0
+
+[sub_resource type="Resource" id=66]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 1
+y = -1
+z = 0
+
+[sub_resource type="Resource" id=67]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = -1
+y = -1
+z = 0
+
+[sub_resource type="Resource" id=68]
+resource_local_to_scene = true
+script = ExtResource( 4 )
 x = 0
 y = -1
 z = 2
 
-[sub_resource type="Resource" id=35]
+[sub_resource type="Resource" id=69]
 resource_local_to_scene = true
-script = ExtResource( 3 )
+script = ExtResource( 4 )
+x = 1
+y = -1
+z = 2
+
+[sub_resource type="Resource" id=70]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = -1
+y = -1
+z = 2
+
+[sub_resource type="Resource" id=71]
+resource_local_to_scene = true
+script = ExtResource( 4 )
 x = 0
+y = -1
+z = -2
+
+[sub_resource type="Resource" id=72]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = 1
+y = -1
+z = -2
+
+[sub_resource type="Resource" id=73]
+resource_local_to_scene = true
+script = ExtResource( 4 )
+x = -1
 y = -1
 z = -2
 
@@ -271,7 +538,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_0_1_0")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_0_0_0" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_0_0_0" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 1 )
 
 [node name="Room_2_0_0" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.928, 0, 0 )
@@ -299,8 +568,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_2_0_0" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 1 )
+script = ExtResource( 5 )
+room_index = SubResource( 2 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -318,7 +587,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_4_1_0")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_4_0_0" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_4_0_0" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 3 )
 
 [node name="Room_6_0_0" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.784, 0, 0 )
@@ -341,8 +612,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_6_0_0" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 2 )
+script = ExtResource( 5 )
+room_index = SubResource( 4 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -360,7 +631,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_8_1_0")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_8_0_0" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_8_0_0" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 5 )
 
 [node name="Room_10_0_0" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 34.64, 0, 0 )
@@ -380,8 +653,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_10_0_0" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 3 )
+script = ExtResource( 5 )
+room_index = SubResource( 6 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -389,7 +662,9 @@ bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.568, 0, 0 )
 points = PoolVector3Array( 3.4641, -0.1, 2, 2.44929e-16, -0.1, 4, -3.4641, -0.1, 2, -3.4641, -0.1, -2, -7.34788e-16, -0.1, -4, 3.4641, -0.1, -2, 3.4641, 4.7, 2, 2.44929e-16, 4.7, 4, -3.4641, 4.7, 2, -3.4641, 4.7, -2, -7.34788e-16, 4.7, -4, 3.4641, 4.7, -2 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_12_0_0" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_12_0_0" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 7 )
 
 [node name="Room_-12_0_0" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -41.568, 0, 0 )
@@ -400,7 +675,9 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.4641,
 linked_room = NodePath("../../Room_-10_0_0")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-12_0_0" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-12_0_0" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 8 )
 
 [node name="Room_-10_0_0" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.64, 0, 0 )
@@ -420,8 +697,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-10_0_0" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 4 )
+script = ExtResource( 5 )
+room_index = SubResource( 9 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -439,7 +716,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_-8_1_0")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-8_0_0" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-8_0_0" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 10 )
 
 [node name="Room_-6_0_0" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.784, 0, 0 )
@@ -462,8 +741,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-6_0_0" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 5 )
+script = ExtResource( 5 )
+room_index = SubResource( 11 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -481,7 +760,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_-4_1_0")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-4_0_0" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-4_0_0" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 12 )
 
 [node name="Room_-2_0_0" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.928, 0, 0 )
@@ -509,8 +790,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-2_0_0" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 6 )
+script = ExtResource( 5 )
+room_index = SubResource( 13 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -528,7 +809,9 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room_1_1_-3")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_0_1_0" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_0_1_0" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 14 )
 
 [node name="Room_2_1_0" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.928, 4.8, 0 )
@@ -551,8 +834,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_2_1_0" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 7 )
+script = ExtResource( 5 )
+room_index = SubResource( 15 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -565,7 +848,9 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.4641,
 linked_room = NodePath("../../Room_6_1_0")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_4_1_0" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_4_1_0" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 16 )
 
 [node name="Room_6_1_0" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.784, 4.8, 0 )
@@ -583,8 +868,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_6_1_0" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 8 )
+script = ExtResource( 5 )
+room_index = SubResource( 17 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -592,7 +877,9 @@ bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.712, 4.8, 0 )
 points = PoolVector3Array( 3.4641, -0.1, 2, 2.44929e-16, -0.1, 4, -3.4641, -0.1, 2, -3.4641, -0.1, -2, -7.34788e-16, -0.1, -4, 3.4641, -0.1, -2, 3.4641, 4.7, 2, 2.44929e-16, 4.7, 4, -3.4641, 4.7, 2, -3.4641, 4.7, -2, -7.34788e-16, 4.7, -4, 3.4641, 4.7, -2 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_8_1_0" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_8_1_0" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 18 )
 
 [node name="Room_-8_1_0" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.712, 4.8, 0 )
@@ -603,7 +890,9 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.4641,
 linked_room = NodePath("../../Room_-6_1_0")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-8_1_0" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-8_1_0" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 19 )
 
 [node name="Room_-6_1_0" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.784, 4.8, 0 )
@@ -621,8 +910,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-6_1_0" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 9 )
+script = ExtResource( 5 )
+room_index = SubResource( 20 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -635,7 +924,9 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.4641,
 linked_room = NodePath("../../Room_-2_1_0")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-4_1_0" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-4_1_0" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 21 )
 
 [node name="Room_-2_1_0" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.928, 4.8, 0 )
@@ -658,8 +949,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-2_1_0" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 10 )
+script = ExtResource( 5 )
+room_index = SubResource( 22 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -682,7 +973,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_0_0_0")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_0_-1_0" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_0_-1_0" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 23 )
 
 [node name="Room_2_-1_0" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.928, -4.8, 0 )
@@ -712,8 +1005,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_2_-1_0" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 11 )
+script = ExtResource( 5 )
+room_index = SubResource( 24 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -731,7 +1024,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_4_0_0")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_4_-1_0" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_4_-1_0" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 25 )
 
 [node name="Room_6_-1_0" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.784, -4.8, 0 )
@@ -756,8 +1051,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_6_-1_0" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 12 )
+script = ExtResource( 5 )
+room_index = SubResource( 26 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -770,7 +1065,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_8_0_0")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_8_-1_0" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_8_-1_0" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 27 )
 
 [node name="Room_-8_-1_0" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.712, -4.8, 0 )
@@ -786,7 +1083,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_-8_0_0")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-8_-1_0" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-8_-1_0" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 28 )
 
 [node name="Room_-6_-1_0" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.784, -4.8, 0 )
@@ -811,8 +1110,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-6_-1_0" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 13 )
+script = ExtResource( 5 )
+room_index = SubResource( 29 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -830,7 +1129,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_-4_0_0")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-4_-1_0" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-4_-1_0" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 30 )
 
 [node name="Room_-2_-1_0" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.928, -4.8, 0 )
@@ -860,8 +1161,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-2_-1_0" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 14 )
+script = ExtResource( 5 )
+room_index = SubResource( 31 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -891,8 +1192,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-5_0_3" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 15 )
+script = ExtResource( 5 )
+room_index = SubResource( 32 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -915,7 +1216,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_-3_1_3")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-3_0_3" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-3_0_3" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 33 )
 
 [node name="Room_-1_0_3" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.464, 0, 6 )
@@ -938,8 +1241,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-1_0_3" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 16 )
+script = ExtResource( 5 )
+room_index = SubResource( 34 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -964,8 +1267,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-5_1_3" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 17 )
+script = ExtResource( 5 )
+room_index = SubResource( 35 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -983,7 +1286,9 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room_-2_1_0")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-3_1_3" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-3_1_3" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 36 )
 
 [node name="Room_-1_1_3" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.464, 4.8, 6 )
@@ -1001,8 +1306,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-1_1_3" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 18 )
+script = ExtResource( 5 )
+room_index = SubResource( 37 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1034,8 +1339,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-5_-1_3" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 19 )
+script = ExtResource( 5 )
+room_index = SubResource( 38 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1058,7 +1363,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_-3_0_3")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-3_-1_3" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-3_-1_3" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 39 )
 
 [node name="Room_-1_-1_3" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.464, -4.8, 6 )
@@ -1083,8 +1390,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-1_-1_3" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 20 )
+script = ExtResource( 5 )
+room_index = SubResource( 40 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1102,7 +1409,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_-2_1_6")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-2_0_6" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-2_0_6" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 41 )
 
 [node name="Room_-2_1_6" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.928, 4.8, 12 )
@@ -1113,7 +1422,9 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room_-1_1_3")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-2_1_6" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-2_1_6" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 42 )
 
 [node name="Room_-2_-1_6" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.928, -4.8, 12 )
@@ -1129,7 +1440,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_-2_0_6")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-2_-1_6" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-2_-1_6" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 43 )
 
 [node name="Room_-3_0_9" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.392, 0, 18 )
@@ -1152,8 +1465,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-3_0_9" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 21 )
+script = ExtResource( 5 )
+room_index = SubResource( 44 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1173,8 +1486,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-3_1_9" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 22 )
+script = ExtResource( 5 )
+room_index = SubResource( 45 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1201,8 +1514,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-3_-1_9" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 23 )
+script = ExtResource( 5 )
+room_index = SubResource( 46 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1220,7 +1533,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_-4_1_12")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-4_0_12" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-4_0_12" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 47 )
 
 [node name="Room_-4_1_12" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.856, 4.8, 24 )
@@ -1231,7 +1546,9 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room_-3_1_9")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-4_1_12" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-4_1_12" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 48 )
 
 [node name="Room_-4_-1_12" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.856, -4.8, 24 )
@@ -1247,7 +1564,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_-4_0_12")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-4_-1_12" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-4_-1_12" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 49 )
 
 [node name="Room_-5_0_15" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.32, 0, 30 )
@@ -1272,8 +1591,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-5_0_15" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 24 )
+script = ExtResource( 5 )
+room_index = SubResource( 50 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1293,8 +1612,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_-5_1_15" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 25 )
+script = ExtResource( 5 )
+room_index = SubResource( 51 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1316,8 +1635,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_5_0_-15" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 26 )
+script = ExtResource( 5 )
+room_index = SubResource( 52 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1332,8 +1651,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_5_1_-15" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 27 )
+script = ExtResource( 5 )
+room_index = SubResource( 53 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1351,7 +1670,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_4_1_-12")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_4_0_-12" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_4_0_-12" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 54 )
 
 [node name="Room_4_1_-12" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.856, 4.8, -24 )
@@ -1362,7 +1683,9 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room_5_1_-15")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_4_1_-12" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_4_1_-12" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 55 )
 
 [node name="Room_4_-1_-12" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.856, -4.8, -24 )
@@ -1373,7 +1696,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_4_0_-12")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_4_-1_-12" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_4_-1_-12" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 56 )
 
 [node name="Room_3_0_-9" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.392, 0, -18 )
@@ -1396,8 +1721,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_3_0_-9" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 28 )
+script = ExtResource( 5 )
+room_index = SubResource( 57 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1417,8 +1742,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_3_1_-9" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 29 )
+script = ExtResource( 5 )
+room_index = SubResource( 58 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1445,8 +1770,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_3_-1_-9" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 30 )
+script = ExtResource( 5 )
+room_index = SubResource( 59 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1469,7 +1794,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_2_1_-6")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_2_0_-6" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_2_0_-6" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 60 )
 
 [node name="Room_4_0_-6" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.856, 0, -12 )
@@ -1489,8 +1816,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_4_0_-6" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 31 )
+script = ExtResource( 5 )
+room_index = SubResource( 61 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1508,7 +1835,9 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room_3_1_-9")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_2_1_-6" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_2_1_-6" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 62 )
 
 [node name="Room_4_1_-6" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.856, 4.8, -12 )
@@ -1521,8 +1850,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_4_1_-6" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 32 )
+script = ExtResource( 5 )
+room_index = SubResource( 63 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1540,7 +1869,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_2_0_-6")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_2_-1_-6" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_2_-1_-6" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 64 )
 
 [node name="Room_1_0_-3" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.464, 0, -6 )
@@ -1568,8 +1899,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_1_0_-3" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 33 )
+script = ExtResource( 5 )
+room_index = SubResource( 65 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1587,7 +1918,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_3_1_-3")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_3_0_-3" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_3_0_-3" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 66 )
 
 [node name="Room_-1_0_-3" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.464, 0, -6 )
@@ -1603,7 +1936,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_-1_1_-3")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-1_0_-3" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-1_0_-3" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 67 )
 
 [node name="Room_1_1_-3" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.464, 4.8, -6 )
@@ -1626,8 +1961,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_1_1_-3" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 34 )
+script = ExtResource( 5 )
+room_index = SubResource( 68 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1640,7 +1975,9 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.73205, 2.
 linked_room = NodePath("../../Room_4_1_-6")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_3_1_-3" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_3_1_-3" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 69 )
 
 [node name="Room_-1_1_-3" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.464, 4.8, -6 )
@@ -1651,7 +1988,9 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.4641,
 linked_room = NodePath("../../Room_1_1_-3")
 points = PoolVector2Array( -2, 0, -2, 2.3, 2, 2.3, 2, 0 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-1_1_-3" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-1_1_-3" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 70 )
 
 [node name="Room_1_-1_-3" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.464, -4.8, -6 )
@@ -1681,8 +2020,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
 [node name="hex_gallery_tile" type="Spatial" parent="Room_1_-1_-3" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
-room_index = SubResource( 35 )
+script = ExtResource( 5 )
+room_index = SubResource( 71 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
 
@@ -1695,7 +2034,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_3_0_-3")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_3_-1_-3" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_3_-1_-3" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 72 )
 
 [node name="Room_-1_-1_-3" type="Room" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.464, -4.8, -6 )
@@ -1711,4 +2052,6 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.7,
 linked_room = NodePath("../../Room_-1_0_-3")
 points = PoolVector2Array( 1.29904, 0.75, 9.18485e-17, 1.5, -1.29904, 0.75, -1.29904, -0.75, -2.75546e-16, -1.5, 1.29904, -0.75 )
 
-[node name="hex_vestibule_tile" type="Spatial" parent="Room_-1_-1_-3" instance=ExtResource( 5 )]
+[node name="hex_vestibule_tile" type="Spatial" parent="Room_-1_-1_-3" instance=ExtResource( 6 )]
+script = ExtResource( 3 )
+room_index = SubResource( 73 )

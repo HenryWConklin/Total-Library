@@ -87,8 +87,11 @@ bmp::cpp_int BookUtil::_make_book_num(int room_x, int room_y, int room_z,
 
 bmp::cpp_int BookUtil::_make_book_index(int room_x, int room_y, int room_z,
                                         int shelf, int book) const {
+  // From room index to gallery room index
+  int gallery_room_x = (room_x + 1) / 2;
+
   return origin +
-         (room_x * books_per_room + y_diff * room_y + z_diff * room_z) +
+         (gallery_room_x * books_per_room + y_diff * room_y + z_diff * room_z) +
          (shelf * (books_per_room / 4)) + book;
 }
 

@@ -59,16 +59,14 @@ func _add_room_scenes():
 		var scene = item_scenes[item_index].instance()
 		_rooms[pos].add_child(scene)
 		scene.owner = _export_root
-		if item_index == gallery_index:
-			var room_index = RoomIndex.new()
-			room_index.resource_local_to_scene = true
-			# Map to hex coordinates
-			room_index.x = int(round(pos.x / 2 + pos.z / 6))
-			room_index.y = int(round(pos.z / 3))
-			room_index.z = int(round(pos.y * 2))
-			# Map to gallery cell coordinates
-			room_index.x = (room_index.x + 1) / 2
-			scene.room_index = room_index
+
+		var room_index = RoomIndex.new()
+		room_index.resource_local_to_scene = true
+		# Map to hex coordinates
+		room_index.x = int(round(pos.x / 2 + pos.z / 6))
+		room_index.y = int(round(pos.z / 3))
+		room_index.z = int(round(pos.y * 2))
+		scene.room_index = room_index
 
 
 func _add_lights():

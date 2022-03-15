@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/materials/wall_material.tres" type="Material" id=1]
 [ext_resource path="res://assets/blender/hex_vestibule_tile.glb" type="PackedScene" id=2]
 [ext_resource path="res://assets/materials/stairs_material.tres" type="Material" id=3]
 [ext_resource path="res://assets/materials/floor_material.tres" type="Material" id=4]
+[ext_resource path="res://rooms/VestibuleTile.gd" type="Script" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1.0908, 0.05, 1.97242 )
@@ -28,6 +29,7 @@ radius = 0.05
 height = 4.8
 
 [node name="hex_vestibule_tile" instance=ExtResource( 2 )]
+script = ExtResource( 5 )
 
 [node name="Vestibule" parent="." index="0"]
 material/0 = ExtResource( 4 )
