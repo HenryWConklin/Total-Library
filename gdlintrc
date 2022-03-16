@@ -34,7 +34,7 @@ load-constant-name: (([A-Z][a-z0-9]*)+|[A-Z][A-Z0-9]*(_[A-Z0-9]+)*)
 loop-variable-name: _?[a-z][a-z0-9]*(_[a-z0-9]+)*
 max-line-length: 120
 max-file-lines: 1000
-max-public-methods: 20
+max-public-methods: 100000000
 mixed-tabs-and-spaces: null
 private-method-call: null
 signal-name: '[a-z][a-z0-9]*(_[a-z0-9]+)*'
