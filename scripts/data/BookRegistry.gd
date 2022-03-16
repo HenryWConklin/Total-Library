@@ -9,16 +9,19 @@ var total_shelf_time = 0
 var shelf_cache = LRUCache.new(500)
 # Dict of ShelfIndex -> (index -> Optional[BookIndex])
 var shelf_diff = {}
+var floor_books = {}
 var room_offset: RoomIndex = RoomIndex.new()
 
 onready var book_shape = PARAMS.book_mesh.get_aabb()
 
 
 func add_room_offset(off: Vector3):
+	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "floor_books", "push_floor_books")
 	room_offset.x += int(off.x)
 	room_offset.y += int(off.y)
 	room_offset.z += int(off.z)
-	get_tree().call_group("shelves", "regenerate_multimesh")
+	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "floor_books", "pull_floor_books")
+	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "shelves", "regenerate_multimesh")
 
 
 func get_shelf_aabb() -> AABB:
@@ -56,6 +59,14 @@ func get_book_text_at_point(ind: ShelfIndex, local_pos: Vector3) -> BookIndex:
 		return null
 	var text = get_book_text(actual_book_ind)
 	return text
+
+
+func _offset_room_index(ind: RoomIndex) -> RoomIndex:
+	var res = RoomIndex.new()
+	res.x = ind.x + room_offset.x
+	res.y = ind.y + room_offset.y
+	res.z = ind.z + room_offset.z
+	return res
 
 
 func _offset_shelf_index(ind: ShelfIndex) -> ShelfIndex:
@@ -159,6 +170,22 @@ func place_book_at(ind: BookIndex, book: BookIndex) -> bool:
 	mesh.set_instance_color(ind.book, title_color)
 
 	return true
+
+
+func set_floor_books(ind: RoomIndex, books: Array):
+	var offset_ind = _offset_room_index(ind)
+	if books.size() > 0:
+		floor_books[offset_ind.to_key()] = books
+	elif floor_books.has(offset_ind.to_key()):
+		floor_books.erase(offset_ind.to_key())
+
+
+func get_floor_books(ind: RoomIndex) -> Array:
+	var offset_ind = _offset_room_index(ind)
+	if floor_books.has(offset_ind.to_key()):
+		return floor_books[offset_ind.to_key()].duplicate()
+	else:
+		return []
 
 
 func get_book_text(ind: BookIndex) -> BookText:

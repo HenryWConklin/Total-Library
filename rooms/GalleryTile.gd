@@ -7,6 +7,8 @@ export(NodePath) var upper_room_area
 export(NodePath) var lower_room_area
 export(NodePath) var floor_books_path: NodePath
 
+onready var floor_books: Spatial = get_node(floor_books_path)
+
 
 func _ready():
 	if room_index != null:
@@ -46,3 +48,5 @@ func set_room_index(ind: RoomIndex):
 	upper_room.room_index.x = ind.x
 	upper_room.room_index.y = ind.y
 	upper_room.room_index.z = ind.z + 1
+
+	get_node(floor_books_path).room_index = room_index

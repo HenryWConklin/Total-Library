@@ -254,6 +254,50 @@ func test_place_book_at_respects_offset():
 	assert_eq(shelf.get_instance_transform(index.book).basis, Basis.IDENTITY)
 
 
+func test_set_get_floor_books():
+	var index = RoomIndex.new()
+	index.x = 1
+	index.y = 2
+	index.z = 3
+	var books = [1, 2, 3]
+
+	registry.set_floor_books(index, books)
+	var result = registry.get_floor_books(index)
+
+	assert_eq(result, books)
+
+
+func test_floor_books_respects_offset():
+	var index = RoomIndex.new()
+	index.x = 1
+	index.y = 2
+	index.z = 3
+	var books = [1, 2, 3]
+
+	registry.set_floor_books(index, books)
+	registry.add_room_offset(Vector3(1, 0, 0))
+	var result1 = registry.get_floor_books(index)
+	index.x -= 1
+	var result2 = registry.get_floor_books(index)
+
+	assert_eq(result1.size(), 0)
+	assert_eq(result2, books)
+
+
+func test_floor_books_clears_entry_on_empty_set():
+	var index = RoomIndex.new()
+	index.x = 1
+	index.y = 2
+	index.z = 3
+	var books = [1, 2, 3]
+
+	registry.set_floor_books(index, books)
+	registry.set_floor_books(index, [])
+	var result = registry.get_floor_books(index)
+
+	assert_eq(result.size(), 0)
+
+
 func test_get_book_methods():
 	var index = BookIndex.new()
 
