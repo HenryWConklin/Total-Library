@@ -17,7 +17,6 @@ environment = ExtResource( 4 )
 
 [node name="RoomManager" type="RoomManager" parent="."]
 roomlist = NodePath("../Rooms")
-merge_meshes = true
 default_portal_margin = 0.2
 script = ExtResource( 8 )
 

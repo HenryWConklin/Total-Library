@@ -140,6 +140,7 @@ turn_page_back={
 3d_physics/layer_1="Main"
 3d_physics/layer_2="PickupRaycast"
 3d_physics/layer_3="LockAreas"
+3d_physics/layer_4="RoomEnterNotification"
 
 [physics]
 

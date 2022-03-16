@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/materials/wall_material.tres" type="Material" id=1]
 [ext_resource path="res://assets/materials/wood_material.tres" type="Material" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/blender/hex_gallery_tile.glb" type="PackedScene" id=4]
 [ext_resource path="res://assets/materials/floor_material.tres" type="Material" id=5]
 [ext_resource path="res://assets/props/Shelf.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/RoomArea.gd" type="Script" id=7]
 
 [sub_resource type="BoxShape" id=1]
 margin = 0.001
@@ -23,10 +24,16 @@ extents = Vector3( 0.02, 1.2, 0.03 )
 [sub_resource type="BoxShape" id=5]
 extents = Vector3( 0.14689, 1.2, 1.97526 )
 
+[sub_resource type="ConvexPolygonShape" id=6]
+points = PoolVector3Array( 3.464, -0.1, 2, 0, -0.1, 4, -3.464, -0.1, 2, -3.464, -0.1, -2, 0, -0.1, -4, 3.464, -0.1, -2, 3.464, 2.3, 2, 0, 2.3, 4, -3.464, 2.3, 2, -3.464, 2.3, -2, 0, 2.3, -4, 3.464, 2.3, -2 )
+
 [node name="hex_gallery_tile" instance=ExtResource( 4 )]
 script = ExtResource( 3 )
 top_shelves = [ NodePath("UpperShelves/Shelf1"), NodePath("UpperShelves/Shelf2"), NodePath("UpperShelves/Shelf4"), NodePath("UpperShelves/Shelf3") ]
 bottom_shelves = [ NodePath("LowerShelves/Shelf1"), NodePath("LowerShelves/Shelf2"), NodePath("LowerShelves/Shelf4"), NodePath("LowerShelves/Shelf3") ]
+upper_room_area = NodePath("UpperRoomArea")
+lower_room_area = NodePath("LowerRoomArea")
+floor_books_path = NodePath("FloorBooks")
 
 [node name="Gallery" parent="." index="0"]
 material/0 = ExtResource( 2 )
@@ -285,3 +292,22 @@ transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -1.652, 0.1
 
 [node name="Shelf4" parent="UpperShelves" index="3" instance=ExtResource( 6 )]
 transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 1.652, 0.15, -2.861 )
+
+[node name="LowerRoomArea" type="Area" parent="." index="3"]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="LowerRoomArea" index="0"]
+shape = SubResource( 6 )
+
+[node name="UpperRoomArea" type="Area" parent="." index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
+collision_layer = 8
+collision_mask = 8
+script = ExtResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="UpperRoomArea" index="0"]
+shape = SubResource( 6 )
+
+[node name="FloorBooks" type="Spatial" parent="." index="5"]

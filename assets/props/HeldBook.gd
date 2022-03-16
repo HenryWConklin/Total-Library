@@ -8,6 +8,7 @@ export(NodePath) var page_mesh_path: NodePath
 export(NodePath) var book_mesh_path: NodePath
 export(NodePath) var tween_path: NodePath
 export(NodePath) var display_path: NodePath
+export(NodePath) var room_tracker_path: NodePath
 export(float) var pull_animation_time: float = 1
 export(float) var pull_animation_shelf_clearence: float = 0.3
 export(PackedScene) var floor_book_scene
@@ -26,6 +27,7 @@ onready var tween: Tween = get_node(tween_path)
 onready var display_node: Spatial = get_node(display_path)
 onready var book_material: Material = get_node(book_mesh_path).get_active_material(0)
 onready var page_mesh: Spatial = get_node(page_mesh_path)
+onready var room_tracker = get_node(room_tracker_path)
 
 
 func _ready():
@@ -129,6 +131,11 @@ func _animate_drop():
 	yield(book_open_animation_player, "animation_finished")
 	# TODO Call BookRegistry to make rigid body
 	set_state(State.NONE)
+	var book = floor_book_scene.instance()
+
+	var room = room_tracker.current_room_area.get_parent()
+	room.get_node(room.floor_books_path).add_child(book)
+	book.global_transform = display_node.global_transform
 
 
 func _set_page_renderer_text(renderer: int, page: int):
