@@ -76,6 +76,10 @@ config/icon="res://icon.png"
 
 BookRegistry="*res://scripts/data/BookRegistry.gd"
 
+[debug]
+
+gdscript/warnings/integer_division=false
+
 [display]
 
 window/vsync/use_vsync=false

@@ -104,31 +104,39 @@ func _get_shelf_no_offset(ind: ShelfIndex) -> MultiMesh:
 	return shelf_mesh
 
 
-# Removes the book at the given position from the shelf,
-# returns the index of the book that was there, or null if no book is present.
-func remove_book_at(ind: BookIndex) -> BookIndex:
-	ind = _offset_book_index(ind)
-	var shelf_ind = ind.shelf_index()
+func get_book_at(ind: BookIndex) -> BookIndex:
+	var offset_ind = _offset_book_index(ind)
+	var shelf_ind = offset_ind.shelf_index()
 	if not shelf_diff.has(shelf_ind.to_key()):
 		shelf_diff[shelf_ind.to_key()] = {}
 	var diff = shelf_diff[shelf_ind.to_key()]
 
 	var curr
-	if diff.has(ind.book):
-		curr = diff[ind.book]
+	if diff.has(offset_ind.book):
+		curr = diff[offset_ind.book]
 	else:
-		curr = ind
+		curr = offset_ind
+	return curr
+
+
+# Removes the book at the given position from the shelf,
+# returns the index of the book that was there, or null if no book is present.
+func remove_book_at(ind: BookIndex) -> BookIndex:
+	var curr = get_book_at(ind)
 	if curr == null:
 		return null
+	var offset_ind = _offset_book_index(ind)
 
-	diff[ind.book] = null
+	var shelf_ind = offset_ind.shelf_index()
+	var diff = shelf_diff[shelf_ind.to_key()]
+	diff[offset_ind.book] = null
 
 	# Hide the book at the given position
 	# Assumes it's already loaded and won't waste by rebuilding
 	var mesh = _get_shelf_no_offset(shelf_ind)
-	var transform = mesh.get_instance_transform(ind.book)
+	var transform = mesh.get_instance_transform(offset_ind.book)
 	var hidden_transform = Transform(Basis.IDENTITY.scaled(Vector3.ZERO), transform.origin)
-	mesh.set_instance_transform(ind.book, hidden_transform)
+	mesh.set_instance_transform(offset_ind.book, hidden_transform)
 
 	return curr
 

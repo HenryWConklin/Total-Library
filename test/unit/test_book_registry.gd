@@ -65,13 +65,13 @@ func test_get_book_text_at_point_returns_expected_book():
 	)
 	var expected_book_ind = registry.PARAMS.books_per_shelf + 3
 
-	var text = registry.get_book_text_at_point(index, pos)
+	var result = registry.get_book_index_at_point(index, pos)
 
-	assert_eq(text.room_x, index.room.x)
-	assert_eq(text.room_y, index.room.y)
-	assert_eq(text.room_z, index.room.z)
-	assert_eq(text.shelf, index.shelf)
-	assert_eq(text.book, expected_book_ind)
+	assert_eq(result.room.x, index.room.x)
+	assert_eq(result.room.y, index.room.y)
+	assert_eq(result.room.z, index.room.z)
+	assert_eq(result.shelf, index.shelf)
+	assert_eq(result.book, expected_book_ind)
 
 
 func test_get_book_at_point_returns_expected_on_near_end():
@@ -92,9 +92,9 @@ func test_get_book_at_point_returns_expected_on_near_end():
 	# Significant extra on the end to catch issues with bounding box not matching exactly
 	var expected_book_ind = registry.PARAMS.books_per_shelf
 
-	var text = registry.get_book_text_at_point(index, pos)
+	var result = registry.get_book_index_at_point(index, pos)
 
-	assert_eq(text.book, expected_book_ind)
+	assert_eq(result.book, expected_book_ind)
 
 
 func test_get_book_at_point_returns_expected_on_far_end():
@@ -115,9 +115,9 @@ func test_get_book_at_point_returns_expected_on_far_end():
 	# Significant extra on the end to catch issues with bounding box not matching exactly
 	var expected_book_ind = 2 * registry.PARAMS.books_per_shelf - 1
 
-	var text = registry.get_book_text_at_point(index, pos)
+	var result = registry.get_book_index_at_point(index, pos)
 
-	assert_eq(text.book, expected_book_ind)
+	assert_eq(result.book, expected_book_ind)
 
 
 func test_remove_book_at_hides_book():

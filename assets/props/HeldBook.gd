@@ -1,6 +1,6 @@
 extends Spatial
 
-enum State { NONE, ANIMATING_PICK, HELD, ANIMATING_DROP, ANIMATING_TURN }
+enum State { NONE, ANIMATING_PICK, HELD, ANIMATING_DROP, ANIMATING_TURN, ANIMATING_PLACE }
 
 export(NodePath) var book_open_animation_player_path: NodePath
 export(NodePath) var page_turn_animation_player_path: NodePath
@@ -20,6 +20,7 @@ var _book_text = null
 var _page: int = 0
 var _start_transform: Transform = Transform.IDENTITY
 var _mid_transform: Transform = Transform.IDENTITY
+var _end_transform: Transform = Transform.IDENTITY
 
 onready var book_open_animation_player: AnimationPlayer = get_node(book_open_animation_player_path)
 onready var page_turn_animation_player: AnimationPlayer = get_node(page_turn_animation_player_path)
@@ -55,6 +56,8 @@ func set_state(new_state: int):
 		State.ANIMATING_TURN:
 			assert(state == State.HELD)
 			page_mesh.visible = true
+		State.ANIMATING_PLACE:
+			assert(state == State.HELD)
 	state = new_state
 
 
@@ -62,7 +65,7 @@ func can_pick_up_book() -> bool:
 	return state == State.NONE
 
 
-func _set_animation_progress(p: float):
+func _set_animation_progress_pick(p: float):
 	if p < 0.5:
 		display_node.global_transform = _start_transform.interpolate_with(_mid_transform, p * 2)
 	else:
@@ -74,6 +77,57 @@ func _set_animation_progress(p: float):
 func pull_from_shelf(book_text, book_transform_local: Transform, shelf_transform_global: Transform):
 	assert(can_pick_up_book())
 	yield(_animate_pick(book_text, book_transform_local, shelf_transform_global), "completed")
+
+
+func can_place_book():
+	return state == State.HELD
+
+
+func place_on_shelf(
+	pos_book_ind: BookIndex, book_transform_local: Transform, shelf_transform_global: Transform
+):
+	assert(can_place_book())
+	var shelf_to_local_transform = shelf_transform_global
+	_end_transform = shelf_to_local_transform * book_transform_local
+	_mid_transform = (
+		shelf_to_local_transform
+		* book_transform_local.translated(Vector3.RIGHT * pull_animation_shelf_clearence)
+	)
+	_start_transform = display_node.global_transform
+	book_open_animation_player.play_backwards("BookOpen")
+	yield(book_open_animation_player, "animation_finished")
+
+	_set_animation_progress_place(0)
+	assert(
+		tween.interpolate_method(
+			self,
+			"_set_animation_progress_place",
+			0,
+			1,
+			pull_animation_time,
+			Tween.TRANS_QUAD,
+			Tween.EASE_IN_OUT
+		)
+	)
+	assert(tween.start())
+	yield(tween, "tween_completed")
+	set_state(State.NONE)
+	var actual_book_ind = BookIndex.new()
+	actual_book_ind.room.x = _book_text.room_x
+	actual_book_ind.room.y = _book_text.room_y
+	actual_book_ind.room.z = _book_text.room_z
+	actual_book_ind.shelf = _book_text.shelf
+	actual_book_ind.book = _book_text.book
+	assert(BookRegistry.place_book_at(pos_book_ind, actual_book_ind))
+
+
+func _set_animation_progress_place(p: float):
+	if p < 0.5:
+		display_node.global_transform = _start_transform.interpolate_with(_mid_transform, p * 2)
+	else:
+		display_node.global_transform = _mid_transform.interpolate_with(
+			_end_transform, (p - 0.5) * 2
+		)
 
 
 func can_drop_book() -> bool:
@@ -106,12 +160,12 @@ func _animate_pick(book_text, book_transform_local: Transform, shelf_transform_g
 
 	# Reset animation
 	book_open_animation_player.stop()
-	_set_animation_progress(0)
+	_set_animation_progress_pick(0)
 
 	assert(
 		tween.interpolate_method(
 			self,
-			"_set_animation_progress",
+			"_set_animation_progress_pick",
 			0,
 			1,
 			pull_animation_time,
