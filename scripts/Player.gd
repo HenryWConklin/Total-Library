@@ -19,15 +19,44 @@ onready var raycast: RayCast = get_node(raycast_path)
 onready var held_book: HeldBook = get_node(held_book_path)
 
 
+func get_raycast_shelf_book_ind() -> BookIndex:
+	var picked_shelf_collision = raycast.get_collider()
+	var picked_shelf = picked_shelf_collision.get_node(picked_shelf_collision.shelf_path)
+	var picked_point_global = raycast.get_collision_point()
+	var picked_point_local = picked_shelf_collision.to_local(picked_point_global)
+	var shelf_ind = picked_shelf.shelf_index
+	var pos_book_ind = BookRegistry.get_book_index_at_point(shelf_ind, picked_point_local)
+	return pos_book_ind
+
+
+func pick_up_book() -> bool:
+	var pos_book_ind = get_raycast_shelf_book_ind()
+	if pos_book_ind == null:
+		return false
+	var actual_book_ind = BookRegistry.remove_book_at(pos_book_ind)
+	if actual_book_ind == null:
+		return false
+	var book_text = BookRegistry.get_book_text(actual_book_ind)
+
+	var book_transform_local = BookRegistry.get_book_transform(book_text.book)
+
+	held_book.pull_from_shelf(
+		book_text, book_transform_local, raycast.get_collider().global_transform
+	)
+	return true
+
+
 func _unhandled_input(event: InputEvent):
 	# Mouse capture/uncapture
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		var mouse_motion = event.get_relative()
 		_mouse_move += mouse_motion
 		get_tree().set_input_as_handled()
+		return
 	elif event.is_action_pressed("release_mouse"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().set_input_as_handled()
+		return
 	elif (
 		event is InputEventMouseButton
 		and event.is_pressed()
@@ -35,6 +64,7 @@ func _unhandled_input(event: InputEvent):
 	):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		get_tree().set_input_as_handled()
+		return
 
 	# Book pickup
 	if (
@@ -43,33 +73,22 @@ func _unhandled_input(event: InputEvent):
 		and raycast.get_collider() is Area
 		and held_book.can_pick_up_book()
 	):
-		var picked_shelf_collision = raycast.get_collider()
-		var picked_shelf = picked_shelf_collision.get_node(picked_shelf_collision.shelf_path)
-		var picked_point_global = raycast.get_collision_point()
-		var picked_point_local = picked_shelf_collision.to_local(picked_point_global)
-		var shelf_ind = picked_shelf.shelf_index
-		var book_text = BookRegistry.get_book_text_at_point(shelf_ind, picked_point_local)
-		if book_text == null:
+		if pick_up_book():
+			get_tree().set_input_as_handled()
 			return
-
-		# Should probably move this into BookRegistry
-		var book_transform_local = picked_shelf.multimesh.get_instance_transform(book_text.book)
-		book_transform_local.basis = Basis.IDENTITY
-
-		held_book.pull_from_shelf(
-			book_text, book_transform_local, picked_shelf_collision.global_transform
-		)
-		get_tree().set_input_as_handled()
-	elif event.is_action_pressed("pick_up") and held_book.can_drop_book():
+	if event.is_action_pressed("pick_up") and held_book.can_drop_book():
 		held_book.drop_book()
 		get_tree().set_input_as_handled()
+		return
 
 	if event.is_action_pressed("turn_page_forward") and held_book.can_turn_page():
 		held_book.page_forward()
 		get_tree().set_input_as_handled()
+		return
 	if event.is_action_pressed("turn_page_back") and held_book.can_turn_page():
 		held_book.page_back()
 		get_tree().set_input_as_handled()
+		return
 
 
 func _handle_movement():

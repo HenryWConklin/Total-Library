@@ -15,6 +15,11 @@ var room_offset: RoomIndex = RoomIndex.new()
 onready var book_shape = PARAMS.book_mesh.get_aabb()
 
 
+func _init():
+	book_util.room_gen_params = PARAMS
+	book_util.randomize_origin(123)
+
+
 func add_room_offset(off: Vector3):
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "floor_books", "push_floor_books")
 	room_offset.x += int(off.x)
@@ -37,7 +42,7 @@ func get_shelf_aabb() -> AABB:
 
 # Removes and returns a BookText for the book under the given position on the given shelf,
 # or null if the point is not over a book (e.g. empty slot or not a slot)
-func get_book_text_at_point(ind: ShelfIndex, local_pos: Vector3) -> BookIndex:
+func get_book_index_at_point(ind: ShelfIndex, local_pos: Vector3) -> BookIndex:
 	if fposmod(local_pos.y, PARAMS.shelf_spacing) > book_shape.size.y:
 		return null
 	var shelf_aabb = get_shelf_aabb()
@@ -54,11 +59,7 @@ func get_book_text_at_point(ind: ShelfIndex, local_pos: Vector3) -> BookIndex:
 	book_ind.room.z = ind.room.z
 	book_ind.shelf = ind.shelf
 	book_ind.book = shelf * PARAMS.books_per_shelf + book
-	var actual_book_ind = remove_book_at(book_ind)
-	if actual_book_ind == null:
-		return null
-	var text = get_book_text(actual_book_ind)
-	return text
+	return book_ind
 
 
 func _offset_room_index(ind: RoomIndex) -> RoomIndex:
@@ -201,9 +202,15 @@ func get_page(book, page: int) -> String:
 	return book_util.get_page(book, page)
 
 
-func _init():
-	book_util.room_gen_params = PARAMS
-	book_util.randomize_origin(123)
+func get_book_transform(book: int) -> Transform:
+	var shelf_ind = floor(book / PARAMS.books_per_shelf)
+	var book_stride = PARAMS.book_spacing + book_shape.size.z
+	var yoff = PARAMS.shelf_spacing * shelf_ind + book_shape.size.y / 2.0
+	var zoff = (
+		((book % PARAMS.books_per_shelf) - (PARAMS.books_per_shelf / 2.0)) * book_stride
+		+ (book_stride / 2.0)
+	)
+	return Transform.IDENTITY.translated(Vector3(0, yoff, zoff))
 
 
 func _make_shelf(ind: ShelfIndex) -> MultiMesh:
