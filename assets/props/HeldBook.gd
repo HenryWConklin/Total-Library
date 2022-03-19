@@ -112,12 +112,7 @@ func place_on_shelf(
 	assert(tween.start())
 	yield(tween, "tween_completed")
 	set_state(State.NONE)
-	var actual_book_ind = BookIndex.new()
-	actual_book_ind.room.x = _book_text.room_x
-	actual_book_ind.room.y = _book_text.room_y
-	actual_book_ind.room.z = _book_text.room_z
-	actual_book_ind.shelf = _book_text.shelf
-	actual_book_ind.book = _book_text.book
+	var actual_book_ind = BookIndex.new().from_book_text(_book_text)
 	assert(BookRegistry.place_book_at(pos_book_ind, actual_book_ind))
 
 
@@ -183,10 +178,10 @@ func _animate_drop():
 	set_state(State.ANIMATING_DROP)
 	book_open_animation_player.play_backwards("BookOpen")
 	yield(book_open_animation_player, "animation_finished")
-	# TODO Call BookRegistry to make rigid body
 	set_state(State.NONE)
 	var book = floor_book_scene.instance()
-
+	book.book_index = BookIndex.new().from_book_text(_book_text)
+	book.title = BookRegistry.get_title(_book_text)
 	var room = room_tracker.current_room_area.get_parent()
 	room.get_node(room.floor_books_path).add_child(book)
 	book.global_transform = display_node.global_transform
@@ -245,3 +240,48 @@ func page_forward():
 
 func page_back():
 	yield(_page_turn(-2), "completed")
+
+
+func pick_up_floor_book(book):
+	assert(can_pick_up_book())
+	set_state(State.ANIMATING_PICK)
+	_book_text = BookRegistry.get_book_text(book.book_index)
+	var packed_title = book.title
+	book.hide()
+	book.queue_free()
+	book_material.set_shader_param("title1", int(packed_title.r))
+	book_material.set_shader_param("title2", int(packed_title.g))
+	book_material.set_shader_param("title3", int(packed_title.b))
+	book_material.set_shader_param("title4", int(packed_title.a))
+	_page = 0
+	_update_page_renderers_held()
+
+	_start_transform = book.global_transform
+	# Reset animation
+	book_open_animation_player.stop()
+	_set_animation_progress_pick_floor(0)
+
+	assert(
+		tween.interpolate_method(
+			self,
+			"_set_animation_progress_pick_floor",
+			0,
+			1,
+			pull_animation_time,
+			Tween.TRANS_QUAD,
+			Tween.EASE_IN_OUT
+		)
+	)
+	assert(tween.start())
+	yield(tween, "tween_completed")
+
+	book_open_animation_player.play("BookOpen")
+	yield(book_open_animation_player, "animation_finished")
+
+	set_state(State.HELD)
+
+
+func _set_animation_progress_pick_floor(p: float):
+	display_node.global_transform = _start_transform.interpolate_with(
+		display_node.get_parent().global_transform, p
+	)

@@ -6,6 +6,15 @@ export(ShelfIndex.Side) var shelf: int
 export(int) var book: int = 0
 
 
+func from_book_text(book_text):
+	room.x = book_text.room_x
+	room.y = book_text.room_y
+	room.z = book_text.room_z
+	shelf = book_text.shelf
+	book = book_text.book
+	return self
+
+
 func shelf_index() -> ShelfIndex:
 	var ind = ShelfIndex.new()
 	ind.room = room

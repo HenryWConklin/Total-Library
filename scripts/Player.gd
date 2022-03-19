@@ -29,7 +29,7 @@ func get_raycast_shelf_book_ind() -> BookIndex:
 	return pos_book_ind
 
 
-func pick_up_book() -> bool:
+func pick_up_shelf_book() -> bool:
 	var pos_book_ind = get_raycast_shelf_book_ind()
 	if pos_book_ind == null:
 		return false
@@ -60,6 +60,11 @@ func place_book_on_shelf() -> bool:
 	return true
 
 
+func pick_up_floor_book():
+	var book = raycast.get_collider()
+	held_book.pick_up_floor_book(book)
+
+
 func _unhandled_input(event: InputEvent):
 	# Mouse capture/uncapture
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -87,7 +92,7 @@ func _unhandled_input(event: InputEvent):
 		and raycast.get_collider() is Area
 		and held_book.can_pick_up_book()
 	):
-		if pick_up_book():
+		if pick_up_shelf_book():
 			get_tree().set_input_as_handled()
 			return
 	if (
@@ -97,6 +102,15 @@ func _unhandled_input(event: InputEvent):
 		and held_book.can_place_book()
 	):
 		if place_book_on_shelf():
+			get_tree().set_input_as_handled()
+			return
+	if (
+		event.is_action_pressed("pick_up")
+		and raycast.is_colliding()
+		and raycast.get_collider() is RigidBody
+		and held_book.can_pick_up_book()
+	):
+		if pick_up_floor_book():
 			get_tree().set_input_as_handled()
 			return
 	if event.is_action_pressed("pick_up") and held_book.can_drop_book():

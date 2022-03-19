@@ -13,6 +13,11 @@ uniform vec2 title_start_uv;
 uniform float title_height_uv;
 uniform uint title_bits_per_char;
 uniform uint title_num_chars;
+uniform uint packed_title1 = 0;
+uniform uint packed_title2 = 0;
+uniform uint packed_title3 = 0;
+uniform uint packed_title4 = 0;
+uniform bool use_packed_title = false;
 
 uniform vec4 page_albedo: hint_color = vec4(1);
 
@@ -85,10 +90,10 @@ float title_alpha(vec2 uv, uvec4 title_bits) {
 
 void fragment() {
 	float page_mix = step(UV.x, .5);
-	float title_alpha = title_alpha(UV, uvec4(COLOR));
+	uvec4 title = use_packed_title ? uvec4(packed_title1, packed_title2, packed_title3, packed_title4) : uvec4(COLOR);
+	float title_alpha = title_alpha(UV, title);
 
 	vec3 cover_albedo = mix(cover_albedo(UV), vec3(0), smoothstep(0.47, 0.5, title_alpha));
-
 
 	ALBEDO = mix(page_albedo.rgb, cover_albedo, page_mix);
 	ROUGHNESS = mix(1.0, 0.9, smoothstep(0.5,0.51, title_alpha));
