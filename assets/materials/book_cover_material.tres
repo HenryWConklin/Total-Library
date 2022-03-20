@@ -11,7 +11,6 @@ bump_strength = 7.7
 noise = SubResource( 1 )
 
 [resource]
-resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/albedo1 = Color( 0.415686, 0.211765, 0, 1 )
 shader_param/albedo2 = Color( 0.38, 0.196333, 0, 1 )
