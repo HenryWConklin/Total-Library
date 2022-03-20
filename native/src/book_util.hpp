@@ -29,6 +29,7 @@ private:
   cpp_int num_books;
   cpp_int page_mod;
   cpp_int title_mod;
+  cpp_int title_bit_mask;
   // Distance along in sequential order for one room on each axis
   // x_diff is books_per_room
   // y_diff is also the length of one hallway before wrapping

@@ -8,6 +8,7 @@
 #include <cmath>
 #include <iterator>
 #include <vector>
+#include <GodotProfiling.hpp>
 
 namespace bmp = boost::multiprecision;
 
@@ -42,13 +43,18 @@ void BookUtil::_init() {
 }
 
 void BookUtil::_recompute_big_vals() {
+  GODOT_PROFILING_FUNCTION;
   chars_per_book =
       room_gen_params->title_chars +
       (room_gen_params->chars_per_page * room_gen_params->pages_per_book);
   books_per_room =
       room_gen_params->books_per_shelf * room_gen_params->num_shelves * 4;
-  bits_per_char =
-      (uint32_t)std::ceil(std::log2(room_gen_params->charset.length()));
+  unsigned int charset_len = room_gen_params->charset.length();
+  // Add an extra bit on if not an even power of 2
+  bits_per_char = (charset_len & (charset_len - 1)) == 0 ? 0 : 1;
+  while (charset_len >>= 1) {
+    bits_per_char++;
+  }
   if (bits_per_char * room_gen_params->title_chars > BOOK_TITLE_MAX_BITS) {
     room_gen_params->title_chars = BOOK_TITLE_MAX_BITS / bits_per_char;
     godot::Godot::print_warning(
@@ -60,6 +66,9 @@ void BookUtil::_recompute_big_vals() {
                     "%s"),
         "set_room_gen_params", __FILE__, __LINE__);
   }
+  title_bit_mask = 1;
+  title_bit_mask <<= bits_per_char * room_gen_params->title_chars;
+  title_bit_mask -= 1;
   bmp::cpp_int bmp_num_chars(room_gen_params->charset.length());
   num_books = bmp::pow(bmp_num_chars, chars_per_book);
   // 4 sets of shelves per room
@@ -155,6 +164,7 @@ void BookUtil::set_origin(godot::PoolByteArray bytes) {
 }
 
 void BookUtil::randomize_origin(int seed) {
+  GODOT_PROFILING_FUNCTION;
   cpp_int range_max = (num_books / books_per_room) - 1;
   boost::random::uniform_int_distribution<bmp::cpp_int> dist(bmp::cpp_int(0),
                                                              range_max);
@@ -176,6 +186,7 @@ godot::Ref<godot::MultiMesh> BookUtil::make_shelf_multimesh(int room_x,
                                                             int room_y,
                                                             int room_z,
                                                             int shelf) const {
+  GODOT_PROFILING_FUNCTION;
   godot::Ref<godot::MultiMesh> shelf_mesh = godot::MultiMesh::_new();
   shelf_mesh->set_color_format(godot::MultiMesh::COLOR_FLOAT);
   shelf_mesh->set_custom_data_format(godot::MultiMesh::CUSTOM_DATA_NONE);
@@ -184,6 +195,7 @@ godot::Ref<godot::MultiMesh> BookUtil::make_shelf_multimesh(int room_x,
 
   int books_per_shelf = room_gen_params->books_per_shelf;
   int num_shelves = room_gen_params->num_shelves;
+  int num_chars = room_gen_params->charset.length();
   float book_spacing = room_gen_params->book_spacing;
   float shelf_spacing = room_gen_params->shelf_spacing;
 
@@ -191,6 +203,7 @@ godot::Ref<godot::MultiMesh> BookUtil::make_shelf_multimesh(int room_x,
 
   godot::Vector3 book_size = room_gen_params->book_mesh->get_aabb().size;
   float book_stride = book_size.z + book_spacing;
+  bool chars_pow_2 = (num_chars & (num_chars - 1)) == 0;
 
   godot::PoolRealArray data;
   bmp::cpp_int book_index = _make_book_index(room_x, room_y, room_z, shelf, 0);
@@ -220,7 +233,11 @@ godot::Ref<godot::MultiMesh> BookUtil::make_shelf_multimesh(int room_x,
       // Title in custom data
       bmp::cpp_int title_num(book_index);
       _permute_book_index(title_num);
-      title_num %= title_mod;
+      if (chars_pow_2) {
+        title_num &= title_bit_mask;
+      } else {
+        title_num %= title_mod;
+      }
       int curr_size = data.size();
       _pack_num_to_floats(title_num, data);
       // Handle title length less than max capacity
@@ -241,6 +258,7 @@ godot::Ref<godot::MultiMesh> BookUtil::make_shelf_multimesh(int room_x,
 godot::Color BookUtil::get_packed_title_from_index(int room_x, int room_y,
                                                    int room_z, int shelf,
                                                    int book) const {
+  GODOT_PROFILING_FUNCTION;
   bmp::cpp_int title_num =
       _make_book_num(room_x, room_y, room_z, shelf, book) % title_mod;
   return _pack_title_num_to_color(title_num);
@@ -248,6 +266,7 @@ godot::Color BookUtil::get_packed_title_from_index(int room_x, int room_y,
 
 godot::Ref<BookText> BookUtil::make_book(int room_x, int room_y, int room_z,
                                          int shelf, int book) const {
+  GODOT_PROFILING_FUNCTION;
   godot::Ref<BookText> res = BookText::_new();
   res->full_ind = _make_book_num(room_x, room_y, room_z, shelf, book);
   res->room_x = room_x;
@@ -261,6 +280,7 @@ godot::Ref<BookText> BookUtil::make_book(int room_x, int room_y, int room_z,
 // Get a string representation of a page-worth of characters, starting at the
 // 0-indexed page indicated
 godot::String BookUtil::get_page(godot::Ref<BookText> book, int page) const {
+  GODOT_PROFILING_FUNCTION;
   int chars_per_page = room_gen_params->chars_per_page;
   // Initialize full of zeros, with one extra to null terminate
   std::vector<wchar_t> buff(chars_per_page + 1);
