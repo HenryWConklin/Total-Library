@@ -87,6 +87,7 @@ func place_on_shelf(
 	pos_book_ind: BookIndex, book_transform_local: Transform, shelf_transform_global: Transform
 ):
 	assert(can_place_book())
+	set_state(State.ANIMATING_PLACE)
 	var shelf_to_local_transform = shelf_transform_global
 	_end_transform = shelf_to_local_transform * book_transform_local
 	_mid_transform = (
