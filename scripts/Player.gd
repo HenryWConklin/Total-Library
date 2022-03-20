@@ -11,12 +11,14 @@ export(float) var gravity = 10
 export(NodePath) var camera_path: NodePath
 export(NodePath) var raycast_path: NodePath
 export(NodePath) var held_book_path: NodePath
+export(NodePath) var selection_highlight_path: NodePath
 
 var _mouse_move = Vector2(0, 0)
 
 onready var camera: Camera = get_node(camera_path)
 onready var raycast: RayCast = get_node(raycast_path)
 onready var held_book: HeldBook = get_node(held_book_path)
+onready var selection_highlight: MeshInstance = get_node(selection_highlight_path)
 
 
 func get_raycast_shelf_book_ind() -> BookIndex:
@@ -158,5 +160,28 @@ func _handle_movement():
 		var _move_result = self.move_and_slide(Vector3(move_vec.x, -gravity, move_vec.y), UP, true)
 
 
+func _selection_highlight():
+	if not raycast.is_colliding():
+		selection_highlight.hide()
+		return
+	if raycast.get_collider() is Area:
+		var book_ind = get_raycast_shelf_book_ind()
+		if book_ind != null:
+			var book_transform_local = BookRegistry.get_book_transform(book_ind.book)
+			var book_transform_global = (
+				raycast.get_collider().global_transform
+				* book_transform_local
+			)
+			selection_highlight.show()
+			selection_highlight.global_transform = book_transform_global
+			return
+	elif raycast.get_collider() is RigidBody:
+		selection_highlight.show()
+		selection_highlight.global_transform = raycast.get_collider().global_transform
+		return
+	selection_highlight.hide()
+
+
 func _physics_process(_delta):
 	_handle_movement()
+	_selection_highlight()
