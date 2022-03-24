@@ -6,6 +6,7 @@ export(int) var gallery_index: int = 0
 # Array of scenes matching the tiles from the source gridmap
 export(Array, PackedScene) var item_scenes = []
 export(String, FILE) var export_path = "res://rooms/genLibraryRooms.tscn"
+export(Array, Vector3) var non_placeholder_rooms = []
 
 var _rooms: Dictionary
 var _export_root: Node
@@ -67,6 +68,11 @@ func _add_room_scenes():
 		room_index.y = int(round(pos.z / 3))
 		room_index.z = int(round(pos.y * 2))
 		scene.room_index = room_index
+		if (
+			item_index == gallery_index
+			and not Vector3(room_index.x, room_index.y, room_index.z) in non_placeholder_rooms
+		):
+			scene.use_placeholder_shelves = true
 
 
 func _add_lights():

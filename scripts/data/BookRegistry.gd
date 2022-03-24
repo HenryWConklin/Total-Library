@@ -11,6 +11,7 @@ var shelf_cache = LRUCache.new(500)
 var shelf_diff = {}
 var floor_books = {}
 var room_offset: RoomIndex = RoomIndex.new()
+var placeholder_shelf: MultiMesh
 
 onready var book_shape = PARAMS.book_mesh.get_aabb()
 
@@ -18,6 +19,7 @@ onready var book_shape = PARAMS.book_mesh.get_aabb()
 func _init():
 	book_util.room_gen_params = PARAMS
 	book_util.randomize_origin(123)
+	placeholder_shelf = book_util.make_shelf_multimesh(0, 0, 0, 0)
 
 
 func add_room_offset(off: Vector3):
@@ -92,6 +94,12 @@ func _offset_book_index(ind: BookIndex) -> BookIndex:
 # Returns a reference to the active multimesh at the given slot
 func get_shelf(ind: ShelfIndex) -> MultiMesh:
 	return _get_shelf_no_offset(_offset_shelf_index(ind))
+
+
+func get_placeholder_shelf(ind: ShelfIndex) -> MultiMesh:
+	var shelf = placeholder_shelf.duplicate()
+	_apply_diff(_offset_shelf_index(ind), shelf)
+	return shelf
 
 
 func _get_shelf_no_offset(ind: ShelfIndex) -> MultiMesh:
