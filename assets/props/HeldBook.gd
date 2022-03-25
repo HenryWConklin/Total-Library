@@ -286,3 +286,10 @@ func _set_animation_progress_pick_floor(p: float):
 	display_node.global_transform = _start_transform.interpolate_with(
 		display_node.get_parent().global_transform, p
 	)
+
+
+func teleport(offset: Vector3):
+	if state in [State.ANIMATING_PICK, State.ANIMATING_PLACE]:
+		var translate = Transform.IDENTITY.translated(offset)
+		_start_transform = translate * _start_transform
+		_mid_transform = translate * _mid_transform

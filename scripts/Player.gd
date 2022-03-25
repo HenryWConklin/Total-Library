@@ -21,6 +21,11 @@ onready var held_book: HeldBook = get_node(held_book_path)
 onready var selection_highlight: MeshInstance = get_node(selection_highlight_path)
 
 
+func teleport(offset: Vector3):
+	global_translate(offset)
+	held_book.teleport(offset)
+
+
 func get_raycast_shelf_book_ind() -> BookIndex:
 	var picked_shelf_collision = raycast.get_collider()
 	var picked_shelf = picked_shelf_collision.get_node(picked_shelf_collision.shelf_path)

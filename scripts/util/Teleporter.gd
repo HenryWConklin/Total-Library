@@ -9,6 +9,6 @@ func _ready():
 
 
 func _teleport(body: Spatial):
-	body.global_translate(offset)
+	body.teleport(offset)
 	BookRegistry.add_room_offset(room_offset)
 	print("Teleport", offset)
