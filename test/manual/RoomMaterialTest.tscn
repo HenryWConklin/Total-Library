@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/materials/library_env.tres" type="Environment" id=1]
+[ext_resource path="res://assets/props/LibraryLight.tscn" type="PackedScene" id=2]
+[ext_resource path="res://rooms/GalleryTile.tscn" type="PackedScene" id=3]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="hex_gallery_tile" parent="." instance=ExtResource( 3 )]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 1 )
+
+[node name="LibraryLight" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 0 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.0420967, -0.728299, -0.683965, 0.0447407, 0.685259, -0.726924, 0.998111, 0, 0.0614318, -3.62841, 1.62515, 0 )
