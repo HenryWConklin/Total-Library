@@ -30,6 +30,16 @@ uniform uint title4;
 const float PI = 3.14159265358979323846;
 const uint MANTISSA_BITS = uint(23);
 
+// A single iteration of Bob Jenkins' One-At-A-Time hashing algorithm.
+int hash( int x ) {
+  x += ( x << 10);
+  x = x ^ ( x >>  6);
+  x += ( x <<  3);
+  x = x ^ ( x >> 11);
+  x += ( x << 15);
+  return x;
+}
+
 vec3 cover_albedo(vec2 uv) {
 	float noise = texture(surface_noise, uv).r;
 	float mix_val = smoothstep(0.4, 0.6, noise);
@@ -116,7 +126,9 @@ void fragment() {
 	float page_mix = step(UV.x, .497);
 	float title_alpha = title_alpha(UV, uvec4(title1, title2, title3, title4));
 
-	vec3 cover_albedo = mix(cover_albedo(UV), vec3(0), smoothstep(0.47, 0.5, title_alpha));
+	int rand = hash(int(title1));
+	vec2 uv_offset = vec2(float(rand & 0xFFFF), float((rand & 0xFFFF0000) >> 16)) / float(0xFFFF);
+	vec3 cover_albedo = mix(cover_albedo(UV + uv_offset), vec3(0), smoothstep(0.47, 0.5, title_alpha));
 	vec3 page_albedo = page_albedo(UV);
 
 	ALBEDO = mix(page_albedo.rgb, cover_albedo, page_mix);
