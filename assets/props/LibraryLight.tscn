@@ -5,7 +5,7 @@
 [node name="LibraryLight" type="Spatial"]
 
 [node name="SpotLight" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.4, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.579707, 0 )
 shadow_enabled = true
 shadow_bias = 0.05
 omni_range = 8.0

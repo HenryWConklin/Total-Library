@@ -6,15 +6,12 @@
 
 [node name="hanging_light" instance=ExtResource( 3 )]
 
-[node name="LIghtSphere" parent="." index="0"]
+[node name="Catenary" parent="." index="0"]
+material/0 = ExtResource( 2 )
+
+[node name="Cone" parent="." index="1"]
+material/0 = ExtResource( 2 )
+
+[node name="Light" parent="." index="2"]
 cast_shadow = 0
 material/0 = ExtResource( 1 )
-
-[node name="Catenary001" parent="." index="2"]
-material/0 = ExtResource( 2 )
-
-[node name="Catenary002" parent="." index="3"]
-material/0 = ExtResource( 2 )
-
-[node name="Catenary" parent="." index="4"]
-material/0 = ExtResource( 2 )
