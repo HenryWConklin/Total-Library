@@ -154,6 +154,7 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/shadow_atlas/cubemap_size=1024
+quality/shadow_atlas/quadrant_0_subdiv=2
 quality/shadows/filter_mode=2
 quality/shading/use_physical_light_attenuation=true
 environment/default_environment="res://default_env.tres"
