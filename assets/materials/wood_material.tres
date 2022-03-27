@@ -1,4 +1,13 @@
-[gd_resource type="SpatialMaterial" format=2]
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://assets/materials/shaders/wood_shader.gdshader" type="Shader" id=1]
 
 [resource]
-albedo_color = Color( 0.34902, 0.27451, 0.0196078, 1 )
+shader = ExtResource( 1 )
+shader_param/light_color = Color( 0.44, 0.3784, 0.308, 1 )
+shader_param/dark_color = Color( 0.35, 0.2905, 0.231, 1 )
+shader_param/ring_scale = 28.028
+shader_param/wave_scale = 3.206
+shader_param/random_scale = 2.576
+shader_param/noise_scale = 0.133
+shader_param/grain_direction = Vector3( -0.176, -0.686, -0.073 )
