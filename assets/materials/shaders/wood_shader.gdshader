@@ -11,6 +11,9 @@ shader_type spatial;
 uniform vec4 light_color : hint_color = vec4( 0.952, 0.858, 0.749, 1.0 );
 uniform vec4 dark_color : hint_color = vec4( 0.749, 0.619, 0.490, 1.0 );
 
+uniform float roughness = 1;
+uniform float subsurface_scattering = 0;
+
 // Spacing between rings
 uniform float ring_scale = 4.4;
 uniform float wave_scale = 8.454;
@@ -74,4 +77,6 @@ void fragment( )
 	//float f = fract(x * ring_scale);
 
 	ALBEDO = mix( light_color, dark_color, f ).rgb;
+	ROUGHNESS = roughness;
+	SSS_STRENGTH = subsurface_scattering;
 }

@@ -6,6 +6,8 @@
 shader = ExtResource( 1 )
 shader_param/light_color = Color( 0.44, 0.3784, 0.308, 1 )
 shader_param/dark_color = Color( 0.35, 0.2905, 0.231, 1 )
+shader_param/roughness = 0.573
+shader_param/subsurface_scattering = 0.215
 shader_param/ring_scale = 28.028
 shader_param/wave_scale = 3.206
 shader_param/random_scale = 2.576
