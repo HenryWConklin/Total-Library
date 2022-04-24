@@ -2,7 +2,7 @@ extends Node
 
 const LRUCache = preload("res://scripts/data/LRUCache.gd")
 
-const PARAMS = preload("res://scripts/data/room_gen_params.tres")
+const PARAMS = preload("res://scripts/data/room_gen_params.res")
 var book_util: BookUtil = BookUtil.new()
 var total_shelf_time = 0
 # Cache of shelf multimeshes, map from ShelfIndex -> MultiMesh

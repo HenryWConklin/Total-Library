@@ -26,8 +26,12 @@ private:
   uint32_t books_per_room;
   uint32_t chars_per_book;
   uint32_t bits_per_char;
+  // Is the length of the charset a power of 2?
+  bool charset_pow2;
   cpp_int num_books;
+  cpp_int num_books_bit_mask;
   cpp_int page_mod;
+  cpp_int page_bit_mask;
   cpp_int title_mod;
   cpp_int title_bit_mask;
   // Distance along in sequential order for one room on each axis
@@ -41,7 +45,7 @@ private:
                          int book) const;
   cpp_int _make_book_index(int room_x, int room_y, int room_z, int shelf,
                            int book) const;
-  inline void _permute_book_index(cpp_int &val) const;
+  inline void _apply_multiplier(cpp_int &val) const;
   // Packs the bits of a cpp_int into floats and appends them to the given
   // PoolRealArray
   inline void _pack_num_to_floats(const cpp_int &title_num,

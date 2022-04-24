@@ -14,3 +14,4 @@ chars_per_page = 320
 pages_per_book = 10
 title_chars = 10
 charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.,'?! "
+shuffle_multiplier = PoolByteArray( 1 )

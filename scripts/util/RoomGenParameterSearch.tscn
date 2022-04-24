@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Spatial
+
+export(String, FILE) var source
+export(String, FILE) var dest
+
+func _ready():
+	var params = load(source)
+	params.parameter_search()
+	assert(ResourceSaver.save(dest, params) == OK)
+	get_tree().quit()
+"
+
+[node name="Spatial" type="Spatial"]
+script = SubResource( 1 )
+source = "res://scripts/data/room_gen_params.res"
+dest = "res://scripts/data/room_gen_params.res"
