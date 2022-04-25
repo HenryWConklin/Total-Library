@@ -21,6 +21,8 @@ var _page: int = 0
 var _start_transform: Transform = Transform.IDENTITY
 var _mid_transform: Transform = Transform.IDENTITY
 var _end_transform: Transform = Transform.IDENTITY
+var _page_renderer_nodes: Array = []
+var _cached_page_text: Dictionary = {}
 
 onready var book_open_animation_player: AnimationPlayer = get_node(book_open_animation_player_path)
 onready var page_turn_animation_player: AnimationPlayer = get_node(page_turn_animation_player_path)
@@ -30,7 +32,6 @@ onready var book_material: Material = get_node(book_mesh_path).get_active_materi
 onready var page_mesh: Spatial = get_node(page_mesh_path)
 onready var room_tracker = get_node(room_tracker_path)
 
-
 func _ready():
 	self.state = State.NONE
 	book_material.set_shader_param("page1_text_texture", get_node(page_renderers[0]).get_texture())
@@ -38,6 +39,8 @@ func _ready():
 	var page_material = page_mesh.get_active_material(0)
 	page_material.set_shader_param("back_page", get_node(page_renderers[2]).get_texture())
 	page_material.set_shader_param("front_page", get_node(page_renderers[3]).get_texture())
+	for renderer in page_renderers:
+		_page_renderer_nodes.append(get_node(renderer))
 
 
 func set_state(new_state: int):
@@ -45,6 +48,7 @@ func set_state(new_state: int):
 		State.NONE:
 			display_node.visible = false
 			page_mesh.visible = false
+			_cached_page_text.clear()
 		State.ANIMATING_PICK:
 			assert(state == State.NONE)
 			display_node.visible = true
@@ -190,10 +194,15 @@ func _animate_drop():
 
 func _set_page_renderer_text(renderer: int, page: int):
 	if page < 0 or page >= BookRegistry.PARAMS.pages_per_book:
-		get_node(page_renderers[renderer]).set_text("")
+		_page_renderer_nodes[renderer].set_text("")
 	else:
-		var text = BookRegistry.get_page(_book_text, page)
-		get_node(page_renderers[renderer]).set_text(text)
+		var text = ""
+		if _cached_page_text.has(page):
+			text = _cached_page_text.get(page)
+		else:
+			text = BookRegistry.get_page(_book_text, page)
+			_cached_page_text[page] = text
+		_page_renderer_nodes[renderer].set_text(text)
 
 
 func _update_page_renderers_held():
