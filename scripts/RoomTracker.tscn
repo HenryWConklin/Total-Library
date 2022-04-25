@@ -6,12 +6,12 @@ script/source = "extends Area
 var current_room_index
 var current_room_area
 
-signal room_changed
+signal room_changed(area)
 
 func _on_RoomTracker_area_entered(area):
 	current_room_index = area.room_index
 	current_room_area = area
-	emit_signal(\"room_changed\")
+	emit_signal(\"room_changed\", area)
 "
 
 [sub_resource type="SphereShape" id=2]

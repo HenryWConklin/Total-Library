@@ -14,8 +14,8 @@ func _ready():
 	$MeshInstance.set_surface_material(0, material)
 
 
-func _on_RoomTracker_room_changed():
-	var room = $RoomTracker.current_room_area.get_parent()
+func _on_RoomTracker_room_changed(area):
+	var room = area.get_parent()
 	var floor_book_parent = room.floor_books
 	if not floor_book_parent.is_a_parent_of(self):
 		self.call_deferred("_switch_parent", floor_book_parent)
