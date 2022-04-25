@@ -1,9 +1,9 @@
 #ifndef ROOM_GEN_PARAMS_H
 #define ROOM_GEN_PARAMS_H
 
-#include <PoolArrays.hpp>
 #include <Godot.hpp>
 #include <Mesh.hpp>
+#include <PoolArrays.hpp>
 #include <Ref.hpp>
 #include <Resource.hpp>
 #include <boost/multiprecision/cpp_int.hpp>
@@ -24,6 +24,9 @@ public:
   int title_chars;
   godot::String charset;
   bmp::cpp_int shuffle_multiplier;
+  int shift1;
+  int shift2;
+  int shift3;
 
   static void _register_methods();
   void _init();

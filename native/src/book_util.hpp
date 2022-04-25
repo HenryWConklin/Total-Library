@@ -46,6 +46,7 @@ private:
   cpp_int _make_book_index(int room_x, int room_y, int room_z, int shelf,
                            int book) const;
   inline void _apply_multiplier(cpp_int &val) const;
+  inline void _shuffle_bits(cpp_int &val) const;
   // Packs the bits of a cpp_int into floats and appends them to the given
   // PoolRealArray
   inline void _pack_num_to_floats(const cpp_int &title_num,

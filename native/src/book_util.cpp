@@ -90,7 +90,13 @@ void BookUtil::_recompute_big_vals() {
 }
 
 void BookUtil::_apply_multiplier(bmp::cpp_int &val) const {
+  // Do N*A mod M, where M is the number of books. Invertible and bijective as
+  // long as gcd(A,M) is 1, i.e. they share no divisors. If the charset has a
+  // power of 2 length, A only needs to be odd.
   val *= room_gen_params->shuffle_multiplier;
+  // This kind of branch should be a non-issue for performance because it will
+  // always pick the same branch throughout execution. Branch prediction should
+  // catch on to that and avoid any issues.
   if (charset_pow2) {
     val &= num_books_bit_mask;
   } else {
@@ -98,10 +104,29 @@ void BookUtil::_apply_multiplier(bmp::cpp_int &val) const {
   }
 }
 
+void BookUtil::_shuffle_bits(bmp::cpp_int &val) const {
+  // Skip shuffling if shift is 0, cheating to avoid having to fix tests to
+  // expect the shuffling
+  if (room_gen_params->shift1 > 0) {
+    // Top bits are fairly well scrambled by the multiplier, but bottom bits get
+    // missed when moving between rooms along y and z axes. XORing the top most
+    // bits onto the bottom bits a few times will mix them up a bit more, and as
+    // long as the shifts are greater than half the number of bits in the range
+    // of book numbers this is reversible by applying the same XOR shifts in
+    // reverse order. Could also shuffle the lower bits into the top bits but
+    // it's tricky to do that efficiently with the arbitrary-precision numbers
+    // because they don't get cut off during a shift left.
+    val ^= val >> room_gen_params->shift1;
+    val ^= val >> room_gen_params->shift2;
+    val ^= val >> room_gen_params->shift3;
+  }
+}
+
 bmp::cpp_int BookUtil::_make_book_num(int room_x, int room_y, int room_z,
                                       int shelf, int book) const {
   bmp::cpp_int val = _make_book_index(room_x, room_y, room_z, shelf, book);
   _apply_multiplier(val);
+  _shuffle_bits(val);
   return val;
 }
 
@@ -212,6 +237,8 @@ godot::Ref<godot::MultiMesh> BookUtil::make_shelf_multimesh(int room_x,
 
   godot::PoolRealArray data;
   bmp::cpp_int book_index = _make_book_index(room_x, room_y, room_z, shelf, 0);
+  // This multiply is the biggest performance cost from profiling at 30%
+  // of this function's runtime, second is the _shuffle_bits call at 20%
   _apply_multiplier(book_index);
   for (int i = 0; i < num_shelves; i++) {
     for (int j = 0; j < books_per_shelf; j++) {
@@ -238,6 +265,7 @@ godot::Ref<godot::MultiMesh> BookUtil::make_shelf_multimesh(int room_x,
 
       // Title in custom data
       bmp::cpp_int title_num(book_index);
+      _shuffle_bits(title_num);
       if (chars_pow_2) {
         title_num &= title_bit_mask;
       } else {
@@ -253,6 +281,11 @@ godot::Ref<godot::MultiMesh> BookUtil::make_shelf_multimesh(int room_x,
       }
 
       book_index += room_gen_params->shuffle_multiplier;
+      if (chars_pow_2) {
+        book_index &= num_books_bit_mask;
+      } else {
+        title_num %= num_books;
+      }
     }
   }
   shelf_mesh->set_as_bulk_array(data);

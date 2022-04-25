@@ -15,3 +15,6 @@ pages_per_book = 10
 title_chars = 10
 charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.,'?! "
 shuffle_multiplier = PoolByteArray( 1 )
+shift1 = 0
+shift2 = 0
+shift3 = 0
