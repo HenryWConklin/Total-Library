@@ -23,4 +23,3 @@ __meta__ = {
 light_scene = ExtResource( 3 )
 gallery_index = 1
 item_scenes = [ ExtResource( 5 ), ExtResource( 4 ) ]
-non_placeholder_rooms = [ Vector3( -1, 0, 0 ), Vector3( 1, 0, 0 ), Vector3( 0, -1, 0 ), Vector3( 0, 1, 0 ) ]

@@ -22,7 +22,9 @@ func test_dict_keys():
 
 func test_get_shelf_returns_same_instance():
 	var index1 = ShelfIndex.new()
+	index1.room.x = 1
 	var index2 = ShelfIndex.new()
+	index2.room.x = 1
 
 	var shelf1 = registry.get_shelf(index1)
 	var shelf2 = registry.get_shelf(index2)
@@ -33,11 +35,12 @@ func test_get_shelf_returns_same_instance():
 
 func test_get_shelf_respects_offset():
 	var index1 = ShelfIndex.new()
+	index1.room.x = 1
 	var index2 = ShelfIndex.new()
 	index2.room.x = -1
 
 	var shelf1 = registry.get_shelf(index1)
-	registry.add_room_offset(Vector3(1, 0, 0))
+	registry.add_room_offset(Vector3(2, 0, 0))
 	var shelf2 = registry.get_shelf(index1)
 	var shelf3 = registry.get_shelf(index2)
 
@@ -173,8 +176,9 @@ func test_remove_book_at_already_removed_returns_null():
 
 func test_remove_book_at_respects_offset():
 	var index = BookIndex.new()
+	index.room.x = -1
 
-	registry.add_room_offset(Vector3(1, 0, 0))
+	registry.add_room_offset(Vector3(2, 0, 0))
 	var shelf = registry.get_shelf(index.shelf_index())
 	var removed = registry.remove_book_at(index)
 
@@ -244,8 +248,9 @@ func test_place_book_at_updates_mesh():
 
 func test_place_book_at_respects_offset():
 	var index = BookIndex.new()
+	index.room.x = -1
 
-	registry.add_room_offset(Vector3(1, 0, 0))
+	registry.add_room_offset(Vector3(2, 0, 0))
 	var shelf = registry.get_shelf(index.shelf_index())
 	var removed = registry.remove_book_at(index)
 	assert_eq(removed.to_key(), PoolIntArray([1, 0, 0, 0, 0]))

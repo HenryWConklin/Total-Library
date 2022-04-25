@@ -3,6 +3,13 @@ extends Node
 const LRUCache = preload("res://scripts/data/LRUCache.gd")
 
 const PARAMS = preload("res://scripts/data/room_gen_params.res")
+const NON_PLACEHOLDER_ROOMS = [
+	PoolIntArray([1, 0, 0]),
+	PoolIntArray([-1, 0, 0]),
+	PoolIntArray([0, 1, 1]),
+	PoolIntArray([0, -1, 1])
+]
+
 var book_util: BookUtil = BookUtil.new()
 var total_shelf_time = 0
 # Cache of shelf multimeshes, map from ShelfIndex -> MultiMesh
@@ -93,7 +100,10 @@ func _offset_book_index(ind: BookIndex) -> BookIndex:
 
 # Returns a reference to the active multimesh at the given slot
 func get_shelf(ind: ShelfIndex) -> MultiMesh:
-	return _get_shelf_no_offset(_offset_shelf_index(ind))
+	if ind.room.to_key() in NON_PLACEHOLDER_ROOMS:
+		return _get_shelf_no_offset(_offset_shelf_index(ind))
+	else:
+		return get_placeholder_shelf(ind)
 
 
 func get_placeholder_shelf(ind: ShelfIndex) -> MultiMesh:

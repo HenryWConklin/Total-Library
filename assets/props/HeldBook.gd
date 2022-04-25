@@ -32,6 +32,7 @@ onready var book_material: Material = get_node(book_mesh_path).get_active_materi
 onready var page_mesh: Spatial = get_node(page_mesh_path)
 onready var room_tracker = get_node(room_tracker_path)
 
+
 func _ready():
 	self.state = State.NONE
 	book_material.set_shader_param("page1_text_texture", get_node(page_renderers[0]).get_texture())

@@ -3,7 +3,6 @@ extends MultiMeshInstance
 
 export(NodePath) var collision_shape: NodePath
 export(Resource) var shelf_index setget set_shelf_index
-export(bool) var use_placeholder: bool = false
 
 
 func _ready():
@@ -23,7 +22,4 @@ func set_shelf_index(ind: ShelfIndex):
 
 
 func regenerate_multimesh():
-	if use_placeholder:
-		set_multimesh(BookRegistry.get_placeholder_shelf(shelf_index))
-	else:
-		set_multimesh(BookRegistry.get_shelf(shelf_index))
+	set_multimesh(BookRegistry.get_shelf(shelf_index))
