@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/props/HeldBook.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/props/SelectionHighlight.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/RoomTracker.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/PlayerTracker.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleMesh" id=1]
 radius = 0.5
@@ -33,6 +35,7 @@ shape = SubResource( 2 )
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -0.4 )
 far = 500.0
+script = ExtResource( 5 )
 
 [node name="RayCast" type="RayCast" parent="Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.98023e-08 )
@@ -40,6 +43,8 @@ enabled = true
 cast_to = Vector3( 0, 0, -2 )
 collision_mask = 2
 collide_with_areas = true
+
+[node name="RoomTracker" parent="Camera" instance=ExtResource( 4 )]
 
 [node name="HeldBook" type="Spatial" parent="."]
 transform = Transform( -3.09086e-08, -3.09086e-08, 1, -0.707107, 0.707107, 0, -0.707107, -0.707107, -4.37114e-08, 2.77633e-09, 1.1511, -0.731344 )
@@ -49,3 +54,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 7.10543e-15, 7.10543e-15, 1, -0.0619124
 
 [node name="SelectionHighlight" parent="." instance=ExtResource( 3 )]
 visible = false
+
+[connection signal="room_changed" from="Camera/RoomTracker" to="Camera" method="_on_RoomTracker_room_changed"]

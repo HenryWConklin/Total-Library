@@ -3,13 +3,10 @@ extends Node
 const LRUCache = preload("res://scripts/data/LRUCache.gd")
 
 const PARAMS = preload("res://scripts/data/room_gen_params.res")
-const NON_PLACEHOLDER_ROOMS = [
-	PoolIntArray([1, 0, 0]),
-	PoolIntArray([-1, 0, 0]),
-	PoolIntArray([0, 1, 1]),
-	PoolIntArray([0, -1, 1])
-]
+const LOWER_REAL_ROOMS = [PoolIntArray([1, 0, 0]), PoolIntArray([-1, 0, 0])]
+const UPPER_REAL_ROOMS = [PoolIntArray([0, 1, 1]), PoolIntArray([0, -1, 1])]
 
+var real_shelf_rooms = LOWER_REAL_ROOMS
 var book_util: BookUtil = BookUtil.new()
 var total_shelf_time = 0
 # Cache of shelf multimeshes, map from ShelfIndex -> MultiMesh
@@ -34,6 +31,10 @@ func add_room_offset(off: Vector3):
 	room_offset.x += int(off.x)
 	room_offset.y += int(off.y)
 	room_offset.z += int(off.z)
+	if off.z > 0:
+		real_shelf_rooms = LOWER_REAL_ROOMS
+	elif off.z < 0:
+		real_shelf_rooms = UPPER_REAL_ROOMS
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "floor_books", "pull_floor_books")
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "shelves", "regenerate_multimesh")
 
@@ -71,6 +72,21 @@ func get_book_index_at_point(ind: ShelfIndex, local_pos: Vector3) -> BookIndex:
 	return book_ind
 
 
+func set_player_position(ind: RoomIndex):
+	var update_shelves = false
+	if ind.z == 1 and real_shelf_rooms == LOWER_REAL_ROOMS:
+		real_shelf_rooms = UPPER_REAL_ROOMS
+		update_shelves = true
+	elif ind.z == 0 and real_shelf_rooms == UPPER_REAL_ROOMS:
+		real_shelf_rooms = LOWER_REAL_ROOMS
+		update_shelves = true
+
+	if update_shelves:
+		for shelf in get_tree().get_nodes_in_group("shelves"):
+			if shelf.shelf_index.room.to_key() in real_shelf_rooms:
+				shelf.regenerate_multimesh()
+
+
 func _offset_room_index(ind: RoomIndex) -> RoomIndex:
 	var res = RoomIndex.new()
 	res.x = ind.x + room_offset.x
@@ -100,7 +116,7 @@ func _offset_book_index(ind: BookIndex) -> BookIndex:
 
 # Returns a reference to the active multimesh at the given slot
 func get_shelf(ind: ShelfIndex) -> MultiMesh:
-	if ind.room.to_key() in NON_PLACEHOLDER_ROOMS:
+	if ind.room.to_key() in real_shelf_rooms:
 		return _get_shelf_no_offset(_offset_shelf_index(ind))
 	else:
 		return get_placeholder_shelf(ind)
