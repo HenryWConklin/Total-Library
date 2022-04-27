@@ -123,6 +123,9 @@ func get_shelf(ind: ShelfIndex) -> MultiMesh:
 
 
 func get_placeholder_shelf(ind: ShelfIndex) -> MultiMesh:
+	# Don't need to copy if there's no diff to apply
+	if not shelf_diff.has(_offset_shelf_index(ind).to_key()):
+		return placeholder_shelf
 	var shelf = placeholder_shelf.duplicate()
 	_apply_diff(_offset_shelf_index(ind), shelf)
 	return shelf
