@@ -43,8 +43,6 @@ void RoomGenParams::_register_methods() {
       "shuffle_multiplier", &RoomGenParams::set_shuffle_multiplier,
       &RoomGenParams::get_shuffle_multiplier, DEFAULT_SHUFFLE_MULTIPLIER);
   godot::register_property("shift1", &RoomGenParams::shift1, 0);
-  godot::register_property("shift2", &RoomGenParams::shift2, 0);
-  godot::register_property("shift3", &RoomGenParams::shift3, 0);
 
   godot::register_method("parameter_search", &RoomGenParams::parameter_search);
 }
@@ -85,8 +83,6 @@ void RoomGenParams::parameter_search() {
   int bits_per_book =
       (int)ceil(log2((double)charset.length()) * chars_per_book);
   boost::random::uniform_int_distribution<int> shift_dist(
-      (bits_per_book / 2) + 1, bits_per_book);
+      (bits_per_book / 2) + 1, (bits_per_book * 3) / 4);
   shift1 = shift_dist(gen);
-  shift2 = shift_dist(gen);
-  shift3 = shift_dist(gen);
 }

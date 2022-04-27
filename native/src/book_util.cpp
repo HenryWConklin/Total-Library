@@ -37,6 +37,7 @@ void BookUtil::_init() {
   charset_pow2 = false;
   num_books = 0;
   num_books_bit_mask = 0;
+  num_books_bits = 0;
   // Mods to 1 to avoid mod by 0
   page_mod = 1;
   page_bit_mask = 0;
@@ -112,15 +113,13 @@ void BookUtil::_shuffle_bits(bmp::cpp_int &val) const {
   if (room_gen_params->shift1 > 0) {
     // Top bits are fairly well scrambled by the multiplier, but bottom bits get
     // missed when moving between rooms along y and z axes. XORing the top most
-    // bits onto the bottom bits a few times will mix them up a bit more, and as
+    // bits onto the bottom bits will mix them up a bit more, and as
     // long as the shifts are greater than half the number of bits in the range
     // of book numbers this is reversible by applying the same XOR shifts in
     // reverse order. Could also shuffle the lower bits into the top bits but
     // it's tricky to do that efficiently with the arbitrary-precision numbers
     // because they don't get cut off during a shift left.
     val ^= val >> room_gen_params->shift1;
-    val ^= val >> room_gen_params->shift2;
-    val ^= val >> room_gen_params->shift3;
   }
 }
 

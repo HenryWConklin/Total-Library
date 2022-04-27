@@ -30,6 +30,7 @@ private:
   bool charset_pow2;
   cpp_int num_books;
   cpp_int num_books_bit_mask;
+  uint32_t num_books_bits;
   cpp_int page_mod;
   cpp_int page_bit_mask;
   cpp_int title_mod;

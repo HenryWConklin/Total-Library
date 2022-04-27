@@ -25,8 +25,6 @@ public:
   godot::String charset;
   bmp::cpp_int shuffle_multiplier;
   int shift1;
-  int shift2;
-  int shift3;
 
   static void _register_methods();
   void _init();
