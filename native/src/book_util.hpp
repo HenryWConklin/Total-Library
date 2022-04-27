@@ -69,6 +69,7 @@ public:
   }
   void set_room_gen_params(godot::Ref<RoomGenParams> params);
 
+  godot::Array make_shelf_multimeshes(int room_x, int room_y, int room_z) const;
   godot::Ref<godot::MultiMesh>
   make_shelf_multimesh(int room_x, int room_y, int room_z, int shelf) const;
   godot::Color get_packed_title_from_index(int room_x, int room_y, int room_z,

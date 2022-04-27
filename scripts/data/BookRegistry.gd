@@ -132,10 +132,14 @@ func _get_shelf_no_offset(ind: ShelfIndex) -> MultiMesh:
 	if shelf_cache.has(ind.to_key()):
 		return shelf_cache.get(ind.to_key())
 
-	var shelf_mesh = _make_shelf(ind)
-	_apply_diff(ind, shelf_mesh)
-	shelf_cache.add(ind.to_key(), shelf_mesh)
-	return shelf_mesh
+	var shelf_meshes = _make_room_shelves(ind.room)
+	for i in range(4):
+		var subind = ShelfIndex.new()
+		subind.room = ind.room
+		subind.shelf = i
+		_apply_diff(subind, shelf_meshes[i])
+		shelf_cache.add(subind.to_key(), shelf_meshes[i])
+	return shelf_meshes[ind.shelf]
 
 
 func get_book_at(ind: BookIndex) -> BookIndex:
@@ -255,17 +259,15 @@ func get_book_transform(book: int) -> Transform:
 	return Transform.IDENTITY.translated(Vector3(0, yoff, zoff))
 
 
-func _make_shelf(ind: ShelfIndex) -> MultiMesh:
-	var res: MultiMesh = book_util.make_shelf_multimesh(
-		ind.room.x, ind.room.y, ind.room.z, ind.shelf
-	)
+func _make_room_shelves(ind: RoomIndex) -> Array:
+	var res: Array = book_util.make_shelf_multimeshes(ind.x, ind.y, ind.z)
 	return res
 
 
 func _make_default_shelf() -> MultiMesh:
-	var ind = ShelfIndex.new()
-	ind.room.x = 10000
-	return _make_shelf(ind)
+	var ind = RoomIndex.new()
+	ind.x = 10000
+	return _make_room_shelves(ind)[0]
 
 
 func _apply_diff(ind: ShelfIndex, mesh: MultiMesh):

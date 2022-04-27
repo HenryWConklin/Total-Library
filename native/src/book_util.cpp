@@ -18,6 +18,8 @@ void BookUtil::_register_methods() {
                            godot::Ref<RoomGenParams>());
 
   godot::register_method("randomize_origin", &BookUtil::randomize_origin);
+  godot::register_method("make_shelf_multimeshes",
+                         &BookUtil::make_shelf_multimeshes);
   godot::register_method("make_shelf_multimesh",
                          &BookUtil::make_shelf_multimesh);
   godot::register_method("get_packed_title_from_index",
@@ -213,84 +215,93 @@ void BookUtil::set_room_gen_params(godot::Ref<RoomGenParams> params) {
   _recompute_big_vals();
 }
 
-godot::Ref<godot::MultiMesh> BookUtil::make_shelf_multimesh(int room_x,
-                                                            int room_y,
-                                                            int room_z,
-                                                            int shelf) const {
-  godot::Ref<godot::MultiMesh> shelf_mesh = godot::MultiMesh::_new();
-  shelf_mesh->set_color_format(godot::MultiMesh::COLOR_FLOAT);
-  shelf_mesh->set_custom_data_format(godot::MultiMesh::CUSTOM_DATA_NONE);
-  shelf_mesh->set_transform_format(godot::MultiMesh::TRANSFORM_3D);
-  shelf_mesh->set_mesh(room_gen_params->book_mesh);
-
+godot::Array BookUtil::make_shelf_multimeshes(int room_x, int room_y,
+                                              int room_z) const {
+  godot::Array meshes;
   int books_per_shelf = room_gen_params->books_per_shelf;
   int num_shelves = room_gen_params->num_shelves;
   int num_chars = room_gen_params->charset.length();
   float book_spacing = room_gen_params->book_spacing;
   float shelf_spacing = room_gen_params->shelf_spacing;
 
-  shelf_mesh->set_instance_count(books_per_shelf * num_shelves);
-
   godot::Vector3 book_size = room_gen_params->book_mesh->get_aabb().size;
   float book_stride = book_size.z + book_spacing;
-  bool chars_pow_2 = (num_chars & (num_chars - 1)) == 0;
 
-  godot::PoolRealArray data;
-  bmp::cpp_int book_index = _make_book_index(room_x, room_y, room_z, shelf, 0);
+  bmp::cpp_int book_index = _make_book_index(room_x, room_y, room_z, 0, 0);
   // This multiply is the biggest performance cost from profiling at 30%
   // of this function's runtime, second is the _shuffle_bits call at 20%
   _apply_multiplier(book_index);
-  for (int i = 0; i < num_shelves; i++) {
-    for (int j = 0; j < books_per_shelf; j++) {
-      float xoff = 0.0f;
-      float yoff = shelf_spacing * i + book_size.y / 2.0f;
-      float zoff =
-          ((j - (books_per_shelf / 2.0f)) * book_stride + (book_stride / 2.0f));
-      // Transform
-      //  X
-      data.push_back(1.0f);
-      data.push_back(0.0f);
-      data.push_back(0.0f);
-      data.push_back(xoff);
-      //  Y
-      data.push_back(0.0f);
-      data.push_back(1.0f);
-      data.push_back(0.0f);
-      data.push_back(yoff);
-      //  Z
-      data.push_back(0.0f);
-      data.push_back(0.0f);
-      data.push_back(1.0f);
-      data.push_back(zoff);
+  for (int shelf = 0; shelf < 4; shelf++) {
 
-      // Title in custom data
-      bmp::cpp_int title_num(book_index);
-      _shuffle_bits(title_num);
-      if (chars_pow_2) {
-        title_num &= title_bit_mask;
-      } else {
-        title_num %= title_mod;
-      }
-      int curr_size = data.size();
-      _pack_num_to_floats(title_num, data);
-      // Handle title length less than max capacity
-      while (data.size() - curr_size < 4) {
-        // Probably not right, want 0 bits, but should get ignored in the shader
-        // anyway
-        data.append(0.0f);
-      }
+    godot::Ref<godot::MultiMesh> shelf_mesh = godot::MultiMesh::_new();
 
-      book_index += room_gen_params->shuffle_multiplier;
-      if (chars_pow_2) {
-        book_index &= num_books_bit_mask;
-      } else {
-        title_num %= num_books;
+    shelf_mesh->set_color_format(godot::MultiMesh::COLOR_FLOAT);
+    shelf_mesh->set_custom_data_format(godot::MultiMesh::CUSTOM_DATA_NONE);
+    shelf_mesh->set_transform_format(godot::MultiMesh::TRANSFORM_3D);
+    shelf_mesh->set_mesh(room_gen_params->book_mesh);
+
+    shelf_mesh->set_instance_count(books_per_shelf * num_shelves);
+
+    godot::PoolRealArray data;
+    for (int i = 0; i < num_shelves; i++) {
+      for (int j = 0; j < books_per_shelf; j++) {
+        float xoff = 0.0f;
+        float yoff = shelf_spacing * i + book_size.y / 2.0f;
+        float zoff = ((j - (books_per_shelf / 2.0f)) * book_stride +
+                      (book_stride / 2.0f));
+        // Transform
+        //  X
+        data.push_back(1.0f);
+        data.push_back(0.0f);
+        data.push_back(0.0f);
+        data.push_back(xoff);
+        //  Y
+        data.push_back(0.0f);
+        data.push_back(1.0f);
+        data.push_back(0.0f);
+        data.push_back(yoff);
+        //  Z
+        data.push_back(0.0f);
+        data.push_back(0.0f);
+        data.push_back(1.0f);
+        data.push_back(zoff);
+
+        // Title in color data
+        bmp::cpp_int title_num(book_index);
+        _shuffle_bits(title_num);
+        if (charset_pow2) {
+          title_num &= title_bit_mask;
+        } else {
+          title_num %= title_mod;
+        }
+        int curr_size = data.size();
+        _pack_num_to_floats(title_num, data);
+        // Handle title length less than max capacity
+        while (data.size() - curr_size < 4) {
+          data.append(0.0f);
+        }
+
+        book_index += room_gen_params->shuffle_multiplier;
+        if (charset_pow2) {
+          book_index &= num_books_bit_mask;
+        } else {
+          title_num %= num_books;
+        }
       }
     }
+    shelf_mesh->set_as_bulk_array(data);
+    meshes.append(shelf_mesh);
   }
-  shelf_mesh->set_as_bulk_array(data);
 
-  return shelf_mesh;
+  return meshes;
+}
+
+godot::Ref<godot::MultiMesh> BookUtil::make_shelf_multimesh(int room_x,
+                                                            int room_y,
+                                                            int room_z,
+                                                            int shelf) const {
+  godot::Array meshes = make_shelf_multimeshes(room_x, room_y, room_z);
+  return meshes[shelf];
 }
 
 godot::Color BookUtil::get_packed_title_from_index(int room_x, int room_y,
