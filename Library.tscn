@@ -76,7 +76,6 @@ viewport_pixels_per_unit = 150.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33201, 0, 0 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 6 )]
-pause_mode = 2
 visible = false
 
 [connection signal="pause_requested" from="Rooms/Player" to="PauseMenu" method="_on_pause_requested"]

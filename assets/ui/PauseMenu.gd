@@ -22,6 +22,13 @@ func _ready():
 		_shadows_options_select.add_item(item)
 
 
+func _input(event: InputEvent):
+	if self.visible:
+		if event.is_action_pressed("release_mouse"):
+			_on_ResumeButton_pressed()
+			get_tree().set_input_as_handled()
+
+
 func _reload_options():
 	Options.reload()
 	_display_options_select.select(Options.get("display"))
