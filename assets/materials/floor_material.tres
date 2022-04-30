@@ -6,7 +6,7 @@
 shader = ExtResource( 1 )
 shader_param/tileSize = 5.211
 shader_param/groutFraction = 0.973
-shader_param/tileAlbedo = Color( 0.937255, 0.0470588, 0.0470588, 1 )
+shader_param/tileAlbedo = Color( 0.631373, 0.729412, 0.619608, 1 )
 shader_param/tileRoughness = 0.424
 shader_param/groutAlbedo = Color( 0.486275, 0.486275, 0.486275, 1 )
 shader_param/groutRoughness = 0.908
