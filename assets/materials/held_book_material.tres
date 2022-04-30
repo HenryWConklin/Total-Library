@@ -1,19 +1,13 @@
-[gd_resource type="ShaderMaterial" load_steps=5 format=2]
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
 
 [ext_resource path="res://assets/fonts/SpaceMonoBoldSDF/SpaceMonoBoldSDF.png" type="Texture" id=1]
 [ext_resource path="res://assets/materials/shaders/held_book_shader.gdshader" type="Shader" id=2]
-
-[sub_resource type="OpenSimplexNoise" id=1]
-period = 18.2
-
-[sub_resource type="NoiseTexture" id=2]
-bump_strength = 7.7
-noise = SubResource( 1 )
+[ext_resource path="res://assets/materials/book_cover_noise.tres" type="Texture" id=3]
 
 [resource]
 shader = ExtResource( 2 )
-shader_param/albedo1 = Color( 0.415686, 0.211765, 0, 1 )
-shader_param/albedo2 = Color( 0.38, 0.196333, 0, 1 )
+shader_param/albedo1 = Color( 0.560784, 0.290196, 0, 1 )
+shader_param/albedo2 = Color( 0.631373, 0.32549, 0, 1 )
 shader_param/font_texture_columns = 7
 shader_param/font_glyph_size = Vector2( 27, 64 )
 shader_param/font_glyph_padding = Vector2( 2, 2 )
@@ -29,5 +23,5 @@ shader_param/title1 = null
 shader_param/title2 = null
 shader_param/title3 = null
 shader_param/title4 = null
-shader_param/surface_noise = SubResource( 2 )
+shader_param/surface_noise = ExtResource( 3 )
 shader_param/font_texture = ExtResource( 1 )
