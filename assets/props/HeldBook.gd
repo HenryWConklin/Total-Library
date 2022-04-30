@@ -42,6 +42,8 @@ func _ready():
 	page_material.set_shader_param("front_page", get_node(page_renderers[3]).get_texture())
 	for renderer in page_renderers:
 		_page_renderer_nodes.append(get_node(renderer))
+	assert(Options.connect("shadow_setting_changed", self, "_on_shadow_setting_changed") == OK)
+	_on_shadow_setting_changed(Options.get("shadows"))
 
 
 func set_state(new_state: int):
@@ -303,3 +305,12 @@ func teleport(offset: Vector3):
 		var translate = Transform.IDENTITY.translated(offset)
 		_start_transform = translate * _start_transform
 		_mid_transform = translate * _mid_transform
+
+
+func _on_shadow_setting_changed(val):
+	if val > 1:
+		$Armature/AnimatedPageTurn.cast_shadow = GeometryInstance.SHADOW_CASTING_SETTING_ON
+		$Armature/Skeleton/Book001.cast_shadow = GeometryInstance.SHADOW_CASTING_SETTING_ON
+	else:
+		$Armature/AnimatedPageTurn.cast_shadow = GeometryInstance.SHADOW_CASTING_SETTING_OFF
+		$Armature/Skeleton/Book001.cast_shadow = GeometryInstance.SHADOW_CASTING_SETTING_OFF

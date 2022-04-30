@@ -19,6 +19,8 @@ func _on_RoomTracker_room_changed(area):
 	var floor_book_parent = room.floor_books
 	if not floor_book_parent.is_a_parent_of(self):
 		self.call_deferred("_switch_parent", floor_book_parent)
+	assert(Options.connect("shadow_setting_changed", self, "_on_shadow_setting_changed") == OK)
+	_on_shadow_setting_changed(Options.get("shadows"))
 
 
 func _switch_parent(new_parent):
@@ -27,3 +29,10 @@ func _switch_parent(new_parent):
 	self.get_parent().remove_child(self)
 	new_parent.add_child(self)
 	self.global_transform = transform
+
+
+func _on_shadow_setting_changed(val):
+	if val > 1:
+		$MeshInstance.cast_shadow = GeometryInstance.SHADOW_CASTING_SETTING_ON
+	else:
+		$MeshInstance.cast_shadow = GeometryInstance.SHADOW_CASTING_SETTING_OFF

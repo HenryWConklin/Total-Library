@@ -9,6 +9,7 @@ extents = Vector3( 0.10575, 0.950005, 1.79999 )
 
 [node name="Shelf" type="MultiMeshInstance"]
 material_override = ExtResource( 3 )
+cast_shadow = 0
 script = ExtResource( 1 )
 collision_shape = NodePath("RaycastArea/CollisionShape")
 

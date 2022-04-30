@@ -1,5 +1,7 @@
 extends KinematicBody
 
+signal pause_requested
+
 const HeldBook = preload("res://assets/props/HeldBook.gd")
 
 const SNAP_VECTOR: Vector3 = Vector3(0, -1, 0)
@@ -81,6 +83,7 @@ func _unhandled_input(event: InputEvent):
 		return
 	elif event.is_action_pressed("release_mouse"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		emit_signal("pause_requested")
 		get_tree().set_input_as_handled()
 		return
 	elif (

@@ -75,6 +75,7 @@ config/icon="res://icon.png"
 [autoload]
 
 BookRegistry="*res://scripts/data/BookRegistry.gd"
+Options="*res://scripts/data/Options.gd"
 
 [debug]
 
@@ -82,7 +83,8 @@ gdscript/warnings/integer_division=false
 
 [display]
 
-window/vsync/use_vsync=false
+window/size/width=1280
+window/size/height=720
 
 [editor_plugins]
 

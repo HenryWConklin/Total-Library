@@ -12,6 +12,8 @@ func _ready():
 	var aabb = BookRegistry.get_shelf_aabb()
 	shape.shape.extents = aabb.size / 2
 	shape.translation.y = aabb.size.y / 2
+	assert(Options.connect("shadow_setting_changed", self, "_on_shadow_setting_changed") == OK)
+	_on_shadow_setting_changed(Options.get("shadows"))
 
 
 func set_shelf_index(ind: ShelfIndex):
@@ -23,3 +25,10 @@ func set_shelf_index(ind: ShelfIndex):
 
 func regenerate_multimesh():
 	set_multimesh(BookRegistry.get_shelf(shelf_index))
+
+
+func _on_shadow_setting_changed(val):
+	if val > 1:
+		self.cast_shadow = GeometryInstance.SHADOW_CASTING_SETTING_ON
+	else:
+		self.cast_shadow = GeometryInstance.SHADOW_CASTING_SETTING_OFF

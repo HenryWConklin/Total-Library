@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/props/HangingLight.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/props/LibraryLight.gd" type="Script" id=2]
 
 [node name="LibraryLight" type="Spatial"]
+script = ExtResource( 2 )
 
 [node name="SpotLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.579707, 0 )

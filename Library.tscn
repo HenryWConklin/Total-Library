@@ -5,7 +5,7 @@
 [ext_resource path="res://scripts/PlayerLockAreas.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/materials/library_env.tres" type="Environment" id=4]
 [ext_resource path="res://assets/props/PortalPlane.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scripts/util/ScreenCapture.gd" type="Script" id=6]
+[ext_resource path="res://assets/ui/PauseMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scripts/OnreadyRoomManager.gd" type="Script" id=8]
 
 [node name="Library" type="Spatial"]
@@ -75,5 +75,8 @@ viewport_pixels_per_unit = 150.0
 [node name="Player" parent="Rooms" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33201, 0, 0 )
 
-[node name="ScreenCapture" type="Node" parent="."]
-script = ExtResource( 6 )
+[node name="PauseMenu" parent="." instance=ExtResource( 6 )]
+pause_mode = 2
+visible = false
+
+[connection signal="pause_requested" from="Rooms/Player" to="PauseMenu" method="_on_pause_requested"]
