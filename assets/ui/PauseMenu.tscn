@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/ui/libraryTheme.theme" type="Theme" id=1]
 [ext_resource path="res://assets/ui/PauseMenu.gd" type="Script" id=2]
 [ext_resource path="res://assets/ui/titleFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/ui/OptionsPopup.tscn" type="PackedScene" id=4]
 
 [node name="PauseMenu" type="Control"]
 pause_mode = 2
@@ -14,10 +15,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 options_popup = NodePath("OptionsPopup")
-display_options_select = NodePath("OptionsPopup/VBoxContainer/GridContainer/DisplayOptions")
-resolution_options_select = NodePath("OptionsPopup/VBoxContainer/GridContainer/ResolutionOptions")
-shadows_options_select = NodePath("OptionsPopup/VBoxContainer/GridContainer/ShadowsOptions")
-vsync_enabled = NodePath("OptionsPopup/VBoxContainer/GridContainer/VSyncEnabled")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -62,118 +59,8 @@ margin_right = 120.0
 margin_bottom = 186.0
 text = "Quit"
 
-[node name="OptionsPopup" type="WindowDialog" parent="."]
-margin_left = 415.0
-margin_top = 185.0
-margin_right = 865.0
-margin_bottom = 535.0
-rect_min_size = Vector2( 450, 350 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="OptionsPopup"]
-margin_left = 24.0
-margin_top = 14.0
-margin_right = 426.0
-margin_bottom = 336.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Options" type="Label" parent="OptionsPopup/VBoxContainer"]
-margin_right = 402.0
-margin_bottom = 48.0
-custom_fonts/font = ExtResource( 3 )
-text = "Options"
-
-[node name="GridContainer" type="GridContainer" parent="OptionsPopup/VBoxContainer"]
-margin_top = 52.0
-margin_right = 402.0
-margin_bottom = 234.0
-custom_constants/hseparation = 10
-columns = 2
-
-[node name="Display" type="Label" parent="OptionsPopup/VBoxContainer/GridContainer"]
-margin_top = 3.0
-margin_right = 150.0
-margin_bottom = 39.0
-text = "Display"
-align = 2
-
-[node name="DisplayOptions" type="OptionButton" parent="OptionsPopup/VBoxContainer/GridContainer"]
-margin_left = 160.0
-margin_right = 360.0
-margin_bottom = 42.0
-text = "Windowed"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Resolution" type="Label" parent="OptionsPopup/VBoxContainer/GridContainer"]
-margin_top = 49.0
-margin_right = 150.0
-margin_bottom = 85.0
-text = "Resolution"
-align = 2
-
-[node name="ResolutionOptions" type="OptionButton" parent="OptionsPopup/VBoxContainer/GridContainer"]
-margin_left = 160.0
-margin_top = 46.0
-margin_right = 360.0
-margin_bottom = 88.0
-text = "1280x720"
-
-[node name="Shadows" type="Label" parent="OptionsPopup/VBoxContainer/GridContainer"]
-margin_top = 95.0
-margin_right = 150.0
-margin_bottom = 131.0
-text = "Shadows"
-align = 2
-
-[node name="ShadowsOptions" type="OptionButton" parent="OptionsPopup/VBoxContainer/GridContainer"]
-margin_left = 160.0
-margin_top = 92.0
-margin_right = 360.0
-margin_bottom = 134.0
-rect_min_size = Vector2( 200, 0 )
-text = "Static Only"
-
-[node name="VSync" type="Label" parent="OptionsPopup/VBoxContainer/GridContainer"]
-margin_top = 142.0
-margin_right = 150.0
-margin_bottom = 178.0
-text = "VSync"
-align = 2
-
-[node name="VSyncEnabled" type="CheckBox" parent="OptionsPopup/VBoxContainer/GridContainer"]
-margin_left = 160.0
-margin_top = 138.0
-margin_right = 184.0
-margin_bottom = 182.0
-size_flags_horizontal = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="OptionsPopup/VBoxContainer"]
-margin_top = 238.0
-margin_right = 402.0
-margin_bottom = 280.0
-
-[node name="Apply" type="Button" parent="OptionsPopup/VBoxContainer/HBoxContainer"]
-margin_right = 199.0
-margin_bottom = 42.0
-size_flags_horizontal = 3
-text = "Apply"
-
-[node name="CancelButton" type="Button" parent="OptionsPopup/VBoxContainer/HBoxContainer"]
-margin_left = 203.0
-margin_right = 402.0
-margin_bottom = 42.0
-size_flags_horizontal = 3
-text = "Cancel"
+[node name="OptionsPopup" parent="." instance=ExtResource( 4 )]
 
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/OptionButton" to="." method="_on_OptionButton_pressed"]
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
-[connection signal="item_selected" from="OptionsPopup/VBoxContainer/GridContainer/DisplayOptions" to="." method="_on_DisplayOptions_item_selected"]
-[connection signal="item_selected" from="OptionsPopup/VBoxContainer/GridContainer/ResolutionOptions" to="." method="_on_ResolutionOptions_item_selected"]
-[connection signal="item_selected" from="OptionsPopup/VBoxContainer/GridContainer/ShadowsOptions" to="." method="_on_ShadowsOptions_item_selected"]
-[connection signal="toggled" from="OptionsPopup/VBoxContainer/GridContainer/VSyncEnabled" to="." method="_on_VSyncEnabled_toggled"]
-[connection signal="pressed" from="OptionsPopup/VBoxContainer/HBoxContainer/Apply" to="." method="_on_Apply_pressed"]
-[connection signal="pressed" from="OptionsPopup/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_CancelButton_pressed"]
