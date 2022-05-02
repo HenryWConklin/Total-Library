@@ -1,9 +1,12 @@
 #include "book_util.hpp"
+#include "GodotGlobal.hpp"
+#include "String.hpp"
 #include "util.hpp"
 
 #include <AABB.hpp>
 #include <Array.hpp>
 #include <RandomNumberGenerator.hpp>
+#include <boost/integer/mod_inverse.hpp>
 #include <boost/random.hpp>
 #include <iterator>
 #include <vector>
@@ -27,6 +30,7 @@ void BookUtil::_register_methods() {
   godot::register_method("make_book", &BookUtil::make_book);
   godot::register_method("get_page", &BookUtil::get_page);
   godot::register_method("get_packed_title", &BookUtil::get_packed_title);
+  godot::register_method("find_text", &BookUtil::find_text);
 }
 
 void BookUtil::_init() {
@@ -358,4 +362,53 @@ godot::String BookUtil::get_page(godot::Ref<BookText> book, int page) const {
 
 godot::Color BookUtil::get_packed_title(godot::Ref<BookText> book) const {
   return _pack_title_num_to_color(book->full_ind % title_mod);
+}
+
+godot::PoolByteArray BookUtil::find_text(godot::String text) const {
+  cpp_int val;
+  int num_chars = room_gen_params->charset.length();
+  for (int i = text.length() - 1; i >= 0; i--) {
+    godot::String chr = text.substr(i, 1);
+    int char_ind = room_gen_params->charset.find(chr);
+    godot::Godot::print("Char: {0}, ind: {1}", chr, char_ind);
+    val *= num_chars;
+    val += char_ind;
+  }
+  cpp_int val_orig(val);
+  godot::Godot::print("Target num: {0}",
+                      godot::String(val.str().substr(0, 100).c_str()));
+
+  val ^= val >> room_gen_params->shift1;
+  val *= boost::integer::mod_inverse(room_gen_params->shuffle_multiplier,
+                                     num_books);
+  if (charset_pow2) {
+    val &= num_books_bit_mask;
+  } else {
+    val %= num_books;
+  }
+  godot::Godot::print("Inverted num: {0}",
+                      godot::String(val.str().substr(0, 100).c_str()));
+
+  cpp_int val2(val);
+  _apply_multiplier(val2);
+  _shuffle_bits(val2);
+
+  godot::Godot::print("Reinverted num: {0}",
+                      godot::String(val2.str().substr(0, 100).c_str()));
+
+  int books_per_shelf =
+      room_gen_params->books_per_shelf * room_gen_params->num_shelves;
+  int book_ind = (val % books_per_shelf).convert_to<int>();
+  int shelf_ind = ((val / books_per_shelf) % 4).convert_to<int>();
+  godot::Godot::print("Reinverted matches: {0}, Shelf: {1}, Book: {2}",
+                      val_orig == val2, shelf_ind, book_ind);
+
+  // Round down to nearest room
+  val /= books_per_room;
+  val *= books_per_room;
+
+  godot::PoolByteArray res;
+  PoolByteArrayWrapper wrapped(res);
+  bmp::export_bits(val, std::back_inserter(wrapped), 8);
+  return res;
 }

@@ -5,6 +5,7 @@
 #include <MultiMesh.hpp>
 #include <PoolArrays.hpp>
 #include <Reference.hpp>
+#include <String.hpp>
 #include <boost/multiprecision/cpp_int.hpp>
 
 #include "book_text.hpp"
@@ -79,6 +80,10 @@ public:
                                  int book) const;
   godot::String get_page(godot::Ref<BookText> book, int page) const;
   godot::Color get_packed_title(godot::Ref<BookText> book) const;
+
+  // Finds the index of a room contatining book starting with the given text,
+  // set as origin and pull room 0,0,0.
+  godot::PoolByteArray find_text(godot::String text) const;
 };
 
 #endif
