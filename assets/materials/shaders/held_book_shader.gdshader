@@ -11,6 +11,7 @@ uniform vec2 font_glyph_padding;
 
 uniform vec2 title_start_uv;
 uniform float title_height_uv;
+uniform float title_aspect_uv;
 uniform uint title_bits_per_char;
 uniform uint title_num_chars;
 
@@ -59,7 +60,7 @@ float title_alpha(vec2 uv, uvec4 title_bits) {
 	vec2 font_glyph_size_uv = font_glyph_size / tex_size;
 	vec2 font_padding_uv = font_glyph_padding / tex_size;
 
-	vec2 char_uv = rotate((uv - title_start_uv) / title_height_uv, PI);
+	vec2 char_uv = rotate((uv - title_start_uv) /  vec2(title_height_uv * title_aspect_uv, title_height_uv), PI);
 	if (any(lessThan(char_uv, vec2(0.0))) || char_uv.y > 1.0) {
 		return 0.0;
 	}
