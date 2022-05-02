@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/materials/library_env.tres" type="Environment" id=1]
-[ext_resource path="res://rooms/GalleryTile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/ui/MainMenuBackground.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/props/LibraryLight.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/ui/libraryTheme.theme" type="Theme" id=4]
 [ext_resource path="res://assets/ui/OptionsPopup.tscn" type="PackedScene" id=5]
@@ -52,16 +52,16 @@ __meta__ = {
 
 [node name="Background" type="Spatial" parent="."]
 
-[node name="hex_gallery_tile" parent="Background" instance=ExtResource( 2 )]
-
 [node name="LibraryLight" parent="Background" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
 [node name="Camera" type="Camera" parent="Background"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.00893048, 1.21491, 2.61589 )
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0.0926766, 1.48853, -3.03983 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Background"]
 environment = ExtResource( 1 )
+
+[node name="hex_gallery_tile" parent="Background" instance=ExtResource( 2 )]
 
 [node name="OptionsPopup" parent="." instance=ExtResource( 5 )]
 
