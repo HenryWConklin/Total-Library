@@ -30,6 +30,7 @@ var _options: Dictionary = {}
 
 
 func _ready():
+	assert(get_viewport().connect("size_changed", self, "_on_viewport_size_changed") == OK)
 	reload()
 	apply()
 
@@ -55,11 +56,11 @@ func apply():
 		1:  # Borderless
 			OS.window_borderless = true
 			OS.window_fullscreen = true
-			get_viewport().set_size(_options["resolution"])
 		2:  # Fullscreen
 			OS.window_borderless = false
 			OS.window_fullscreen = true
-			get_viewport().set_size(_options["resolution"])
+	if OS.window_fullscreen:
+		get_viewport().set_size(_options["resolution"])
 	OS.vsync_enabled = _options["vsync"]
 	emit_signal("shadow_setting_changed", _options["shadows"])
 
@@ -75,3 +76,8 @@ func get(option: String):
 
 func set(option: String, val):
 	_options[option] = val
+
+
+func _on_viewport_size_changed():
+	if OS.window_fullscreen:
+		get_viewport().set_size(_options["resolution"])
