@@ -16,6 +16,7 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+initial_focus = NodePath("Center/VBoxContainer/StartButton")
 options_popup = NodePath("OptionsPopup")
 
 [node name="Center" type="CenterContainer" parent="."]
@@ -82,3 +83,4 @@ __meta__ = {
 [connection signal="pressed" from="Center/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="Center/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="Center/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="popup_hide" from="OptionsPopup" to="." method="_on_OptionsPopup_popup_hide"]

@@ -1,5 +1,6 @@
 extends Control
 
+export(NodePath) var initial_focus: NodePath
 export(NodePath) var options_popup: NodePath
 
 onready var _options_popup: WindowDialog = get_node(options_popup)
@@ -28,3 +29,4 @@ func _on_ResumeButton_pressed():
 func _on_pause_requested():
 	get_tree().paused = true
 	self.show()
+	get_node(initial_focus).grab_focus()
