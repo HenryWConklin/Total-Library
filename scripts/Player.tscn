@@ -16,6 +16,7 @@ height = 0.8
 [node name="Player" type="KinematicBody"]
 collision_layer = 5
 script = ExtResource( 1 )
+controller_sensitivity = Vector2( 0.07, 0.07 )
 camera_path = NodePath("Camera")
 raycast_path = NodePath("Camera/RayCast")
 held_book_path = NodePath("HeldBook/animated_book")

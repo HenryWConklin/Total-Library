@@ -8,6 +8,7 @@ const SNAP_VECTOR: Vector3 = Vector3(0, -1, 0)
 const UP: Vector3 = Vector3(0, 1, 0)
 
 export(Vector2) var mouse_sensitivity = Vector2(0.002, 0.002)
+export(Vector2) var controller_sensitivity = Vector2(0.002, 0.002)
 export(Vector2) var move_speed = Vector2(5, 5)
 export(float) var gravity = 10
 export(NodePath) var camera_path: NodePath
@@ -139,7 +140,11 @@ func _unhandled_input(event: InputEvent):
 
 
 func _handle_movement():
-	var rotation = _mouse_move * Options.get("look_sensitivity")
+	var controller_look = (
+		Input.get_vector("look_left", "look_right", "look_up", "look_down")
+		* controller_sensitivity
+	)
+	var rotation = (_mouse_move + controller_look) * Options.get("look_sensitivity")
 	_mouse_move = Vector2(0, 0)
 	self.rotate_y(-rotation.x)
 	camera.rotate_x(-rotation.y)
@@ -147,15 +152,9 @@ func _handle_movement():
 		clamp(camera.rotation.x, -PI / 2, PI / 2), camera.rotation.y, camera.rotation.z
 	)
 
-	var move_vec: Vector2 = Vector2(0, 0)
-	if Input.is_action_pressed("move_forward"):
-		move_vec -= Vector2(0, 1)
-	if Input.is_action_pressed("move_backward"):
-		move_vec += Vector2(0, 1)
-	if Input.is_action_pressed("move_left"):
-		move_vec -= Vector2(1, 0)
-	if Input.is_action_pressed("move_right"):
-		move_vec += Vector2(1, 0)
+	var move_vec: Vector2 = Input.get_vector(
+		"move_left", "move_right", "move_forward", "move_backward"
+	)
 
 	move_vec = move_vec.normalized() * move_speed
 	move_vec = move_vec.rotated(-self.rotation.y)
