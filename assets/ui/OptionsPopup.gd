@@ -22,7 +22,7 @@ func _ready():
 	for item in Options.SHADOWS_CHOICES:
 		_shadows_options_select.add_item(item)
 
-	get_cancel().connect("pressed", self, "_on_cancel_pressed")
+	assert(get_cancel().connect("pressed", self, "_on_cancel_pressed") == OK)
 	get_ok().text = "Apply"
 
 

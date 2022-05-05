@@ -57,7 +57,7 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
 
 [node name="Camera" type="Camera" parent="Background"]
-transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0.13093, 1.43633, -3.10433 )
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0.198673, 1.51953, -3.06522 )
 script = ExtResource( 7 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Background"]
