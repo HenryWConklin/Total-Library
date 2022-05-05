@@ -67,6 +67,11 @@ environment = ExtResource( 1 )
 [node name="hex_gallery_tile" parent="Background" instance=ExtResource( 2 )]
 
 [node name="OptionsPopup" parent="." instance=ExtResource( 5 )]
+visible = false
+margin_left = -315.5
+margin_top = -216.0
+margin_right = 315.5
+margin_bottom = 216.0
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 1.0
@@ -83,4 +88,4 @@ __meta__ = {
 [connection signal="pressed" from="Center/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="Center/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="Center/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
-[connection signal="popup_hide" from="OptionsPopup" to="." method="_on_OptionsPopup_popup_hide"]
+[connection signal="visibility_changed" from="OptionsPopup" to="." method="_on_OptionsPopup_visibility_changed"]

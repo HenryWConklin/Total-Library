@@ -7,8 +7,6 @@ export(Type) var key_type
 
 var _event
 
-# TODO: Rework this, needs to push/pull from Options which should actually set the input map
-
 
 func _ready():
 	assert(key_type in Type.values())
@@ -80,8 +78,9 @@ func _unhandled_input(event):
 func _on_Button_pressed():
 	$Popup.popup()
 	$Button.release_focus()
-	$Popup.release_focus()
-	set_process_unhandled_input(true)
+	# The input that pressed the button gets fed to _unhandled_input
+	# if it's enabled on the same frame, using deferred avoids that
+	call_deferred("set_process_unhandled_input", true)
 
 
 func _on_options_reloaded():

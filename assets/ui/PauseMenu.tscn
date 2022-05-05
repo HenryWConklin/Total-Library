@@ -61,7 +61,9 @@ margin_bottom = 162.0
 text = "Quit"
 
 [node name="OptionsPopup" parent="." instance=ExtResource( 4 )]
+visible = false
 
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/OptionButton" to="." method="_on_OptionButton_pressed"]
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="visibility_changed" from="OptionsPopup" to="." method="_on_OptionsPopup_visibility_changed"]

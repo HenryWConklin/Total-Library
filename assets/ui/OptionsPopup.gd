@@ -1,5 +1,6 @@
-extends ConfirmationDialog
+extends Control
 
+export(NodePath) var initial_focus: NodePath
 export(NodePath) var display_options_select: NodePath
 export(NodePath) var resolution_options_select: NodePath
 export(NodePath) var shadows_options_select: NodePath
@@ -30,8 +31,6 @@ func _ready():
 		_shadows_options_select.add_item(item)
 	for item in Options.MSAA_CHOICES:
 		_msaa_options_select.add_item(item)
-	assert(get_cancel().connect("pressed", self, "_on_cancel_pressed") == OK)
-	get_ok().text = "Apply"
 
 
 func _reload_options():
@@ -45,17 +44,20 @@ func _reload_options():
 	_look_sensitivity_slider.value = Options.get("look_sensitivity")
 
 
-func _on_OptionsPopup_about_to_show():
-	_reload_options()
+func _on_OptionsPopup_visibility_changed():
+	if visible:
+		_reload_options()
+		get_node(initial_focus).grab_focus()
 
 
-func _on_OptionsPopup_confirmed():
+func _on_ApplyButton_pressed():
 	Options.apply()
 
 
-func _on_cancel_pressed():
+func _on_CancelButton_pressed():
 	if Options.are_modified():
 		get_node(cancel_confirm).popup()
+	hide()
 
 
 func _on_DisplayOptions_item_selected(index):
