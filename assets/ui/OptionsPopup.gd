@@ -86,3 +86,7 @@ func _on_CancelConfirm_confirmed():
 
 func _on_FOVSlider_value_changed(value):
 	Options.set("fov", value)
+
+
+func _on_LookSensitivitySlider_value_changed(value):
+	Options.set("look_sensitivity", value)

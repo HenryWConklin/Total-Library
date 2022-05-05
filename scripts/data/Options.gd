@@ -37,6 +37,7 @@ const DEFAULT_OPTIONS: Dictionary = {
 	"resolution": Vector2(1280, 720),
 	"vsync": true,
 	"fov": 90,
+	"look_sensitivity": 1.0,
 	"controls": {}
 }
 

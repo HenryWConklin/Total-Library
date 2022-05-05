@@ -78,7 +78,7 @@ func _unhandled_input(event: InputEvent):
 	# Mouse capture/uncapture
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		var mouse_motion = event.get_relative()
-		_mouse_move += mouse_motion
+		_mouse_move += mouse_motion * mouse_sensitivity
 		get_tree().set_input_as_handled()
 		return
 	elif event.is_action_pressed("ui_cancel"):
@@ -139,7 +139,7 @@ func _unhandled_input(event: InputEvent):
 
 
 func _handle_movement():
-	var rotation = _mouse_move * mouse_sensitivity
+	var rotation = _mouse_move * Options.get("look_sensitivity")
 	_mouse_move = Vector2(0, 0)
 	self.rotate_y(-rotation.x)
 	camera.rotate_x(-rotation.y)

@@ -191,13 +191,36 @@ margin_top = 46.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="ResetControls" type="Button" parent="MarginContainer/TabContainer/Controls"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Controls"]
 margin_right = 577.0
-margin_bottom = 34.0
+margin_bottom = 28.0
+
+[node name="LookSensitivity" type="Label" parent="MarginContainer/TabContainer/Controls/HBoxContainer"]
+margin_right = 176.0
+margin_bottom = 28.0
+text = "Look Sensitivity"
+
+[node name="LookSensitivitySlider" type="HSlider" parent="MarginContainer/TabContainer/Controls/HBoxContainer"]
+margin_left = 180.0
+margin_right = 577.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 0.1
+max_value = 2.0
+step = 0.01
+value = 1.0
+tick_count = 20
+ticks_on_borders = true
+
+[node name="ResetControls" type="Button" parent="MarginContainer/TabContainer/Controls"]
+margin_top = 32.0
+margin_right = 577.0
+margin_bottom = 66.0
 text = "Reset to Defaults"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Controls"]
-margin_top = 38.0
+margin_top = 70.0
 margin_right = 577.0
 margin_bottom = 280.0
 size_flags_horizontal = 3
@@ -373,10 +396,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -312.5
-margin_top = -196.0
-margin_right = -112.5
-margin_bottom = -110.0
+margin_left = -100.0
+margin_top = -43.0
+margin_right = 100.0
+margin_bottom = 43.0
 window_title = ""
 dialog_text = "Save changes?"
 __meta__ = {
@@ -392,5 +415,6 @@ __meta__ = {
 [connection signal="toggled" from="MarginContainer/TabContainer/Display/FXAAEnabled" to="." method="_on_FXAAEnabled_toggled"]
 [connection signal="toggled" from="MarginContainer/TabContainer/Display/VSyncEnabled" to="." method="_on_VSyncEnabled_toggled"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/Display/VBoxContainer/FOVSlider" to="." method="_on_FOVSlider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/TabContainer/Controls/HBoxContainer/LookSensitivitySlider" to="." method="_on_LookSensitivitySlider_value_changed"]
 [connection signal="pressed" from="MarginContainer/TabContainer/Controls/ResetControls" to="." method="_on_ResetControls_pressed"]
 [connection signal="confirmed" from="CancelConfirm" to="." method="_on_CancelConfirm_confirmed"]
