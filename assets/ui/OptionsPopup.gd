@@ -4,7 +4,10 @@ export(NodePath) var display_options_select: NodePath
 export(NodePath) var resolution_options_select: NodePath
 export(NodePath) var shadows_options_select: NodePath
 export(NodePath) var msaa_options_select: NodePath
+export(NodePath) var fxaa_enabled: NodePath
 export(NodePath) var vsync_enabled: NodePath
+export(NodePath) var fov_slider: NodePath
+export(NodePath) var look_sensitivity_slider: NodePath
 export(Array, NodePath) var input_map_selects: Array
 export(NodePath) var cancel_confirm: NodePath
 
@@ -12,7 +15,10 @@ onready var _display_options_select: OptionButton = get_node(display_options_sel
 onready var _resolution_options_select: OptionButton = get_node(resolution_options_select)
 onready var _shadows_options_select: OptionButton = get_node(shadows_options_select)
 onready var _msaa_options_select: OptionButton = get_node(msaa_options_select)
+onready var _fxaa_enabled: CheckBox = get_node(fxaa_enabled)
 onready var _vsync_enabled: CheckBox = get_node(vsync_enabled)
+onready var _fov_slider: HSlider = get_node(fov_slider)
+onready var _look_sensitivity_slider: HSlider = get_node(look_sensitivity_slider)
 
 
 func _ready():
@@ -33,7 +39,10 @@ func _reload_options():
 	_display_options_select.select(Options.get("display"))
 	_resolution_options_select.select(Options.RESOLUTION_CHOICES.find(Options.get("resolution")))
 	_shadows_options_select.select(Options.get("shadows"))
+	_msaa_options_select.select(Options.get("msaa"))
+	_fxaa_enabled.pressed = Options.get("fxaa")
 	_vsync_enabled.pressed = Options.get("vsync")
+	_look_sensitivity_slider.value = Options.get("look_sensitivity")
 
 
 func _on_OptionsPopup_about_to_show():

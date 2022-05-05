@@ -26,7 +26,10 @@ display_options_select = NodePath("MarginContainer/TabContainer/Display/DisplayO
 resolution_options_select = NodePath("MarginContainer/TabContainer/Display/ResolutionOptions")
 shadows_options_select = NodePath("MarginContainer/TabContainer/Display/ShadowsOptions")
 msaa_options_select = NodePath("MarginContainer/TabContainer/Display/MSAAOptions")
+fxaa_enabled = NodePath("MarginContainer/TabContainer/Display/FXAAEnabled")
 vsync_enabled = NodePath("MarginContainer/TabContainer/Display/VSyncEnabled")
+fov_slider = NodePath("MarginContainer/TabContainer/Display/VBoxContainer/FOVSlider")
+look_sensitivity_slider = NodePath("MarginContainer/TabContainer/Controls/HBoxContainer/LookSensitivitySlider")
 input_map_selects = [ NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/ForwardKeyboard"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/LeftKeyboard"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/RightKeyboard"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/BackwardKeyboard"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/PickKeyboard"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/PickController"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/PageForwardKeyboard"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/PageForwardController"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/PageBackKeyboard"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/PageBackController") ]
 cancel_confirm = NodePath("CancelConfirm")
 
