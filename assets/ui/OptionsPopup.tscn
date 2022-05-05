@@ -1,120 +1,322 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/ui/titleFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/ui/InputMapButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/ui/OptionsPopup.gd" type="Script" id=2]
+[ext_resource path="res://assets/ui/libraryTheme.theme" type="Theme" id=3]
+[ext_resource path="res://assets/ui/TabNav.gd" type="Script" id=4]
 
-[node name="OptionsPopup" type="WindowDialog"]
-margin_left = 415.0
-margin_top = 185.0
-margin_right = 865.0
-margin_bottom = 535.0
-rect_min_size = Vector2( 450, 350 )
+[node name="OptionsPopup" type="ConfirmationDialog"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.5
+margin_top = -203.0
+margin_right = 320.5
+margin_bottom = 203.0
+theme = ExtResource( 3 )
+window_title = "Options"
 script = ExtResource( 2 )
-display_options_select = NodePath("VBoxContainer/GridContainer/DisplayOptions")
-resolution_options_select = NodePath("VBoxContainer/GridContainer/ResolutionOptions")
-shadows_options_select = NodePath("VBoxContainer/GridContainer/ShadowsOptions")
-vsync_enabled = NodePath("VBoxContainer/GridContainer/VSyncEnabled")
+__meta__ = {
+"_edit_use_anchors_": false
+}
+display_options_select = NodePath("MarginContainer/TabContainer/Display/DisplayOptions")
+resolution_options_select = NodePath("MarginContainer/TabContainer/Display/ResolutionOptions")
+shadows_options_select = NodePath("MarginContainer/TabContainer/Display/ShadowsOptions")
+vsync_enabled = NodePath("MarginContainer/TabContainer/Display/VSyncEnabled")
+input_map_selects = [ NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/ForwardKeyboard"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/LeftKeyboard"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/RightKeyboard"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/BackwardKeyboard"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/PickKeyboard"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/PickController"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/PageForwardKeyboard"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/PageForwardController"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/PageBackKeyboard"), NodePath("MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer/PageBackController") ]
+cancel_confirm = NodePath("CancelConfirm")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 24.0
-margin_top = 14.0
-margin_right = 426.0
-margin_bottom = 336.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -50.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Options" type="Label" parent="VBoxContainer"]
-margin_right = 402.0
-margin_bottom = 48.0
-custom_fonts/font = ExtResource( 1 )
-text = "Options"
+[node name="TabContainer" type="TabContainer" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 605.0
+margin_bottom = 348.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tab_align = 0
+use_hidden_tabs_for_min_size = true
+script = ExtResource( 4 )
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
-margin_top = 52.0
-margin_right = 402.0
-margin_bottom = 234.0
+[node name="Display" type="GridContainer" parent="MarginContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 46.0
+margin_right = -4.0
+margin_bottom = -4.0
 custom_constants/hseparation = 10
 columns = 2
 
-[node name="Display" type="Label" parent="VBoxContainer/GridContainer"]
+[node name="Display" type="Label" parent="MarginContainer/TabContainer/Display"]
 margin_top = 3.0
-margin_right = 150.0
-margin_bottom = 39.0
+margin_right = 110.0
+margin_bottom = 31.0
 text = "Display"
-align = 2
 
-[node name="DisplayOptions" type="OptionButton" parent="VBoxContainer/GridContainer"]
-margin_left = 160.0
-margin_right = 360.0
-margin_bottom = 42.0
+[node name="DisplayOptions" type="OptionButton" parent="MarginContainer/TabContainer/Display"]
+margin_left = 120.0
+margin_right = 577.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Resolution" type="Label" parent="VBoxContainer/GridContainer"]
-margin_top = 49.0
-margin_right = 150.0
-margin_bottom = 85.0
+[node name="Resolution" type="Label" parent="MarginContainer/TabContainer/Display"]
+margin_top = 41.0
+margin_right = 110.0
+margin_bottom = 69.0
 text = "Resolution"
-align = 2
 
-[node name="ResolutionOptions" type="OptionButton" parent="VBoxContainer/GridContainer"]
-margin_left = 160.0
-margin_top = 46.0
-margin_right = 360.0
-margin_bottom = 88.0
+[node name="ResolutionOptions" type="OptionButton" parent="MarginContainer/TabContainer/Display"]
+margin_left = 120.0
+margin_top = 38.0
+margin_right = 577.0
+margin_bottom = 72.0
 
-[node name="Shadows" type="Label" parent="VBoxContainer/GridContainer"]
-margin_top = 95.0
-margin_right = 150.0
-margin_bottom = 131.0
+[node name="Shadows" type="Label" parent="MarginContainer/TabContainer/Display"]
+margin_top = 79.0
+margin_right = 110.0
+margin_bottom = 107.0
 text = "Shadows"
-align = 2
 
-[node name="ShadowsOptions" type="OptionButton" parent="VBoxContainer/GridContainer"]
-margin_left = 160.0
-margin_top = 92.0
-margin_right = 360.0
-margin_bottom = 134.0
+[node name="ShadowsOptions" type="OptionButton" parent="MarginContainer/TabContainer/Display"]
+margin_left = 120.0
+margin_top = 76.0
+margin_right = 577.0
+margin_bottom = 110.0
 rect_min_size = Vector2( 200, 0 )
 
-[node name="VSync" type="Label" parent="VBoxContainer/GridContainer"]
-margin_top = 142.0
-margin_right = 150.0
-margin_bottom = 178.0
+[node name="VSync" type="Label" parent="MarginContainer/TabContainer/Display"]
+margin_top = 118.0
+margin_right = 110.0
+margin_bottom = 146.0
 text = "VSync"
-align = 2
 
-[node name="VSyncEnabled" type="CheckBox" parent="VBoxContainer/GridContainer"]
-margin_left = 160.0
-margin_top = 138.0
-margin_right = 184.0
-margin_bottom = 182.0
-size_flags_horizontal = 0
+[node name="VSyncEnabled" type="CheckBox" parent="MarginContainer/TabContainer/Display"]
+margin_left = 120.0
+margin_top = 114.0
+margin_right = 577.0
+margin_bottom = 150.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 238.0
-margin_right = 402.0
-margin_bottom = 280.0
+[node name="Controls" type="VBoxContainer" parent="MarginContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 46.0
+margin_right = -4.0
+margin_bottom = -4.0
 
-[node name="Apply" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_right = 199.0
-margin_bottom = 42.0
+[node name="ResetControls" type="Button" parent="MarginContainer/TabContainer/Controls"]
+margin_right = 577.0
+margin_bottom = 34.0
+text = "Reset to Defaults"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Controls"]
+margin_top = 38.0
+margin_right = 577.0
+margin_bottom = 278.0
 size_flags_horizontal = 3
-text = "Apply"
+size_flags_vertical = 3
+follow_focus = true
+scroll_horizontal_enabled = false
 
-[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 203.0
-margin_right = 402.0
-margin_bottom = 42.0
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/TabContainer/Controls/ScrollContainer"]
+margin_right = 577.0
+margin_bottom = 301.0
 size_flags_horizontal = 3
-text = "Cancel"
+size_flags_vertical = 3
+custom_constants/vseparation = 11
+columns = 3
+
+[node name="Action" type="Label" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer"]
+margin_right = 143.0
+margin_bottom = 28.0
+
+[node name="Keyboard" type="Label" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer"]
+margin_left = 147.0
+margin_right = 354.0
+margin_bottom = 28.0
+text = "Keyboard"
+
+[node name="Controller" type="Label" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer"]
+margin_left = 358.0
+margin_right = 565.0
+margin_bottom = 28.0
+text = "Controller"
+
+[node name="Forward" type="Label" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer"]
+margin_top = 39.0
+margin_right = 143.0
+margin_bottom = 67.0
+text = "Move Forward"
+
+[node name="ForwardKeyboard" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer" instance=ExtResource( 1 )]
+margin_left = 147.0
+margin_top = 39.0
+margin_right = 354.0
+margin_bottom = 67.0
+action = "move_forward"
+
+[node name="PlaceholderFowardController" type="Control" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer"]
+margin_left = 358.0
+margin_top = 39.0
+margin_right = 565.0
+margin_bottom = 67.0
+
+[node name="Left" type="Label" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer"]
+margin_top = 78.0
+margin_right = 143.0
+margin_bottom = 106.0
+text = "Move Left"
+
+[node name="LeftKeyboard" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer" instance=ExtResource( 1 )]
+margin_left = 147.0
+margin_top = 78.0
+margin_right = 354.0
+margin_bottom = 106.0
+action = "move_left"
+
+[node name="PlaceholderLeftController" type="Control" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer"]
+margin_left = 358.0
+margin_top = 78.0
+margin_right = 565.0
+margin_bottom = 106.0
+
+[node name="Right" type="Label" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer"]
+margin_top = 117.0
+margin_right = 143.0
+margin_bottom = 145.0
+text = "Move Right"
+
+[node name="RightKeyboard" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer" instance=ExtResource( 1 )]
+margin_left = 147.0
+margin_top = 117.0
+margin_right = 354.0
+margin_bottom = 145.0
+action = "move_right"
+
+[node name="PlaceholderRightController" type="Control" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer"]
+margin_left = 358.0
+margin_top = 117.0
+margin_right = 565.0
+margin_bottom = 145.0
+
+[node name="Backward" type="Label" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer"]
+margin_top = 156.0
+margin_right = 143.0
+margin_bottom = 184.0
+text = "Move Backward"
+
+[node name="BackwardKeyboard" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer" instance=ExtResource( 1 )]
+margin_left = 147.0
+margin_top = 156.0
+margin_right = 354.0
+margin_bottom = 184.0
+action = "move_backward"
+
+[node name="PlaceholderBackwardController" type="Control" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer"]
+margin_left = 358.0
+margin_top = 156.0
+margin_right = 565.0
+margin_bottom = 184.0
+
+[node name="Pickup" type="Label" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer"]
+margin_top = 195.0
+margin_right = 143.0
+margin_bottom = 223.0
+text = "Pick up/Drop"
+
+[node name="PickKeyboard" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer" instance=ExtResource( 1 )]
+margin_left = 147.0
+margin_top = 195.0
+margin_right = 354.0
+margin_bottom = 223.0
+action = "pick_up"
+
+[node name="PickController" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer" instance=ExtResource( 1 )]
+margin_left = 358.0
+margin_top = 195.0
+margin_right = 565.0
+margin_bottom = 223.0
+action = "pick_up"
+key_type = 1
+
+[node name="NextPage" type="Label" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer"]
+margin_top = 234.0
+margin_right = 143.0
+margin_bottom = 262.0
+text = "Next page"
+
+[node name="PageForwardKeyboard" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer" instance=ExtResource( 1 )]
+margin_left = 147.0
+margin_top = 234.0
+margin_right = 354.0
+margin_bottom = 262.0
+action = "turn_page_forward"
+
+[node name="PageForwardController" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer" instance=ExtResource( 1 )]
+margin_left = 358.0
+margin_top = 234.0
+margin_right = 565.0
+margin_bottom = 262.0
+action = "turn_page_forward"
+key_type = 1
+
+[node name="PrevPage" type="Label" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer"]
+margin_top = 273.0
+margin_right = 143.0
+margin_bottom = 301.0
+text = "Last page"
+
+[node name="PageBackKeyboard" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer" instance=ExtResource( 1 )]
+margin_left = 147.0
+margin_top = 273.0
+margin_right = 354.0
+margin_bottom = 301.0
+action = "turn_page_back"
+
+[node name="PageBackController" parent="MarginContainer/TabContainer/Controls/ScrollContainer/GridContainer" instance=ExtResource( 1 )]
+margin_left = 358.0
+margin_top = 273.0
+margin_right = 565.0
+margin_bottom = 301.0
+action = "turn_page_back"
+key_type = 1
+
+[node name="CancelConfirm" type="ConfirmationDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -312.5
+margin_top = -195.0
+margin_right = 312.5
+margin_bottom = 153.0
+window_title = ""
+dialog_text = "Save changes?"
 
 [connection signal="about_to_show" from="." to="." method="_on_OptionsPopup_about_to_show"]
-[connection signal="item_selected" from="VBoxContainer/GridContainer/DisplayOptions" to="." method="_on_DisplayOptions_item_selected"]
-[connection signal="item_selected" from="VBoxContainer/GridContainer/ResolutionOptions" to="." method="_on_ResolutionOptions_item_selected"]
-[connection signal="item_selected" from="VBoxContainer/GridContainer/ShadowsOptions" to="." method="_on_ShadowsOptions_item_selected"]
-[connection signal="toggled" from="VBoxContainer/GridContainer/VSyncEnabled" to="." method="_on_VSyncEnabled_toggled"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Apply" to="." method="_on_Apply_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_CancelButton_pressed"]
+[connection signal="confirmed" from="." to="." method="_on_OptionsPopup_confirmed"]
+[connection signal="item_selected" from="MarginContainer/TabContainer/Display/DisplayOptions" to="." method="_on_DisplayOptions_item_selected"]
+[connection signal="item_selected" from="MarginContainer/TabContainer/Display/ResolutionOptions" to="." method="_on_ResolutionOptions_item_selected"]
+[connection signal="item_selected" from="MarginContainer/TabContainer/Display/ShadowsOptions" to="." method="_on_ShadowsOptions_item_selected"]
+[connection signal="toggled" from="MarginContainer/TabContainer/Display/VSyncEnabled" to="." method="_on_VSyncEnabled_toggled"]
+[connection signal="pressed" from="MarginContainer/TabContainer/Controls/ResetControls" to="." method="_on_ResetControls_pressed"]
+[connection signal="confirmed" from="CancelConfirm" to="." method="_on_CancelConfirm_confirmed"]

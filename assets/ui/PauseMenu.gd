@@ -5,9 +5,9 @@ export(NodePath) var options_popup: NodePath
 onready var _options_popup: WindowDialog = get_node(options_popup)
 
 
-func _input(event: InputEvent):
+func _unhandled_input(event: InputEvent):
 	if self.visible:
-		if event.is_action_pressed("release_mouse"):
+		if event.is_action_pressed("ui_cancel"):
 			_on_ResumeButton_pressed()
 			get_tree().set_input_as_handled()
 

@@ -1,9 +1,11 @@
-extends WindowDialog
+extends ConfirmationDialog
 
 export(NodePath) var display_options_select: NodePath
 export(NodePath) var resolution_options_select: NodePath
 export(NodePath) var shadows_options_select: NodePath
 export(NodePath) var vsync_enabled: NodePath
+export(Array, NodePath) var input_map_selects: Array
+export(NodePath) var cancel_confirm: NodePath
 
 onready var _display_options_select: OptionButton = get_node(display_options_select)
 onready var _resolution_options_select: OptionButton = get_node(resolution_options_select)
@@ -19,6 +21,9 @@ func _ready():
 	for item in Options.SHADOWS_CHOICES:
 		_shadows_options_select.add_item(item)
 
+	get_cancel().connect("pressed", self, "_on_cancel_pressed")
+	get_ok().text = "Apply"
+
 
 func _reload_options():
 	Options.reload()
@@ -26,6 +31,19 @@ func _reload_options():
 	_resolution_options_select.select(Options.RESOLUTION_CHOICES.find(Options.get("resolution")))
 	_shadows_options_select.select(Options.get("shadows"))
 	_vsync_enabled.pressed = Options.get("vsync")
+
+
+func _on_OptionsPopup_about_to_show():
+	_reload_options()
+
+
+func _on_OptionsPopup_confirmed():
+	Options.apply()
+
+
+func _on_cancel_pressed():
+	if Options.are_modified():
+		get_node(cancel_confirm).popup()
 
 
 func _on_DisplayOptions_item_selected(index):
@@ -44,13 +62,12 @@ func _on_VSyncEnabled_toggled(button_pressed):
 	Options.set("vsync", button_pressed)
 
 
-func _on_Apply_pressed():
+func _on_ResetControls_pressed():
+	InputMap.load_from_globals()
+	Options.set("controls", {})
+	for x in input_map_selects:
+		get_node(x).reload_event()
+
+
+func _on_CancelConfirm_confirmed():
 	Options.apply()
-
-
-func _on_CancelButton_pressed():
-	hide()
-
-
-func _on_OptionsPopup_about_to_show():
-	_reload_options()
