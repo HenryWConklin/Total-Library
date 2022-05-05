@@ -26,10 +26,14 @@ const RESOLUTION_CHOICES: Array = [
 	Vector2(800, 600),
 	Vector2(640, 480)
 ]
+# Needs to match the Viewport.MSAA_ constants
+const MSAA_CHOICES: Array = ["Off", "2x", "4x", "8x", "16x"]
 const OPTIONS_PATH: String = "user://options.cfg"
 const DEFAULT_OPTIONS: Dictionary = {
 	"shadows": 1,
 	"display": 0,
+	"msaa": 0,
+	"fxaa": false,
 	"resolution": Vector2(1280, 720),
 	"vsync": true,
 	"fov": 90,
@@ -79,6 +83,8 @@ func apply():
 			OS.window_fullscreen = true
 	if OS.window_fullscreen:
 		get_viewport().set_size(_options["resolution"])
+	get_viewport().msaa = _options["msaa"]
+	get_viewport().fxaa = _options["fxaa"]
 	OS.vsync_enabled = _options["vsync"]
 	if _options["shadows"] != _applied_options.get("shadows"):
 		emit_signal("shadow_setting_changed", _options["shadows"])

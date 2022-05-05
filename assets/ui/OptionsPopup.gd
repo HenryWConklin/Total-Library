@@ -3,14 +3,15 @@ extends ConfirmationDialog
 export(NodePath) var display_options_select: NodePath
 export(NodePath) var resolution_options_select: NodePath
 export(NodePath) var shadows_options_select: NodePath
+export(NodePath) var msaa_options_select: NodePath
 export(NodePath) var vsync_enabled: NodePath
-export(NodePath) var fov_slider: NodePath
 export(Array, NodePath) var input_map_selects: Array
 export(NodePath) var cancel_confirm: NodePath
 
 onready var _display_options_select: OptionButton = get_node(display_options_select)
 onready var _resolution_options_select: OptionButton = get_node(resolution_options_select)
 onready var _shadows_options_select: OptionButton = get_node(shadows_options_select)
+onready var _msaa_options_select: OptionButton = get_node(msaa_options_select)
 onready var _vsync_enabled: CheckBox = get_node(vsync_enabled)
 
 
@@ -21,7 +22,8 @@ func _ready():
 		_resolution_options_select.add_item("{0}x{1}".format([item.x, item.y]))
 	for item in Options.SHADOWS_CHOICES:
 		_shadows_options_select.add_item(item)
-
+	for item in Options.MSAA_CHOICES:
+		_msaa_options_select.add_item(item)
 	assert(get_cancel().connect("pressed", self, "_on_cancel_pressed") == OK)
 	get_ok().text = "Apply"
 
@@ -57,6 +59,14 @@ func _on_ResolutionOptions_item_selected(index):
 
 func _on_ShadowsOptions_item_selected(index):
 	Options.set("shadows", index)
+
+
+func _on_MSAAOptions_item_selected(index):
+	Options.set("msaa", index)
+
+
+func _on_FXAAEnabled_toggled(button_pressed):
+	Options.set("fxaa", button_pressed)
 
 
 func _on_VSyncEnabled_toggled(button_pressed):
