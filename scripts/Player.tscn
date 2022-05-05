@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/props/HeldBook.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/props/SelectionHighlight.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/RoomTracker.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scripts/PlayerTracker.gd" type="Script" id=5]
+[ext_resource path="res://scripts/MainCamera.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleMesh" id=1]
 radius = 0.5
@@ -55,4 +55,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 7.10543e-15, 7.10543e-15, 1, -0.0619124
 [node name="SelectionHighlight" parent="." instance=ExtResource( 3 )]
 visible = false
 
-[connection signal="room_changed" from="Camera/RoomTracker" to="Camera" method="_on_RoomTracker_room_changed"]
+[connection signal="room_changed" from="Camera/RoomTracker" to="." method="_on_RoomTracker_room_changed"]

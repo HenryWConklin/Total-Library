@@ -193,3 +193,7 @@ func _selection_highlight():
 func _physics_process(_delta):
 	_handle_movement()
 	_selection_highlight()
+
+
+func _on_RoomTracker_room_changed(area):
+	BookRegistry.set_player_position(area.room_index)

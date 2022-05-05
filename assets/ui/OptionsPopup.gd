@@ -4,6 +4,7 @@ export(NodePath) var display_options_select: NodePath
 export(NodePath) var resolution_options_select: NodePath
 export(NodePath) var shadows_options_select: NodePath
 export(NodePath) var vsync_enabled: NodePath
+export(NodePath) var fov_slider: NodePath
 export(Array, NodePath) var input_map_selects: Array
 export(NodePath) var cancel_confirm: NodePath
 
@@ -71,3 +72,7 @@ func _on_ResetControls_pressed():
 
 func _on_CancelConfirm_confirmed():
 	Options.apply()
+
+
+func _on_FOVSlider_value_changed(value):
+	Options.set("fov", value)

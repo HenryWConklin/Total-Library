@@ -5,6 +5,7 @@ extends Node
 
 signal options_reloaded
 signal shadow_setting_changed(val)
+signal fov_setting_changed(val)
 
 const DISPLAY_CHOICES = ["Windowed", "Borderless", "Fullscreen"]
 const SHADOWS_CHOICES = ["Off", "Static only", "Full"]
@@ -27,7 +28,12 @@ const RESOLUTION_CHOICES: Array = [
 ]
 const OPTIONS_PATH: String = "user://options.cfg"
 const DEFAULT_OPTIONS: Dictionary = {
-	"shadows": 1, "display": 0, "resolution": Vector2(1280, 720), "vsync": true, "controls": {}
+	"shadows": 1,
+	"display": 0,
+	"resolution": Vector2(1280, 720),
+	"vsync": true,
+	"fov": 90,
+	"controls": {}
 }
 
 # Applied version of options, what is actually in effect
@@ -74,7 +80,10 @@ func apply():
 	if OS.window_fullscreen:
 		get_viewport().set_size(_options["resolution"])
 	OS.vsync_enabled = _options["vsync"]
-	emit_signal("shadow_setting_changed", _options["shadows"])
+	if _options["shadows"] != _applied_options.get("shadows"):
+		emit_signal("shadow_setting_changed", _options["shadows"])
+	if _options["fov"] != _applied_options.get("fov"):
+		emit_signal("fov_setting_changed", _options["fov"])
 	_applied_options = _options.duplicate(true)
 	for action in _options["controls"].keys():
 		InputMap.action_erase_events(action)
