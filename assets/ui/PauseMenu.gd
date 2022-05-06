@@ -1,6 +1,7 @@
 extends Control
 
 export(NodePath) var initial_focus: NodePath
+export(NodePath) var main_buttons: NodePath
 export(NodePath) var options_popup: NodePath
 
 onready var _options_popup: Control = get_node(options_popup)
@@ -23,6 +24,7 @@ func _on_QuitButton_pressed():
 
 func _on_ResumeButton_pressed():
 	get_tree().paused = false
+	get_node(options_popup).hide()
 	self.hide()
 
 
@@ -33,5 +35,6 @@ func _on_pause_requested():
 
 
 func _on_OptionsPopup_visibility_changed():
+	get_node(main_buttons).visible = !get_node(options_popup).visible
 	if !_options_popup.visible:
 		get_node(initial_focus).grab_focus()

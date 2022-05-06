@@ -10,7 +10,6 @@ export(NodePath) var vsync_enabled: NodePath
 export(NodePath) var fov_slider: NodePath
 export(NodePath) var look_sensitivity_slider: NodePath
 export(Array, NodePath) var input_map_selects: Array
-export(NodePath) var cancel_confirm: NodePath
 
 onready var _display_options_select: OptionButton = get_node(display_options_select)
 onready var _resolution_options_select: OptionButton = get_node(resolution_options_select)
@@ -41,6 +40,7 @@ func _reload_options():
 	_msaa_options_select.select(Options.get("msaa"))
 	_fxaa_enabled.pressed = Options.get("fxaa")
 	_vsync_enabled.pressed = Options.get("vsync")
+	_fov_slider.value = Options.get("fov")
 	_look_sensitivity_slider.value = Options.get("look_sensitivity")
 
 
@@ -55,8 +55,6 @@ func _on_ApplyButton_pressed():
 
 
 func _on_CancelButton_pressed():
-	if Options.are_modified():
-		get_node(cancel_confirm).popup()
 	hide()
 
 
@@ -89,10 +87,6 @@ func _on_ResetControls_pressed():
 	Options.set("controls", {})
 	for x in input_map_selects:
 		get_node(x).reload_event()
-
-
-func _on_CancelConfirm_confirmed():
-	Options.apply()
 
 
 func _on_FOVSlider_value_changed(value):

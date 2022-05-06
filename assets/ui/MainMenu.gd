@@ -3,6 +3,7 @@ extends Control
 signal start_game
 
 export(NodePath) var initial_focus: NodePath
+export(NodePath) var main_buttons: NodePath
 export(NodePath) var options_popup: NodePath
 
 
@@ -23,5 +24,6 @@ func _on_StartButton_pressed():
 
 
 func _on_OptionsPopup_visibility_changed():
+	get_node(main_buttons).visible = !get_node(options_popup).visible
 	if not get_node(options_popup).visible:
 		get_node(initial_focus).grab_focus()

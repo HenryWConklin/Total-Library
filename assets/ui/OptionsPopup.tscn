@@ -9,10 +9,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -320.0
-margin_top = -203.0
-margin_right = 287.0
-margin_bottom = 220.0
+margin_left = -324.5
+margin_top = -220.5
+margin_right = 324.5
+margin_bottom = 220.5
 theme = ExtResource( 3 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -28,13 +28,12 @@ vsync_enabled = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxCont
 fov_slider = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/VBoxContainer/FOVSlider")
 look_sensitivity_slider = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/LookSensitivitySlider")
 input_map_selects = [ NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/ForwardKeyboard"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/LeftKeyboard"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/RightKeyboard"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/BackwardKeyboard"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/PickKeyboard"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/PickController"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/PageForwardKeyboard"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/PageForwardController"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/PageBackKeyboard"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/PageBackController") ]
-cancel_confirm = NodePath("CancelConfirm")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 600.0
-margin_bottom = 416.0
+margin_right = 642.0
+margin_bottom = 434.0
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
@@ -46,26 +45,26 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 573.0
-margin_bottom = 389.0
+margin_right = 615.0
+margin_bottom = 407.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 553.0
-margin_bottom = 331.0
+margin_right = 595.0
+margin_bottom = 349.0
 size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 687.0
 size_flags_horizontal = 3
 
 [node name="Settings" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 312.0
 custom_constants/hseparation = 10
 columns = 2
@@ -78,7 +77,7 @@ text = "Display"
 
 [node name="DisplayOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings"]
 margin_left = 186.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 34.0
 size_flags_horizontal = 3
 __meta__ = {
@@ -94,7 +93,7 @@ text = "Resolution"
 [node name="ResolutionOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings"]
 margin_left = 186.0
 margin_top = 38.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 72.0
 
 [node name="Shadows" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings"]
@@ -106,7 +105,7 @@ text = "Shadows"
 [node name="ShadowsOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings"]
 margin_left = 186.0
 margin_top = 76.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 110.0
 rect_min_size = Vector2( 200, 0 )
 
@@ -119,7 +118,7 @@ text = "MSAA"
 [node name="MSAAOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings"]
 margin_left = 186.0
 margin_top = 114.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 148.0
 
 [node name="FXAA" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings"]
@@ -131,7 +130,7 @@ text = "FXAA"
 [node name="FXAAEnabled" type="CheckBox" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings"]
 margin_left = 186.0
 margin_top = 152.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 188.0
 
 [node name="VSync" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings"]
@@ -143,7 +142,7 @@ text = "VSync"
 [node name="VSyncEnabled" type="CheckBox" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings"]
 margin_left = 186.0
 margin_top = 192.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 228.0
 
 [node name="FOV" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings"]
@@ -155,14 +154,14 @@ text = "FOV"
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings"]
 margin_left = 186.0
 margin_top = 232.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 280.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="FOVSlider" type="HSlider" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/VBoxContainer"]
-margin_right = 355.0
+margin_right = 397.0
 margin_bottom = 16.0
 min_value = 40.0
 max_value = 140.0
@@ -173,18 +172,18 @@ ticks_on_borders = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/VBoxContainer"]
 margin_top = 20.0
-margin_right = 355.0
+margin_right = 397.0
 margin_bottom = 48.0
 
 [node name="MinFOV" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/VBoxContainer/HBoxContainer"]
-margin_right = 318.0
+margin_right = 360.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 text = "40"
 
 [node name="MaxFOV" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/VBoxContainer/HBoxContainer"]
-margin_left = 322.0
-margin_right = 355.0
+margin_left = 364.0
+margin_right = 397.0
 margin_bottom = 28.0
 text = "140"
 
@@ -197,7 +196,7 @@ text = "Look Sensitivity"
 [node name="LookSensitivitySlider" type="HSlider" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings"]
 margin_left = 186.0
 margin_top = 284.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 312.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -211,24 +210,24 @@ ticks_on_borders = true
 
 [node name="Controls" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 316.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 687.0
 
 [node name="Controls" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls"]
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 28.0
 text = "Controls"
 align = 1
 
 [node name="ResetControls" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls"]
 margin_top = 32.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 66.0
 text = "Reset to Defaults"
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls"]
 margin_top = 70.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 371.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -241,13 +240,13 @@ margin_bottom = 28.0
 
 [node name="Keyboard" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer"]
 margin_left = 147.0
-margin_right = 342.0
+margin_right = 363.0
 margin_bottom = 28.0
 text = "Keyboard"
 
 [node name="Controller" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer"]
-margin_left = 346.0
-margin_right = 541.0
+margin_left = 367.0
+margin_right = 583.0
 margin_bottom = 28.0
 text = "Controller"
 
@@ -260,14 +259,14 @@ text = "Move Forward"
 [node name="ForwardKeyboard" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer" instance=ExtResource( 1 )]
 margin_left = 147.0
 margin_top = 39.0
-margin_right = 342.0
+margin_right = 363.0
 margin_bottom = 67.0
 action = "move_forward"
 
 [node name="PlaceholderFowardController" type="Control" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer"]
-margin_left = 346.0
+margin_left = 367.0
 margin_top = 39.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 67.0
 
 [node name="Left" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer"]
@@ -279,14 +278,14 @@ text = "Move Left"
 [node name="LeftKeyboard" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer" instance=ExtResource( 1 )]
 margin_left = 147.0
 margin_top = 78.0
-margin_right = 342.0
+margin_right = 363.0
 margin_bottom = 106.0
 action = "move_left"
 
 [node name="PlaceholderLeftController" type="Control" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer"]
-margin_left = 346.0
+margin_left = 367.0
 margin_top = 78.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 106.0
 
 [node name="Right" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer"]
@@ -298,14 +297,14 @@ text = "Move Right"
 [node name="RightKeyboard" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer" instance=ExtResource( 1 )]
 margin_left = 147.0
 margin_top = 117.0
-margin_right = 342.0
+margin_right = 363.0
 margin_bottom = 145.0
 action = "move_right"
 
 [node name="PlaceholderRightController" type="Control" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer"]
-margin_left = 346.0
+margin_left = 367.0
 margin_top = 117.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 145.0
 
 [node name="Backward" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer"]
@@ -317,14 +316,14 @@ text = "Move Backward"
 [node name="BackwardKeyboard" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer" instance=ExtResource( 1 )]
 margin_left = 147.0
 margin_top = 156.0
-margin_right = 342.0
+margin_right = 363.0
 margin_bottom = 184.0
 action = "move_backward"
 
 [node name="PlaceholderBackwardController" type="Control" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer"]
-margin_left = 346.0
+margin_left = 367.0
 margin_top = 156.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 184.0
 
 [node name="Pickup" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer"]
@@ -336,14 +335,14 @@ text = "Pick up/Drop"
 [node name="PickKeyboard" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer" instance=ExtResource( 1 )]
 margin_left = 147.0
 margin_top = 195.0
-margin_right = 342.0
+margin_right = 363.0
 margin_bottom = 223.0
 action = "pick_up"
 
 [node name="PickController" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer" instance=ExtResource( 1 )]
-margin_left = 346.0
+margin_left = 367.0
 margin_top = 195.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 223.0
 action = "pick_up"
 key_type = 1
@@ -357,14 +356,14 @@ text = "Next page"
 [node name="PageForwardKeyboard" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer" instance=ExtResource( 1 )]
 margin_left = 147.0
 margin_top = 234.0
-margin_right = 342.0
+margin_right = 363.0
 margin_bottom = 262.0
 action = "turn_page_forward"
 
 [node name="PageForwardController" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer" instance=ExtResource( 1 )]
-margin_left = 346.0
+margin_left = 367.0
 margin_top = 234.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 262.0
 action = "turn_page_forward"
 key_type = 1
@@ -378,46 +377,35 @@ text = "Last page"
 [node name="PageBackKeyboard" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer" instance=ExtResource( 1 )]
 margin_left = 147.0
 margin_top = 273.0
-margin_right = 342.0
+margin_right = 363.0
 margin_bottom = 301.0
 action = "turn_page_back"
 
 [node name="PageBackController" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer" instance=ExtResource( 1 )]
-margin_left = 346.0
+margin_left = 367.0
 margin_top = 273.0
-margin_right = 541.0
+margin_right = 583.0
 margin_bottom = 301.0
 action = "turn_page_back"
 key_type = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 335.0
-margin_right = 553.0
-margin_bottom = 369.0
+margin_top = 353.0
+margin_right = 595.0
+margin_bottom = 387.0
 
 [node name="CancelButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 274.0
+margin_right = 295.0
 margin_bottom = 34.0
 size_flags_horizontal = 3
-text = "Cancel"
+text = "Back"
 
 [node name="ApplyButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 278.0
-margin_right = 553.0
+margin_left = 299.0
+margin_right = 595.0
 margin_bottom = 34.0
 size_flags_horizontal = 3
 text = "Apply"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CancelConfirm" type="ConfirmationDialog" parent="."]
-margin_left = 220.0
-margin_top = 160.0
-margin_right = 420.0
-margin_bottom = 246.0
-window_title = ""
-dialog_text = "Save changes?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -434,4 +422,3 @@ __meta__ = {
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/ResetControls" to="." method="_on_ResetControls_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_CancelButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/ApplyButton" to="." method="_on_ApplyButton_pressed"]
-[connection signal="confirmed" from="CancelConfirm" to="." method="_on_CancelConfirm_confirmed"]

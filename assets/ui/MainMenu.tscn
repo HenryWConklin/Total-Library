@@ -17,6 +17,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 initial_focus = NodePath("Center/VBoxContainer/StartButton")
+main_buttons = NodePath("Center")
 options_popup = NodePath("OptionsPopup")
 
 [node name="Center" type="CenterContainer" parent="."]
