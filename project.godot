@@ -29,11 +29,6 @@ _global_script_classes=[ {
 "language": "NativeScript",
 "path": "res://native/src/book_util.gdns"
 }, {
-"base": "",
-"class": "GitAPI",
-"language": "NativeScript",
-"path": "res://addons/godot-git-plugin/git_api.gdns"
-}, {
 "base": "Resource",
 "class": "RoomGenParams",
 "language": "NativeScript",
@@ -59,7 +54,6 @@ _global_script_class_icons={
 "BookIndex": "",
 "BookText": "",
 "BookUtil": "",
-"GitAPI": "",
 "RoomGenParams": "",
 "RoomIndex": "",
 "Shelf": "",
@@ -98,7 +92,7 @@ enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
 
 [gdnative]
 
-singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
+singletons=[  ]
 
 [input]
 
