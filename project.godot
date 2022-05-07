@@ -70,6 +70,7 @@ config/icon="res://icon.png"
 
 BookRegistry="*res://scripts/data/BookRegistry.gd"
 Options="*res://scripts/data/Options.gd"
+InputUtil="*res://scripts/InputUtil.gd"
 
 [debug]
 

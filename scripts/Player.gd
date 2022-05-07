@@ -1,6 +1,9 @@
 extends KinematicBody
 
 signal pause_requested
+signal last_input_method_changed(method)
+signal book_targeted(targeted)
+signal book_held(held)
 
 const HeldBook = preload("res://assets/props/HeldBook.gd")
 
@@ -17,6 +20,8 @@ export(NodePath) var held_book_path: NodePath
 export(NodePath) var selection_highlight_path: NodePath
 
 var _mouse_move = Vector2(0, 0)
+var _last_raycast_colliding = false
+var _last_input_type: int = InputUtil.InputType.KEYBOARD
 
 onready var camera: Camera = get_node(camera_path)
 onready var raycast: RayCast = get_node(raycast_path)
@@ -76,6 +81,11 @@ func pick_up_floor_book():
 
 
 func _unhandled_input(event: InputEvent):
+	if event is InputEventMouse or event is InputEventKey:
+		_input_type(InputUtil.InputType.KEYBOARD)
+	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		_input_type(InputUtil.InputType.CONTROLLER)
+
 	# Mouse capture/uncapture
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		var mouse_motion = event.get_relative()
@@ -104,6 +114,7 @@ func _unhandled_input(event: InputEvent):
 		and held_book.can_pick_up_book()
 	):
 		if pick_up_shelf_book():
+			emit_signal("book_held", true)
 			get_tree().set_input_as_handled()
 			return
 	if (
@@ -113,6 +124,7 @@ func _unhandled_input(event: InputEvent):
 		and held_book.can_place_book()
 	):
 		if place_book_on_shelf():
+			emit_signal("book_held", false)
 			get_tree().set_input_as_handled()
 			return
 	if (
@@ -122,10 +134,12 @@ func _unhandled_input(event: InputEvent):
 		and held_book.can_pick_up_book()
 	):
 		if pick_up_floor_book():
+			emit_signal("book_held", true)
 			get_tree().set_input_as_handled()
 			return
 	if event.is_action_pressed("pick_up") and held_book.can_drop_book():
 		held_book.drop_book()
+		emit_signal("book_held", false)
 		get_tree().set_input_as_handled()
 		return
 
@@ -170,6 +184,7 @@ func _handle_movement():
 func _selection_highlight():
 	if not raycast.is_colliding():
 		selection_highlight.hide()
+		_raycast_colliding(false)
 		return
 	if raycast.get_collider() is Area:
 		var book_ind = get_raycast_shelf_book_ind()
@@ -181,17 +196,32 @@ func _selection_highlight():
 			)
 			selection_highlight.show()
 			selection_highlight.global_transform = book_transform_global
+			_raycast_colliding(true)
 			return
 	elif raycast.get_collider() is RigidBody:
 		selection_highlight.show()
 		selection_highlight.global_transform = raycast.get_collider().global_transform
+		_raycast_colliding(true)
 		return
 	selection_highlight.hide()
+	_raycast_colliding(false)
 
 
 func _physics_process(_delta):
 	_handle_movement()
 	_selection_highlight()
+
+
+func _raycast_colliding(val: bool):
+	if val != _last_raycast_colliding:
+		emit_signal("book_targeted", val)
+	_last_raycast_colliding = val
+
+
+func _input_type(val: int):
+	if val != _last_input_type:
+		emit_signal("last_input_method_changed", val)
+	_last_input_type = val
 
 
 func _on_RoomTracker_room_changed(area):

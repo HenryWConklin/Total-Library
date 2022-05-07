@@ -1,15 +1,13 @@
 extends Control
 
-enum Type { KEYBOARD = 0, CONTROLLER = 1 }
-
 export(String) var action
-export(Type) var key_type
+export(InputUtil.InputType) var key_type
 
 var _event
 
 
 func _ready():
-	assert(key_type in Type.values())
+	assert(key_type in InputUtil.InputType.values())
 	assert(InputMap.has_action(action))
 	assert(Options.connect("options_reloaded", self, "_on_options_reloaded") == OK)
 	set_process_unhandled_input(false)
@@ -26,28 +24,7 @@ func reload_event():
 
 
 func _set_button_text():
-	var text = _event.as_text()
-	if _event is InputEventKey:
-		if _event.scancode == 0:
-			text = OS.get_scancode_string(_event.physical_scancode)
-		else:
-			text = OS.get_scancode_string(_event.scancode)
-	elif _event is InputEventMouseButton:
-		match _event.button_index:
-			BUTTON_LEFT:
-				text = "Left mouse"
-			BUTTON_RIGHT:
-				text = "Right mouse"
-			BUTTON_MIDDLE:
-				text = "Middle mouse"
-			# Think mouse 4/5 is the more common name for these
-			BUTTON_XBUTTON1:
-				text = "Mouse 4"
-			BUTTON_XBUTTON2:
-				text = "Mouse 5"
-	elif _event is InputEventJoypadButton:
-		text = Input.get_joy_button_string(_event.button_index)
-	$Button.text = text
+	$Button.text = InputUtil.get_event_string(_event)
 
 
 func _bind_event(event):
@@ -58,9 +35,9 @@ func _bind_event(event):
 
 func _event_type_matches(event) -> bool:
 	match key_type:
-		Type.KEYBOARD:
+		InputUtil.InputType.KEYBOARD:
 			return event is InputEventKey or event is InputEventMouseButton
-		Type.CONTROLLER:
+		InputUtil.InputType.CONTROLLER:
 			return event is InputEventJoypadButton
 		_:
 			assert(false, "Invalid enum type")
