@@ -26,7 +26,7 @@ msaa_options_select = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VB
 fxaa_enabled = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/FXAAEnabled")
 vsync_enabled = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/VSyncEnabled")
 fov_slider = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/VBoxContainer/FOVSlider")
-look_sensitivity_slider = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/LookSensitivitySlider")
+look_sensitivity_slider = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/VBoxContainer2/LookSensitivitySlider")
 input_map_selects = [ NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/ForwardKeyboard"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/LeftKeyboard"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/RightKeyboard"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/BackwardKeyboard"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/PickKeyboard"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/PickController"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/PageForwardKeyboard"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/PageForwardController"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/PageBackKeyboard"), NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/GridContainer/PageBackController") ]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -60,12 +60,12 @@ scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
 margin_right = 583.0
-margin_bottom = 687.0
+margin_bottom = 707.0
 size_flags_horizontal = 3
 
 [node name="Settings" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_right = 583.0
-margin_bottom = 312.0
+margin_bottom = 332.0
 custom_constants/hseparation = 10
 columns = 2
 
@@ -188,16 +188,20 @@ margin_bottom = 28.0
 text = "140"
 
 [node name="LookSensitivity" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings"]
-margin_top = 284.0
+margin_top = 294.0
 margin_right = 176.0
-margin_bottom = 312.0
+margin_bottom = 322.0
 text = "Look Sensitivity"
 
-[node name="LookSensitivitySlider" type="HSlider" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings"]
 margin_left = 186.0
 margin_top = 284.0
 margin_right = 583.0
-margin_bottom = 312.0
+margin_bottom = 332.0
+
+[node name="LookSensitivitySlider" type="HSlider" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/VBoxContainer2"]
+margin_right = 397.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 min_value = 0.1
@@ -208,10 +212,27 @@ scrollable = false
 tick_count = 20
 ticks_on_borders = true
 
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/VBoxContainer2"]
+margin_top = 20.0
+margin_right = 397.0
+margin_bottom = 48.0
+
+[node name="MinSensitivity" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/VBoxContainer2/HBoxContainer"]
+margin_right = 371.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "0.1x"
+
+[node name="MaxSensitivity" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/VBoxContainer2/HBoxContainer"]
+margin_left = 375.0
+margin_right = 397.0
+margin_bottom = 28.0
+text = "2x"
+
 [node name="Controls" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 316.0
+margin_top = 336.0
 margin_right = 583.0
-margin_bottom = 687.0
+margin_bottom = 707.0
 
 [node name="Controls" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls"]
 margin_right = 583.0
@@ -418,7 +439,7 @@ __meta__ = {
 [connection signal="toggled" from="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/FXAAEnabled" to="." method="_on_FXAAEnabled_toggled"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/VSyncEnabled" to="." method="_on_VSyncEnabled_toggled"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/VBoxContainer/FOVSlider" to="." method="_on_FOVSlider_value_changed"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/LookSensitivitySlider" to="." method="_on_LookSensitivitySlider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Settings/VBoxContainer2/LookSensitivitySlider" to="." method="_on_LookSensitivitySlider_value_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Controls/ResetControls" to="." method="_on_ResetControls_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_CancelButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/ApplyButton" to="." method="_on_ApplyButton_pressed"]
