@@ -9,6 +9,11 @@ export(NodePath) var book_mesh_path: NodePath
 export(NodePath) var tween_path: NodePath
 export(NodePath) var display_path: NodePath
 export(NodePath) var room_tracker_path: NodePath
+export(NodePath) var book_open_audio: NodePath
+export(NodePath) var book_close_audio: NodePath
+export(NodePath) var page_turn_audio: NodePath
+export(NodePath) var book_slide_out_audio: NodePath
+export(NodePath) var book_slide_in_audio: NodePath
 export(float) var pull_animation_time: float = 1
 export(float) var pull_animation_shelf_clearence: float = 0.3
 export(PackedScene) var floor_book_scene
@@ -95,6 +100,9 @@ func place_on_shelf(
 ):
 	assert(can_place_book())
 	set_state(State.ANIMATING_PLACE)
+	book_open_animation_player.play_backwards("BookOpen")
+	yield(book_open_animation_player, "animation_finished")
+	get_node(book_close_audio).play()
 	var shelf_to_local_transform = shelf_transform_global
 	_end_transform = shelf_to_local_transform * book_transform_local
 	_mid_transform = (
@@ -102,10 +110,10 @@ func place_on_shelf(
 		* book_transform_local.translated(Vector3.RIGHT * pull_animation_shelf_clearence)
 	)
 	_start_transform = display_node.global_transform
-	book_open_animation_player.play_backwards("BookOpen")
-	yield(book_open_animation_player, "animation_finished")
-
 	_set_animation_progress_place(0)
+	assert(
+		tween.interpolate_callback(get_node(book_slide_in_audio), pull_animation_time / 2.0, "play")
+	)
 	assert(
 		tween.interpolate_method(
 			self,
@@ -118,6 +126,8 @@ func place_on_shelf(
 		)
 	)
 	assert(tween.start())
+	# Yield twice for the two queued tweens
+	yield(tween, "tween_completed")
 	yield(tween, "tween_completed")
 	set_state(State.NONE)
 	var actual_book_ind = BookIndex.new().from_book_text(_book_text)
@@ -153,18 +163,15 @@ func _animate_pick(book_text, book_transform_local: Transform, shelf_transform_g
 	book_material.set_shader_param("title4", int(packed_title.a))
 	_page = 0
 	_update_page_renderers_held()
-
 	var shelf_to_local_transform = shelf_transform_global
 	_start_transform = shelf_to_local_transform * book_transform_local
 	_mid_transform = (
 		shelf_to_local_transform
 		* book_transform_local.translated(Vector3.RIGHT * pull_animation_shelf_clearence)
 	)
-
 	# Reset animation
 	book_open_animation_player.stop()
 	_set_animation_progress_pick(0)
-
 	assert(
 		tween.interpolate_method(
 			self,
@@ -177,8 +184,10 @@ func _animate_pick(book_text, book_transform_local: Transform, shelf_transform_g
 		)
 	)
 	assert(tween.start())
+	get_node(book_slide_out_audio).play()
 	yield(tween, "tween_completed")
 	set_state(State.HELD)
+	get_node(book_open_audio).play()
 	book_open_animation_player.play("BookOpen")
 
 
@@ -186,6 +195,7 @@ func _animate_drop():
 	set_state(State.ANIMATING_DROP)
 	book_open_animation_player.play_backwards("BookOpen")
 	yield(book_open_animation_player, "animation_finished")
+	get_node(book_close_audio).play()
 	set_state(State.NONE)
 	var book = floor_book_scene.instance()
 	book.book_index = BookIndex.new().from_book_text(_book_text)
@@ -242,6 +252,7 @@ func _page_turn(diff: int):
 		_page += diff
 		_update_page_renderers_turn()
 		page_turn_animation_player.play_backwards("PageTurn")
+	get_node(page_turn_audio).play()
 	yield(page_turn_animation_player, "animation_finished")
 	set_state(State.HELD)
 	_update_page_renderers_held()
@@ -289,6 +300,7 @@ func pick_up_floor_book(book):
 	yield(tween, "tween_completed")
 
 	book_open_animation_player.play("BookOpen")
+	get_node(book_open_audio).play()
 	yield(book_open_animation_player, "animation_finished")
 
 	set_state(State.HELD)

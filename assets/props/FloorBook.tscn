@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/blender/book_Cube.mesh" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/materials/book_cover_material.tres" type="Material" id=2]
 [ext_resource path="res://assets/props/FloorBook.gd" type="Script" id=3]
 [ext_resource path="res://scripts/RoomTracker.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sound/impact.ogg" type="AudioStream" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.106, 0.15, 0.025 )
@@ -12,6 +13,9 @@ extents = Vector3( 0.106, 0.15, 0.025 )
 collision_layer = 3
 collision_mask = 3
 script = ExtResource( 3 )
+impact_sound_min_energy = 9.994
+impact_sound_scale = 1.178
+max_db = -19.149
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0028091, 0, 0 )
@@ -24,5 +28,10 @@ mesh = ExtResource( 1 )
 material/0 = ExtResource( 2 )
 
 [node name="RoomTracker" parent="." instance=ExtResource( 4 )]
+
+[node name="Impact" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 5 )
+pitch_scale = 0.86
+bus = "SFX"
 
 [connection signal="room_changed" from="RoomTracker" to="." method="_on_RoomTracker_room_changed"]
