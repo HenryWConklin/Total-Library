@@ -24,6 +24,9 @@ size = Vector2( 200, 200 )
 render_target_v_flip = true
 render_target_clear_mode = 1
 gui_disable_input = true
+shadow_atlas_size = 128
+shadow_atlas_quad_0 = 1
+shadow_atlas_quad_1 = 1
 
 [node name="Camera" type="Camera" parent="Viewport"]
 projection = 2
