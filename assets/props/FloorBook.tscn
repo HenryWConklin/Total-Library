@@ -14,8 +14,8 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource( 3 )
 impact_sound_min_energy = 9.994
-impact_sound_scale = 1.178
-max_db = -19.149
+impact_sound_scale = 2.229
+max_db = -18.149
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0028091, 0, 0 )
