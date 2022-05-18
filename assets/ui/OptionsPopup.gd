@@ -9,6 +9,7 @@ export(NodePath) var fxaa_enabled: NodePath
 export(NodePath) var vsync_enabled: NodePath
 export(NodePath) var fov_slider: NodePath
 export(NodePath) var look_sensitivity_slider: NodePath
+export(NodePath) var sfx_volume_slider: NodePath
 export(Array, NodePath) var input_map_selects: Array
 
 onready var _display_options_select: OptionButton = get_node(display_options_select)
@@ -19,6 +20,7 @@ onready var _fxaa_enabled: CheckBox = get_node(fxaa_enabled)
 onready var _vsync_enabled: CheckBox = get_node(vsync_enabled)
 onready var _fov_slider: HSlider = get_node(fov_slider)
 onready var _look_sensitivity_slider: HSlider = get_node(look_sensitivity_slider)
+onready var _sfx_volume_slider: HSlider = get_node(sfx_volume_slider)
 
 
 func _ready():
@@ -42,6 +44,7 @@ func _reload_options():
 	_vsync_enabled.pressed = Options.get("vsync")
 	_fov_slider.value = Options.get("fov")
 	_look_sensitivity_slider.value = Options.get("look_sensitivity")
+	_sfx_volume_slider.value = Options.get("sfx_volume")
 
 
 func _on_OptionsPopup_visibility_changed():
@@ -95,3 +98,7 @@ func _on_FOVSlider_value_changed(value):
 
 func _on_LookSensitivitySlider_value_changed(value):
 	Options.set("look_sensitivity", value)
+
+
+func _on_SFXVolumeSlider_value_changed(value):
+	Options.set("sfx_volume", value)

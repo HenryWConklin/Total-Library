@@ -38,6 +38,7 @@ const DEFAULT_OPTIONS: Dictionary = {
 	"vsync": true,
 	"fov": 90,
 	"look_sensitivity": 1.0,
+	"sfx_volume": 1.0,
 	"controls": {}
 }
 
@@ -45,6 +46,8 @@ const DEFAULT_OPTIONS: Dictionary = {
 var _applied_options: Dictionary = {}
 # Draft version of options, what is currently being modified by set()/get()
 var _options: Dictionary = {}
+
+onready var _sfx_bus = AudioServer.get_bus_index("SFX")
 
 
 func _ready():
@@ -91,7 +94,8 @@ func apply():
 		emit_signal("shadow_setting_changed", _options["shadows"])
 	if _options["fov"] != _applied_options.get("fov"):
 		emit_signal("fov_setting_changed", _options["fov"])
-	_applied_options = _options.duplicate(true)
+	if _options["sfx_volume"] != _applied_options.get("sfx_volume"):
+		AudioServer.set_bus_volume_db(_sfx_bus, linear2db(_options["sfx_volume"]))
 	for action in _options["controls"].keys():
 		InputMap.action_erase_events(action)
 		for event in _options["controls"][action]:
@@ -101,6 +105,7 @@ func apply():
 	for option in _options.keys():
 		options_file.set_value("options", option, Options.get(option))
 	assert(options_file.save(OPTIONS_PATH) == OK)
+	_applied_options = _options.duplicate(true)
 
 
 func get(option: String):
