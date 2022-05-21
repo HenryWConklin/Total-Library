@@ -13,6 +13,9 @@
 
 [node name="Library" type="Spatial"]
 script = ExtResource( 10 )
+player = NodePath("Rooms/Player")
+player_spawns = NodePath("PlayerSpawns")
+spawn_ind = 5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 4 )
@@ -23,6 +26,26 @@ environment = ExtResource( 4 )
 roomlist = NodePath("../Rooms")
 default_portal_margin = 0.2
 script = ExtResource( 8 )
+
+[node name="PlayerSpawns" type="Spatial" parent="."]
+
+[node name="Spawn1" type="Spatial" parent="PlayerSpawns"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.53021, 0, 0 )
+
+[node name="Spawn2" type="Spatial" parent="PlayerSpawns"]
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -5.99541, 2.38419e-07, -1.43506 )
+
+[node name="Spawn3" type="Spatial" parent="PlayerSpawns"]
+transform = Transform( -0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, -8.13233, 3.57628e-07, -1.95912 )
+
+[node name="Spawn4" type="Spatial" parent="PlayerSpawns"]
+transform = Transform( -0.827522, 0, 0.561434, 0, 1, 0, -0.561434, 0, -0.827522, 4.627, 2.4, -8.107 )
+
+[node name="Spawn5" type="Spatial" parent="PlayerSpawns"]
+transform = Transform( 0.899977, 0, 0.435938, 0, 1, 0, -0.435938, 0, 0.899977, 2.617, 2.4, -7.7 )
+
+[node name="Spawn6" type="Spatial" parent="PlayerSpawns"]
+transform = Transform( -0.328125, 0, -0.944634, 0, 1, 0, 0.944634, 0, -0.328125, 0.984, 2.4, -6.226 )
 
 [node name="Rooms" parent="." instance=ExtResource( 1 )]
 
