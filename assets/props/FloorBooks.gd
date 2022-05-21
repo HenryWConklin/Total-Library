@@ -1,10 +1,15 @@
 extends Spatial
 
-var room_index
+var room_index setget set_room_index
 
 
 func _ready():
 	add_to_group("floor_books")
+
+
+func set_room_index(ind):
+	room_index = ind
+	pull_floor_books()
 
 
 func push_floor_books():

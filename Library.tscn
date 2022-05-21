@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://rooms/genLibraryRooms.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Player.tscn" type="PackedScene" id=2]
@@ -9,8 +9,10 @@
 [ext_resource path="res://assets/ui/InputHints.gd" type="Script" id=7]
 [ext_resource path="res://scripts/OnreadyRoomManager.gd" type="Script" id=8]
 [ext_resource path="res://assets/ui/libraryTheme.theme" type="Theme" id=9]
+[ext_resource path="res://Library.gd" type="Script" id=10]
 
 [node name="Library" type="Spatial"]
+script = ExtResource( 10 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 4 )

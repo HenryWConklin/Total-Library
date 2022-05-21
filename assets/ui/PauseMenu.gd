@@ -19,6 +19,7 @@ func _on_OptionButton_pressed():
 
 
 func _on_QuitButton_pressed():
+	BookRegistry.save()
 	get_tree().quit()
 
 

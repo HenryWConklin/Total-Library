@@ -24,3 +24,11 @@ func shelf_index() -> ShelfIndex:
 
 func to_key() -> PoolIntArray:
 	return PoolIntArray([room.x, room.y, room.z, shelf, book])
+
+
+func from_key(key: PoolIntArray):
+	room.x = key[0]
+	room.y = key[1]
+	room.z = key[2]
+	shelf = key[3]
+	book = key[4]

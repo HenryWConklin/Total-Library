@@ -3,12 +3,13 @@ extends Node
 const LRUCache = preload("res://scripts/data/LRUCache.gd")
 
 const PARAMS = preload("res://scripts/data/room_gen_params.res")
+const FLOOR_BOOK = preload("res://assets/props/FloorBook.tscn")
 const LOWER_REAL_ROOMS = [PoolIntArray([1, 0, 0]), PoolIntArray([-1, 0, 0])]
 const UPPER_REAL_ROOMS = [PoolIntArray([0, 1, 1]), PoolIntArray([0, -1, 1])]
+const SAVE_PATH = "user://save.data"
 
 var real_shelf_rooms = LOWER_REAL_ROOMS
 var book_util: BookUtil = BookUtil.new()
-var total_shelf_time = 0
 # Cache of shelf multimeshes, map from ShelfIndex -> MultiMesh
 var shelf_cache = LRUCache.new(500)
 # Dict of ShelfIndex -> (index -> Optional[BookIndex])
@@ -16,18 +17,24 @@ var shelf_diff = {}
 var floor_books = {}
 var room_offset: RoomIndex = RoomIndex.new()
 var placeholder_shelf: MultiMesh
+var origin_seed: int
 
 onready var book_shape = PARAMS.book_mesh.get_aabb()
 
 
 func _init():
 	book_util.room_gen_params = PARAMS
-	book_util.randomize_origin(123)
+	placeholder_shelf = book_util.make_shelf_multimesh(0, 0, 0, 0)
+
+
+# Should be called in the main scene _init, avoid loading saves in unit tests
+func load_data():
+	_load()
 	placeholder_shelf = book_util.make_shelf_multimesh(0, 0, 0, 0)
 
 
 func add_room_offset(off: Vector3):
-	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "floor_books", "push_floor_books")
+	_push_floor_books()
 	room_offset.x += int(off.x)
 	room_offset.y += int(off.y)
 	room_offset.z += int(off.z)
@@ -35,6 +42,14 @@ func add_room_offset(off: Vector3):
 		real_shelf_rooms = LOWER_REAL_ROOMS
 	elif off.z < 0:
 		real_shelf_rooms = UPPER_REAL_ROOMS
+	_refresh_rooms()
+
+
+func _push_floor_books():
+	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "floor_books", "push_floor_books")
+
+
+func _refresh_rooms():
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "floor_books", "pull_floor_books")
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "shelves", "regenerate_multimesh")
 
@@ -293,3 +308,62 @@ func _apply_diff(ind: ShelfIndex, mesh: MultiMesh):
 				replacement.book
 			)
 			mesh.set_instance_color(i, title_color)
+
+
+func save():
+	var data = {}
+	data["origin_seed"] = origin_seed
+	data["offset"] = room_offset.to_key()
+	data["shelf_diffs"] = shelf_diff
+	_push_floor_books()
+	var saved_floor_books = {}
+	for room in floor_books.keys():
+		var books = []
+		for book in floor_books[room]:
+			var book_state = {
+				"transform": book.transform,
+				"angular_velocity": book.angular_velocity,
+				"linear_velocity": book.linear_velocity,
+				"title": book.title,
+				"book_index": book.book_index.to_key()
+			}
+			books.append(book_state)
+		saved_floor_books[room] = books
+	data["floor_books"] = saved_floor_books
+
+	var file = File.new()
+	file.open_compressed(SAVE_PATH, File.WRITE, File.COMPRESSION_GZIP)
+	file.store_var(data)
+	file.close()
+
+
+func _load():
+	var file = File.new()
+	if !file.file_exists(SAVE_PATH):
+		var rng = RandomNumberGenerator.new()
+		rng.randomize()
+		origin_seed = rng.seed
+		book_util.randomize_origin(origin_seed)
+		return
+	file.open_compressed(SAVE_PATH, File.READ, File.COMPRESSION_GZIP)
+	var data = file.get_var()
+	file.close()
+	assert(data != null)
+	book_util.randomize_origin(data["origin_seed"])
+	room_offset.from_key(data["offset"])
+	shelf_diff = data["shelf_diffs"]
+	floor_books = {}
+	var saved_floor_books = data["floor_books"]
+	for room in saved_floor_books.keys():
+		var books = []
+		for saved_book in saved_floor_books[room]:
+			var book = FLOOR_BOOK.instance()
+			book.transform = saved_book["transform"]
+			book.linear_velocity = saved_book["linear_velocity"]
+			book.angular_velocity = saved_book["angular_velocity"]
+			book.title = saved_book["title"]
+			var ind = BookIndex.new()
+			ind.from_key(saved_book["book_index"])
+			book.book_index = ind
+			books.append(book)
+		floor_books[room] = books
