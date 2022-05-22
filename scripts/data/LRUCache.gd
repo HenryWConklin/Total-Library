@@ -1,5 +1,8 @@
 extends Reference
 
+# Least Recently Used cache, works like a map with limited capacity, if full it deletes the least
+# recently accessed element.
+
 var _capacity: int
 var _values: Dictionary = {}
 var _tail: WeakRef = null

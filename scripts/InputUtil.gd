@@ -1,5 +1,7 @@
 extends Node
 
+# AutoLoad for common utility functions related to input
+
 enum InputType { KEYBOARD = 0, CONTROLLER = 1 }
 
 

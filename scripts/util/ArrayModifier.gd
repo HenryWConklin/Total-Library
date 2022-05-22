@@ -2,6 +2,9 @@ tool
 class_name ArrayModifier
 extends Spatial
 
+# Unused tool script, similar to the array modifier in Blender. Duplicates a given scene several times
+# applying the given transform with each iteration.
+
 export(PackedScene) var scene: PackedScene setget set_scene
 export(Transform) var offset: Transform = Transform.IDENTITY setget set_offset
 export(int, 1, 10) var count: int = 1 setget set_count

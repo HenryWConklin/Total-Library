@@ -1,28 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Node
-
-export(String) var output_path: String
-export(String) var target_string: String
-
-func _ready():
-	var ind = BookRegistry.book_util.find_text(target_string)
-	BookRegistry.book_util.origin = ind
-	var index = ShelfIndex.new()
-	index.room.x = -1
-	for i in range(4):
-		print(i)
-		index.shelf = i
-		var shelf = BookRegistry.get_shelf(index)
-		var name = ShelfIndex.Side.keys()[i]
-		assert(ResourceSaver.save(output_path + name + \".res\", shelf) == OK)
-	get_tree().quit()
-
-
-"
+[ext_resource path="res://scripts/util/FindTextShelves.gd" type="Script" id=1]
 
 [node name="Node" type="Node"]
-script = SubResource( 1 )
+script = ExtResource( 1 )
 output_path = "res://assets/ui/background_shelves/"
 target_string = "TOTAL LIBRARY"

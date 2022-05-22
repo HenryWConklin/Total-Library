@@ -1,5 +1,7 @@
 extends KinematicBody
 
+# Handles input, player movement.
+
 signal pause_requested
 signal last_input_method_changed(method)
 signal book_targeted(targeted)

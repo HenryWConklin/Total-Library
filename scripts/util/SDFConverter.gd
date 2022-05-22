@@ -1,5 +1,7 @@
 extends Control
 
+# Renders a set of characters from a font as a Signed Distance Field (SDF) for sharper rendering.
+
 export(String) var charset: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ,.'?!"
 export(DynamicFont) var source_font: DynamicFont
 export(int) var glyph_sdf_height: int = 64

@@ -1,5 +1,7 @@
 extends Spatial
 
+# Logic for a vestibule room with just a staircase.
+
 export(Resource) var room_index
 export(NodePath) var upper_room_area
 export(NodePath) var lower_room_area

@@ -1,5 +1,7 @@
 extends Spatial
 
+# Logic for a room with bookshelves in it.
+
 export(Resource) var room_index
 export(Array, NodePath) var top_shelves
 export(Array, NodePath) var bottom_shelves

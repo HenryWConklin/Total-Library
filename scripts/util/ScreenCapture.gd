@@ -1,5 +1,7 @@
 extends Node
 
+# Records a sequence of screenshots.
+
 export(String, DIR) var base_path
 
 var recording = false

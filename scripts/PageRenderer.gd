@@ -1,5 +1,7 @@
 extends Viewport
 
+# Renders a page of text to a viewport for use as a texture.
+
 export(NodePath) var label_path: NodePath
 
 var chars_per_line

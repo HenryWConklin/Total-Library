@@ -1,5 +1,10 @@
 extends GridMap
 
+# A GridMap used to manually fill in visible rooms, and automatically convert them to the
+# representation needed in the game. Adds lights in the appropriate spots, wraps
+# things in Rooms for use with the Portal culling system, and sets all the appropriate
+# indexes for use with BookRegistry. Not used at runtime, run to regenerate the scene.
+
 export(PackedScene) var light_scene: PackedScene
 # Index of the gallery tile in the source gridmap
 export(int) var gallery_index: int = 0
