@@ -1,5 +1,8 @@
 extends Node
 
+# Manages all game state and provides a wrapper around a BookUtil. Also manages various
+# optimizations around caching and deciding which shelves to update. Set up as an AutoLoad.
+
 const LRUCache = preload("res://scripts/data/LRUCache.gd")
 
 const PARAMS = preload("res://scripts/data/room_gen_params.res")
@@ -8,15 +11,28 @@ const LOWER_REAL_ROOMS = [PoolIntArray([1, 0, 0]), PoolIntArray([-1, 0, 0])]
 const UPPER_REAL_ROOMS = [PoolIntArray([0, 1, 1]), PoolIntArray([0, -1, 1])]
 const SAVE_PATH = "user://save.data"
 
+# Dicts below use PoolIntArrays as keys since the Book/Shelf/RoomIndex objects would be compared by
+# reference equality. PoolIntArrays are compared by value.
+
+# List of non-offset rooms that are currently being updated with non-placeholder shelves.
+# Updated when the player goes up/down stairs to match the set of shelves they can see.
 var real_shelf_rooms = LOWER_REAL_ROOMS
+# NativeScript object that implements all the expensive computations, see native/src/book_util.cpp
 var book_util: BookUtil = BookUtil.new()
 # Cache of shelf multimeshes, map from ShelfIndex -> MultiMesh
 var shelf_cache = LRUCache.new(500)
-# Dict of ShelfIndex -> (index -> Optional[BookIndex])
+# Dict of ShelfIndex -> (int -> Optional[BookIndex]). For each shelf, the books that have been
+# changed, with null if removed, or a BookIndex if a different book has been placed into a slot
 var shelf_diff = {}
+# Dict of RoomIndex -> [FloorBook instance], refs to the rigid body books in each room
 var floor_books = {}
+# Offset from the static indexes stored on each room to what is displayed in them. Updated
+# whenever the player moves between rooms and is teleported back.
 var room_offset: RoomIndex = RoomIndex.new()
+# An arbitrary fixed shelf for use on shelves that are too far away to be legible.
 var placeholder_shelf: MultiMesh
+# Seed fed to book_util.randomize_origin to generate the full origin index. Takes less space to
+# save than the full origin (4B vs 20KB)
 var origin_seed: int
 
 onready var book_shape = PARAMS.book_mesh.get_aabb()
@@ -24,6 +40,7 @@ onready var book_shape = PARAMS.book_mesh.get_aabb()
 
 func _init():
 	book_util.room_gen_params = PARAMS
+	# Use an arbitrary shelf as the placeholder
 	placeholder_shelf = book_util.make_shelf_multimesh(0, 0, 0, 0)
 
 
@@ -35,12 +52,6 @@ func _notification(what):
 				for b in books:
 					b.free()
 			floor_books.clear()
-
-
-# Should be called in the main scene _init, avoid loading saves in unit tests
-func load_data():
-	_load()
-	placeholder_shelf = book_util.make_shelf_multimesh(0, 0, 0, 0)
 
 
 func add_room_offset(off: Vector3):
@@ -64,6 +75,7 @@ func _refresh_rooms():
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "shelves", "regenerate_multimesh")
 
 
+# Computes an AABB for a shelf MultiMesh, MultiMeshInstances need their AABB set manually for culling.
 func get_shelf_aabb() -> AABB:
 	var book_size = book_shape.size
 	var size = Vector3(
@@ -97,6 +109,7 @@ func get_book_index_at_point(ind: ShelfIndex, local_pos: Vector3) -> BookIndex:
 	return book_ind
 
 
+# Updates the visible shelves when player moves up/down stairs. Call when player moves between rooms.
 func set_player_position(ind: RoomIndex):
 	var update_shelves = false
 	if ind.z == 1 and real_shelf_rooms == LOWER_REAL_ROOMS:
@@ -276,6 +289,8 @@ func get_page(book, page: int) -> String:
 	return book_util.get_page(book, page)
 
 
+# Get a Transform relative to the shelf for the book at the given index.
+# Used to highlight selections and to animate pulling books off the shelf.
 func get_book_transform(book: int) -> Transform:
 	var shelf_ind = floor(book / PARAMS.books_per_shelf)
 	var book_stride = PARAMS.book_spacing + book_shape.size.z
@@ -347,7 +362,7 @@ func save():
 	file.close()
 
 
-func _load():
+func load_data():
 	var file = File.new()
 	if !file.file_exists(SAVE_PATH):
 		var rng = RandomNumberGenerator.new()
