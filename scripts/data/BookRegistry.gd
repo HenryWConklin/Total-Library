@@ -339,7 +339,14 @@ func save():
 	var data = {}
 	data["origin_seed"] = origin_seed
 	data["offset"] = room_offset.to_key()
-	data["shelf_diffs"] = shelf_diff
+	data["shelf_diffs"] = shelf_diff.duplicate(true)
+	# store_var doesn't actually save Resources, just their object ID, convert to PoolIntArray.
+	for shelf_ind in data["shelf_diffs"].keys():
+		var diff = data["shelf_diffs"][shelf_ind]
+		for book_ind in diff.keys():
+			var val = diff[book_ind]
+			if val != null:
+				diff[book_ind] = val.to_key()
 	_push_floor_books()
 	var saved_floor_books = {}
 	for room in floor_books.keys():
@@ -377,6 +384,15 @@ func load_data():
 	book_util.randomize_origin(data["origin_seed"])
 	room_offset.from_key(data["offset"])
 	shelf_diff = data["shelf_diffs"]
+	# Convert PoolIntArray keys back to BookIndex
+	for shelf_ind in shelf_diff.keys():
+		var diff = shelf_diff[shelf_ind]
+		for book_ind in shelf_diff[shelf_ind].keys():
+			var val = diff[book_ind]
+			if val != null:
+				var ind = BookIndex.new()
+				ind.from_key(val)
+				diff[book_ind] = ind
 	floor_books = {}
 	var saved_floor_books = data["floor_books"]
 	for room in saved_floor_books.keys():
