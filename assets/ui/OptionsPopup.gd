@@ -1,5 +1,7 @@
 extends Control
 
+# Logic for all the options UI elements
+
 export(NodePath) var initial_focus: NodePath
 export(NodePath) var display_options_select: NodePath
 export(NodePath) var resolution_options_select: NodePath

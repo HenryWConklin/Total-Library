@@ -1,5 +1,8 @@
 extends Label
 
+# A label that displays hints about what buttons to press based on signals from scripts/Player.gd.
+# Configured in Library.tscn
+
 var _targeted: bool = false
 var _held: bool = false
 var _input_method: int = InputUtil.InputType.KEYBOARD

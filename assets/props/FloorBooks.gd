@@ -1,5 +1,7 @@
 extends Spatial
 
+# A parent node for all the FloorBooks in a given room, manages updates triggered by BookRegistry
+
 var room_index setget set_room_index
 
 

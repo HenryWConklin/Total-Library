@@ -1,5 +1,7 @@
 extends Control
 
+# Logic for the pause menu buttons
+
 export(NodePath) var initial_focus: NodePath
 export(NodePath) var main_buttons: NodePath
 export(NodePath) var options_popup: NodePath

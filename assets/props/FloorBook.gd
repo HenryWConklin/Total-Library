@@ -1,5 +1,7 @@
 extends RigidBody
 
+# A book that has been dropped by the player.
+
 export(float, 0, 100) var impact_sound_min_energy: float = 0
 export(float, 0, 10) var impact_sound_scale: float = 1
 export(float, -60, 0) var max_db: float = 0

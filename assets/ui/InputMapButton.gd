@@ -1,5 +1,8 @@
 extends Control
 
+# A button that handles remapping a single event for an action. Handles either the keyboard/mouse or
+# gamepad input event.
+
 export(String) var action
 export(InputUtil.InputType) var key_type
 

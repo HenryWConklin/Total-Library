@@ -1,5 +1,8 @@
 extends Spatial
 
+# A book held by the player, manages animations picking and placing on the shelf, dropping the book,
+# rendering internal pages, animating page turns, audio effects from various actions.
+
 enum State { NONE, ANIMATING_PICK, HELD, ANIMATING_DROP, ANIMATING_TURN, ANIMATING_PLACE }
 
 export(NodePath) var book_open_animation_player_path: NodePath

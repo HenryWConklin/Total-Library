@@ -1,6 +1,8 @@
 class_name Shelf
 extends MultiMeshInstance
 
+# A shelf with books on it. Handles updates triggered by BookRegistry.
+
 export(NodePath) var collision_shape: NodePath
 export(Resource) var shelf_index setget set_shelf_index
 
@@ -28,6 +30,7 @@ func regenerate_multimesh():
 
 
 func _on_shadow_setting_changed(val):
+	# If greater than "Static Only". See scripts/data/Options.gd
 	if val > 1:
 		self.cast_shadow = GeometryInstance.SHADOW_CASTING_SETTING_ON
 	else:

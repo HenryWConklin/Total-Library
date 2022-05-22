@@ -1,5 +1,7 @@
 extends Control
 
+# Logic for the main menu buttons
+
 signal start_game
 
 export(NodePath) var initial_focus: NodePath
