@@ -1,7 +1,7 @@
 extends Node
 
 # Saves various options. Tracks an "applied" and "draft" version of all options,
-# setting an option has no effect until "apply()" is called.
+# setting an option has no effect until "apply()" is called. Set up as an AutoLoad.
 
 signal options_reloaded
 signal shadow_setting_changed(val)
@@ -26,7 +26,7 @@ const RESOLUTION_CHOICES: Array = [
 	Vector2(800, 600),
 	Vector2(640, 480)
 ]
-# Needs to match the Viewport.MSAA_ constants
+# Needs to match the Viewport.MSAA_* constants
 const MSAA_CHOICES: Array = ["Off", "2x", "4x", "8x", "16x"]
 const OPTIONS_PATH: String = "user://options.cfg"
 const DEFAULT_OPTIONS: Dictionary = {
@@ -54,18 +54,6 @@ func _ready():
 	assert(get_viewport().connect("size_changed", self, "_on_viewport_size_changed") == OK)
 	_load()
 	apply()
-
-
-func _load():
-	var options_file = ConfigFile.new()
-	_options = DEFAULT_OPTIONS.duplicate(true)
-	if options_file.load(OPTIONS_PATH) == OK:
-		for option in DEFAULT_OPTIONS.keys():
-			if options_file.has_section_key("options", option):
-				_options[option] = options_file.get_value("options", option)
-
-	if not _options["resolution"] in RESOLUTION_CHOICES:
-		RESOLUTION_CHOICES.append(_options["resolution"])
 
 
 func reload():
@@ -101,11 +89,8 @@ func apply():
 		for event in _options["controls"][action]:
 			InputMap.action_add_event(action, event)
 
-	var options_file = ConfigFile.new()
-	for option in _options.keys():
-		options_file.set_value("options", option, Options.get(option))
-	assert(options_file.save(OPTIONS_PATH) == OK)
 	_applied_options = _options.duplicate(true)
+	_save()
 
 
 func get(option: String):
@@ -136,6 +121,27 @@ func get_action_events(action: String) -> Array:
 		return InputMap.get_action_list(action)
 
 
+# When switching to fullscreen resolution settings get overidden. Wait for the resize signal
+# from going fullscreen, then set the resolution again.
 func _on_viewport_size_changed():
 	if OS.window_fullscreen:
 		get_viewport().set_size(_options["resolution"])
+
+
+func _load():
+	var options_file = ConfigFile.new()
+	_options = DEFAULT_OPTIONS.duplicate(true)
+	if options_file.load(OPTIONS_PATH) == OK:
+		for option in DEFAULT_OPTIONS.keys():
+			if options_file.has_section_key("options", option):
+				_options[option] = options_file.get_value("options", option)
+
+	if not _options["resolution"] in RESOLUTION_CHOICES:
+		RESOLUTION_CHOICES.append(_options["resolution"])
+
+
+func _save():
+	var options_file = ConfigFile.new()
+	for option in _options.keys():
+		options_file.set_value("options", option, Options.get(option))
+	assert(options_file.save(OPTIONS_PATH) == OK)
