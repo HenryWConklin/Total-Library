@@ -87,8 +87,8 @@ func get_shelf_aabb() -> AABB:
 	return AABB(position, size)
 
 
-# Removes and returns a BookText for the book under the given position on the given shelf,
-# or null if the point is not over a book (e.g. empty slot or not a slot)
+# Returns a BookIndex for the book slot under the given position on the bounding box for a shelf,
+# or null if the position is invalid.
 func get_book_index_at_point(ind: ShelfIndex, local_pos: Vector3) -> BookIndex:
 	if fposmod(local_pos.y, PARAMS.shelf_spacing) > book_shape.size.y:
 		return null

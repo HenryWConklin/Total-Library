@@ -59,7 +59,7 @@ func pick_up_shelf_book() -> bool:
 		return false
 	var book_text = BookRegistry.get_book_text(actual_book_ind)
 
-	var book_transform_local = BookRegistry.get_book_transform(book_text.book)
+	var book_transform_local = BookRegistry.get_book_transform(pos_book_ind.book)
 
 	held_book.pull_from_shelf(
 		book_text, book_transform_local, raycast.get_collider().global_transform
