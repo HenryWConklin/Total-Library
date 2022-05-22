@@ -27,6 +27,16 @@ func _init():
 	placeholder_shelf = book_util.make_shelf_multimesh(0, 0, 0, 0)
 
 
+func _notification(what):
+	match what:
+		NOTIFICATION_PREDELETE:
+			# Floor books holds a bunch of orphan nodes, free them manually
+			for books in floor_books.values():
+				for b in books:
+					b.free()
+			floor_books.clear()
+
+
 # Should be called in the main scene _init, avoid loading saves in unit tests
 func load_data():
 	_load()
