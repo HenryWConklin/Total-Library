@@ -13,10 +13,10 @@ var _last_angular_vel: Vector3
 
 func _ready():
 	var material = $MeshInstance.get_active_material(0).duplicate()
-	material.set_shader_param("packed_title1", int(title.r))
-	material.set_shader_param("packed_title2", int(title.g))
-	material.set_shader_param("packed_title3", int(title.b))
-	material.set_shader_param("packed_title4", int(title.a))
+	material.set_shader_param("title1", int(title.r))
+	material.set_shader_param("title2", int(title.g))
+	material.set_shader_param("title3", int(title.b))
+	material.set_shader_param("title4", int(title.a))
 	material.set_shader_param("use_packed_title", true)
 	$MeshInstance.set_surface_material(0, material)
 	assert(Options.connect("shadow_setting_changed", self, "_on_shadow_setting_changed") == OK)

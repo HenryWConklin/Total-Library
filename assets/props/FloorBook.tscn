@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/blender/book_Cube.mesh" type="ArrayMesh" id=1]
-[ext_resource path="res://assets/materials/book_cover_material.tres" type="Material" id=2]
+[ext_resource path="res://assets/materials/book_material.tres" type="Material" id=2]
 [ext_resource path="res://assets/props/FloorBook.gd" type="Script" id=3]
 [ext_resource path="res://scripts/RoomTracker.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/sound/impact.ogg" type="AudioStream" id=5]

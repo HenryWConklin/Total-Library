@@ -42,6 +42,8 @@ func _ready():
 	self.state = State.NONE
 	book_material.set_shader_param("page1_text_texture", get_node(page_renderers[0]).get_texture())
 	book_material.set_shader_param("page2_text_texture", get_node(page_renderers[1]).get_texture())
+	book_material.set_shader_param("render_page_text", true)
+	book_material.set_shader_param("use_packed_title", true)
 	var page_material = page_mesh.get_active_material(0)
 	page_material.set_shader_param("back_page", get_node(page_renderers[2]).get_texture())
 	page_material.set_shader_param("front_page", get_node(page_renderers[3]).get_texture())

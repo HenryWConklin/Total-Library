@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/blender/animated_book.glb" type="PackedScene" id=1]
 [ext_resource path="res://assets/props/HeldBook.gd" type="Script" id=2]
-[ext_resource path="res://assets/materials/held_book_material.tres" type="Material" id=3]
+[ext_resource path="res://assets/materials/book_material.tres" type="Material" id=3]
 [ext_resource path="res://assets/props/FloorBook.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/PageRenderer.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/materials/shaders/page_turn.gdshader" type="Shader" id=6]
