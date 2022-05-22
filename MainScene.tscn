@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/ui/MainMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MainScene.gd" type="Script" id=2]
 [ext_resource path="res://Library.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sound/room_tone.ogg" type="AudioStream" id=4]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -91,5 +92,11 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
 anims/SceneTransition = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -20.17
+autoplay = true
+bus = "SFX"
 
 [connection signal="start_game" from="MainMenu" to="." method="_on_MainMenu_start_game"]
