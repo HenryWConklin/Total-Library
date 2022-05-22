@@ -14,5 +14,4 @@ func _ready():
 	rng.randomize()
 	var spawns = get_node(player_spawns).get_children()
 	var ind = rng.randi_range(0, len(spawns) - 1)
-	print(ind)
 	get_node(player).transform = spawns[ind].transform

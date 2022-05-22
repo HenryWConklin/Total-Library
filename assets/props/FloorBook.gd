@@ -44,7 +44,6 @@ func _on_RoomTracker_room_changed(area):
 
 
 func _switch_parent(new_parent):
-	print(get_parent().room_index.to_key(), " -> ", new_parent.room_index.to_key())
 	var transform = self.global_transform
 	self.get_parent().remove_child(self)
 	new_parent.add_child(self)
