@@ -29,6 +29,10 @@ onready var held_book: HeldBook = get_node(held_book_path)
 onready var selection_highlight: MeshInstance = get_node(selection_highlight_path)
 
 
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
 func teleport(offset: Vector3):
 	global_translate(offset)
 	held_book.teleport(offset)
