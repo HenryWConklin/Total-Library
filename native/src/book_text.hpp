@@ -5,6 +5,10 @@
 #include <Reference.hpp>
 #include <boost/multiprecision/cpp_int.hpp>
 
+/**
+ * Holds a relative index for a book, and the full contents
+ * of the book as a cpp_int. Use BookUtil to convert to text.
+ */
 class BookText : public godot::Reference {
   GODOT_CLASS(BookText, godot::Reference)
 
