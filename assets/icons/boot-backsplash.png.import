@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon32.png-bb49252428ae47d6dccd64474c23761d.stex"
+path="res://.import/boot-backsplash.png-6dc0cf9ad8ed28af034c6631c7faa2c6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon32.png"
-dest_files=[ "res://.import/icon32.png-bb49252428ae47d6dccd64474c23761d.stex" ]
+source_file="res://assets/icons/boot-backsplash.png"
+dest_files=[ "res://.import/boot-backsplash.png-6dc0cf9ad8ed28af034c6631c7faa2c6.stex" ]
 
 [params]
 

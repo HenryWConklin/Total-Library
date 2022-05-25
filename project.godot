@@ -62,9 +62,10 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Library Of Babel"
+config/name="Total Library"
 run/main_scene="res://MainScene.tscn"
-config/icon="res://icon.png"
+boot_splash/image="res://assets/icons/boot-backsplash.png"
+config/icon="res://assets/icons/total-library-icon64.png"
 
 [autoload]
 
