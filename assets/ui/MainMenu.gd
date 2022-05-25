@@ -29,3 +29,7 @@ func _on_OptionsPopup_visibility_changed():
 	get_node(main_buttons).visible = !get_node(options_popup).visible
 	if not get_node(options_popup).visible:
 		get_node(initial_focus).grab_focus()
+
+
+func _on_GodotLinkButton_pressed():
+	assert(OS.shell_open("https://godotengine.org") == OK)
