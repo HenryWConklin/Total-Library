@@ -2,6 +2,7 @@
 A replica of the library from Jorge Luis Borges' story *The Library of Babel*. Every single book in one massive library, all crammed into a 20MB download. No render distance limit, gaze off into infinity. Everything is generated in real-time.
 
 Minimum specs:
+* Resolution = 720p
 * Computer = yes
 
 (If things are slow, turn off shadows)
