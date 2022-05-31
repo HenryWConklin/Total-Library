@@ -17,5 +17,6 @@ func _ready():
 		index.shelf = i
 		var shelf = BookRegistry.get_shelf(index)
 		var name = ShelfIndex.Side.keys()[i]
-		assert(ResourceSaver.save(output_path + name + ".res", shelf) == OK)
+		var err = ResourceSaver.save(output_path + name + ".res", shelf)
+		assert(err == OK)
 	get_tree().quit()

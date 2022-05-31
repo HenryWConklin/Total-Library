@@ -131,4 +131,5 @@ func _make_portal(points: PoolVector2Array, parent: Spatial) -> Portal:
 func _export_rooms():
 	var exported_scene = PackedScene.new()
 	exported_scene.pack(_export_root)
-	assert(ResourceSaver.save(export_path, exported_scene) == OK)
+	var err = ResourceSaver.save(export_path, exported_scene)
+	assert(err == OK)

@@ -10,5 +10,6 @@ export(String, FILE) var dest
 func _ready():
 	var params = load(source)
 	params.parameter_search()
-	assert(ResourceSaver.save(dest, params) == OK)
+	var err = ResourceSaver.save(dest, params)
+	assert(err == OK)
 	get_tree().quit()

@@ -21,7 +21,8 @@ func _ready():
 	material.set_shader_param("title4", int(title.a))
 	material.set_shader_param("use_packed_title", true)
 	$MeshInstance.set_surface_material(0, material)
-	assert(Options.connect("shadow_setting_changed", self, "_on_shadow_setting_changed") == OK)
+	var err = Options.connect("shadow_setting_changed", self, "_on_shadow_setting_changed")
+	assert(err == OK)
 	_on_shadow_setting_changed(Options.get("shadows"))
 
 

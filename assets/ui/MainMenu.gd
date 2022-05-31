@@ -32,4 +32,5 @@ func _on_OptionsPopup_visibility_changed():
 
 
 func _on_GodotLinkButton_pressed():
-	assert(OS.shell_open("https://godotengine.org") == OK)
+	var err = OS.shell_open("https://godotengine.org")
+	assert(err == OK)

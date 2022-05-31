@@ -12,7 +12,8 @@ var _event
 func _ready():
 	assert(key_type in InputUtil.InputType.values())
 	assert(InputMap.has_action(action))
-	assert(Options.connect("options_reloaded", self, "_on_options_reloaded") == OK)
+	var err = Options.connect("options_reloaded", self, "_on_options_reloaded")
+	assert(err == OK)
 	set_process_unhandled_input(false)
 	reload_event()
 

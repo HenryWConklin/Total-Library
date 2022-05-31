@@ -8,7 +8,8 @@ export(Vector3) var room_offset: Vector3 = Vector3.ZERO
 
 
 func _ready():
-	assert(connect("body_entered", self, "_teleport") == OK)
+	var err = connect("body_entered", self, "_teleport")
+	assert(err == OK)
 
 
 func _teleport(body: Spatial):

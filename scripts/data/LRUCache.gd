@@ -61,7 +61,8 @@ func remove(key):
 		_tail = removed.prev
 	if removed.key == _head.get_ref().key:
 		_head = removed.next
-	assert(_values.erase(key))
+	var erased = _values.erase(key)
+	assert(erased)
 	return removed.value
 
 

@@ -52,7 +52,8 @@ func _ready():
 	page_material.set_shader_param("front_page", get_node(page_renderers[3]).get_texture())
 	for renderer in page_renderers:
 		_page_renderer_nodes.append(get_node(renderer))
-	assert(Options.connect("shadow_setting_changed", self, "_on_shadow_setting_changed") == OK)
+	var err = Options.connect("shadow_setting_changed", self, "_on_shadow_setting_changed")
+	assert(err == OK)
 	_on_shadow_setting_changed(Options.get("shadows"))
 
 
@@ -116,27 +117,29 @@ func place_on_shelf(
 	)
 	_start_transform = display_node.global_transform
 	_set_animation_progress_place(0)
-	assert(
-		tween.interpolate_callback(get_node(book_slide_in_audio), pull_animation_time / 2.0, "play")
+	var succeeded = tween.interpolate_callback(
+		get_node(book_slide_in_audio), pull_animation_time / 2.0, "play"
 	)
-	assert(
-		tween.interpolate_method(
-			self,
-			"_set_animation_progress_place",
-			0,
-			1,
-			pull_animation_time,
-			Tween.TRANS_QUAD,
-			Tween.EASE_IN_OUT
-		)
+	assert(succeeded)
+	succeeded = tween.interpolate_method(
+		self,
+		"_set_animation_progress_place",
+		0,
+		1,
+		pull_animation_time,
+		Tween.TRANS_QUAD,
+		Tween.EASE_IN_OUT
 	)
-	assert(tween.start())
+	assert(succeeded)
+	succeeded = tween.start()
+	assert(succeeded)
 	# Yield twice for the two queued tweens
 	yield(tween, "tween_completed")
 	yield(tween, "tween_completed")
 	set_state(State.NONE)
 	var actual_book_ind = BookIndex.new().from_book_text(_book_text)
-	assert(BookRegistry.place_book_at(pos_book_ind, actual_book_ind))
+	succeeded = BookRegistry.place_book_at(pos_book_ind, actual_book_ind)
+	assert(succeeded)
 
 
 func _set_animation_progress_place(p: float):
@@ -177,18 +180,18 @@ func _animate_pick(book_text, book_transform_local: Transform, shelf_transform_g
 	# Reset animation
 	book_open_animation_player.stop()
 	_set_animation_progress_pick(0)
-	assert(
-		tween.interpolate_method(
-			self,
-			"_set_animation_progress_pick",
-			0,
-			1,
-			pull_animation_time,
-			Tween.TRANS_QUAD,
-			Tween.EASE_IN_OUT
-		)
+	var succeeded = tween.interpolate_method(
+		self,
+		"_set_animation_progress_pick",
+		0,
+		1,
+		pull_animation_time,
+		Tween.TRANS_QUAD,
+		Tween.EASE_IN_OUT
 	)
-	assert(tween.start())
+	assert(succeeded)
+	succeeded = tween.start()
+	assert(succeeded)
 	get_node(book_slide_out_audio).play()
 	yield(tween, "tween_completed")
 	set_state(State.HELD)
@@ -290,18 +293,18 @@ func pick_up_floor_book(book):
 	book_open_animation_player.stop()
 	_set_animation_progress_pick_floor(0)
 
-	assert(
-		tween.interpolate_method(
-			self,
-			"_set_animation_progress_pick_floor",
-			0,
-			1,
-			pull_animation_time,
-			Tween.TRANS_QUAD,
-			Tween.EASE_IN_OUT
-		)
+	var succeeded = tween.interpolate_method(
+		self,
+		"_set_animation_progress_pick_floor",
+		0,
+		1,
+		pull_animation_time,
+		Tween.TRANS_QUAD,
+		Tween.EASE_IN_OUT
 	)
-	assert(tween.start())
+	assert(succeeded)
+	succeeded = tween.start()
+	assert(succeeded)
 	yield(tween, "tween_completed")
 
 	book_open_animation_player.play("BookOpen")

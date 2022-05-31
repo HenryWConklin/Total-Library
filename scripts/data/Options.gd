@@ -51,7 +51,8 @@ onready var _sfx_bus = AudioServer.get_bus_index("SFX")
 
 
 func _ready():
-	assert(get_viewport().connect("size_changed", self, "_on_viewport_size_changed") == OK)
+	var err = get_viewport().connect("size_changed", self, "_on_viewport_size_changed")
+	assert(err == OK)
 	_load()
 	apply()
 
@@ -144,4 +145,5 @@ func _save():
 	var options_file = ConfigFile.new()
 	for option in _options.keys():
 		options_file.set_value("options", option, Options.get(option))
-	assert(options_file.save(OPTIONS_PATH) == OK)
+	var err = options_file.save(OPTIONS_PATH)
+	assert(err == OK)

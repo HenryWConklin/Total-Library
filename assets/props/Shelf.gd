@@ -14,7 +14,8 @@ func _ready():
 	var aabb = BookRegistry.get_shelf_aabb()
 	shape.shape.extents = aabb.size / 2
 	shape.translation.y = aabb.size.y / 2
-	assert(Options.connect("shadow_setting_changed", self, "_on_shadow_setting_changed") == OK)
+	var err = Options.connect("shadow_setting_changed", self, "_on_shadow_setting_changed")
+	assert(err == OK)
 	_on_shadow_setting_changed(Options.get("shadows"))
 
 

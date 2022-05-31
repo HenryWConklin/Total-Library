@@ -4,7 +4,8 @@ extends Spatial
 
 
 func _ready():
-	assert(Options.connect("shadow_setting_changed", self, "_on_shadow_setting_changed") == OK)
+	var err = Options.connect("shadow_setting_changed", self, "_on_shadow_setting_changed")
+	assert(err == OK)
 	_on_shadow_setting_changed(Options.get("shadows"))
 
 
