@@ -77,7 +77,7 @@ The author of the site [libraryofbabel.info](https://libraryofbabel.info) shares
 This method works fairly well and is essentially what I went with. The multiplier can be picked at random, and that alone does a pretty good job hiding patterns between consecutive books. However, when moving between rooms it can leave the lower third of the books identical because of the larger shift. To account for that we can do a `x ^= x >> n` to mix up the lower bits using the higher bits. The only thing we need to do to guarantee that this is a permutation is show how to invert each of these steps, i.e. that every book is produced exactly once in the shuffling. This is true when the multiplier is coprime with the number of books, and the bit shift `n` is greater than half the number of bits in the number of books. The first point comes from abstract algebra, treating the books as a cyclic group. The second is relatively easy to show, let:
 
 $$
-y = x ^ (x >> n)
+y = x \wedge (x >> n)
 $$
 
 Then as long as $n$ is greater than half the length of the number:
@@ -89,11 +89,11 @@ $$
 And since xor is its own inverse:
 
 $$
-y ^ (x >> n) = x ^ (x >> n) ^ (x >> n) = x
+y \wedge (x >> n) = x \wedge (x >> n) \wedge (x >> n) = x
 $$
 
 $$
-y ^ (y >> n) = x
+y \wedge (y >> n) = x
 $$
 
 So this is invertible by applying the same operation to the output. It's also quick for random access and looks good in practice so meets all the requirements and I'm happy with it.
