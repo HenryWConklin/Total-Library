@@ -7,12 +7,16 @@ opts = Variables([], ARGUMENTS)
 env = DefaultEnvironment()
 
 # Define our options
-opts.Add(EnumVariable('target', "Compilation target", 'debug', ['d', 'debug', 'r', 'release']))
-opts.Add(EnumVariable('platform', "Compilation platform", '', ['', 'windows', 'x11', 'linux', 'osx']))
-opts.Add(EnumVariable('p', "Compilation target, alias for 'platform'", '', ['', 'windows', 'x11', 'linux', 'osx']))
+opts.Add(EnumVariable('target', "Compilation target",
+         'debug', ['d', 'debug', 'r', 'release']))
+opts.Add(EnumVariable('platform', "Compilation platform",
+         '', ['', 'windows', 'x11', 'linux', 'osx']))
+opts.Add(EnumVariable('p', "Compilation target, alias for 'platform'",
+         '', ['', 'windows', 'x11', 'linux', 'osx']))
 opts.Add(BoolVariable('use_llvm', "Use the LLVM / Clang compiler", 'no'))
 opts.Add(PathVariable('target_path', 'The path where the lib is installed.', 'bin/'))
-opts.Add(PathVariable('target_name', 'The library name.', 'liblobutil', PathVariable.PathAccept))
+opts.Add(PathVariable('target_name', 'The library name.',
+         'liblobutil', PathVariable.PathAccept))
 
 # Local dependency paths, adapt them to your setup
 godot_headers_path = "godot-cpp/godot-headers/"
@@ -36,7 +40,7 @@ if env['p'] != '':
 
 if env['platform'] == '':
     print("No valid target platform selected.")
-    quit();
+    quit()
 
 # For the reference:
 # - CCFLAGS are compilation flags shared between C and C++
@@ -69,22 +73,34 @@ elif env['platform'] in ('x11', 'linux'):
         env.Append(CCFLAGS=['-g', '-O3'])
 
 elif env['platform'] == "windows":
-    env['target_path'] += 'win64/'
     cpp_library += '.windows'
     # This makes sure to keep the session environment variables on windows,
     # that way you can run scons in a vs 2017 prompt and it will find all the required tools
     env.Append(ENV=os.environ)
 
-    env.Append(CPPDEFINES=['WIN32', '_WIN32', '_WINDOWS', '_CRT_SECURE_NO_WARNINGS'])
-    env.Append(CCFLAGS=['-W3', '-GR'])
-    env.Append(CXXFLAGS='/std:c++17')
+    env["CXX"] = "x86_64-w64-mingw32-g++"
+    env["AR"] = "x86_64-w64-mingw32-ar"
+    env["RANLIB"] = "x86_64-w64-mingw32-ranlib"
+    env["LINK"] = "x86_64-w64-mingw32-g++"
+    env['target_path'] += 'win64/'
+    env.Append(CPPDEFINES=['WIN32', '_WIN32',
+               '_WINDOWS', '_CRT_SECURE_NO_WARNINGS'])
+    env.Append(CCFLAGS=["-std=c++14", "-Wwrite-strings"])
+    env.Append(
+        LINKFLAGS=[
+            "--static",
+            "-Wl,--no-undefined",
+            "-static-libgcc",
+            "-static-libstdc++",
+        ]
+    )
     if env['target'] in ('debug', 'd'):
         env.Append(CPPDEFINES=['_DEBUG'])
-        env.Append(CCFLAGS=['-EHsc', '-MDd', '-ZI'])
+        env.Append(CCFLAGS=['-MDd', '-ZI'])
         env.Append(LINKFLAGS=['-DEBUG'])
     else:
         env.Append(CPPDEFINES=['NDEBUG'])
-        env.Append(CCFLAGS=['-O2', '-EHsc', '-MD'])
+        env.Append(CCFLAGS=['-O2', '-MD'])
 
 if env['target'] in ('debug', 'd'):
     cpp_library += '.debug'
@@ -96,7 +112,8 @@ cpp_library += '.' + str(bits)
 SConscript(['godot-cpp/SConstruct'])
 
 # make sure our binding library is properly includes
-env.Append(CPPPATH=['.', godot_headers_path, cpp_bindings_path + 'include/', cpp_bindings_path + 'include/core/', cpp_bindings_path + 'include/gen/', boost_path])
+env.Append(CPPPATH=['.', godot_headers_path, cpp_bindings_path + 'include/',
+           cpp_bindings_path + 'include/core/', cpp_bindings_path + 'include/gen/', boost_path])
 env.Append(LIBPATH=[cpp_bindings_path + 'bin/'])
 env.Append(LIBS=[cpp_library])
 
@@ -106,7 +123,8 @@ sources = Glob('src/*.cpp')
 env.Tool('compilation_db')
 env.CompilationDatabase()
 
-library = env.SharedLibrary(target=env['target_path'] + env['target_name'] , source=sources)
+library = env.SharedLibrary(
+    target=env['target_path'] + env['target_name'], source=sources)
 
 Default(library)
 
