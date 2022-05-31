@@ -24,6 +24,7 @@ excluded_directories: !!set
   .git: null
   addons: null
   native: null
+  assets/fonts: null
 expression-not-assigned: null
 function-argument-name: _?[a-z][a-z0-9]*(_[a-z0-9]+)*
 function-arguments-number: 10
