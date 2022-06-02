@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/?.png-b56bfa650dca707ef245fefa073aef4a.stex"
+path="res://.import/apostrophe.png-04712661dfa141a8c40595f225645a7d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/fonts/SpaceMonoBoldSDF/?.png"
-dest_files=[ "res://.import/?.png-b56bfa650dca707ef245fefa073aef4a.stex" ]
+source_file="res://assets/fonts/SpaceMonoBoldSDF/apostrophe.png"
+dest_files=[ "res://.import/apostrophe.png-04712661dfa141a8c40595f225645a7d.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/,.png-5630d8fb2f23c1a73af37a674e5b0628.stex"
+path="res://.import/bang.png-22860c2731aeedb8d7a29d85f69ac7b3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/fonts/SpaceMonoBoldSDF/,.png"
-dest_files=[ "res://.import/,.png-5630d8fb2f23c1a73af37a674e5b0628.stex" ]
+source_file="res://assets/fonts/SpaceMonoBoldSDF/bang.png"
+dest_files=[ "res://.import/bang.png-22860c2731aeedb8d7a29d85f69ac7b3.stex" ]
 
 [params]
 
