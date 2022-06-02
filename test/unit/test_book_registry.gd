@@ -264,7 +264,7 @@ func test_set_get_floor_books():
 	index.x = 1
 	index.y = 2
 	index.z = 3
-	var books = [1, 2, 3]
+	var books = [RigidBody.new()]
 
 	registry.set_floor_books(index, books)
 	var result = registry.get_floor_books(index)
@@ -277,7 +277,7 @@ func test_floor_books_respects_offset():
 	index.x = 1
 	index.y = 2
 	index.z = 3
-	var books = [1, 2, 3]
+	var books = [RigidBody.new()]
 
 	registry.set_floor_books(index, books)
 	registry.add_room_offset(Vector3(1, 0, 0))
@@ -294,7 +294,7 @@ func test_floor_books_clears_entry_on_empty_set():
 	index.x = 1
 	index.y = 2
 	index.z = 3
-	var books = [1, 2, 3]
+	var books = [RigidBody.new()]
 
 	registry.set_floor_books(index, books)
 	registry.set_floor_books(index, [])
