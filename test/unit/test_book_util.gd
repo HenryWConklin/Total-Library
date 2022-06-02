@@ -145,7 +145,7 @@ func test_get_packed_title_from_index_book_zero():
 func test_book_util_full_pass_consistent():
 	var book_util = make_default_bookutil()
 	# Update expected to match whatever permutation spits out
-	var expected_title = Color(8039573, 6460239, 10, 0)
+	var expected_title = Color(3845269, 337567, 43, 0)
 	var expected_page = (
 		"FO.O'?ZSRTCB,XHELGZ,MEJB DNDAUZ ZNCOBR!FXXUNCTJXG"
 		+ "!MS WDMZRTVB,BM.GM,TXG .AOEH'SOFC.PPYH.CWMZE,AQB'"

@@ -38,8 +38,8 @@ uniform uint title4;
 
 const float PI = 3.14159265358979323846;
 // When packed in COLOR, the title can only use the mantissa part of a float, which is the lower
-// 23 bits.
-const uint MANTISSA_BITS = uint(23);
+// 23 bits. Also some drivers will round off the last bit, so use one less.
+const uint MANTISSA_BITS = uint(22);
 
 // A single iteration of Bob Jenkins' One-At-A-Time hashing algorithm.
 int hash( int x ) {

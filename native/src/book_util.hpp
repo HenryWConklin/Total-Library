@@ -11,7 +11,8 @@
 #include "book_text.hpp"
 #include "room_gen_params.hpp"
 
-#define MANTISSA_BITS 23
+// 23 bits in the mantissa for a float, minus one to dodge rounding errors.
+#define MANTISSA_BITS 22
 #define BOOK_TITLE_MAX_BITS 4 * MANTISSA_BITS
 
 /**
