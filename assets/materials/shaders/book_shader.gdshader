@@ -41,6 +41,8 @@ const float PI = 3.14159265358979323846;
 // 23 bits.
 const uint MANTISSA_BITS = uint(23);
 
+varying flat vec4 title_packed_color;
+
 // A single iteration of Bob Jenkins' One-At-A-Time hashing algorithm.
 int hash( int x ) {
   x += ( x << 10);
@@ -136,8 +138,12 @@ vec3 page_albedo(vec2 uv) {
 	}
 }
 
+void vertex() {
+	title_packed_color = COLOR;
+}
+
 void fragment() {
-	uvec4 title = use_packed_title ? uvec4(title1, title2, title3, title4) : uvec4(COLOR);
+	uvec4 title = use_packed_title ? uvec4(title1, title2, title3, title4) : uvec4(title_packed_color);
 	float title_alpha = title_alpha(UV, title);
 	int rand = hash(int(title1));
 	vec2 uv_offset = vec2(float(rand & 0xFFFF), float((rand & 0xFFFF0000) >> 16)) / float(0xFFFF);
