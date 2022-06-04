@@ -262,9 +262,6 @@ func place_book_at(ind: BookIndex, book: BookIndex) -> bool:
 
 func set_floor_books(ind: RoomIndex, books: Array):
 	var offset_ind = _offset_room_index(ind).to_key()
-	for b in floor_books.get(offset_ind, []):
-		if !b.is_inside_tree():
-			b.free()
 	if books.size() > 0:
 		floor_books[offset_ind] = books
 	elif floor_books.has(offset_ind):
