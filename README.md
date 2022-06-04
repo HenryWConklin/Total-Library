@@ -1,4 +1,7 @@
 # Total Library
+
+Check it out on itch.io: https://mathematastic.itch.io/total-library
+
 A replica of the library from Jorge Luis Borges' story *The Library of Babel*. Every single book in one massive library, all crammed into a 20MB download. No render distance limit, gaze off into infinity. Everything is generated in real-time.
 
 Minimum specs:
