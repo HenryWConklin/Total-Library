@@ -301,7 +301,7 @@ func test_floor_books_clears_entry_on_empty_set():
 	var result = registry.get_floor_books(index)
 
 	assert_eq(result.size(), 0)
-
+	books[0].free()
 
 func test_get_book_methods():
 	var index = BookIndex.new()
