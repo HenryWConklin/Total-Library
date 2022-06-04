@@ -3,7 +3,9 @@
 [sub_resource type="AudioEffectReverb" id=1]
 resource_name = "Reverb"
 predelay_msec = 100.0
-room_size = 0.55
+room_size = 0.61
+damping = 0.27
+hipass = 0.01
 
 [resource]
 bus/1/name = "SFX"
