@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://rooms/GalleryTile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/props/PortalPlane.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/data/RoomIndex.gd" type="Script" id=4]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 4 )
+x = 0
+y = 0
+z = 0
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 4 )
+x = 1
+y = 0
+z = 0
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 4 )
+x = -1
+y = 0
+z = 0
+
+[node name="Spatial" type="Spatial"]
+
+[node name="hex_gallery_tile" parent="." instance=ExtResource( 1 )]
+room_index = SubResource( 1 )
+
+[node name="hex_gallery_tile2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.928, 0, 0 )
+room_index = SubResource( 2 )
+
+[node name="hex_gallery_tile3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.928, 0, 0 )
+room_index = SubResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.06724, 0, 0 )
+
+[node name="X+" parent="." instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.392, 1.2, 0 )
+render_offset = Vector3( 0, 0, 6.928 )
+portal_size = Vector2( 4, 2.4 )
+viewport_pixels_per_unit = 50.0
