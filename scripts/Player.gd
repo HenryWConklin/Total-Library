@@ -15,7 +15,7 @@ const UP: Vector3 = Vector3(0, 1, 0)
 export(Vector2) var mouse_sensitivity = Vector2(0.002, 0.002)
 export(Vector2) var controller_sensitivity = Vector2(0.002, 0.002)
 export(Vector2) var move_speed = Vector2(5, 5)
-export(float) var gravity = 10
+export(float) var gravity = 10.0
 export(NodePath) var camera_path: NodePath
 export(NodePath) var raycast_path: NodePath
 export(NodePath) var held_book_path: NodePath
@@ -98,12 +98,12 @@ func _unhandled_input(event: InputEvent):
 		_mouse_move += mouse_motion * mouse_sensitivity
 		get_tree().set_input_as_handled()
 		return
-	elif event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		emit_signal("pause_requested")
 		get_tree().set_input_as_handled()
 		return
-	elif (
+	if (
 		event is InputEventMouseButton
 		and event.is_pressed()
 		and Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED
