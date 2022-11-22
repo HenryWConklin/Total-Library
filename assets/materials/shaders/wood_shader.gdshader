@@ -71,12 +71,11 @@ void fragment( )
 {
 	vec2 shift_uv = grain_uv;
 	shift_uv.x += value_noise( grain_uv * random_scale );
-	//shift_uv += random(grain_uv) * noise_scale;
 	float x = shift_uv.x + sin( shift_uv.y * wave_scale );
 	float f = mod( x * ring_scale + random( grain_uv ).x * noise_scale, 1.0 );
-	//float f = fract(x * ring_scale);
 
 	ALBEDO = mix( light_color, dark_color, f ).rgb;
 	ROUGHNESS = roughness;
-	SSS_STRENGTH = subsurface_scattering;
+	// Enabling sub-surface scattering breaks rendering on web exports
+//	SSS_STRENGTH = subsurface_scattering;
 }
