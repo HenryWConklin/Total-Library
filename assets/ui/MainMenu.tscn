@@ -17,6 +17,7 @@ script = ExtResource( 6 )
 initial_focus = NodePath("Center/VBoxContainer/StartButton")
 main_buttons = NodePath("Center")
 options_popup = NodePath("OptionsPopup")
+quit_button = NodePath("Center/VBoxContainer/QuitButton")
 
 [node name="Center" type="CenterContainer" parent="."]
 anchor_right = 1.0

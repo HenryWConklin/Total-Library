@@ -5,8 +5,15 @@ extends Control
 export(NodePath) var initial_focus: NodePath
 export(NodePath) var main_buttons: NodePath
 export(NodePath) var options_popup: NodePath
+export(NodePath) var quit_button: NodePath
 
 onready var _options_popup: Control = get_node(options_popup)
+
+
+func _ready():
+	# Quitting in HTML just crashes
+	if OS.get_name() == "HTML5":
+		get_node(quit_button).hide()
 
 
 func _unhandled_input(event: InputEvent):
