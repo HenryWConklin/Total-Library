@@ -12,7 +12,7 @@ Minimum specs:
 
 (If things are slow, turn off shadows)
 
-Made in [Godot](https://godotengine.org) v3.5.1
+Made in [Godot](https://godotengine.org) v3.5.3
 
 License is MIT, copyright Henry Conklin 2022, except:
 * the [in-game font](assets/fonts/) which is [Space Mono](https://fonts.google.com/specimen/Space+Mono) under the [Open Font License](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL)
