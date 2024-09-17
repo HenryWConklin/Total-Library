@@ -8,8 +8,8 @@ uniform vec2 page_end;
 uniform vec2 curve_control;
 
 uniform vec4 page_base_albedo: hint_color;
-uniform sampler2D front_page;
-uniform sampler2D back_page;
+uniform sampler2D front_page: hint_albedo;
+uniform sampler2D back_page: hint_albedo;
 uniform vec2 page1_uv_offset;
 uniform vec2 page2_uv_offset;
 uniform vec2 page_uv_scale;

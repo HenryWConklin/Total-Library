@@ -27,7 +27,6 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0
 visible = false
 portal_mode = 3
 mesh = SubResource( 1 )
-material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.9, 0 )
@@ -48,10 +47,9 @@ collide_with_areas = true
 [node name="RoomTracker" parent="Camera" instance=ExtResource( 4 )]
 
 [node name="HeldBook" type="Spatial" parent="."]
-transform = Transform( -3.09086e-08, -3.09086e-08, 1, -0.707107, 0.707107, 0, -0.707107, -0.707107, -4.37114e-08, 2.77633e-09, 1.1511, -0.731344 )
+transform = Transform( -1.33907e-08, -4.16098e-08, 1, -0.951922, 0.306343, 0, -0.306343, -0.951922, -4.37114e-08, 9.95712e-09, 1.22381, -0.458807 )
 
 [node name="animated_book" parent="HeldBook" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 7.10543e-15, 7.10543e-15, 1, -0.0619124, 0, 7.10543e-15 )
 
 [node name="SelectionHighlight" parent="." instance=ExtResource( 3 )]
 visible = false

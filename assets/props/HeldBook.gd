@@ -223,7 +223,7 @@ func _set_page_renderer_text(renderer: int, page: int):
 		else:
 			text = BookRegistry.get_page(_book_text, page)
 			_cached_page_text[page] = text
-		_page_renderer_nodes[renderer].set_text(text)
+		_page_renderer_nodes[renderer].set_text(text, page+1)
 
 
 func _update_page_renderers_held():
