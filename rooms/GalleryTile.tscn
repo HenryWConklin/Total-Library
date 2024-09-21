@@ -11,7 +11,7 @@
 
 [sub_resource type="BoxShape" id=1]
 margin = 0.001
-extents = Vector3( 1.19452, 0.05, 1.98055 )
+extents = Vector3( 1.195, 0.1, 1.981 )
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.0301021, 0.55176, 0.658759 )
@@ -46,27 +46,27 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="Gallery/LowerFloor" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2843, -0.05, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2843, -0.1, 0 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape5" type="CollisionShape" parent="Gallery/LowerFloor" index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29049, -0.05, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29049, -0.1, 0 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="Gallery/LowerFloor" index="2"]
-transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -1.1394, -0.0499999, -1.96321 )
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -1.1394, -0.1, -1.96321 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape3" type="CollisionShape" parent="Gallery/LowerFloor" index="3"]
-transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -1.19687, -0.0499999, 1.93708 )
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -1.19687, -0.1, 1.93708 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape6" type="CollisionShape" parent="Gallery/LowerFloor" index="4"]
-transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 1.07741, -0.0499999, -2.00209 )
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 1.07741, -0.1, -2.00209 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape4" type="CollisionShape" parent="Gallery/LowerFloor" index="5"]
-transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.15696, -0.0499999, 1.93876 )
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.15696, -0.1, 1.93876 )
 shape = SubResource( 1 )
 
 [node name="UpperFloor" type="StaticBody" parent="Gallery" index="1"]
@@ -75,27 +75,27 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="Gallery/UpperFloor" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2843, -0.05, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2843, -0.1, 0 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape5" type="CollisionShape" parent="Gallery/UpperFloor" index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29049, -0.05, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29049, -0.1, 0 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="Gallery/UpperFloor" index="2"]
-transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -1.1394, -0.0499999, -1.96321 )
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -1.1394, -0.1, -1.96321 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape3" type="CollisionShape" parent="Gallery/UpperFloor" index="3"]
-transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -1.19687, -0.0499999, 1.93708 )
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -1.19687, -0.1, 1.93708 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape6" type="CollisionShape" parent="Gallery/UpperFloor" index="4"]
-transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 1.07741, -0.0499999, -2.00209 )
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 1.07741, -0.1, -2.00209 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape4" type="CollisionShape" parent="Gallery/UpperFloor" index="5"]
-transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.15696, -0.0499999, 1.93876 )
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.15696, -0.1, 1.93876 )
 shape = SubResource( 1 )
 
 [node name="LowerRailing" type="StaticBody" parent="Gallery" index="2"]
