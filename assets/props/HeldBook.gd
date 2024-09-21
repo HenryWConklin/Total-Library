@@ -12,6 +12,7 @@ export(NodePath) var book_mesh_path: NodePath
 export(NodePath) var tween_path: NodePath
 export(NodePath) var display_path: NodePath
 export(NodePath) var room_tracker_path: NodePath
+export(NodePath) var drop_safety_area_path: NodePath
 export(NodePath) var book_open_audio: NodePath
 export(NodePath) var book_close_audio: NodePath
 export(NodePath) var page_turn_audio: NodePath
@@ -39,6 +40,7 @@ onready var display_node: Spatial = get_node(display_path)
 onready var book_material: Material = get_node(book_mesh_path).get_active_material(0)
 onready var page_mesh: Spatial = get_node(page_mesh_path)
 onready var room_tracker = get_node(room_tracker_path)
+onready var drop_safety_area: Area = get_node(drop_safety_area_path)
 
 
 func _ready():
@@ -152,7 +154,7 @@ func _set_animation_progress_place(p: float):
 
 
 func can_drop_book() -> bool:
-	return state == State.HELD
+	return state == State.HELD && drop_safety_area.get_overlapping_bodies().empty()
 
 
 func drop_book() -> BookText:

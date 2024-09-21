@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/blender/animated_book.glb" type="PackedScene" id=1]
 [ext_resource path="res://assets/props/HeldBook.gd" type="Script" id=2]
@@ -90,6 +90,9 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 )
 }
 
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 0.140735, 0.159288, 0.121061 )
+
 [node name="animated_book" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 book_open_animation_player_path = NodePath("AnimationPlayer")
@@ -99,6 +102,7 @@ book_mesh_path = NodePath("Armature/Skeleton/Book001")
 tween_path = NodePath("Tween")
 display_path = NodePath("Armature")
 room_tracker_path = NodePath("RoomTracker")
+drop_safety_area_path = NodePath("DropSafetyArea")
 book_open_audio = NodePath("Armature/BookOpen")
 book_close_audio = NodePath("Armature/BookClose")
 page_turn_audio = NodePath("Armature/PageTurn")
@@ -166,3 +170,11 @@ playback_process_mode = 0
 [node name="PageRenderer4" parent="." index="6" instance=ExtResource( 5 )]
 
 [node name="RoomTracker" parent="." index="7" instance=ExtResource( 7 )]
+
+[node name="DropSafetyArea" type="Area" parent="." index="8"]
+collision_layer = 0
+collision_mask = 16
+input_ray_pickable = false
+
+[node name="CollisionShape" type="CollisionShape" parent="DropSafetyArea" index="0"]
+shape = SubResource( 6 )
