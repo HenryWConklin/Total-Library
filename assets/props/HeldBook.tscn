@@ -1,11 +1,11 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/blender/animated_book.glb" type="PackedScene" id=1]
 [ext_resource path="res://assets/props/HeldBook.gd" type="Script" id=2]
 [ext_resource path="res://assets/materials/book_material.tres" type="Material" id=3]
 [ext_resource path="res://assets/props/FloorBook.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/PageRenderer.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/materials/shaders/page_turn.gdshader" type="Shader" id=6]
+[ext_resource path="res://assets/materials/page_turn_material.tres" type="Material" id=6]
 [ext_resource path="res://scripts/RoomTracker.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/sound/book_close.ogg" type="AudioStream" id=8]
 [ext_resource path="res://assets/sound/page_turn2.ogg" type="AudioStream" id=9]
@@ -16,19 +16,6 @@
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 0.23, 0.287, 0.001 )
 subdivide_width = 8
-
-[sub_resource type="ShaderMaterial" id=3]
-resource_local_to_scene = true
-shader = ExtResource( 6 )
-shader_param/width = 0.23
-shader_param/rotation = 1.155
-shader_param/page_end = Vector2( -0.049, -0.225 )
-shader_param/curve_control = Vector2( -0.02, 0 )
-shader_param/page_base_albedo = Color( 1, 1, 1, 1 )
-shader_param/page1_uv_offset = Vector2( 0.134, 0.008 )
-shader_param/page2_uv_offset = Vector2( 0.673, 0.008 )
-shader_param/page_uv_scale = Vector2( 0.193, 0.478 )
-shader_param/page_uv_correction = 1.319
 
 [sub_resource type="Animation" id=4]
 resource_name = "PageTurn"
@@ -124,7 +111,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0213081, 0, 0 )
 portal_mode = 3
 cast_shadow = 0
 mesh = SubResource( 1 )
-material/0 = SubResource( 3 )
+material/0 = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Armature/AnimatedPageTurn" index="0"]
 anims/PageTurn = SubResource( 4 )

@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://assets/materials/shaders/page_turn.gdshader" type="Shader" id=1]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/width = 0.23
+shader_param/rotation = 1.155
+shader_param/page_end = Vector2( -0.049, -0.225 )
+shader_param/curve_control = Vector2( -0.02, 0 )
+shader_param/page_base_albedo = Color( 1, 1, 1, 1 )
+shader_param/page1_uv_offset = Vector2( 0.134, 0.008 )
+shader_param/page2_uv_offset = Vector2( 0.673, 0.008 )
+shader_param/page_uv_scale = Vector2( 0.193, 0.478 )
+shader_param/page_uv_correction = 1.319
