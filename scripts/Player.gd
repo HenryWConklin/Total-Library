@@ -159,12 +159,12 @@ func _unhandled_input(event: InputEvent):
 		return
 
 
-func _handle_movement():
+func _handle_movement(delta):
 	var controller_look = (
 		Input.get_vector("look_left", "look_right", "look_up", "look_down")
 		* controller_sensitivity
 	)
-	var rotation = (_mouse_move + controller_look) * Options.get("look_sensitivity")
+	var rotation = (_mouse_move + controller_look) * Options.get("look_sensitivity") * delta
 	_mouse_move = Vector2(0, 0)
 	self.rotate_y(-rotation.x)
 	camera.rotate_x(-rotation.y)
@@ -213,8 +213,8 @@ func _selection_highlight():
 	_raycast_colliding(false)
 
 
-func _physics_process(_delta):
-	_handle_movement()
+func _physics_process(delta):
+	_handle_movement(delta)
 	_selection_highlight()
 
 
