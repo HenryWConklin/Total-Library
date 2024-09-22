@@ -6,6 +6,7 @@ export(NodePath) var initial_focus: NodePath
 export(NodePath) var main_buttons: NodePath
 export(NodePath) var options_popup: NodePath
 export(NodePath) var quit_button: NodePath
+export(NodePath) var saved_popup: NodePath
 
 onready var _options_popup: Control = get_node(options_popup)
 
@@ -26,6 +27,9 @@ func _unhandled_input(event: InputEvent):
 func _on_OptionButton_pressed():
 	_options_popup.show()
 
+func _on_SaveButton_pressed():
+	BookRegistry.save()
+	get_node(saved_popup).popup_centered()
 
 func _on_QuitButton_pressed():
 	BookRegistry.save()

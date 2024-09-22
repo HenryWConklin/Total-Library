@@ -50,7 +50,8 @@ func _notification(what):
 			# Floor books holds a bunch of orphan nodes, free them manually
 			for books in floor_books.values():
 				for b in books:
-					b.free()
+					if is_instance_valid(b):
+						b.free()
 			floor_books.clear()
 
 
@@ -71,6 +72,7 @@ func _push_floor_books():
 
 
 func _refresh_rooms():
+	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "floor_books", "remove_children")
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "floor_books", "pull_floor_books")
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "shelves", "regenerate_multimesh")
 

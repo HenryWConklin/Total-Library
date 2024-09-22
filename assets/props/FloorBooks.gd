@@ -15,10 +15,7 @@ func set_room_index(ind):
 
 
 func push_floor_books():
-	var children = get_children()
-	for child in children:
-		remove_child(child)
-	BookRegistry.set_floor_books(room_index, children)
+	BookRegistry.set_floor_books(room_index, get_children())
 
 
 func pull_floor_books():
@@ -28,3 +25,8 @@ func pull_floor_books():
 		child.name = "FloorBook%d" % i
 		i += 1
 		add_child(child)
+
+func remove_children():
+	var children = get_children()
+	for child in children:
+		remove_child(child)
