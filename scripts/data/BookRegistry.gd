@@ -171,7 +171,9 @@ func get_placeholder_shelf(ind: ShelfIndex) -> MultiMesh:
 	if not shelf_diff.has(_offset_shelf_index(ind).to_key()):
 		return placeholder_shelf
 	var shelf = placeholder_shelf.duplicate()
-	_apply_diff(_offset_shelf_index(ind), shelf)
+	# Can't see the titles clearly for placeholders anyway, only need
+	# to maintain the gaps.
+	_apply_diff_gaps(_offset_shelf_index(ind), shelf)
 	return shelf
 
 
@@ -318,8 +320,7 @@ func _make_default_shelf() -> MultiMesh:
 	ind.x = 10000
 	return _make_room_shelves(ind)[0]
 
-
-func _apply_diff(ind: ShelfIndex, mesh: MultiMesh):
+func _apply_diff_gaps(ind: ShelfIndex, mesh: MultiMesh):
 	if not shelf_diff.has(ind.to_key()):
 		return
 	var diff = shelf_diff[ind.to_key()]
@@ -330,7 +331,15 @@ func _apply_diff(ind: ShelfIndex, mesh: MultiMesh):
 			# Hide by scaling to 0
 			var hidden_transform = Transform(Basis.IDENTITY.scaled(Vector3.ZERO), transform.origin)
 			mesh.set_instance_transform(i, hidden_transform)
-		else:
+
+
+func _apply_diff_swapped(ind: ShelfIndex, mesh: MultiMesh):
+	if not shelf_diff.has(ind.to_key()):
+		return
+	var diff = shelf_diff[ind.to_key()]
+	for i in diff.keys():
+		var replacement = diff[i]
+		if replacement != null:
 			var title_color = book_util.get_packed_title_from_index(
 				replacement.room.x,
 				replacement.room.y,
@@ -339,6 +348,11 @@ func _apply_diff(ind: ShelfIndex, mesh: MultiMesh):
 				replacement.book
 			)
 			mesh.set_instance_color(i, title_color)
+
+
+func _apply_diff(ind: ShelfIndex, mesh: MultiMesh):
+	_apply_diff_gaps(ind, mesh)
+	_apply_diff_swapped(ind, mesh)
 
 
 func save():
