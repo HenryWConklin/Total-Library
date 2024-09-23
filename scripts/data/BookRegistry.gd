@@ -26,6 +26,10 @@ var shelf_cache = LRUCache.new(500)
 var shelf_diff = {}
 # Dict of RoomIndex -> [FloorBook instance], refs to the rigid body books in each room
 var floor_books = {}
+# Index of the currently held book. If null there is no currently held book.
+var held_book = null
+# Page the held book is open to.
+var held_book_page = 0
 # Offset from the static indexes stored on each room to what is displayed in them. Updated
 # whenever the player moves between rooms and is teleported back.
 var room_offset: RoomIndex = RoomIndex.new()
@@ -341,6 +345,11 @@ func save():
 	var data = {}
 	data["origin_seed"] = origin_seed
 	data["offset"] = room_offset.to_key()
+	if held_book == null:
+		data["held_book"] = null
+	else:
+		data["held_book"] = held_book.to_key()
+	data["held_book_page"] = held_book_page
 	data["shelf_diffs"] = shelf_diff.duplicate(true)
 	# store_var doesn't actually save Resources, just their object ID, convert to PoolIntArray.
 	for shelf_ind in data["shelf_diffs"].keys():
@@ -385,6 +394,13 @@ func load_data():
 	assert(data != null)
 	book_util.randomize_origin(data["origin_seed"])
 	room_offset.from_key(data["offset"])
+	var held_book_packed = data.get("held_book")
+	if held_book_packed == null:
+		held_book = null
+	else:
+		held_book = BookIndex.new()
+		held_book.from_key(held_book_packed)
+	held_book_page = data.get("held_book_page", 0)
 	shelf_diff = data["shelf_diffs"]
 	# Convert PoolIntArray keys back to BookIndex
 	for shelf_ind in shelf_diff.keys():

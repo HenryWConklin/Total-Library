@@ -9,7 +9,8 @@ func _ready():
 	# Should be the same as the shelf books but for some reason it's a different shader compile.
 	var book_text = BookRegistry.get_book_text(BookIndex.new())
 	var held_book_preload = get_node(held_book_preload_path)
-	held_book_preload.pull_from_shelf(book_text, Transform(), held_book_preload.global_transform)
+	held_book_preload.open_to_page(book_text, 0)
+	held_book_preload.page_forward()
 
 
 func _on_MainMenu_start_game():

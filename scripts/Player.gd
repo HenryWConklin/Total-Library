@@ -33,6 +33,9 @@ onready var selection_highlight: MeshInstance = get_node(selection_highlight_pat
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if BookRegistry.held_book != null:
+		var book_text = BookRegistry.get_book_text(BookRegistry.held_book)
+		held_book.open_to_page(book_text, BookRegistry.held_book_page)
 
 
 func teleport(offset: Vector3):
@@ -64,6 +67,8 @@ func pick_up_shelf_book() -> bool:
 	held_book.pull_from_shelf(
 		book_text, book_transform_local, raycast.get_collider().global_transform
 	)
+	BookRegistry.held_book = actual_book_ind
+	BookRegistry.held_book_page = held_book.get_page()
 	return true
 
 
@@ -75,6 +80,7 @@ func place_book_on_shelf() -> bool:
 	if actual_book_ind != null:
 		return false
 	var book_transform_local = BookRegistry.get_book_transform(pos_book_ind.book)
+	BookRegistry.held_book = null
 	held_book.place_on_shelf(
 		pos_book_ind, book_transform_local, raycast.get_collider().global_transform
 	)
@@ -83,6 +89,8 @@ func place_book_on_shelf() -> bool:
 
 func pick_up_floor_book():
 	var book = raycast.get_collider()
+	BookRegistry.held_book = book.book_index
+	BookRegistry.held_book_page = held_book.get_page()
 	held_book.pick_up_floor_book(book)
 
 
@@ -145,16 +153,19 @@ func _unhandled_input(event: InputEvent):
 			return
 	if event.is_action_pressed("pick_up") and held_book.can_drop_book():
 		held_book.drop_book()
+		BookRegistry.held_book = null
 		emit_signal("book_held", false)
 		get_tree().set_input_as_handled()
 		return
 
 	if event.is_action_pressed("turn_page_forward") and held_book.can_turn_page():
 		held_book.page_forward()
+		BookRegistry.held_book_page = held_book.get_page()
 		get_tree().set_input_as_handled()
 		return
 	if event.is_action_pressed("turn_page_back") and held_book.can_turn_page():
 		held_book.page_back()
+		BookRegistry.held_book_page = held_book.get_page()
 		get_tree().set_input_as_handled()
 		return
 

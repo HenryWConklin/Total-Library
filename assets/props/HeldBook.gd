@@ -93,6 +93,16 @@ func _set_animation_progress_pick(p: float):
 			display_node.get_parent().global_transform, (p - 0.5) * 2
 		)
 
+func open_to_page(book_text, page):
+	_book_text = book_text
+	set_state(State.ANIMATING_PICK)
+	set_state(State.HELD)
+	book_open_animation_player.play("BookOpen")
+	book_open_animation_player.seek(book_open_animation_player.get_animation("BookOpen").length)
+	var packed_title = BookRegistry.get_title(book_text)
+	_set_title(packed_title)
+	_page = page
+	_update_page_renderers_held()
 
 func pull_from_shelf(book_text, book_transform_local: Transform, shelf_transform_global: Transform):
 	assert(can_pick_up_book())
@@ -162,15 +172,18 @@ func drop_book() -> BookText:
 	yield(_animate_drop(), "completed")
 	return _book_text
 
+func _set_title(packed_title):
+	book_material.set_shader_param("title1", int(packed_title.r))
+	book_material.set_shader_param("title2", int(packed_title.g))
+	book_material.set_shader_param("title3", int(packed_title.b))
+	book_material.set_shader_param("title4", int(packed_title.a))
+
 
 func _animate_pick(book_text, book_transform_local: Transform, shelf_transform_global: Transform):
 	set_state(State.ANIMATING_PICK)
 	_book_text = book_text
 	var packed_title = BookRegistry.get_title(book_text)
-	book_material.set_shader_param("title1", int(packed_title.r))
-	book_material.set_shader_param("title2", int(packed_title.g))
-	book_material.set_shader_param("title3", int(packed_title.b))
-	book_material.set_shader_param("title4", int(packed_title.a))
+	_set_title(packed_title)
 	_page = 0
 	_update_page_renderers_held()
 	var shelf_to_local_transform = shelf_transform_global
@@ -275,6 +288,8 @@ func page_forward():
 func page_back():
 	yield(_page_turn(-2), "completed")
 
+func get_page() -> int:
+	return _page
 
 func pick_up_floor_book(book):
 	assert(can_pick_up_book())
