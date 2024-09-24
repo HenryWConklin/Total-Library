@@ -23,8 +23,8 @@ uniform uint title_num_chars;
 // Parameters for page text rendering. Only the held book is open and has internal text to render.
 uniform bool render_page_text = false;
 uniform vec4 page_base_albedo: hint_color = vec4(1);
-uniform sampler2D page1_text_texture;
-uniform sampler2D page2_text_texture;
+uniform sampler2D page1_text_texture: hint_albedo;
+uniform sampler2D page2_text_texture: hint_albedo;
 uniform vec2 page1_uv_offset;
 uniform vec2 page2_uv_offset;
 uniform float page_uv_scale;

@@ -81,6 +81,7 @@ gdscript/warnings/integer_division=false
 
 window/size/width=1280
 window/size/height=720
+window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
 
@@ -187,6 +188,7 @@ look_right={
 3d_physics/layer_2="PickupRaycast"
 3d_physics/layer_3="LockAreas"
 3d_physics/layer_4="RoomEnterNotification"
+3d_physics/layer_5="BookDropSafety"
 
 [physics]
 

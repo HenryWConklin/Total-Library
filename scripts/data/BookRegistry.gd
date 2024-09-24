@@ -26,6 +26,10 @@ var shelf_cache = LRUCache.new(500)
 var shelf_diff = {}
 # Dict of RoomIndex -> [FloorBook instance], refs to the rigid body books in each room
 var floor_books = {}
+# Index of the currently held book. If null there is no currently held book.
+var held_book = null
+# Page the held book is open to.
+var held_book_page = 0
 # Offset from the static indexes stored on each room to what is displayed in them. Updated
 # whenever the player moves between rooms and is teleported back.
 var room_offset: RoomIndex = RoomIndex.new()
@@ -50,7 +54,8 @@ func _notification(what):
 			# Floor books holds a bunch of orphan nodes, free them manually
 			for books in floor_books.values():
 				for b in books:
-					b.free()
+					if is_instance_valid(b):
+						b.free()
 			floor_books.clear()
 
 
@@ -71,6 +76,7 @@ func _push_floor_books():
 
 
 func _refresh_rooms():
+	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "floor_books", "remove_children")
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "floor_books", "pull_floor_books")
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "shelves", "regenerate_multimesh")
 
@@ -165,7 +171,9 @@ func get_placeholder_shelf(ind: ShelfIndex) -> MultiMesh:
 	if not shelf_diff.has(_offset_shelf_index(ind).to_key()):
 		return placeholder_shelf
 	var shelf = placeholder_shelf.duplicate()
-	_apply_diff(_offset_shelf_index(ind), shelf)
+	# Can't see the titles clearly for placeholders anyway, only need
+	# to maintain the gaps.
+	_apply_diff_gaps(_offset_shelf_index(ind), shelf)
 	return shelf
 
 
@@ -312,8 +320,7 @@ func _make_default_shelf() -> MultiMesh:
 	ind.x = 10000
 	return _make_room_shelves(ind)[0]
 
-
-func _apply_diff(ind: ShelfIndex, mesh: MultiMesh):
+func _apply_diff_gaps(ind: ShelfIndex, mesh: MultiMesh):
 	if not shelf_diff.has(ind.to_key()):
 		return
 	var diff = shelf_diff[ind.to_key()]
@@ -324,7 +331,15 @@ func _apply_diff(ind: ShelfIndex, mesh: MultiMesh):
 			# Hide by scaling to 0
 			var hidden_transform = Transform(Basis.IDENTITY.scaled(Vector3.ZERO), transform.origin)
 			mesh.set_instance_transform(i, hidden_transform)
-		else:
+
+
+func _apply_diff_swapped(ind: ShelfIndex, mesh: MultiMesh):
+	if not shelf_diff.has(ind.to_key()):
+		return
+	var diff = shelf_diff[ind.to_key()]
+	for i in diff.keys():
+		var replacement = diff[i]
+		if replacement != null:
 			var title_color = book_util.get_packed_title_from_index(
 				replacement.room.x,
 				replacement.room.y,
@@ -335,10 +350,20 @@ func _apply_diff(ind: ShelfIndex, mesh: MultiMesh):
 			mesh.set_instance_color(i, title_color)
 
 
+func _apply_diff(ind: ShelfIndex, mesh: MultiMesh):
+	_apply_diff_gaps(ind, mesh)
+	_apply_diff_swapped(ind, mesh)
+
+
 func save():
 	var data = {}
 	data["origin_seed"] = origin_seed
 	data["offset"] = room_offset.to_key()
+	if held_book == null:
+		data["held_book"] = null
+	else:
+		data["held_book"] = held_book.to_key()
+	data["held_book_page"] = held_book_page
 	data["shelf_diffs"] = shelf_diff.duplicate(true)
 	# store_var doesn't actually save Resources, just their object ID, convert to PoolIntArray.
 	for shelf_ind in data["shelf_diffs"].keys():
@@ -383,6 +408,13 @@ func load_data():
 	assert(data != null)
 	book_util.randomize_origin(data["origin_seed"])
 	room_offset.from_key(data["offset"])
+	var held_book_packed = data.get("held_book")
+	if held_book_packed == null:
+		held_book = null
+	else:
+		held_book = BookIndex.new()
+		held_book.from_key(held_book_packed)
+	held_book_page = data.get("held_book_page", 0)
 	shelf_diff = data["shelf_diffs"]
 	# Convert PoolIntArray keys back to BookIndex
 	for shelf_ind in shelf_diff.keys():

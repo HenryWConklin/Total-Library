@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/props/FloorBooks.gd" type="Script" id=7]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 1.0908, 0.05, 1.97242 )
+extents = Vector3( 1.091, 0.1, 1.972 )
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.818112, 0.05, 1.383 )
@@ -27,8 +27,8 @@ extents = Vector3( 0.543442, 0.05, 2.07305 )
 extents = Vector3( 0.777586, 1.2, 0.03 )
 
 [sub_resource type="CylinderShape" id=3]
-radius = 0.05
 height = 4.8
+radius = 0.05
 
 [sub_resource type="ConvexPolygonShape" id=8]
 points = PoolVector3Array( 3.464, -0.1, 2, 0, -0.1, 4, -3.464, -0.1, 2, -3.464, -0.1, -2, 0, -0.1, -4, 3.464, -0.1, -2, 3.464, 2.3, 2, 0, 2.3, 4, -3.464, 2.3, 2, -3.464, 2.3, -2, 0, 2.3, -4, 3.464, 2.3, -2 )
@@ -47,63 +47,65 @@ material/1 = ExtResource( 1 )
 material/0 = ExtResource( 3 )
 
 [node name="LowerFloor" type="StaticBody" parent="." index="2"]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 19
+collision_mask = 19
 
 [node name="CollisionShape" type="CollisionShape" parent="LowerFloor" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.37466, -0.05, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.37466, -0.1, 0 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="LowerFloor" index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.375, -0.05, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.375, -0.1, 0 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape3" type="CollisionShape" parent="LowerFloor" index="2"]
-transform = Transform( 0.496019, 0, 0.868311, 0, 1, 0, -0.868311, 0, 0.496019, -0.794348, -0.05, 1.96717 )
+transform = Transform( 0.496019, 0, 0.868311, 0, 1, 0, -0.868311, 0, 0.496019, -0.794348, -0.1, 1.96717 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape4" type="CollisionShape" parent="LowerFloor" index="3"]
-transform = Transform( 0.496019, 0, 0.868311, 0, 1, 0, -0.868311, 0, 0.496019, 0.791, -0.05, -1.961 )
+transform = Transform( 0.496019, 0, 0.868311, 0, 1, 0, -0.868311, 0, 0.496019, 0.791, -0.1, -1.961 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape5" type="CollisionShape" parent="LowerFloor" index="4"]
-transform = Transform( 0.500121, 0, -0.865955, 0, 1, 0, 0.865955, 0, 0.500121, 0.793743, -0.05, 1.96575 )
+transform = Transform( 0.500121, 0, -0.865955, 0, 1, 0, 0.865955, 0, 0.500121, 0.793743, -0.1, 1.96575 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape6" type="CollisionShape" parent="LowerFloor" index="5"]
-transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.794297, -0.05, -1.96671 )
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.794297, -0.1, -1.96671 )
 shape = SubResource( 2 )
 
 [node name="UpperFloor" type="StaticBody" parent="." index="3"]
 transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 2.4, 0 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 19
+collision_mask = 19
 
 [node name="CollisionShape" type="CollisionShape" parent="UpperFloor" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.37466, -0.05, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.37466, -0.1, 0 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="UpperFloor" index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.375, -0.05, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.375, -0.1, 0 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape3" type="CollisionShape" parent="UpperFloor" index="2"]
-transform = Transform( 0.496019, 0, 0.868311, 0, 1, 0, -0.868311, 0, 0.496019, -0.794348, -0.05, 1.96717 )
+transform = Transform( 0.496019, 0, 0.868311, 0, 1, 0, -0.868311, 0, 0.496019, -0.794348, -0.1, 1.96717 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape4" type="CollisionShape" parent="UpperFloor" index="3"]
-transform = Transform( 0.496019, 0, 0.868311, 0, 1, 0, -0.868311, 0, 0.496019, 0.791, -0.05, -1.961 )
+transform = Transform( 0.496019, 0, 0.868311, 0, 1, 0, -0.868311, 0, 0.496019, 0.791, -0.1, -1.961 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape5" type="CollisionShape" parent="UpperFloor" index="4"]
-transform = Transform( 0.500121, 0, -0.865955, 0, 1, 0, 0.865955, 0, 0.500121, 0.793743, -0.05, 1.96575 )
+transform = Transform( 0.500121, 0, -0.865955, 0, 1, 0, 0.865955, 0, 0.500121, 0.793743, -0.1, 1.96575 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape6" type="CollisionShape" parent="UpperFloor" index="5"]
-transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.794297, -0.05, -1.96671 )
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.794297, -0.1, -1.96671 )
 shape = SubResource( 2 )
 
 [node name="LowerWalls" type="StaticBody" parent="." index="4"]
+collision_layer = 19
+collision_mask = 19
 
 [node name="CollisionShape" type="CollisionShape" parent="LowerWalls" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92739, 1.1, 2.02383 )
@@ -147,6 +149,8 @@ shape = SubResource( 6 )
 
 [node name="UpperWalls" type="StaticBody" parent="." index="5"]
 transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 2.4, 0 )
+collision_layer = 19
+collision_mask = 19
 
 [node name="CollisionShape" type="CollisionShape" parent="UpperWalls" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92739, 1.1, 2.02383 )
@@ -218,8 +222,8 @@ transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -0.654, 1.1
 shape = SubResource( 7 )
 
 [node name="StairPole" type="StaticBody" parent="." index="8"]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 19
+collision_mask = 19
 
 [node name="CollisionShape" type="CollisionShape" parent="StairPole" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 0 )
@@ -228,8 +232,8 @@ shape = SubResource( 3 )
 [node name="StairSteps" type="Spatial" parent="." index="9"]
 
 [node name="StairLeg1" type="StaticBody" parent="StairSteps" index="0"]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 19
+collision_mask = 19
 
 [node name="CollisionPolygon" type="CollisionPolygon" parent="StairSteps/StairLeg1" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
@@ -253,8 +257,8 @@ polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 
 
 [node name="StairLeg2" type="StaticBody" parent="StairSteps" index="1"]
 transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 0.4, 0 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 19
+collision_mask = 19
 
 [node name="CollisionPolygon" type="CollisionPolygon" parent="StairSteps/StairLeg2" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
@@ -278,8 +282,8 @@ polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 
 
 [node name="StairLeg3" type="StaticBody" parent="StairSteps" index="2"]
 transform = Transform( -0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 0, 0.8, 0 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 19
+collision_mask = 19
 
 [node name="CollisionPolygon" type="CollisionPolygon" parent="StairSteps/StairLeg3" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
@@ -303,8 +307,8 @@ polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 
 
 [node name="StairLeg4" type="StaticBody" parent="StairSteps" index="3"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.2, 0 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 19
+collision_mask = 19
 
 [node name="CollisionPolygon" type="CollisionPolygon" parent="StairSteps/StairLeg4" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
@@ -328,8 +332,8 @@ polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 
 
 [node name="StairLeg5" type="StaticBody" parent="StairSteps" index="4"]
 transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0, 1.6, 0 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 19
+collision_mask = 19
 
 [node name="CollisionPolygon" type="CollisionPolygon" parent="StairSteps/StairLeg5" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
@@ -353,8 +357,8 @@ polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 
 
 [node name="StairLeg6" type="StaticBody" parent="StairSteps" index="5"]
 transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 2, 0 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 19
+collision_mask = 19
 
 [node name="CollisionPolygon" type="CollisionPolygon" parent="StairSteps/StairLeg6" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
@@ -378,8 +382,8 @@ polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 
 
 [node name="StairLeg7" type="StaticBody" parent="StairSteps" index="6"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 19
+collision_mask = 19
 
 [node name="CollisionPolygon" type="CollisionPolygon" parent="StairSteps/StairLeg7" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
@@ -403,8 +407,8 @@ polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 
 
 [node name="StairLeg8" type="StaticBody" parent="StairSteps" index="7"]
 transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 2.8, 0 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 19
+collision_mask = 19
 
 [node name="CollisionPolygon" type="CollisionPolygon" parent="StairSteps/StairLeg8" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
@@ -428,8 +432,8 @@ polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 
 
 [node name="StairLeg9" type="StaticBody" parent="StairSteps" index="8"]
 transform = Transform( -0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 0, 3.2, 0 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 19
+collision_mask = 19
 
 [node name="CollisionPolygon" type="CollisionPolygon" parent="StairSteps/StairLeg9" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
@@ -453,8 +457,8 @@ polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 
 
 [node name="StairLeg10" type="StaticBody" parent="StairSteps" index="9"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 3.6, 0 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 19
+collision_mask = 19
 
 [node name="CollisionPolygon" type="CollisionPolygon" parent="StairSteps/StairLeg10" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
@@ -478,8 +482,8 @@ polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 
 
 [node name="StairLeg11" type="StaticBody" parent="StairSteps" index="10"]
 transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0, 4, 0 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 19
+collision_mask = 19
 
 [node name="CollisionPolygon" type="CollisionPolygon" parent="StairSteps/StairLeg11" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
@@ -503,8 +507,8 @@ polygon = PoolVector2Array( 0.0500158, -0.00701946, 1.37878, -0.182311, 1.2836, 
 
 [node name="StairLeg12" type="StaticBody" parent="StairSteps" index="11"]
 transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 4.4, 0 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 19
+collision_mask = 19
 
 [node name="CollisionPolygon" type="CollisionPolygon" parent="StairSteps/StairLeg12" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.05, 0 )
