@@ -25,5 +25,7 @@ static func get_event_string(event: InputEvent) -> String:
 			BUTTON_XBUTTON2:
 				return "Mouse 5"
 	elif event is InputEventJoypadButton:
+		if event.button_index <= 3:
+			return ["A", "B", "X", "Y"][event.button_index]
 		return Input.get_joy_button_string(event.button_index)
 	return event.as_text()

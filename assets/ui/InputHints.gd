@@ -35,19 +35,23 @@ func _on_Player_book_held(held):
 	_held = held
 	_refresh_text()
 
-
-func _get_action_str(action: String) -> String:
+# Finds an event for an action that matches the current control scheme,
+# i.e. keyboard or controller.
+func _get_active_event(action: String) -> InputEvent:
 	var events = InputMap.get_action_list(action)
 	for e in events:
-		if (
-			_input_method == InputUtil.InputType.KEYBOARD
-			and (e is InputEventKey or e is InputEventMouse)
-		):
-			return InputUtil.get_event_string(e)
-		elif (
-			_input_method == InputUtil.InputType.CONTROLLER
-			and (e is InputEventJoypadButton or e is InputEventJoypadMotion)
-		):
-			return InputUtil.get_event_string(e)
+		var is_active_event = (
+			(_input_method == InputUtil.InputType.KEYBOARD
+				and (e is InputEventKey or e is InputEventMouse))
+			or (_input_method == InputUtil.InputType.CONTROLLER
+				and (e is InputEventJoypadButton or e is InputEventJoypadMotion)))
+		if is_active_event:
+			return e
 	assert(false, "No matching event")
-	return ""
+	return null
+
+func _get_action_str(action: String) -> String:
+	var event = _get_active_event(action)
+	if event == null:
+		return ""
+	return InputUtil.get_event_string(event)
