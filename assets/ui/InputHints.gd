@@ -16,7 +16,7 @@ func _refresh_text():
 				[_get_action_str("turn_page_forward"), _get_action_str("turn_page_back")]
 			)
 		)
-	if _targeted:
+	if _targeted or _held:
 		lines.append("Pick up/drop: {0}".format([_get_action_str("pick_up")]))
 	text = lines.join("\n")
 

@@ -36,6 +36,7 @@ func _ready():
 	if BookRegistry.held_book != null:
 		var book_text = BookRegistry.get_book_text(BookRegistry.held_book)
 		held_book.open_to_page(book_text, BookRegistry.held_book_page)
+		emit_signal("book_held", true)
 
 
 func teleport(offset: Vector3):
@@ -92,6 +93,7 @@ func pick_up_floor_book():
 	BookRegistry.held_book = book.book_index
 	BookRegistry.held_book_page = held_book.get_page()
 	held_book.pick_up_floor_book(book)
+	return true
 
 
 func _unhandled_input(event: InputEvent):
