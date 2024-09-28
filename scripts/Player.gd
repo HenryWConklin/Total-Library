@@ -106,7 +106,7 @@ func _unhandled_input(event: InputEvent):
 		_mouse_move += mouse_motion * mouse_sensitivity
 		get_tree().set_input_as_handled()
 		return
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("pause"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		emit_signal("pause_requested")
 		get_tree().set_input_as_handled()
