@@ -15,6 +15,8 @@ const UP: Vector3 = Vector3(0, 1, 0)
 export(Vector2) var mouse_sensitivity = Vector2(0.002, 0.002)
 export(Vector2) var controller_sensitivity = Vector2(0.002, 0.002)
 export(Vector2) var move_speed = Vector2(5, 5)
+export(Vector3) var camera_position_standing = Vector3(0, 1.4, -0.4)
+export(Vector3) var camera_position_crouching = Vector3(0, 0.4, -0.4)
 export(float) var gravity = 10.0
 export(NodePath) var camera_path: NodePath
 export(NodePath) var raycast_path: NodePath
@@ -196,8 +198,13 @@ func _handle_movement(delta):
 		var _move_result = self.move_and_slide_with_snap(
 			Vector3(move_vec.x, 0, move_vec.y), SNAP_VECTOR, UP, true
 		)
+		if Input.is_action_pressed("crouch"):
+			camera.translation = camera_position_crouching
+		else:
+			camera.translation = camera_position_standing
 	else:
 		var _move_result = self.move_and_slide(Vector3(move_vec.x, -gravity, move_vec.y), UP, true)
+		camera.translation = camera_position_standing
 
 
 func _selection_highlight():
