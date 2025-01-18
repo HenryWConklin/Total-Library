@@ -4,3 +4,4 @@
 *.d
 .cache/
 compile_commands.json
+venv/
