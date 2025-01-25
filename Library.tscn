@@ -113,9 +113,9 @@ custom_constants/margin_right = 10
 custom_constants/margin_bottom = 10
 
 [node name="InputHints" type="Label" parent="MarginContainer"]
-margin_top = 15.0
+margin_top = 6.0
 margin_right = 375.0
-margin_bottom = 43.0
+margin_bottom = 51.0
 theme = ExtResource( 9 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 valign = 2
@@ -126,5 +126,6 @@ visible = false
 
 [connection signal="book_held" from="Rooms/Player" to="MarginContainer/InputHints" method="_on_Player_book_held"]
 [connection signal="book_targeted" from="Rooms/Player" to="MarginContainer/InputHints" method="_on_Player_book_targeted"]
+[connection signal="index_screen_targeted" from="Rooms/Player" to="MarginContainer/InputHints" method="_on_Player_index_screen_targeted"]
 [connection signal="last_input_method_changed" from="Rooms/Player" to="MarginContainer/InputHints" method="_on_Player_last_input_method_changed"]
 [connection signal="pause_requested" from="Rooms/Player" to="PauseMenu" method="_on_pause_requested"]

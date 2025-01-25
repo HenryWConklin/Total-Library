@@ -6,6 +6,7 @@ signal pause_requested
 signal last_input_method_changed(method)
 signal book_targeted(targeted)
 signal book_held(held)
+signal index_screen_targeted(targeted)
 
 const HeldBook = preload("res://assets/props/HeldBook.gd")
 
@@ -24,8 +25,11 @@ export(NodePath) var held_book_path: NodePath
 export(NodePath) var selection_highlight_path: NodePath
 
 var _mouse_move = Vector2(0, 0)
-var _last_raycast_colliding = false
+var _last_raycast_colliding_book = false
 var _last_input_type: int = InputUtil.InputType.KEYBOARD
+var _raycast_collider = null
+var _raycast_collision_point: Vector3 = Vector3()
+var _last_screen_colliding = null
 
 onready var camera: Camera = get_node(camera_path)
 onready var raycast: RayCast = get_node(raycast_path)
@@ -47,10 +51,9 @@ func teleport(offset: Vector3):
 
 
 func get_raycast_shelf_book_ind() -> BookIndex:
-	var picked_shelf_collision = raycast.get_collider()
-	var picked_shelf = picked_shelf_collision.get_node(picked_shelf_collision.shelf_path)
-	var picked_point_global = raycast.get_collision_point()
-	var picked_point_local = picked_shelf_collision.to_local(picked_point_global)
+	var picked_shelf = _raycast_collider.get_node(_raycast_collider.shelf_path)
+	var picked_point_global = _raycast_collision_point
+	var picked_point_local = _raycast_collider.to_local(picked_point_global)
 	var shelf_ind = picked_shelf.shelf_index
 	var pos_book_ind = BookRegistry.get_book_index_at_point(shelf_ind, picked_point_local)
 	return pos_book_ind
@@ -68,7 +71,7 @@ func pick_up_shelf_book() -> bool:
 	var book_transform_local = BookRegistry.get_book_transform(pos_book_ind.book)
 
 	held_book.pull_from_shelf(
-		book_text, book_transform_local, raycast.get_collider().global_transform
+		book_text, book_transform_local, _raycast_collider.global_transform
 	)
 	BookRegistry.held_book = actual_book_ind
 	BookRegistry.held_book_page = held_book.get_page()
@@ -85,13 +88,13 @@ func place_book_on_shelf() -> bool:
 	var book_transform_local = BookRegistry.get_book_transform(pos_book_ind.book)
 	BookRegistry.held_book = null
 	held_book.place_on_shelf(
-		pos_book_ind, book_transform_local, raycast.get_collider().global_transform
+		pos_book_ind, book_transform_local, _raycast_collider.global_transform
 	)
 	return true
 
 
 func pick_up_floor_book():
-	var book = raycast.get_collider()
+	var book = _raycast_collider
 	BookRegistry.held_book = book.book_index
 	BookRegistry.held_book_page = held_book.get_page()
 	held_book.pick_up_floor_book(book)
@@ -124,11 +127,27 @@ func _unhandled_input(event: InputEvent):
 		get_tree().set_input_as_handled()
 		return
 
+	_handle_pickup_input(event)
+
+	if event.is_action_pressed("turn_page_forward") and held_book.can_turn_page():
+		held_book.page_forward()
+		BookRegistry.held_book_page = held_book.get_page()
+		get_tree().set_input_as_handled()
+		return
+	if event.is_action_pressed("turn_page_back") and held_book.can_turn_page():
+		held_book.page_back()
+		BookRegistry.held_book_page = held_book.get_page()
+		get_tree().set_input_as_handled()
+		return
+
+
+func _handle_pickup_input(event):
+	if _raycast_collider == null:
+		return
 	# Book pickup
 	if (
 		event.is_action_pressed("pick_up")
-		and raycast.is_colliding()
-		and raycast.get_collider() is Area
+		and _raycast_collider.is_in_group("bookshelf_raycast")
 		and held_book.can_pick_up_book()
 	):
 		if pick_up_shelf_book():
@@ -137,8 +156,7 @@ func _unhandled_input(event: InputEvent):
 			return
 	if (
 		event.is_action_pressed("pick_up")
-		and raycast.is_colliding()
-		and raycast.get_collider() is Area
+		and _raycast_collider.is_in_group("bookshelf_raycast")
 		and held_book.can_place_book()
 	):
 		if place_book_on_shelf():
@@ -147,8 +165,7 @@ func _unhandled_input(event: InputEvent):
 			return
 	if (
 		event.is_action_pressed("pick_up")
-		and raycast.is_colliding()
-		and raycast.get_collider() is RigidBody
+		and _raycast_collider.is_in_group("floor_book_raycast")
 		and held_book.can_pick_up_book()
 	):
 		if pick_up_floor_book():
@@ -159,17 +176,6 @@ func _unhandled_input(event: InputEvent):
 		held_book.drop_book()
 		BookRegistry.held_book = null
 		emit_signal("book_held", false)
-		get_tree().set_input_as_handled()
-		return
-
-	if event.is_action_pressed("turn_page_forward") and held_book.can_turn_page():
-		held_book.page_forward()
-		BookRegistry.held_book_page = held_book.get_page()
-		get_tree().set_input_as_handled()
-		return
-	if event.is_action_pressed("turn_page_back") and held_book.can_turn_page():
-		held_book.page_back()
-		BookRegistry.held_book_page = held_book.get_page()
 		get_tree().set_input_as_handled()
 		return
 
@@ -208,41 +214,56 @@ func _handle_movement(delta):
 
 
 func _selection_highlight():
-	if not raycast.is_colliding():
+	var collider = _raycast_collider
+	if collider == null:
 		selection_highlight.hide()
-		_raycast_colliding(false)
+		_raycast_colliding_book(false)
 		return
-	if raycast.get_collider() is Area:
+	if collider.is_in_group("bookshelf_raycast"):
 		var book_ind = get_raycast_shelf_book_ind()
 		if book_ind != null:
 			var book_transform_local = BookRegistry.get_book_transform(book_ind.book)
 			var book_transform_global = (
-				raycast.get_collider().global_transform
+				collider.global_transform
 				* book_transform_local
 			)
 			selection_highlight.show()
 			selection_highlight.global_transform = book_transform_global
-			_raycast_colliding(true)
+			_raycast_colliding_book(true)
 			return
-	elif raycast.get_collider() is RigidBody:
+	elif collider.is_in_group("floor_book_raycast"):
 		selection_highlight.show()
-		selection_highlight.global_transform = raycast.get_collider().global_transform
-		_raycast_colliding(true)
+		selection_highlight.global_transform = collider.global_transform
+		_raycast_colliding_book(true)
 		return
 	selection_highlight.hide()
-	_raycast_colliding(false)
+	_raycast_colliding_book(false)
 
+func _process(_delta):
+	# Some kind of race condition on picking up a floor book, raycast.get_collider() can go null
+	# in the middle of _process
+	_raycast_collider = raycast.get_collider()
+	_raycast_collision_point = raycast.get_collision_point()
+
+	_selection_highlight()
+
+	if _raycast_collider != null and _raycast_collider.is_in_group("index_screen_raycast"):
+		_last_screen_colliding = _raycast_collider
+		_last_screen_colliding.set_targeted(true)
+		_last_screen_colliding.set_targeted_position(raycast.get_collision_point())
+		emit_signal("index_screen_targeted", true)
+	if _last_screen_colliding != null and _raycast_collider != _last_screen_colliding:
+		_last_screen_colliding.set_targeted(false)
+		_last_screen_colliding = null
+		emit_signal("index_screen_targeted", false)
 
 func _physics_process(delta):
 	_handle_movement(delta)
-	_selection_highlight()
 
-
-func _raycast_colliding(val: bool):
-	if val != _last_raycast_colliding:
+func _raycast_colliding_book(val: bool):
+	if val != _last_raycast_colliding_book:
 		emit_signal("book_targeted", val)
-	_last_raycast_colliding = val
-
+	_last_raycast_colliding_book = val
 
 func _input_type(val: int):
 	if val != _last_input_type:

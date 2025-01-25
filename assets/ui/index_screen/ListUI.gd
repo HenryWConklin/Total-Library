@@ -41,7 +41,6 @@ func _on_PreviousPageButton_pressed():
 
 func _on_FindButton_pressed():
 	emit_signal("find_button_pressed", _page, _selected)
-	BookUtil.make_book()
 
 
 func _on_NextPageButton_pressed():

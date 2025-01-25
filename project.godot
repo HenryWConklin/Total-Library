@@ -72,6 +72,7 @@ config/icon="res://assets/icons/total-library-icon64.png"
 BookRegistry="*res://scripts/data/BookRegistry.gd"
 Options="*res://scripts/data/Options.gd"
 InputUtil="*res://scripts/InputUtil.gd"
+IndexScreenRender="*res://assets/ui/index_screen/IndexScreenRender.tscn"
 
 [debug]
 

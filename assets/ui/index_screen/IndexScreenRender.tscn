@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/ui/index_screen/IndexScreenUI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/ui/index_screen/IndexScreenRender.gd" type="Script" id=2]
+
+[node name="IndexScreenRender" type="Viewport"]
+size = Vector2( 800, 600 )
+hdr = false
+disable_3d = true
+usage = 0
+render_target_v_flip = true
+script = ExtResource( 2 )
+
+[node name="IndexScreenUI" parent="." instance=ExtResource( 1 )]
