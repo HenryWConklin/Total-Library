@@ -20,6 +20,16 @@ _global_script_classes=[ {
 "path": "res://scripts/data/BookIndex.gd"
 }, {
 "base": "Reference",
+"class": "BookSearch",
+"language": "NativeScript",
+"path": "res://native/src/book_search.gdns"
+}, {
+"base": "Reference",
+"class": "BookSearchResult",
+"language": "NativeScript",
+"path": "res://native/src/book_search_result.gdns"
+}, {
+"base": "Reference",
 "class": "BookText",
 "language": "NativeScript",
 "path": "res://native/src/book_text.gdns"
@@ -52,6 +62,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "ArrayModifier": "",
 "BookIndex": "",
+"BookSearch": "",
+"BookSearchResult": "",
 "BookText": "",
 "BookUtil": "",
 "RoomGenParams": "",

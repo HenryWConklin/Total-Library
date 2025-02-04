@@ -13,7 +13,7 @@ class BookText : public godot::Reference {
   GODOT_CLASS(BookText, godot::Reference)
 
 public:
-  boost::multiprecision::cpp_int full_ind;
+  boost::multiprecision::cpp_int full_text;
   int room_x;
   int room_y;
   int room_z;
