@@ -231,6 +231,8 @@ func test_place_book_at_fills_empty_slot():
 func test_place_book_at_updates_mesh():
 	var index = BookIndex.new()
 	var index2 = BookIndex.new()
+	# Need to use a non-placeholder room
+	index.room.x = 1
 	index2.book = 2
 
 	var _removed = registry.remove_book_at(index)
