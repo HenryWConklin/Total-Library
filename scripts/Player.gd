@@ -247,15 +247,15 @@ func _process(_delta):
 
 	_selection_highlight()
 
+	if _last_screen_colliding != null and _raycast_collider != _last_screen_colliding:
+		_last_screen_colliding.set_targeted(false)
+		_last_screen_colliding = null
+		emit_signal("index_screen_targeted", false)
 	if _raycast_collider != null and _raycast_collider.is_in_group("index_screen_raycast"):
 		_last_screen_colliding = _raycast_collider
 		_last_screen_colliding.set_targeted(true)
 		_last_screen_colliding.set_targeted_position(raycast.get_collision_point())
 		emit_signal("index_screen_targeted", true)
-	if _last_screen_colliding != null and _raycast_collider != _last_screen_colliding:
-		_last_screen_colliding.set_targeted(false)
-		_last_screen_colliding = null
-		emit_signal("index_screen_targeted", false)
 
 func _physics_process(delta):
 	_handle_movement(delta)
@@ -273,3 +273,4 @@ func _input_type(val: int):
 
 func _on_RoomTracker_room_changed(area):
 	BookRegistry.set_player_position(area.room_index)
+	get_tree().call_group("player_trackers", "set_player_position", area.room_index)

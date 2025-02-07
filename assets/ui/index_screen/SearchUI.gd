@@ -1,18 +1,17 @@
 extends VBoxContainer
 
 export(NodePath) var search_box: NodePath
+export(NodePath) var search_button: NodePath
 
 onready var _search_box: LineEdit = get_node(search_box)
+onready var _search_button: Button = get_node(search_button)
 
 signal search_pressed(text)
-
-func _ready():
-	_search_box.grab_focus()
 
 func set_search_text(val: String):
 	_search_box.text = val
 	_search_box.caret_position = val.length()
-	_search_box.grab_focus()
+	_search_button.set_disabled(val.length() == 0)
 
 func get_search_text() -> String:
 	return _search_box.text

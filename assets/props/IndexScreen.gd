@@ -21,6 +21,7 @@ func _unhandled_input(event):
 		select_event.button_index = BUTTON_LEFT
 		select_event.pressed = event.is_action_pressed("pick_up")
 		IndexScreenRender.input(select_event)
+		get_tree().set_input_as_handled()
 
 
 func _on_IndexScreenRaycastArea_targeted_position(local_pos):
@@ -34,4 +35,6 @@ func _on_IndexScreenRaycastArea_targeted_position(local_pos):
 
 
 func _on_IndexScreenRaycastArea_is_targeted(targeted):
+	if targeted != _is_targeted:
+		print(self, " ", targeted)
 	_is_targeted = targeted
