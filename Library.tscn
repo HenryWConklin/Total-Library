@@ -113,9 +113,9 @@ custom_constants/margin_right = 10
 custom_constants/margin_bottom = 10
 
 [node name="InputHints" type="Label" parent="MarginContainer"]
-margin_top = 6.0
+margin_top = 15.0
 margin_right = 375.0
-margin_bottom = 51.0
+margin_bottom = 43.0
 theme = ExtResource( 9 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 valign = 2

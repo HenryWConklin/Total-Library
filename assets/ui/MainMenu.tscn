@@ -78,7 +78,7 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -206.0
+margin_left = -258.0
 margin_top = -69.0
 custom_constants/margin_right = 5
 custom_constants/margin_bottom = 5
@@ -90,7 +90,7 @@ margin_bottom = 64.0
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_right = 253.0
 margin_bottom = 28.0
-text = "Henry Conklin 2022-2024"
+text = "Henry Conklin 2022-2025"
 align = 2
 
 [node name="GodotLink" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
