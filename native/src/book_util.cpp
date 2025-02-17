@@ -98,7 +98,9 @@ void BookUtil::_recompute_big_vals() {
   // currently not shuffling much. Every other level is mostly identical, only
   // last few pages are different.
   y_diff = bmp::pow(bmp_num_chars, chars_per_book / 3);
+  y_diff -= y_diff % books_per_room;
   z_diff = bmp::pow(y_diff, 2);
+  z_diff -= z_diff % books_per_room;
 }
 
 void BookUtil::_apply_multiplier(bmp::cpp_int &val) const {
@@ -143,9 +145,7 @@ bmp::cpp_int BookUtil::_make_book_num(int room_x, int room_y, int room_z,
 bmp::cpp_int BookUtil::_make_book_index(int room_x, int room_y, int room_z,
                                         int shelf, int book) const {
   // From room index to gallery room index
-  int gallery_room_x = (room_x + 1) / 2;
-  // TODO: Also convert y? Does increment by 2 but I remember specifically not doing that.
-
+  int gallery_room_x = (room_x + (room_x % 2 == 0 ? 0 : 1)) / 2;
   return origin +
          (gallery_room_x * books_per_room + y_diff * room_y + z_diff * room_z) +
          (shelf * (books_per_room / 4)) + book;
