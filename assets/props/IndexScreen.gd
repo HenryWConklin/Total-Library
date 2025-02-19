@@ -35,6 +35,4 @@ func _on_IndexScreenRaycastArea_targeted_position(local_pos):
 
 
 func _on_IndexScreenRaycastArea_is_targeted(targeted):
-	if targeted != _is_targeted:
-		print(self, " ", targeted)
 	_is_targeted = targeted
