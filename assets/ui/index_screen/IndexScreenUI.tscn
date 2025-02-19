@@ -1,0 +1,515 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/ui/index_screen/index_screen_theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/ui/index_screen/KeyboardGrid.gd" type="Script" id=2]
+[ext_resource path="res://assets/ui/index_screen/SearchUI.gd" type="Script" id=3]
+[ext_resource path="res://assets/ui/index_screen/IndexScreenUI.gd" type="Script" id=4]
+[ext_resource path="res://assets/ui/index_screen/ListUI.gd" type="Script" id=5]
+[ext_resource path="res://assets/ui/index_screen/DirectionsUI.gd" type="Script" id=6]
+[ext_resource path="res://assets/ui/index_screen/arrow_s.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/index_screen/cursor.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/index_screen/arrow_n.png" type="Texture" id=9]
+[ext_resource path="res://assets/ui/index_screen/arrow_w.png" type="Texture" id=10]
+[ext_resource path="res://assets/ui/index_screen/arrow_e.png" type="Texture" id=11]
+[ext_resource path="res://assets/ui/index_screen/dot_large.png" type="Texture" id=12]
+
+[node name="IndexScreenUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+search_ui = NodePath("SearchUI")
+list_ui = NodePath("ListUI")
+directions_ui = NodePath("DirectionsUI")
+mouse_pointer = NodePath("Sprite")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="SearchUI" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+search_box = NodePath("HBoxContainer/SearchBox")
+search_button = NodePath("HBoxContainer/SearchButton")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SearchUI"]
+margin_right = 1280.0
+margin_bottom = 101.0
+size_flags_vertical = 3
+
+[node name="SearchBox" type="LineEdit" parent="SearchUI/HBoxContainer"]
+margin_right = 1120.0
+margin_bottom = 101.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 7.2
+clear_button_enabled = true
+
+[node name="SearchButton" type="Button" parent="SearchUI/HBoxContainer"]
+margin_left = 1124.0
+margin_right = 1280.0
+margin_bottom = 101.0
+size_flags_horizontal = 3
+disabled = true
+text = "Search"
+
+[node name="KeyboardGrid" type="GridContainer" parent="SearchUI"]
+margin_top = 105.0
+margin_right = 1280.0
+margin_bottom = 614.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+columns = 8
+script = ExtResource( 2 )
+
+[node name="Button" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_right = 157.0
+margin_bottom = 125.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "A"
+
+[node name="Button2" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 161.0
+margin_right = 318.0
+margin_bottom = 125.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "B"
+
+[node name="Button3" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 322.0
+margin_right = 479.0
+margin_bottom = 125.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "C"
+
+[node name="Button4" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 483.0
+margin_right = 640.0
+margin_bottom = 125.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "D"
+
+[node name="Button5" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 644.0
+margin_right = 800.0
+margin_bottom = 125.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "E"
+
+[node name="Button6" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 804.0
+margin_right = 960.0
+margin_bottom = 125.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "F"
+
+[node name="Button7" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 964.0
+margin_right = 1120.0
+margin_bottom = 125.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "G"
+
+[node name="Button8" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 1124.0
+margin_right = 1280.0
+margin_bottom = 125.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "H"
+
+[node name="Button9" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_top = 129.0
+margin_right = 157.0
+margin_bottom = 253.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "I"
+
+[node name="Button10" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 161.0
+margin_top = 129.0
+margin_right = 318.0
+margin_bottom = 253.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "J"
+
+[node name="Button11" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 322.0
+margin_top = 129.0
+margin_right = 479.0
+margin_bottom = 253.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "K"
+
+[node name="Button12" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 483.0
+margin_top = 129.0
+margin_right = 640.0
+margin_bottom = 253.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "L"
+
+[node name="Button13" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 644.0
+margin_top = 129.0
+margin_right = 800.0
+margin_bottom = 253.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "M"
+
+[node name="Button14" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 804.0
+margin_top = 129.0
+margin_right = 960.0
+margin_bottom = 253.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "N"
+
+[node name="Button15" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 964.0
+margin_top = 129.0
+margin_right = 1120.0
+margin_bottom = 253.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "O"
+
+[node name="Button16" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 1124.0
+margin_top = 129.0
+margin_right = 1280.0
+margin_bottom = 253.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "P"
+
+[node name="Button17" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_top = 257.0
+margin_right = 157.0
+margin_bottom = 381.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Q"
+
+[node name="Button18" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 161.0
+margin_top = 257.0
+margin_right = 318.0
+margin_bottom = 381.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "R"
+
+[node name="Button19" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 322.0
+margin_top = 257.0
+margin_right = 479.0
+margin_bottom = 381.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "S"
+
+[node name="Button20" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 483.0
+margin_top = 257.0
+margin_right = 640.0
+margin_bottom = 381.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "T"
+
+[node name="Button21" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 644.0
+margin_top = 257.0
+margin_right = 800.0
+margin_bottom = 381.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "U"
+
+[node name="Button22" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 804.0
+margin_top = 257.0
+margin_right = 960.0
+margin_bottom = 381.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "V"
+
+[node name="Button23" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 964.0
+margin_top = 257.0
+margin_right = 1120.0
+margin_bottom = 381.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "W"
+
+[node name="Button24" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 1124.0
+margin_top = 257.0
+margin_right = 1280.0
+margin_bottom = 381.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "X"
+
+[node name="Button25" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_top = 385.0
+margin_right = 157.0
+margin_bottom = 509.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Y"
+
+[node name="Button26" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 161.0
+margin_top = 385.0
+margin_right = 318.0
+margin_bottom = 509.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Z"
+
+[node name="Button27" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 322.0
+margin_top = 385.0
+margin_right = 479.0
+margin_bottom = 509.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = ","
+
+[node name="Button28" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 483.0
+margin_top = 385.0
+margin_right = 640.0
+margin_bottom = 509.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "'"
+
+[node name="Button29" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 644.0
+margin_top = 385.0
+margin_right = 800.0
+margin_bottom = 509.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "."
+
+[node name="Button30" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 804.0
+margin_top = 385.0
+margin_right = 960.0
+margin_bottom = 509.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "!"
+
+[node name="Button31" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 964.0
+margin_top = 385.0
+margin_right = 1120.0
+margin_bottom = 509.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "?"
+
+[node name="Button32" type="Button" parent="SearchUI/KeyboardGrid"]
+margin_left = 1124.0
+margin_top = 385.0
+margin_right = 1280.0
+margin_bottom = 509.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Back"
+
+[node name="SpaceButton" type="Button" parent="SearchUI"]
+margin_top = 618.0
+margin_right = 1280.0
+margin_bottom = 720.0
+size_flags_vertical = 3
+text = "Space"
+
+[node name="ListUI" type="VBoxContainer" parent="." groups=["player_trackers"]]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+item_list = NodePath("ItemList")
+search_text_label = NodePath("HBoxContainer/SearchTextLabel")
+previous_page_button = NodePath("HBoxContainer2/PreviousPageButton")
+next_page_button = NodePath("HBoxContainer2/NextPageButton")
+find_button = NodePath("HBoxContainer2/FindButton")
+search_count_label = NodePath("HBoxContainer3/SearchCountLabel")
+page_label = NodePath("HBoxContainer3/PageLabel")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ListUI"]
+margin_right = 1280.0
+margin_bottom = 82.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CancelButton" type="Button" parent="ListUI/HBoxContainer"]
+margin_right = 116.0
+margin_bottom = 82.0
+size_flags_horizontal = 3
+text = "Back"
+
+[node name="SearchTextLabel" type="Label" parent="ListUI/HBoxContainer"]
+margin_left = 120.0
+margin_top = 18.0
+margin_right = 1280.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 9.97
+text = "This"
+
+[node name="ItemList" type="ItemList" parent="ListUI"]
+margin_top = 86.0
+margin_right = 1280.0
+margin_bottom = 584.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ListUI"]
+margin_top = 588.0
+margin_right = 1280.0
+margin_bottom = 633.0
+
+[node name="PageLabel" type="Label" parent="ListUI/HBoxContainer3"]
+margin_right = 1114.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+text = "Page 1"
+
+[node name="SearchCountLabel" type="Label" parent="ListUI/HBoxContainer3"]
+margin_left = 1118.0
+margin_right = 1280.0
+margin_bottom = 45.0
+text = "100/10000"
+align = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ListUI"]
+margin_top = 637.0
+margin_right = 1280.0
+margin_bottom = 720.0
+size_flags_vertical = 3
+
+[node name="PreviousPageButton" type="Button" parent="ListUI/HBoxContainer2"]
+margin_right = 424.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
+disabled = true
+text = "Previous Page"
+
+[node name="FindButton" type="Button" parent="ListUI/HBoxContainer2"]
+margin_left = 428.0
+margin_right = 852.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
+disabled = true
+text = "Find"
+
+[node name="NextPageButton" type="Button" parent="ListUI/HBoxContainer2"]
+margin_left = 856.0
+margin_right = 1280.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
+text = "Next Page"
+
+[node name="DirectionsUI" type="VBoxContainer" parent="." groups=["player_trackers"]]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+arrow_rect = NodePath("CenterContainer/VBoxContainer/CenterContainer/ArrowRect")
+book_search_label = NodePath("CenterContainer/VBoxContainer/BookSearchLabel")
+distance_label = NodePath("CenterContainer/VBoxContainer/DistanceLabel")
+arrow_up = ExtResource( 9 )
+arrow_down = ExtResource( 7 )
+arrow_left = ExtResource( 10 )
+arrow_right = ExtResource( 11 )
+arrow_here = ExtResource( 12 )
+
+[node name="CenterContainer" type="CenterContainer" parent="DirectionsUI"]
+margin_right = 1280.0
+margin_bottom = 626.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 7.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DirectionsUI/CenterContainer"]
+margin_left = 451.0
+margin_top = 232.0
+margin_right = 829.0
+margin_bottom = 394.0
+
+[node name="CenterContainer" type="CenterContainer" parent="DirectionsUI/CenterContainer/VBoxContainer"]
+margin_right = 378.0
+margin_bottom = 64.0
+
+[node name="ArrowRect" type="TextureRect" parent="DirectionsUI/CenterContainer/VBoxContainer/CenterContainer"]
+margin_left = 157.0
+margin_right = 221.0
+margin_bottom = 64.0
+texture = ExtResource( 12 )
+
+[node name="DistanceLabel" type="Label" parent="DirectionsUI/CenterContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 378.0
+margin_bottom = 113.0
+text = "1 billion LIght years"
+align = 1
+valign = 1
+
+[node name="BookSearchLabel" type="Label" parent="DirectionsUI/CenterContainer/VBoxContainer"]
+margin_top = 117.0
+margin_right = 378.0
+margin_bottom = 162.0
+size_flags_horizontal = 3
+text = "Book"
+align = 1
+valign = 1
+
+[node name="BackButton" type="Button" parent="DirectionsUI"]
+margin_top = 630.0
+margin_right = 1280.0
+margin_bottom = 720.0
+size_flags_vertical = 3
+text = "Back"
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 8 )
+offset = Vector2( 6, 10 )
+
+[connection signal="search_pressed" from="SearchUI" to="." method="_on_SearchUI_search_pressed"]
+[connection signal="pressed" from="SearchUI/HBoxContainer/SearchButton" to="SearchUI" method="_on_SearchButton_pressed"]
+[connection signal="delete_pressed" from="SearchUI/KeyboardGrid" to="SearchUI" method="_on_KeyboardGrid_delete_pressed"]
+[connection signal="key_pressed" from="SearchUI/KeyboardGrid" to="SearchUI" method="_on_KeyboardGrid_key_pressed"]
+[connection signal="pressed" from="SearchUI/SpaceButton" to="SearchUI" method="_on_SpaceButton_pressed"]
+[connection signal="cancel_button_pressed" from="ListUI" to="." method="_on_ListUI_cancel_button_pressed"]
+[connection signal="find_button_pressed" from="ListUI" to="." method="_on_ListUI_find_button_pressed"]
+[connection signal="pressed" from="ListUI/HBoxContainer/CancelButton" to="ListUI" method="_on_CancelButton_pressed"]
+[connection signal="item_selected" from="ListUI/ItemList" to="ListUI" method="_on_ItemList_item_selected"]
+[connection signal="pressed" from="ListUI/HBoxContainer2/PreviousPageButton" to="ListUI" method="_on_PreviousPageButton_pressed"]
+[connection signal="pressed" from="ListUI/HBoxContainer2/FindButton" to="ListUI" method="_on_FindButton_pressed"]
+[connection signal="pressed" from="ListUI/HBoxContainer2/NextPageButton" to="ListUI" method="_on_NextPageButton_pressed"]
+[connection signal="back_button_pressed" from="DirectionsUI" to="." method="_on_DirectionsUI_back_button_pressed"]
+[connection signal="pressed" from="DirectionsUI/BackButton" to="DirectionsUI" method="_on_BackButton_pressed"]

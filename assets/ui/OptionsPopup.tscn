@@ -56,12 +56,12 @@ margin_bottom = 349.0
 size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
-scroll_vertical = 144
+scroll_vertical = 100
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
-margin_top = -144.0
+margin_top = -100.0
 margin_right = 583.0
-margin_bottom = 636.0
+margin_bottom = 719.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 5
@@ -73,7 +73,7 @@ custom_constants/margin_bottom = 10
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 578.0
-margin_bottom = 770.0
+margin_bottom = 809.0
 size_flags_horizontal = 3
 
 [node name="Settings" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -277,7 +277,7 @@ ticks_on_borders = true
 [node name="Controls" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 386.0
 margin_right = 573.0
-margin_bottom = 765.0
+margin_bottom = 804.0
 
 [node name="Controls" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controls"]
 margin_right = 573.0
@@ -295,7 +295,7 @@ text = "Reset to Defaults"
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controls"]
 margin_top = 78.0
 margin_right = 573.0
-margin_bottom = 379.0
+margin_bottom = 418.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 11
@@ -454,6 +454,27 @@ margin_top = 273.0
 margin_right = 573.0
 margin_bottom = 301.0
 action = "turn_page_back"
+key_type = 1
+
+[node name="Crouch" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controls/GridContainer"]
+margin_top = 312.0
+margin_right = 143.0
+margin_bottom = 340.0
+text = "Last page"
+
+[node name="CrouchKeyboard" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controls/GridContainer" instance=ExtResource( 1 )]
+margin_left = 147.0
+margin_top = 312.0
+margin_right = 358.0
+margin_bottom = 340.0
+action = "crouch"
+
+[node name="CrouchController" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Controls/GridContainer" instance=ExtResource( 1 )]
+margin_left = 362.0
+margin_top = 312.0
+margin_right = 573.0
+margin_bottom = 340.0
+action = "crouch"
 key_type = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]

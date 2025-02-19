@@ -2,5 +2,7 @@
 *.os
 *.o
 *.d
+*.bc
 .cache/
 compile_commands.json
+venv/

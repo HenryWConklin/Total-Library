@@ -56,14 +56,17 @@ private:
   cpp_int _make_book_index(int room_x, int room_y, int room_z, int shelf,
                            int book) const;
   // Does modular multiplication of a book number by shuffle_multiplier.
-  inline void _apply_multiplier(cpp_int &val) const;
+  void _apply_multiplier(cpp_int &val) const;
   // Shuffles the bits of a book number in place using bitwise ops.
-  inline void _shuffle_bits(cpp_int &val) const;
+  void _shuffle_bits(cpp_int &val) const;
   // Packs the bits of a cpp_int into floats and appends them to the given
   // PoolRealArray.
   inline void _pack_num_to_floats(const cpp_int &title_num,
                                   godot::PoolRealArray &buff) const;
   godot::Color _pack_title_num_to_color(const cpp_int &title_num) const;
+
+  // Convert a book substring to text
+  godot::String _num_to_text(const cpp_int &num, unsigned int length) const;
 
 public:
   static void _register_methods();
@@ -101,10 +104,15 @@ public:
   // Packs the title for a book into the mantissa of the floats in a
   // Color.
   godot::Color get_packed_title(godot::Ref<BookText> book) const;
-
+  // Returns the title of the book as a string.
+  godot::String get_title(godot::Ref<BookText> book) const;
+  godot::String get_full_text(godot::Ref<BookText> book) const;
+  godot::String get_full_text(const bmp::cpp_int& val) const;
   // Finds the index of a room contatining book starting with the given text,
   // set as origin and pull room 0,0,0.
   godot::PoolByteArray find_text(godot::String text) const;
+
+  friend class BookIter;
 };
 
 #endif

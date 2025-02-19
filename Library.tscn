@@ -126,5 +126,6 @@ visible = false
 
 [connection signal="book_held" from="Rooms/Player" to="MarginContainer/InputHints" method="_on_Player_book_held"]
 [connection signal="book_targeted" from="Rooms/Player" to="MarginContainer/InputHints" method="_on_Player_book_targeted"]
+[connection signal="index_screen_targeted" from="Rooms/Player" to="MarginContainer/InputHints" method="_on_Player_index_screen_targeted"]
 [connection signal="last_input_method_changed" from="Rooms/Player" to="MarginContainer/InputHints" method="_on_Player_last_input_method_changed"]
 [connection signal="pause_requested" from="Rooms/Player" to="PauseMenu" method="_on_pause_requested"]

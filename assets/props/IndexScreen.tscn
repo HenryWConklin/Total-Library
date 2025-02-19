@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/materials/stairs_material.tres" type="Material" id=1]
+[ext_resource path="res://assets/props/IndexScreenRaycastArea.gd" type="Script" id=2]
+[ext_resource path="res://assets/props/IndexScreen.gd" type="Script" id=3]
+
+[sub_resource type="QuadMesh" id=1]
+size = Vector2( 0.8, 0.6 )
+
+[sub_resource type="SpatialMaterial" id=2]
+resource_local_to_scene = true
+flags_unshaded = true
+flags_albedo_tex_force_srgb = true
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.4, 0.3, 0.025 )
+
+[node name="IndexScreen" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+width = 0.9
+height = 0.7
+depth = 0.05
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0141249 )
+operation = 2
+width = 0.8
+height = 0.6
+depth = 0.025
+material = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0175775 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="IndexScreenRaycastArea" type="Area" parent="MeshInstance" groups=["index_screen_raycast"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/IndexScreenRaycastArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.025 )
+shape = SubResource( 4 )
+
+[connection signal="is_targeted" from="MeshInstance/IndexScreenRaycastArea" to="." method="_on_IndexScreenRaycastArea_is_targeted"]
+[connection signal="targeted_position" from="MeshInstance/IndexScreenRaycastArea" to="." method="_on_IndexScreenRaycastArea_targeted_position"]

@@ -1,6 +1,7 @@
 #include "book_util.hpp"
 #include "GodotGlobal.hpp"
 #include "String.hpp"
+#include "book_iter.hpp"
 #include "util.hpp"
 
 #include <AABB.hpp>
@@ -30,6 +31,7 @@ void BookUtil::_register_methods() {
   godot::register_method("make_book", &BookUtil::make_book);
   godot::register_method("get_page", &BookUtil::get_page);
   godot::register_method("get_packed_title", &BookUtil::get_packed_title);
+  godot::register_method("get_title", &BookUtil::get_title);
   godot::register_method("find_text", &BookUtil::find_text);
 }
 
@@ -92,8 +94,13 @@ void BookUtil::_recompute_big_vals() {
   // of all of these or the hallway wrap will be in the middle of a room and
   // books will be in different positions between wraps. Not that anyone will
   // ever see that
+  // TODO: Subtract off bit to avoid a bunch of trailing zeros? z-axis is
+  // currently not shuffling much. Every other level is mostly identical, only
+  // last few pages are different.
   y_diff = bmp::pow(bmp_num_chars, chars_per_book / 3);
+  y_diff -= y_diff % books_per_room;
   z_diff = bmp::pow(y_diff, 2);
+  z_diff -= z_diff % books_per_room;
 }
 
 void BookUtil::_apply_multiplier(bmp::cpp_int &val) const {
@@ -138,8 +145,7 @@ bmp::cpp_int BookUtil::_make_book_num(int room_x, int room_y, int room_z,
 bmp::cpp_int BookUtil::_make_book_index(int room_x, int room_y, int room_z,
                                         int shelf, int book) const {
   // From room index to gallery room index
-  int gallery_room_x = (room_x + 1) / 2;
-
+  int gallery_room_x = (room_x + (room_x % 2 == 0 ? 0 : 1)) / 2;
   return origin +
          (gallery_room_x * books_per_room + y_diff * room_y + z_diff * room_z) +
          (shelf * (books_per_room / 4)) + book;
@@ -187,6 +193,31 @@ BookUtil::_pack_title_num_to_color(const bmp::cpp_int &title_num) const {
   }
   return godot::Color(floats[0], floats[1], floats[2], floats[3]);
 }
+godot::String BookUtil::_num_to_text(const cpp_int &num,
+                                     unsigned int length) const {
+  // Initialize full of zeros, with one extra to null terminate
+  std::vector<wchar_t> buff(length + 1);
+  godot::String charset = room_gen_params->charset;
+  int num_chars = charset.length();
+  if (!charset_pow2) {
+    cpp_int num_copy(num);
+    for (int i = 0; i < length; i++) {
+      buff[i] = (num_copy % num_chars).convert_to<int>();
+      num_copy /= num_chars;
+    }
+  } else {
+    // Direct copy charset indices into the buffer with the correct bits per
+    // char
+    bmp::export_bits(num, buff.begin(), bits_per_char,
+                     /*msv_first=*/false);
+  }
+  // Replace charset index with actual char code
+  for (int i = 0; i < length; i++) {
+    buff[i] = charset[buff[i]];
+  }
+  godot::String page_text(&buff[0]);
+  return page_text;
+}
 
 godot::PoolByteArray BookUtil::get_origin() const {
   godot::PoolByteArray res;
@@ -230,10 +261,7 @@ godot::Array BookUtil::make_shelf_multimeshes(int room_x, int room_y,
   godot::Vector3 book_size = room_gen_params->book_mesh->get_aabb().size;
   float book_stride = book_size.z + book_spacing;
 
-  bmp::cpp_int book_index = _make_book_index(room_x, room_y, room_z, 0, 0);
-  // This multiply is the biggest performance cost from profiling at 30%
-  // of this function's runtime, second is the _shuffle_bits call at 20%
-  _apply_multiplier(book_index);
+  BookIter iter(*this, room_x, room_y, room_z);
   for (int shelf = 0; shelf < 4; shelf++) {
 
     godot::Ref<godot::MultiMesh> shelf_mesh = godot::MultiMesh::_new();
@@ -270,8 +298,7 @@ godot::Array BookUtil::make_shelf_multimeshes(int room_x, int room_y,
         data.push_back(zoff);
 
         // Title in color data
-        bmp::cpp_int title_num(book_index);
-        _shuffle_bits(title_num);
+        bmp::cpp_int title_num = iter.next().value();
         if (charset_pow2) {
           title_num &= title_bit_mask;
         } else {
@@ -282,13 +309,6 @@ godot::Array BookUtil::make_shelf_multimeshes(int room_x, int room_y,
         // Handle title length less than max capacity
         while (data.size() - curr_size < 4) {
           data.append(0.0f);
-        }
-
-        book_index += room_gen_params->shuffle_multiplier;
-        if (charset_pow2) {
-          book_index &= num_books_bit_mask;
-        } else {
-          title_num %= num_books;
         }
       }
     }
@@ -318,7 +338,7 @@ godot::Color BookUtil::get_packed_title_from_index(int room_x, int room_y,
 godot::Ref<BookText> BookUtil::make_book(int room_x, int room_y, int room_z,
                                          int shelf, int book) const {
   godot::Ref<BookText> res = BookText::_new();
-  res->full_ind = _make_book_num(room_x, room_y, room_z, shelf, book);
+  res->full_text = _make_book_num(room_x, room_y, room_z, shelf, book);
   res->room_x = room_x;
   res->room_y = room_y;
   res->room_z = room_z;
@@ -330,38 +350,38 @@ godot::Ref<BookText> BookUtil::make_book(int room_x, int room_y, int room_z,
 // Get a string representation of a page-worth of characters, starting at the
 // 0-indexed page indicated
 godot::String BookUtil::get_page(godot::Ref<BookText> book, int page) const {
-  int chars_per_page = room_gen_params->chars_per_page;
-  // Initialize full of zeros, with one extra to null terminate
-  std::vector<wchar_t> buff(chars_per_page + 1);
-  godot::String charset = room_gen_params->charset;
-  int num_chars = charset.length();
+  bmp::cpp_int num;
   if (!charset_pow2) {
-    bmp::cpp_int num =
-        (book->full_ind / (title_mod * bmp::pow(page_mod, page))) % page_mod;
-    for (int i = 0; i < chars_per_page && num > 0; i++) {
-      buff[i] = (num % num_chars).convert_to<int>();
-      num /= num_chars;
-    }
+    num = (book->full_text / (title_mod * bmp::pow(page_mod, page))) % page_mod;
   } else {
-    bmp::cpp_int num =
-        (book->full_ind >>
-         (bits_per_char * (room_gen_params->title_chars +
-                           (room_gen_params->chars_per_page * page)))) &
-        page_bit_mask;
-    // Direct copy charset indices into the buffer with the correct bits per
-    // char
-    bmp::export_bits(num, buff.begin(), bits_per_char, /*msv_first=*/false);
+    num = (book->full_text >>
+           (bits_per_char * (room_gen_params->title_chars +
+                             (room_gen_params->chars_per_page * page)))) &
+          page_bit_mask;
   }
-  // Replace charset index with actual char code
-  for (int i = 0; i < chars_per_page; i++) {
-    buff[i] = charset[buff[i]];
-  }
-  godot::String page_text(&buff[0]);
-  return page_text;
+  return _num_to_text(num, room_gen_params->chars_per_page);
 }
 
 godot::Color BookUtil::get_packed_title(godot::Ref<BookText> book) const {
-  return _pack_title_num_to_color(book->full_ind % title_mod);
+  return _pack_title_num_to_color(book->full_text % title_mod);
+}
+
+godot::String BookUtil::get_title(godot::Ref<BookText> book) const {
+  bmp::cpp_int num;
+  if (!charset_pow2) {
+    num = (book->full_text % title_mod);
+  } else {
+    num = (book->full_text & title_bit_mask);
+  }
+  return _num_to_text(num, room_gen_params->title_chars);
+}
+
+godot::String BookUtil::get_full_text(godot::Ref<BookText> book) const {
+  return get_full_text(book->full_text);
+}
+
+godot::String BookUtil::get_full_text(const bmp::cpp_int &val) const {
+  return _num_to_text(val, chars_per_book);
 }
 
 godot::PoolByteArray BookUtil::find_text(godot::String text) const {

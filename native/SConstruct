@@ -7,22 +7,40 @@ opts = Variables([], ARGUMENTS)
 env = DefaultEnvironment()
 
 # Define our options
-opts.Add(EnumVariable('target', "Compilation target",
-         'debug', ['d', 'debug', 'r', 'release']))
-opts.Add(EnumVariable('platform', "Compilation platform",
-         '', ['', 'windows', 'x11', 'linux', 'osx']))
-opts.Add(EnumVariable('p', "Compilation target, alias for 'platform'",
-         '', ['', 'windows', 'x11', 'linux', 'osx']))
-opts.Add(BoolVariable('use_llvm', "Use the LLVM / Clang compiler", 'no'))
-opts.Add(PathVariable('target_path', 'The path where the lib is installed.', 'bin/'))
-opts.Add(PathVariable('target_name', 'The library name.',
-         'liblobutil', PathVariable.PathAccept))
+opts.Add(
+    EnumVariable(
+        "target", "Compilation target", "debug", ["d", "debug", "r", "release"]
+    )
+)
+opts.Add(
+    EnumVariable(
+        "platform",
+        "Compilation platform",
+        "",
+        ["", "windows", "x11", "linux", "osx", "javascript"],
+    )
+)
+opts.Add(
+    EnumVariable(
+        "p",
+        "Compilation target, alias for 'platform'",
+        "",
+        ["", "windows", "x11", "linux", "osx", "javascript"],
+    )
+)
+opts.Add(BoolVariable("use_llvm", "Use the LLVM / Clang compiler", "no"))
+opts.Add(PathVariable("target_path", "The path where the lib is installed.", "bin/"))
+opts.Add(
+    PathVariable(
+        "target_name", "The library name.", "liblobutil", PathVariable.PathAccept
+    )
+)
 
 # Local dependency paths, adapt them to your setup
 godot_headers_path = "godot-cpp/godot-headers/"
 cpp_bindings_path = "godot-cpp/"
 cpp_library = "libgodot-cpp"
-boost_path = "lib/boost/"
+boost_paths = Glob("lib/boost/libs/*/include") + Glob("lib/boost/libs/*/*/include")
 
 # only support 64 at this time..
 bits = 64
@@ -31,14 +49,14 @@ bits = 64
 opts.Update(env)
 
 # Process some arguments
-if env['use_llvm']:
-    env['CC'] = 'clang'
-    env['CXX'] = 'clang++'
+if env["use_llvm"]:
+    env["CC"] = "clang"
+    env["CXX"] = "clang++"
 
-if env['p'] != '':
-    env['platform'] = env['p']
+if env["p"] != "":
+    env["platform"] = env["p"]
 
-if env['platform'] == '':
+if env["platform"] == "":
     print("No valid target platform selected.")
     quit()
 
@@ -51,29 +69,32 @@ if env['platform'] == '':
 # - LINKFLAGS are for linking flags
 
 # Check our platform specifics
-if env['platform'] == "osx":
-    env['target_path'] += 'osx/'
-    cpp_library += '.osx'
-    env.Append(CCFLAGS=['-arch', 'x86_64'])
-    env.Append(CXXFLAGS=['-std=c++17'])
-    env.Append(LINKFLAGS=['-arch', 'x86_64'])
-    if env['target'] in ('debug', 'd'):
-        env.Append(CCFLAGS=['-g', '-O2'])
-    else:
-        env.Append(CCFLAGS=['-g', '-O3'])
+if env["platform"] == "osx":
+    cpp_library += ".osx"
+    env["target_path"] += "osx/"
 
-elif env['platform'] in ('x11', 'linux'):
-    env['target_path'] += 'x11/'
-    cpp_library += '.linux'
-    env.Append(CCFLAGS=['-fPIC'])
-    env.Append(CXXFLAGS=['-std=c++17'])
-    if env['target'] in ('debug', 'd'):
-        env.Append(CCFLAGS=['-g3', '-Og'])
+    env.Append(CCFLAGS=["-arch", "x86_64"])
+    env.Append(CXXFLAGS=["-std=c++17"])
+    env.Append(LINKFLAGS=["-arch", "x86_64"])
+    if env["target"] in ("debug", "d"):
+        env.Append(CCFLAGS=["-g", "-O2"])
     else:
-        env.Append(CCFLAGS=['-g', '-O3'])
+        env.Append(CCFLAGS=["-g", "-O3"])
 
-elif env['platform'] == "windows":
-    cpp_library += '.windows'
+elif env["platform"] in ("x11", "linux"):
+    cpp_library += ".linux"
+    env["target_path"] += "x11/"
+
+    env.Append(CCFLAGS=["-fPIC"])
+    env.Append(CXXFLAGS=["-std=c++17"])
+    if env["target"] in ("debug", "d"):
+        env.Append(CCFLAGS=["-g3", "-O2"])
+    else:
+        env.Append(CCFLAGS=["-g", "-O3"])
+
+elif env["platform"] == "windows":
+    cpp_library += ".windows"
+    env["target_path"] += "win64/"
     # This makes sure to keep the session environment variables on windows,
     # that way you can run scons in a vs 2017 prompt and it will find all the required tools
     env.Append(ENV=os.environ)
@@ -82,10 +103,9 @@ elif env['platform'] == "windows":
     env["AR"] = "x86_64-w64-mingw32-ar"
     env["RANLIB"] = "x86_64-w64-mingw32-ranlib"
     env["LINK"] = "x86_64-w64-mingw32-g++"
-    env['target_path'] += 'win64/'
-    env.Append(CPPDEFINES=['WIN32', '_WIN32',
-               '_WINDOWS', '_CRT_SECURE_NO_WARNINGS'])
-    env.Append(CCFLAGS=["-std=c++14", "-Wwrite-strings"])
+    env["SHLIBSUFFIX"] = ".dll"
+    env.Append(CPPDEFINES=["WIN32", "_WIN32", "_WINDOWS", "_CRT_SECURE_NO_WARNINGS"])
+    env.Append(CCFLAGS=["-std=c++17", "-Wwrite-strings"])
     env.Append(
         LINKFLAGS=[
             "--static",
@@ -94,37 +114,89 @@ elif env['platform'] == "windows":
             "-static-libstdc++",
         ]
     )
-    if env['target'] in ('debug', 'd'):
-        env.Append(CPPDEFINES=['_DEBUG'])
-        env.Append(CCFLAGS=['-MDd', '-ZI'])
-        env.Append(LINKFLAGS=['-DEBUG'])
+    if env["target"] in ("debug", "d"):
+        env.Append(CPPDEFINES=["_DEBUG"])
+        env.Append(CCFLAGS=["-MDd", "-ZI"])
+        env.Append(LINKFLAGS=["-DEBUG"])
     else:
-        env.Append(CPPDEFINES=['NDEBUG'])
-        env.Append(CCFLAGS=['-O2', '-MD'])
+        env.Append(CPPDEFINES=["NDEBUG"])
+        env.Append(CCFLAGS=["-O3", "-MD"])
 
-if env['target'] in ('debug', 'd'):
-    cpp_library += '.debug'
+elif env["platform"] == "javascript":
+    cpp_library += ".javascript"
+    env["target_path"] += "javascript/"
+
+    env["ENV"] = os.environ
+    env["CC"] = "emcc"
+    env["CXX"] = "em++"
+    env["AR"] = "emar"
+    env["RANLIB"] = "emranlib"
+    env.Append(CPPFLAGS=["-s", "SIDE_MODULE=1", "-std=c++17"])
+    env.Append(LINKFLAGS=["-s", "SIDE_MODULE=1"])
+    env["SHOBJSUFFIX"] = ".bc"
+    env["SHLIBSUFFIX"] = ".wasm"
+    # Use TempFileMunge since some AR invocations are too long for cmd.exe.
+    # Use POSIX-style paths, required with TempFileMunge.
+    env["ARCOM_POSIX"] = (
+        env["ARCOM"]
+        .replace("$TARGET", "$TARGET.posix")
+        .replace("$SOURCES", "$SOURCES.posix")
+    )
+    env["ARCOM"] = "${TEMPFILE(ARCOM_POSIX)}"
+
+    # All intermediate files are just LLVM bitcode.
+    env["OBJPREFIX"] = ""
+    env["OBJSUFFIX"] = ".bc"
+    env["PROGPREFIX"] = ""
+    # Program() output consists of multiple files, so specify suffixes manually at builder.
+    env["PROGSUFFIX"] = ""
+    env["LIBPREFIX"] = "lib"
+    env["LIBSUFFIX"] = ".a"
+    env["LIBPREFIXES"] = ["$LIBPREFIX"]
+    env["LIBSUFFIXES"] = ["$LIBSUFFIX"]
+    env.Replace(SHLINKFLAGS="$LINKFLAGS")
+    env.Replace(SHLINKFLAGS="$LINKFLAGS")
+
+    if env["target"] == "debug":
+        env.Append(CCFLAGS=["-O0", "-g"])
+    elif env["target"] == "release":
+        env.Append(CCFLAGS=["-O3"])
+
+if env["target"] in ("debug", "d"):
+    cpp_library += ".debug"
 else:
-    cpp_library += '.release'
+    cpp_library += ".release"
 
-cpp_library += '.' + str(bits)
+if env["platform"]  == "javascript":
+    cpp_library += ".wasm"
+else:
+    cpp_library += "." + str(bits)
 
-SConscript(['godot-cpp/SConstruct'])
+SConscript(["godot-cpp/SConstruct"])
 
 # make sure our binding library is properly includes
-env.Append(CPPPATH=['.', godot_headers_path, cpp_bindings_path + 'include/',
-           cpp_bindings_path + 'include/core/', cpp_bindings_path + 'include/gen/', boost_path])
-env.Append(LIBPATH=[cpp_bindings_path + 'bin/'])
+env.Append(
+    CPPPATH=[
+        ".",
+        godot_headers_path,
+        cpp_bindings_path + "include/",
+        cpp_bindings_path + "include/core/",
+        cpp_bindings_path + "include/gen/",
+    ]
+    + boost_paths
+)
+env.Append(LIBPATH=[cpp_bindings_path + "bin/"])
 env.Append(LIBS=[cpp_library])
 
 # tweak this if you want to use different folders, or more folders, to store your source code in.
-env.Append(CPPPATH=['src/'])
-sources = Glob('src/*.cpp')
-env.Tool('compilation_db')
+env.Append(CPPPATH=["src/"])
+sources = Glob("src/*.cpp")
+env.Tool("compilation_db")
 env.CompilationDatabase()
 
 library = env.SharedLibrary(
-    target=env['target_path'] + env['target_name'], source=sources)
+    target=env["target_path"] + env["target_name"], source=sources
+)
 
 Default(library)
 

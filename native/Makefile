@@ -1,9 +1,6 @@
-.PHONY: all src windows linux
+.PHONY: all src windows linux javascript mac
 
-all: bin/javascript/liblobutil.wasm windows linux
-
-srcfiles := $(wildcard src/*.hpp src/*.cpp)
-src: $(srcfiles)
+all: windows linux javascript
 
 windows:
 	scons platform=windows target=release -j 4
@@ -11,18 +8,9 @@ windows:
 linux:
 	scons platform=linux target=release -j 4
 
-bin/javascript/liblobutil.wasm: src
-	cd godot-cpp && scons platform=javascript target=release -j 4
-	mkdir -p bin/javascript
-	em++ -o bin/javascript/liblobutil.wasm \
-		-O3 \
-		-s SIDE_MODULE=1 \
-		-s ASSERTIONS=1 \
-		src/*.cpp \
-		godot-cpp/bin/libgodot-cpp.javascript.release.wasm.a \
-		-Igodot-cpp/include \
-		-Igodot-cpp/include/core \
-		-Igodot-cpp/include/gen \
-		-Igodot-cpp/include/gen \
-		-Igodot-cpp/godot-headers \
-		-Ilib/boost
+javascript:
+	scons platform=javascript target=release -j 4
+
+# Needs to be built on a mac
+mac:
+	scons platform=osx target=release -j 4

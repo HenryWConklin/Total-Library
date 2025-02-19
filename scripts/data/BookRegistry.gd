@@ -131,7 +131,7 @@ func set_player_position(ind: RoomIndex):
 				shelf.regenerate_multimesh()
 
 
-func _offset_room_index(ind: RoomIndex) -> RoomIndex:
+func offset_room_index(ind: RoomIndex) -> RoomIndex:
 	var res = RoomIndex.new()
 	res.x = ind.x + room_offset.x
 	res.y = ind.y + room_offset.y
@@ -269,7 +269,7 @@ func place_book_at(ind: BookIndex, book: BookIndex) -> bool:
 
 
 func set_floor_books(ind: RoomIndex, books: Array):
-	var offset_ind = _offset_room_index(ind).to_key()
+	var offset_ind = offset_room_index(ind).to_key()
 	if books.size() > 0:
 		floor_books[offset_ind] = books
 	elif floor_books.has(offset_ind):
@@ -277,7 +277,7 @@ func set_floor_books(ind: RoomIndex, books: Array):
 
 
 func get_floor_books(ind: RoomIndex) -> Array:
-	var offset_ind = _offset_room_index(ind)
+	var offset_ind = offset_room_index(ind)
 	if floor_books.has(offset_ind.to_key()):
 		return floor_books[offset_ind.to_key()].duplicate()
 	else:
