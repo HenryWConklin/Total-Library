@@ -79,7 +79,8 @@ if env["platform"] == "osx":
     if env["target"] in ("debug", "d"):
         env.Append(CCFLAGS=["-g", "-O2"])
     else:
-        env.Append(CCFLAGS=["-g", "-O3"])
+        env.Append(CCFLAGS=["-O3", "-s"])
+        env.Append(LINKFLAGS=["-s"])
 
 elif env["platform"] in ("x11", "linux"):
     cpp_library += ".linux"
@@ -90,7 +91,8 @@ elif env["platform"] in ("x11", "linux"):
     if env["target"] in ("debug", "d"):
         env.Append(CCFLAGS=["-g3", "-O2"])
     else:
-        env.Append(CCFLAGS=["-g", "-O3"])
+        env.Append(CCFLAGS=["-O3", "-s"])
+        env.Append(LINKFLAGS=["-s"])
 
 elif env["platform"] == "windows":
     cpp_library += ".windows"
@@ -120,7 +122,8 @@ elif env["platform"] == "windows":
         env.Append(LINKFLAGS=["-DEBUG"])
     else:
         env.Append(CPPDEFINES=["NDEBUG"])
-        env.Append(CCFLAGS=["-O3", "-MD"])
+        env.Append(CCFLAGS=["-O3", "-MD", "-s"])
+        env.Append(LINKFLAGS=["-s"])
 
 elif env["platform"] == "javascript":
     cpp_library += ".javascript"
@@ -131,8 +134,8 @@ elif env["platform"] == "javascript":
     env["CXX"] = "em++"
     env["AR"] = "emar"
     env["RANLIB"] = "emranlib"
-    env.Append(CPPFLAGS=["-s", "SIDE_MODULE=1", "-std=c++17"])
-    env.Append(LINKFLAGS=["-s", "SIDE_MODULE=1"])
+    env.Append(CPPFLAGS=["-s", "SIDE_MODULE=1", "-std=c++17", "-flto"])
+    env.Append(LINKFLAGS=["-s", "SIDE_MODULE=1", "-flto"])
     env["SHOBJSUFFIX"] = ".bc"
     env["SHLIBSUFFIX"] = ".wasm"
     # Use TempFileMunge since some AR invocations are too long for cmd.exe.
@@ -190,7 +193,7 @@ env.Append(LIBS=[cpp_library])
 
 # tweak this if you want to use different folders, or more folders, to store your source code in.
 env.Append(CPPPATH=["src/"])
-sources = Glob("src/*.cpp")
+sources = Glob(os.path.join("src","*.cpp"))
 env.Tool("compilation_db")
 env.CompilationDatabase()
 

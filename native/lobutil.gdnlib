@@ -11,6 +11,7 @@ HTML5.wasm32="res://native/bin/javascript/liblobutil.wasm"
 OSX.64="res://native/bin/osx/liblobutil.dylib"
 Windows.64="res://native/bin/win64/liblobutil.dll"
 X11.64="res://native/bin/x11/liblobutil.so"
+Server="res://native/bin/x11/liblobutil.so"
 
 [dependencies]
 
