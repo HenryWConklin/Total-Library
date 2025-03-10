@@ -19,6 +19,7 @@ License is MIT, copyright Henry Conklin 2022, except:
 * the [room tone audio](assets/audio/) which uses [this license](https://gamesounds.xyz/Sonniss.com%20-%20GDC%202020%20-%20Game%20Audio%20Bundle/License.pdf) and came from [gamesounds.xyz](https://gamesounds.xyz/?dir=Sonniss.com%20-%20GDC%202020%20-%20Game%20Audio%20Bundle/Articulated%20Sounds%20-%20Empty%20Hotel%20Quiet%20Room%20Tones)
 * the [wood grain shader](assets/materials/shaders/wood_shader.gdshader) which is slightly modified from one by Yi Kinomoto (@arlez80) at https://godotshaders.com/shader/procedural-grain-wood-shader/ which is also under MIT, but not by me
 * everything under `addons/gut` which is [Gut](https://github.com/bitwes/Gut), also MIT license but not by me
+* Cursors and arrow icons from the [Kenney Game assets cursor pack](https://kenney-assets.itch.io/cursor-pack)
 
 Some related projects:
 * https://libraryofbabel.info/
