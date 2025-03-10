@@ -6,6 +6,7 @@ env:
 
 jobs:
   build:
+    name: "Build Native Library"
     uses: ./.github/workflows/build-native.yml
   export:
     name: "Export"
@@ -15,20 +16,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          # Don't need submodules for export, only native building
           lfs: true
-      - name: Cache Submodules
-        uses: actions/cache@v4
-        id: cache-submodules
-        with:
-          path: |
-            native/lib
-            native/godot-cpp
-          key: ${{matrix.platform}}-submodules
-      - name: Checkout submodules
-        if: "${{steps.cache-submodules.outputs.cache-hit != 'true'}}"
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
 
       - name: Cache Godot
         uses: actions/cache@v4
@@ -37,15 +26,17 @@ jobs:
           key: godot-3.5.3
           path: |
             godot
-            templates/
+            /home/runner/.local/share/godot/templates/
       - name: Download Godot
         if: "${{steps.cache-godot.outputs.cache-hit != 'true'}}"
         run: |
           wget -q -O godot.zip https://github.com/godotengine/godot/releases/download/3.5.3-stable/Godot_v3.5.3-stable_linux_headless.64.zip
-          wget -q -O templates.tpz https://github.com/godotengine/godot/releases/download/3.5.3-stable/Godot_v3.5.3-stable_linux_headless.64.zip
+          wget -q -O templates.tpz https://github.com/godotengine/godot/releases/download/3.5.3-stable/Godot_v3.5.3-stable_export_templates.tpz
           unzip godot.zip
           mv Godot_v3.5.3-stable_linux_headless.64 godot
           unzip templates.tpz
+          mkdir -p ~/.local/share/godot/templates/
+          mv templates/ ~/.local/share/godot/templates/3.5.3.stable
 
       - name: Make native bin dirs
         run: |
@@ -68,35 +59,35 @@ jobs:
 
       - name: Export Linux
         run: |
-          mkdir -p export/x11/
-          ./godot --export "Linux/X11" "export/x11/"
-          (cd export/x11 && zip -9r "Total_Library_v${TOTAL_LIBRARY_VERSION}_linux64.zip" "Total Library/")
+          mkdir -p "export/x11/Total Library"
+          ./godot --export "Linux/X11"
+          ( cd export/x11 && zip -9r "Total_Library_v${TOTAL_LIBRARY_VERSION}_linux64.zip" "Total Library/" )
       - name: Upload Linux
         uses: actions/upload-artifact@v4
         with:
           name: linux-export
-          path: export/x11/Total_Library_v${TOTAL_LIBRARY_VERSION}_linux64.zip
+          path: export/x11/Total_Library_v${{env.TOTAL_LIBRARY_VERSION}}_linux64.zip
           if-no-files-found: error
       - name: Export Windows
         run: |
-          mkdir -p export/windows/
+          mkdir -p "export/windows/Total Library"
           ./godot --export "Windows Desktop"
-          (cd export/windows/ && zip -9r "Total_Library_v${TOTAL_LIBRARY_VERSION}_win64.zip" "Total Library/")
+          ( cd export/windows/ && zip -9r "Total_Library_v${TOTAL_LIBRARY_VERSION}_win64.zip" "Total Library/" )
       - name: Upload Windows
         uses: actions/upload-artifact@v4
         with:
           name: windows-export
-          path: export/windows/Total_Library_v${TOTAL_LIBRARY_VERSION}_win64.zip
+          path: export/windows/Total_Library_v${{env.TOTAL_LIBRARY_VERSION}}_win64.zip
           if-no-files-found: error
       - name: Export Web
         run: |
           mkdir -p export/html5/
           ./godot --export "HTML5"
           mv export/html5/total_library.html export/html5/index.html
-          zip -9rj "Total_Library_v${TOTAL_LIBRARY_VERSION}_html.zip" "export/html5/")
+          zip -9rj "export/Total_Library_v${TOTAL_LIBRARY_VERSION}_html.zip" "export/html5/"
       - name: Upload Web
         uses: actions/upload-artifact@v4
         with:
           name: web-export
-          path: export/Total_Library_v${TOTAL_LIBRARY_VERSION}_html.zip
+          path: export/Total_Library_v${{env.TOTAL_LIBRARY_VERSION}}_html.zip
           if-no-files-found: error
