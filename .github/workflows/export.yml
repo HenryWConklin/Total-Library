@@ -1,0 +1,102 @@
+name: "Export Game"
+on: [workflow_dispatch]
+
+env:
+  TOTAL_LIBRARY_VERSION: 1.2.0
+
+jobs:
+  build:
+    uses: ./.github/workflows/build-native.yml
+  export:
+    name: "Export"
+    needs: build
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Cache Submodules
+        uses: actions/cache@v4
+        id: cache-submodules
+        with:
+          path: |
+            native/lib
+            native/godot-cpp
+          key: ${{matrix.platform}}-submodules
+      - name: Checkout submodules
+        if: "${{steps.cache-submodules.outputs.cache-hit != 'true'}}"
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Cache Godot
+        uses: actions/cache@v4
+        id: cache-godot
+        with:
+          key: godot-3.5.3
+          path: |
+            godot
+            templates/
+      - name: Download Godot
+        if: "${{steps.cache-godot.outputs.cache-hit != 'true'}}"
+        run: |
+          wget -q -O godot.zip https://github.com/godotengine/godot/releases/download/3.5.3-stable/Godot_v3.5.3-stable_linux_headless.64.zip
+          wget -q -O templates.tpz https://github.com/godotengine/godot/releases/download/3.5.3-stable/Godot_v3.5.3-stable_linux_headless.64.zip
+          unzip godot.zip
+          mv Godot_v3.5.3-stable_linux_headless.64 godot
+          unzip templates.tpz
+
+      - name: Make native bin dirs
+        run: |
+          mkdir -p native/bin/x11 native/bin/win64 native/bin/javascript native/bin/osx
+      - name: Download linux native lib
+        uses: actions/download-artifact@v4
+        with:
+          name: liblobutil-linux
+          path: native/bin/x11
+      - name: Download windows native lib
+        uses: actions/download-artifact@v4
+        with:
+          name: liblobutil-windows
+          path: native/bin/win64
+      - name: Download web native lib
+        uses: actions/download-artifact@v4
+        with:
+          name: liblobutil-javascript
+          path: native/bin/javascript
+
+      - name: Export Linux
+        run: |
+          mkdir -p export/x11/
+          ./godot --export "Linux/X11" "export/x11/"
+          (cd export/x11 && zip -9r "Total_Library_v${TOTAL_LIBRARY_VERSION}_linux64.zip" "Total Library/")
+      - name: Upload Linux
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-export
+          path: export/x11/Total_Library_v${TOTAL_LIBRARY_VERSION}_linux64.zip
+          if-no-files-found: error
+      - name: Export Windows
+        run: |
+          mkdir -p export/windows/
+          ./godot --export "Windows Desktop"
+          (cd export/windows/ && zip -9r "Total_Library_v${TOTAL_LIBRARY_VERSION}_win64.zip" "Total Library/")
+      - name: Upload Windows
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-export
+          path: export/windows/Total_Library_v${TOTAL_LIBRARY_VERSION}_win64.zip
+          if-no-files-found: error
+      - name: Export Web
+        run: |
+          mkdir -p export/html5/
+          ./godot --export "HTML5"
+          mv export/html5/total_library.html export/html5/index.html
+          zip -9rj "Total_Library_v${TOTAL_LIBRARY_VERSION}_html.zip" "export/html5/")
+      - name: Upload Web
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-export
+          path: export/Total_Library_v${TOTAL_LIBRARY_VERSION}_html.zip
+          if-no-files-found: error
